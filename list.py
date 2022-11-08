@@ -87,7 +87,6 @@ def sort_list(tuples):   # for tuples sorted is best
 print(sort_list([(2, 5), (1, 2), (4, 4), (2, 3), (2, 1)]))
 """
 
-
 # 7. Write a Python program to remove duplicates from a list.
 """
 def remove_dup(items):
@@ -163,6 +162,371 @@ def new_list_words(n, items):
 
 print(new_list_words(4, "The quick brown fox jumps over the lazy dog"))
 """
+
+"""
+# 11.Write a Python function that takes two lists and returns True if they have at least one common member.
+
+
+def common_items(list1, list2):
+    for i in list1:  # by using in operator and if condition
+        if i in list2:
+            return True
+    return False
+
+
+print(common_items([1, 2, 3], ['a', 4, 5]))
+
+# by using two for loops and compare items.
+
+
+def common_data(list1, list2):
+    result = False    # initialise the result
+    for i in list1: 
+        for j in list2:
+            if i == j:  # we can give != also here....if we give result True at begining
+                result = True
+    return result
+
+
+print(common_data([1, 2, 3, 4, 5], ['k', 6, 7, 8, 9]))
+"""
+
+# 12. Write a Python program to print a specified list after removing the 0th, 4th and 5th elements.
+# Sample List : ['Red', 'Green', 'White', 'Black', 'Pink', 'Yellow']
+# Expected Output : ['Green', 'White', 'Black']
+
+
+#  we can use by using enumerate function
+
+"""
+def remove(items):
+    a = [j for i, j in enumerate(items) if i not in (0, 4, 5)]
+    return a
+
+
+print(remove(['Red', 'Green', 'White', 'Black', 'Pink', 'Yellow']))
+
+"""
+
+# 13. Write a Python program to generate a 3*4*6 3D array whose each element is *.
+"""  # it is very important 
+array = [[['*' for col in range(6)]for col in range(4)]for row in range(3)]
+print(array)
+"""
+
+# 14. Write a Python program to print the numbers of a specified list after removing even numbers from it.
+
+"""
+def remove_even(items):
+    return [i for i in items if i % 2 == 0]   # we can write directly by using list comprehension method
+
+
+print(remove_even(eval(input("enter the list :"))))
+"""
+
+# 15. Write a Python program to shuffle and print a specified list.
+
+"""
+from random import shuffle
+
+
+def jig_jag(items):
+    shuffle(items)   # here we are shuffling the items
+    return items
+
+
+print(jig_jag(['Red', 'Green', 'White', 'Black', 'Pink', 'Yellow']))
+"""
+# 16.Write a Python program to generate and print a list of first and last 5 elements where the values
+# are square of numbers between 1 and 30 (both included).
+
+# 1 to 30 (both included) we need first 5 and last five numbers squares....
+"""
+
+def first_last_square():
+    return [i**2 for i in range(1, 31) if i < 6 or i > 25]  # i value must be less than 6 or greather than 25
+
+
+print(first_last_square())
+
+"""
+
+# 17. Write a Python program to generate and print a list except for the first 5 elements,
+# where the values are square of numbers between 1 and 30 (both included).
+
+"""
+def list_except():
+    return [i**2 for i in range(1, 31) if i > 6]
+
+
+print(list_except())
+"""
+
+# ** 18.Write a Python program to generate all permutations of a list in Python.
+
+"""
+from itertools import permutations
+
+
+def per(items):  # here we can provide 'n' also to print set of items.
+    return list(permutations(items))
+
+
+print(per([1, 2, 3]))  # if we want to provide user input type eval(input("enter the numbers":)
+"""
+
+# 19.Write a Python program to get the difference between the two lists
+"""
+
+def difference(li1, li2):
+    return [i for i in li1 + li2 if i not in li1 or i not in li2]  # add two lists 
+ 
+
+print(difference([1, 3, 5, 7, 9], [1, 2, 4, 6, 7, 8]))
+"""
+
+# 20. Write a Python program access the index of a list.
+
+# model:1 by using enumerate
+
+"""
+def index(items):
+    return [i for i in enumerate(items)]
+
+
+print(index([1, 2, 3, 4]))
+"""
+# model2:
+
+"""
+def index(items):
+    for i, j in enumerate(items):
+        print(i, j)
+
+
+index([1, 2, 3])
+"""
+
+"""
+def index(items):
+    positive = 0
+    a=len(items)
+    for i in items:
+        print(i, "items at positive index is:{} negative index is{}".format(positive, positive-len(items)))
+        positive += 1
+
+
+index([1, "a", "r"])
+"""
+
+# 21.Write a Python program to convert a list of characters into a string
+
+"""
+def list_string(items):
+      return "".join(items)   # in join function iterable must be inside the join function 
+
+
+print(list_string(["a","b"]))
+"""
+# 22.Write a Python program to find the index of an item in a specified list.
+
+"""
+def index(items, item):
+    return items.index(item)  # list.index(list_item)
+
+
+print(index([1, 30, 40, 50], 40))
+"""
+# 23.  Write a Python program to flatten a shallow list
+
+"""
+def add_all_lists(items):
+
+    return [j for i in items for j in i]  # here we can square the value and (where ever nested list arise then we 
+                                            should treat those lists as shallow lists
+
+
+print(add_all_lists([[1, 2, 3], [4, 5, 6], [7, 8, 9]]))
+"""
+
+# 24. Write a Python program to append a list to the second list.
+
+"""
+def append_new_list(list1, list2):
+    [list1.append(i) for i in list2]
+    return list1    # we can append by using "return list1+list2" 
+
+doubt: return [list1.append(i) for i in list2] why it is coming none
+
+print(append_new_list([1, 2], [3, 4]))
+"""
+
+# 25.Write a Python program to select an item randomly from a list.
+"""
+from random import choice
+
+# here we are importing random module on that we are using choice function
+
+
+def select_choice(items):    
+    return choice(items)
+
+print(select_choice([1,2,3,4,5,6]))
+
+"""
+
+# 26. Write a python program to check whether two lists are circularly identical.
+"""
+# circularly identical = if u put two list items in a two circles separately then the items must be in same order
+
+# step:1 double the list1
+# step:2 iterate by using new list1 & range function (we doubled previously)
+# step:3 compare list2 with list1 by using slice the list1
+
+def compare(list1, list2):
+    list1.extend(list1) # we can use by list1*2
+    for i in range(len(list1)): 
+        if list2 == list1[i:i+len(list2)]:  # slicing the list1 and comparing 
+            return True
+    return False
+
+
+print(compare([10, 10, 0, 0, 10], [10, 10, 10, 0, 0]))
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

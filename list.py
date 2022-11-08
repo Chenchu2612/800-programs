@@ -428,6 +428,107 @@ def single_short(items):
 single_short([-1.2, -2.8, -2.1, -4.5, -2.5, ])
 """
 
+# 29.Write a Python program to get unique values from a list.
+
+#  it means remove duplicates
+
+"""
+def unique_values(items):
+    list=[]
+    [list.append(i) for i in items if i not in list]
+    return list
+
+
+print(unique_values([1, 2, 3, 1, 4, 5, 6]))
+"""
+
+# 30.Write a Python program to get the frequency of the elements in a list.
+
+# it means count's the number of times repeated each element in the list.
+# where ever  the name frequency exists we must use the dict method
+"""
+
+def frequency(items):
+    freq = {}
+    for i in items:
+        if i not in :
+            freq[i] = 1
+        else:
+            freq[i] += 1
+        
+    return freq
+
+
+print(frequency([10, 10, 10, 10, 20, 20, 20, 20, 40, 40, 50, 50, 30]))
+
+"""
+
+# 31. Write a Python program to count the number of elements in a list within a specified range.
+
+# with in qa specific range we have to count the numers.
+
+"""
+def count_range(items, min_val, max_val):
+    count=0
+    for x in items:
+        if min_val <= x <= max_val:
+            count += 1
+    return count
+
+
+print(count_range([10, 20, 30, 40, 40, 40, 70, 80, 99], 30, 40))
+"""
+
+# 32.Write a Python program to check whether a list contains a sublist.
+
+# very important
+"""
+def is_sublist(item1, item2):
+    sub_list = False
+
+    if item2 == []:
+        sub_list = True
+    elif item2 == item1:
+        sub_list = False
+    elif len(item2) > len(item1):
+        sub_list = False
+
+    else:
+        for i in range(len(item1)):
+            if item1[i] == item2[0]:
+                n = 1
+                while (len(item2) > n) and item1[i+n] == item2[n]:
+                    n += 1
+                if n == len(item2):
+                    sub_list = True
+
+    return sub_list
+
+
+print(is_sublist([2, 4, 3, 5, 7], [4, 3, 5]))
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

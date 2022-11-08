@@ -394,9 +394,39 @@ def compare(list1, list2):
 print(compare([10, 10, 0, 0, 10], [10, 10, 10, 0, 0]))
 """
 
+# 27. Write a Python program to find the second smallest number in a list.
+# 28. second largest number
 
 
+# taking first element and comparing to remaining elements
+"""
 
+def single_short(items):
+    largest = items[0]
+    largest2 = None
+    smallest = items[0]
+    smallest2 = None
+    for i in items[1:]:
+        if i > largest:
+            largest2 = largest
+            largest = i
+        elif largest2 is None or i > largest2:
+            largest2 = i
+
+        if i < smallest:
+            smallest2 = smallest
+            smallest = i
+        elif smallest2 is None or i<smallest2:
+            smallest2 = i
+
+    print("largest", largest)
+    print("largest2", largest2)
+    print("smallest", smallest)
+    print("smallest2", smallest2)
+
+
+single_short([-1.2, -2.8, -2.1, -4.5, -2.5, ])
+"""
 
 
 

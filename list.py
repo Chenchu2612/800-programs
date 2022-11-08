@@ -495,9 +495,9 @@ def is_sublist(item1, item2):
 
     else:
         for i in range(len(item1)):
-            if item1[i] == item2[0]:
+            if item1[i] == item2[0]:  # comparing first element in list2 with list1
                 n = 1
-                while (len(item2) > n) and item1[i+n] == item2[n]:
+                while (len(item2) > n) and item1[i+n] == item2[n]: 
                     n += 1
                 if n == len(item2):
                     sub_list = True
@@ -508,150 +508,63 @@ def is_sublist(item1, item2):
 print(is_sublist([2, 4, 3, 5, 7], [4, 3, 5]))
 """
 
+# 33. ignored
 
+# 34. prime number program
 
 
+# 35.Write a Python program to create a list by concatenating a given list which range goes from 1 to n.
 
+# Sample list : ['p', 'q']
+# n =5
+# Sample Output : ['p1', 'q1', 'p2', 'q2', 'p3', 'q3', 'p4', 'q4', 'p5', 'q5']
 
+# we are iterating and using format method also
+"""
+def new_list(list1, number):
+    return ["{}{}".format(x, y) for y in range(1, number+1)for x in list1]
 
 
+print(new_list(["p", "q"], 5))
+"""
 
 
+# 36.Write a Python program to get variable unique identification number or string.
+# less important
+"""
+x = 100
+print(format(id(x), 'x'))
+s = 'w3resource'
+print(format(id(s), 'x')) 
+"""
 
+# 37.Write a Python program to find common items from two lists.
 
+# common means i must contains in both lists
+"""
+def common_items(list1, list2):
+    return [x for x in list1 if x in list2]
 
 
+print(common_items(["Red", "Green", "Orange", "White"], ["Black", "Green", "White", "Pink"]))
+"""
 
+# 38.Write a Python program to change the position of every n-th value with the (n+1)th in a list.
+# Sample list: [0,1,2,3,4,5]
+# Expected Output: [1, 0, 3, 2, 5, 4]
 
+# every value is replace by its next value(i.e n+1 th value)
+# here we are using swaping principle
 
+"""
+def position_change(items):
+    for i in range(0, len(items), 2):
+        items[i], items[i+1] = items[i+1], items[i]
+    return items
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+print(position_change([1, 2, 3, 4, 5, 6, 7]))
+"""
 
 
 

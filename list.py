@@ -588,12 +588,171 @@ a= "".join(map(str, [11, 33]))
 print(a)
 """
 
+# 40 Write a Python program to split a list based on first character of word.
+#
+# Sample Input:
+#
+# word_list = ['be','have','do','say','get','make','go','know','take','see','come','think',
+#      'look','want','give','use','find','tell','ask','work','seem','feel','leave','call']
+
+# ignored
+
+# 41.Write a Python program to create multiple lists.
+
+# by using dict comprehension
+"""
+
+def create_mul_lists(n1, n2):
+    return {str(i): [] for i in range(n1, n2)}
 
 
+print(create_mul_lists(1, 21))
+"""
+
+# 42. Write a Python program to find missing and additional values in two lists.
+# list1 = ['a', 'b', 'c', 'd', 'e', 'f']
+# list2 = ['d', 'e', 'f', 'g', 'h']
+# missing values in second list = ['a', 'b', 'c']
+# additional values in second list = ['g', 'h']
+
+# method:1
+"""
+def missing_additional(list1, list2):
+    missing_in_list2 = [i for i in list1 if i not in list2]
+    additional_in_list2 = [i for i in list2 if i not in list1]
+    return missing_in_list2, additional_in_list2
 
 
+print(missing_additional(['a', 'b', 'c', 'd', 'e', 'f'], ['d', 'e', 'f', 'g', 'h']))
+
+# method:2
+
+a=["missing_in_list2:", [i for i in list1 if i not in list2], "additional_in_list2:", [i for i in list2 if i not in list1]]
+print(a)
+"""
+# 43. ignored
+# 44.Write a Python program to generate groups of five consecutive numbers in a list.
+# i represents the number of sub_lists in a list
+# j represents the consicutive numbers in the sublist
+
+"""
+
+def consecutive_numbers():
+    return [[j+5*i for j in range(1, 6)]for i in range(9)]
 
 
+print(consecutive_numbers())
+"""
+
+# 45.Write a Python program to convert a pair of values into a sorted unique array.
+
+# sample_input = [(1, 2), (3, 4), (1, 2), (5, 6), (7, 8), (1, 2), (3, 4), (3, 4), (7, 8), (9, 10)]
+# output = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+"""
+def pair_to_unique_array(items):
+    new=[]
+    for i in items:
+        for j in i:
+            if new.count(j)==0:   # or we can write j not in new
+                new.append(j)
+    return sorted(new)   # we are using sorted to arrange numbers in ascending order
+
+print(pair_to_unique_array([(1, 2), (3, 4), (7, 2), (5, 11), (7, 8), (1, 2), (3, 4), (3, 4), (7, 8), (9, 10)]))
+"""
+
+# 46. Write a Python program to select the odd items of a list.
+
+"""
+def only_odd(items):
+    return [i for i in items if i % 2 != 0]
+
+
+print(only_odd([1, 2, 3, 4, 5, 6, 7, 8, 9]))
+"""
+
+# 47.Write a Python program to insert an element before each element of a list.
+# sample_input = ['Red', 'Green', 'Black']
+# output = ['c', 'Red', 'c', 'Green', 'c', 'Black']
+
+"""
+def adding_new(items):
+    new=[]
+    for i in items:
+        new += 'c', i   # if you want to add next to each element new+= i, 'c'  
+    return new
+
+
+print(adding_new(['Red', 'Green', 'Black']))
+"""
+# 48.Write a Python program to print a nested lists (each list on a new line) using the print() function.
+# input= [['Red'], ['Green'], ['Black']]
+# output = ['red']
+#          ['green']
+#          ['black']
+"""
+
+def nested_list(item):
+    for i in item:
+        print(i)
+
+
+nested_list([['Red'], ['Green'], ['Black']])
+
+# model:2
+
+print('\n'.join([str(lst) for lst in colors]))
+a=[str(lst) for lst in colours]
+
+colours =[['red'], ['green'], ['yellow']]
+a=[str(lst) for lst in colours]  # we are converting nested lists into strings ,join function only supports str in list
+
+print('\n'.join(a))  # here we are joining with each element with new line thats why its print line by line
+
+"""
+
+# 49. Write a Python program to convert list to list of dictionaries. Go to the editor
+# input = ["Black", "Red", "Maroon", "Yellow"]
+# input1 = ["#000000", "#FF0000", "#800000", "#FFFF00"]
+# Expected Output: [{'color_name': 'Black', 'color_code': '#000000'},
+#                   {'color_name': 'Red', 'color_code': '#FF0000'},
+#                   {'color_name': 'Maroon', 'color_code': '#800000'},
+#                   {'color_name': 'Yellow', 'color_code': '#FFFF00'}]
+"""
+ # method 1:
+def create_dict(list1, list2):
+
+    dict, list = {}, []
+    for i in range(len(list1)):
+        dict['colour_name'] = list1[i]  # adding key and values to the dictionary
+        dict['colour_code'] = list2[i]
+        list.append(dict) # appending the dictionary to the list
+    return list
+
+
+# print(create_dict(["Black", "Red", "Maroon", "Yellow"], ["#000000", "#FF0000", "#800000", "#FFFF00"]))
+
+# method:2
+# by using zip function
+
+def create_dict(list1, list2):
+    return [{'colour_name': i, 'colour_code': j}for i, j in zip(list1, list2)]
+
+
+print(create_dict(["Black", "Red", "Maroon", "Yellow"], ["#000000", "#FF0000", "#800000", "#FFFF00"]))
+"""
+# 50. Write a Python program to sort a list of nested dictionaries.
+
+# while doing dict codes you can understand it more
+
+"""
+def sort_nest_dict(items):
+    items.sort(key=lambda val : val['key']['subkey'], reverse=False)
+    return items
+
+
+print(sort_nest_dict([{'key': {'subkey': 1}}, {'key': {'subkey': 10}}, {'key': {'subkey': 5}}]))
+"""
 
 
 

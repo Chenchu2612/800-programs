@@ -1054,6 +1054,81 @@ def max_sum_list(item):
 
 print(max_sum_list([[109, 2, 3], [40, 5, 6], [10, 11, 12]]))
 """
+"""
+# 67. Write a Python program to find all the values in a list are greater than a specified number.
+
+# explanation: all values in alist are greather then the  specified number or not
+# about all() function:
+# The all() function returns True if all items in an iterable are true, otherwise it returns False.
+# syntax: all(iterable)
+# If the iterable object is empty, the all() function also returns True.
+
+
+def find_greater(list, number):       # it returns true if all num is list is greather then the specified number
+    return all(i >= number for i in list)
+
+
+print(find_greater([1, 2, 3, 5], 2))
+"""
+"""
+# 68. Write a Python program to extend a list without append. Go to the editor
+# list1 = [10, 20, 30]
+# list2 = [40, 50, 60]
+# Expected output : [40, 50, 60, 10, 20, 30]
+
+# method:1 by using + operator
+def adds(list1, list2):
+    return list1+list2
+
+
+print(adds([1, 2, 3], [4, 5, 6]))
+
+# method:2 by using slicing
+
+def add(item1, item2):
+    item2[:0] = item1
+    return item2
+print(add([1, 2],[3, 4]))
+"""
+"""
+# 69. Write a Python program to remove duplicates from a list of lists. Go to the editor
+# Sample list : [[10, 20], [40], [30, 56, 25], [10, 20], [33], [40]]
+# New List : [[10, 20], [30, 56, 25], [33], [40]]
+
+
+def remove_duplicates(item):
+    
+    list=[]
+    [list.append(i) for i in item if i not in list]
+    return list
+
+
+print(remove_duplicates([[10, 20], [40], [30, 56, 25], [10, 20], [33], [40]]))
+"""
+"""
+# 70. Write a Python program to find the items starts with specific character from a given list. Go to the editor
+# Expected Output:
+# Original list:
+# ['abcd', 'abc', 'bcd', 'bkie', 'cder', 'cdsw', 'sdfsd', 'dagfa', 'acjd']
+# Items start with a from the said list:
+# ['abcd', 'abc', 'acjd']
+# Items start with d from the said list:
+# ['dagfa']
+# Items start with w from the said list:
+# []
+
+def starts_letter(item, letter):
+    return [word for word in item if word[0] == letter]
+
+
+print(starts_letter(['abcd', 'abc', 'bcd', 'bkie', 'cder', 'cdsw', 'sdfsd', 'dagfa', 'acjd'], 'd'))
+"""
+
+
+
+
+
+
 
 
 

@@ -933,15 +933,75 @@ print(create_emepty_dict_in_list(10))
 
 """
 
+"""
+# 62.Write a Python program to print a list of space-separated elements.
+
+# it means every element in a list should be printed  in same line with space saperator(space should be there 
+# between listelements) 
+
+input = [1, 2, 3, 4, 5]
+# output= 1 2 3 4 5
+
+# method:1  by using * operator inside print statement
+
+# print(*input)
 
 
+method : 2
+
+# by using end separator
+
+def space_sep(item):
+    for i in input:
+        print(i, end=" ")
+"""
+
+"""
+# 63.Write a Python program to insert a given string at the beginning of all items in a list.
+# Sample list : [1,2,3,4], string : emp
+# Expected output : ['emp1', 'emp2', 'emp3', 'emp4']
+
+# bellow method returns the abnormal results i.e : ['hello1', 'hello12', 'hello123', 'hello1234']
+def con_cat(list, string):
+    new_list=[]
+    for x in list:
+        string+=str(x)
+        new_list.append(string)
+    return new_list
 
 
+print(con_cat([1,2,3,4],"hello"))
+
+# this is correct method we used the format string
 
 
+def con_cat(list, string):
+    return [string+"{}".format(i) for i in list]
 
 
+print(con_cat([1, 2, 3, 4], "hello"))
+"""
+"""
+# 64. Write a Python program to iterate over two lists simultaneously.
+
+# with using zip function
 
 
+def parlell(list1, list2):
+    for i, j in zip(list1, list2):
+        print(i, j)
+
+parlell([1,2,3],[4,5,6])
+
+
+# with using zip function
+
+def parlel(list1, list2):
+    for i in range(len(list1)):
+        print(list1[i], list2[i])
+
+parlel([1,2],[3,4])
+
+"""
 
 

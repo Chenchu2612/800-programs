@@ -600,8 +600,8 @@ print(a)
 # 41.Write a Python program to create multiple lists.
 
 # by using dict comprehension
-"""
 
+"""
 def create_mul_lists(n1, n2):
     return {str(i): [] for i in range(n1, n2)}
 
@@ -754,10 +754,184 @@ def sort_nest_dict(items):
 print(sort_nest_dict([{'key': {'subkey': 1}}, {'key': {'subkey': 10}}, {'key': {'subkey': 5}}]))
 """
 
+# **51. Write a Python program to split a list every Nth element
+#
+# Sample_list=['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n']
+# Expected Output: [['a', 'd', 'g', 'j', 'm'], ['b', 'e', 'h', 'k', 'n'], ['c', 'f', 'i', 'l']]
+
+# model:1
+"""
+def split_list_every_nth(items, nth):
+    return [items[i::nth] for i in range(nth)]  
 
 
+print(split_list_every_nth(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'], 5))
+
+# model:2
 
 
+def split_list(item, nth):
+    new_list=[]
+    for i in range(nth):           
+        new_list.append(Sample_list[i::nth])
+    return new_list
+"""
+
+"""
+# 52. Write a Python program to compute the difference between two lists. Go to the editor
+# colour1=["red", "orange", "green", "blue", "white"]
+# colour2=["black", "yellow", "green", "blue"]
+# Expected Output:
+# Color1-Color2: ['white', 'orange', 'red']
+# Color2-Color1: ['black', 'yellow']
+
+# here we are using list comprehension and not in operator
+def difference(colour1, colour2):
+    a = [words for words in colour1 if words not in colour2]
+    b = [words for words in colour2 if words not in colour1]
+    c = "Colour1-Colour2 :{} and Colour2-Colour1:{}".format(a, b)
+    return c
+
+
+print(difference(["red", "orange", "green", "blue", "white"], ["black", "yellow", "green", "blue"]))
+"""
+"""
+# 53.Write a Python program to create a list with infinite elements.
+
+# ignored
+
+
+def infinite_list():
+    lst = []
+    c = 0
+    while True:
+       lst.append(c)
+       c+=1
+       print(lst)
+
+print(infinite_list())
+"""
+
+# 54. Write a Python program to concatenate elements of a list.
+# input:
+# color = ['red', 'green', 'orange']
+# output:
+# red-green-orange
+# redgreenorange
+
+# print("-".join(color))         # join function takes an iterable and joins the strings in the iterable
+# print("".join(color))
+
+
+"""
+# **55. Write a Python program to remove key values pairs from a list of dictionaries.
+
+# Original List:
+# [{'key1': 'value1', 'key2': 'value2'}, {'key1': 'value3', 'key2': 'value4'}]
+# New List:
+# [{'key2': 'value2'}, {'key2': 'value4'}]
+
+
+def remove_key_value(items):
+    new_list_dict = [{k : v for k, v in x.items() if k != 'key1'}for x in items]
+    return new_list_dict
+
+
+print(remove_key_value([{'key1': 'value1', 'key2': 'value2'}, {'key1': 'value3', 'key2': 'value4'}]))
+"""
+"""
+# 56. Write a Python program to convert a string to a list.
+
+# input = "['red', 'green', 'yellow']"
+# output= ['red', 'green', 'yellow']
+
+# model:1 ---> here we are importing ast module
+import ast
+
+
+def string_list(item):
+
+    return ast.literal_eval(input)
+
+print(string_list("['red', 'green', 'yellow']"))
+
+# model:2 we are using string replace method
+# input.replace('"', "")
+# print(input)
+
+"""
+"""
+# 57.Write a Python program to check if all items of a given list of strings is equal to a given string.
+
+# meaning: every element in the list is equals to the given string
+
+# color1 = ["red", "red", "black", "white"]
+
+# method1 : by using all function inside the list
+print(all(word == 'green' for word in color1))
+print(all(word == 'green' for word in color1))
+
+# method:2 break and continue method
+
+for i in color1:
+    if i == 'red':
+        continue
+    else:
+        print(False)
+        break
+"""
+"""
+# 58. Write a Python program to replace the last element in a list with another list.
+# Sample data :
+list1 = [1, 3, 5, 7, 9, 10]
+list2 = [2, 4, 6, 8]
+# Expected Output: [1, 3, 5, 7, 9, 2, 4, 6, 8]
+
+# method:1 by using pop() function
+
+
+def list_insertion(list1 , list2):
+    list1.pop()
+    list1.extend(list2)
+    return list1
+
+
+print(list_insertion([1, 3, 5, 7, 9, 10], [2, 4, 6, 8]))
+
+# method:2 by using slicing method:
+
+def list_insec(list1, list2):
+    list1[-1:]=list2
+    return list1
+
+print(list_insec([1, 3, 5, 7, 9, 10], [2, 4, 6, 8]))
+"""
+
+# 59.Write a Python program to check whether the n-th element exists in a given list.
+
+# i dont understand this question copied from w3 school
+# x = [1, 2, 3, 4, 5, 6]
+# xlen = len(x)-1
+# print(x[xlen])
+
+# 60.Write a Python program to find a tuple, the smallest second index value from a list of tuples.
+# not understanding
+
+# x = [(4, 1), (1, 2), (6, 5)]
+# print(min(x, key=lambda n: (n[1], -n[0])))
+
+"""
+# 61.Write a Python program to create a list of empty dictionaries.
+
+# inside a list we have to cresate a emepty dict
+
+
+def create_emepty_dict_in_list(n):
+    return [{} for i in range(n)]
+
+print(create_emepty_dict_in_list(10))
+
+"""
 
 
 

@@ -1175,7 +1175,7 @@ print(flatten_list([0, 10, [20, 30], 40, 50, [60, 70, 80], [90, 100, 110, 120]])
 # After removing consecutive duplicates:
 # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 4]
 
-
+note= where ever the concept of consicutive arise the previous value concept comes
 new_list=[]
 
 def remove_con_duplicates(item):

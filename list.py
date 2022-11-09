@@ -1003,5 +1003,68 @@ def parlel(list1, list2):
 parlel([1,2],[3,4])
 
 """
+"""
+# 65. Write a Python program to move all zero digits to end of a given list of numbers.
+# Expected output:
+# Original list:
+#old_list = [3, 4, 0, 0, 0, 6, 2, 0, 6, 7, 6, 0, 0, 0, 9, 10, 7, 4, 4, 5, 3, 0, 0, 2, 9, 7, 1]
+# Move all zero digits to end of the said list of numbers:
+# new_list = [3, 4, 6, 2, 6, 7, 6, 9, 10, 7, 4, 4, 5, 3, 2, 9, 7, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+# by using swapping technique
+
+
+def move_zeros(item):
+    count=0
+    for i in range(len(item)):
+        if item[i] != 0:  # if item[i] == 0 this block won't be executed  
+            item[i], item[count] = item[count], item[i]  # here we are doing swapping
+            count += 1  # if it is not zero then only count will increase by 1
+    return item
+
+
+print(move_zeros([3, 4, 0, 0, 0, 6, 2, 0, 6, 7, 6, 0, 0, 0, 9, 10, 7, 4, 4, 5, 3, 0, 0, 2, 9, 7, 1]))
+
+"""
+"""
+
+# 66. Write a Python program to find the list in a list of lists whose sum of elements is the highest.
+# Sample lists: [[1,2,3], [4,5,6], [10,11,12], [7,8,9]]
+# Expected Output: [10, 11, 12]
+
+# explanation: we have to add all elements in a list and pic maximum value --> how to pic maximum value ?
+#                 based on index __ so initialize sum,max_sum, index and max_index
+
+def max_sum_list(item):
+
+
+    max_sum = 0
+    index = 0
+    index_max = 0
+    for sub_list in item:
+        sum_list = 0       # in which loop you are doing sum on above loop only wehave to initialize the varible
+        for num in sub_list:
+            sum_list += num
+        if sum_list > max_sum:
+            max_sum = sum_list
+            index_max = index
+        index+=1
+    return item[index_max]
+
+
+print(max_sum_list([[109, 2, 3], [40, 5, 6], [10, 11, 12]]))
+"""
+
+
+
+
+
+
+
+
+
+
+
+
 
 

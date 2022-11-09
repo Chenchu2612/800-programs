@@ -566,6 +566,34 @@ def position_change(items):
 print(position_change([1, 2, 3, 4, 5, 6, 7]))
 """
 
+# 39. Write a Python program to convert a list of multiple integers into a single integer.
+# Sample list: [11, 33, 50] ------> Expected Output: 113350
+
+# method :1
+"""
+
+def conversion(item):
+    new_number = ""
+    for x in item:
+        new_number += str(x)
+    return int(new_number)
+
+
+print(conversion([11, 33, 50]))
+
+
+# method:2
+# by using map function and join method
+a= "".join(map(str, [11, 33]))
+print(a)
+"""
+
+
+
+
+
+
+
 
 
 

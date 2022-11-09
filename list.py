@@ -1123,6 +1123,76 @@ def starts_letter(item, letter):
 
 print(starts_letter(['abcd', 'abc', 'bcd', 'bkie', 'cder', 'cdsw', 'sdfsd', 'dagfa', 'acjd'], 'd'))
 """
+"""
+# 71. Write a Python program to check whether all dictionaries in a list are empty or not. Go to the editor
+# Sample list : [{},{},{}]
+# Return value : True
+# Sample list : [{1,2},{},{}]
+# Return value : False
+   
+
+def check(item):
+    return all(dict=={} for dict in item)   # if i == {} true
+
+
+print(check([{},{},{}]))
+"""
+"""
+72. Write a Python program to flatten a given nested list structure.
+# this code is suitable when all items in the list are only nested list
+# this code is not worked if the items in the list are single elements i.e 1,2,'a','b' etc.
+
+
+# def flatten(item):
+#     return [x for sublist in item for x in sublist]
+
+
+# print(flatten([0, 10, [20, 30], 40, 50, [60, 70, 80], [90, 100, 110, 120]]))
+
+
+# if all items in list are mixings i.e nested+normal items
+
+# we can compute by using recursion method
+
+flatten=[]
+
+
+def flatten_list(items):
+    for item in items:
+        if type(item) == list:     
+            flatten_list(item)      # we have to be aware of diclaring varibles incase of recursive function
+        else:
+            flatten.append(item)
+    return flatten
+
+
+print(flatten_list([0, 10, [20, 30], 40, 50, [60, 70, 80], [90, 100, 110, 120]]))
+"""
+"""
+# ** 73. Write a Python program to remove consecutive duplicates of a given list. Go to the editor
+# Original list:
+# [0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4]
+# After removing consecutive duplicates:
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 4]
+
+
+new_list=[]
+
+def remove_con_duplicates(item):
+    previous_value = None
+    for i in item:
+        if i!= previous_value:
+            new_list.append(i)
+            previous_value = i
+
+    return new_list
+
+
+print(remove_con_duplicates([0, 0, 1, 2, 3, 0, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4]))
+"""
+
+
+
 
 
 

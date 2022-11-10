@@ -1190,7 +1190,7 @@ def remove_con_duplicates(item):
 
 print(remove_con_duplicates([0, 0, 1, 2, 3, 0, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4]))
 """
-
+"""
 # 74. Write a Python program to pack consecutive duplicates of a given list elements into sublists.
 # Original list:
 # [0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4]
@@ -1206,6 +1206,22 @@ for i in list:
 
 
 print(new_list)
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

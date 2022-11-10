@@ -614,4 +614,3 @@ def tup_to_list(item):
 print(tup_to_list([(1, 2), (2, 3), (3, 4)]))
 
 """
-

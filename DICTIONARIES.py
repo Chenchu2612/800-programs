@@ -264,14 +264,220 @@ print(myDict)
 
 """
 
+"""
+# 13. Write a Python program to map two lists into a dictionary.
+
+keys = ['red', 'green', 'blue']
+values = ['#FF0000', '#008000', '#0000FF']
+
+
+# method:1 by using build_in function.
+
+def create_dict_using_inbuilt(dict1, dict2):
+    return dict(zip(keys, values))
+
+
+print(create_dict_using_inbuilt(keys, values))
+
+
+# method:2 by using traditional approach
+
+def create_dict_traditional(dict1, dict2):
+    new_dict = {}
+    for i in range(len(keys)):  # or we can mention key = keys[i], value = values[i]
+        new_dict[keys[i]] = values[i]
+    return new_dict
+
+
+print(create_dict_traditional(keys, values))
+
+
+# method:3 by using dict_comprehension
+
+def create_dict_comp(dict1, dict2):
+    return {keys[i]: values[i] for i in range(len(keys))}
+
+
+print(create_dict_comp(keys, values))
+
+# ***method:4 by using map function
+
+res = dict(map(lambda i,j : (i,j) , keys,values))
+"""
+"""
+# 14. Write a Python program to sort a given dictionary by key.
+color_dict = {'red':'#FF0000',
+          'green':'#008000',
+          'black':'#000000',
+          'white':'#FFFFFF'}
+
+def sort_by_key(item1):
+    return dict(sorted(color_dict.items(), key=lambda x: x[0], reverse=False))
+
+
+print(sort_by_key(color_dict))
+"""
+"""
+# 15. Write a Python program to get the maximum and minimum value in a dictionary.
+my_dict = {'x': 500, 'y': 5874, 'z': 560}
+print(my_dict.keys())  # it will returns the value as  dict_keys(['x', 'y', 'z'])
+
+
+def max_min_keys(item):
+    max_key = max(item.keys(), key=lambda x: my_dict[x])
+    min_key = min(item.keys(), key=lambda x: my_dict[x])
+    print("The maximium value from the dictionary is: " ,item[max_key], "the minimum value:", item[min_key])
+
+
+max_min_keys(my_dict)
+
+model: 2
+a= max(my_dict.values())
+print(a)
+
+"""
+"""
+# ***16.Write a Python program to get a dictionary from an object's fields.
+
+class Employee:
+    def __init__(self):
+        self.name  = 'chenchaiah'
+        self.salary = '1200000'
+        self.office_area = 'Banglore'
+        self.roll = 'Data_analysist'
+
+    def status(self):
+        pass
+
+
+obj = Employee()
+print(obj.__dict__)
+"""
+"""
+# 17. Write a Python program to remove duplicates from Dictionary.
+student_data = {
+                'id1': {'name': ['Sara'], 'class': ['V'], 'subject_integration': ['english, math, science']},
+                'id2': {'name': ['David'], 'class': ['V'], 'subject_integration': ['english, math, science']},
+                'id3': {'name': ['Sara'], 'class': ['V'], 'subject_integration': ['english, math, science']},
+                'id4': {'name': ['Surya'], 'class': ['V'], 'subject_integration': ['english, math, science']},
+                }
+
+
+def remove_duplicate_values(item):
+    result_dict = {}
+    for key, values in student_data.items():
+        if values not in result_dict.values():
+            result_dict[key] = values    # Or we can use result_dict.update({key:values})
+    return result_dict
+
+
+print(remove_duplicate_values(student_data))
+"""
+"""
+# VERY_IMPORTANT_NOTE:
+
+# d.keys() = It will returns the dict_keys([list_of_all_keys])
+# d.values() = It will returns the dict_values([list_of_all values])
+# d.items() = it will returns the dict_items([(item1), (item2), (item3), (item4)])... each item contains key,value.
+"""
+"""
+# 18. Write a Python program to check a dictionary is empty or not
+
+# Method:1
+
+
+def check_len_dict(item):
+    if len(item) == 0:
+        return True
+    return False
+
+
+# method:2 By using bool function
+
+def check_dictionary(item):
+    return bool(item)
+
+
+print(check_dictionary({1: 'a'}))
+"""
+"""
+# 19. Write a Python program to combine two dictionary adding values for common keys.
+d1 = {'a': 100, 'b': 200, 'c': 300}
+d2 = {'a': 300, 'b': 200, 'd': 400}
+# Sample output: Counter({'a': 400, 'b': 400, 'd': 400, 'c': 300})
+
+def create_new_dict(dictionary1, dictionary2):
+    new_dict = d2
+    for key, value in dictionary1.items():
+        if key in new_dict:
+            new_dict[key]= new_dict[key]+value
+        else:
+            new_dict[key]=value
+
+    return new_dict
+
+print(create_new_dict(d1, d2))
+"""
+
+"""
+# 20. Write a Python program to print all unique values in a dictionary.
+# Sample Data: [{"V":"S001"}, {"V": "S002"}, {"VI": "S001"}, {"VI": "S005"}, {"VII":"S005"}, {"V":"S009"},{"VIII":"S007"}]
+# Expected Output : Unique Values: {'S005', 'S002', 'S007', 'S001', 'S009'}
+
+
+def add_unique(item):
+    unique_values=set()
+    for x in item:
+        for key, values in x.items():
+            unique_values.add(values)
+
+    return unique_values
+
+print(add_unique([{"V":"S001"}, {"V": "S002"}, {"VI": "S001"}, {"VI": "S005"}, {"VII":"S005"}, {"V":"S009"},{"VIII":"S007"}]))
+
+"""
+
+
+
+
+""""""
 
 
 
 
 
+def func_outer():
+    x = "loca"
+    def func_inner():
+        # x="a"
+        x="hello"
+        print("inner:", x)
+    func_inner()
+    print("outer:", x)
+func_outer()
 
 
+def outer_func():
+    message = 'Hello'
+
+    def inner_func():
+        print(message)
+
+    return inner_func
 
 
+outer_func()
 
+
+def outer(x):
+    def inner():
+        print(x)
+        print('!hi')
+
+    return inner
+
+
+a=outer('hello')
+del outer
+a()
 

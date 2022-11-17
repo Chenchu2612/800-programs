@@ -439,3 +439,4 @@ print("sn2: ",sn2)
 # 3.isdisjoint() = set1.isdisjoint(set2) = it returns the boolean -- True if set1 and set2 have different elements
 
 
+dfdfvasfv

@@ -461,3 +461,24 @@ def combinations_values(dict_item):
 combinations_values(Sample_data)
 
 """
+"""
+# 22. Write a Python program to find the highest 3 values of corresponding keys in a dictionary
+
+my_dict = {'a': 500, 'b': 5874, 'c': 560,'d': 400, 'e': 5874, 'f': 20}
+# output = ['b', 'e', 'c']
+
+
+def highest_three_values_corresponding_keys(dict_item, n):
+    a = [i for i, j in sorted(dict_item.items(), key= lambda x:x[1], reverse =True)[:n]]  # note [:n] inside or out side no problem.
+    return a
+
+
+print(highest_three_values_corresponding_keys(my_dict, 3))
+
+
+"""
+
+
+
+
+

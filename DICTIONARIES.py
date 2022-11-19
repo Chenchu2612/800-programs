@@ -529,13 +529,22 @@ new_dict = {x: string.count(x) for x in string}  # string.count(letter) = it cou
 print(new_dict)
 
 """
+# 25. Write a Python program to print a dictionary in table format.
+# my_dict = {'C1':[1,2,3],'C2':[5,6,7],'C3':[9,10,11]}
+# C1 C2 C3
+# 1 5 9
+# 2 6 10
+# 3 7 11
 
+# next time
+"""
 
+method: sum function
+# 26. Write a Python program to count the values associated with key in a dictionary.
+student = [{'id': 1, 'success': True, 'name': 'Lary'}, {'id': 2, 'success': False, 'name': 'Rabi'}, {'id': 3, 'success': True, 'name': 'Alex'}]
 
-
-
-
-
+print(sum(d['id'] for d in student), sum(x['success'] for x in student))      # we have to write inside sum function otherwise it will raise an error
+"""
 
 
 

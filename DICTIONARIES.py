@@ -695,6 +695,209 @@ def count_items_in_the_values_in_dict(dict_obj):
 print(count_items_in_the_values_in_dict({'Alex': ['subj1', 'subj2', 'subj3'], 'David': ['subj1', 'subj2']}))
 
 """
+"""
+# 35. Write a Python program to sort Counter by value.
+# Sample data : {'Math':81, 'Physics':83, 'Chemistry':87}
+# Expected data: [('Chemistry', 87), ('Physics', 83), ('Math', 81)]
+
+
+def sorted_dict(dict_item):
+    return sorted(dict_item.items(), key= lambda x:x[1], reverse=True)
+
+
+print(sorted_dict({'Math':81, 'Physics':83, 'Chemistry':87}))
+"""
+"""
+
+# very important:
+36. Write a Python program to create a dictionary from two lists without losing duplicate values.
+Sample lists: ['Class-V', 'Class-VI', 'Class-VII', 'Class-VIII'], [1, 2, 2, 3]
+Expected Output: defaultdict(<class 'set'>, {'Class-V': {1}, 'Class-VI': {2}, 'Class-VII': {2}, 'Class-VIII': {3}})
+
+
+
+def new_dict(list1, list2):
+    dit = {}
+    for i in range(len(list1)):
+        dit[list1[i]] = {list2[i]}
+    return dit
+
+
+print(new_dict(['Class-V', 'Class-VI', 'Class-VII', 'Class-VIII'], [1, 2, 2, 3]))
+
+
+# this is original method:
+
+from collections import defaultdict
+class_list = ['Class-V', 'Class-VI', 'Class-VII', 'Class-VIII']
+id_list = [1, 2, 2, 3]
+temp = defaultdict(set)
+print(temp)
+for c, i in zip(class_list, id_list):
+    temp[c].add(i)
+print(temp)
+
+"""
+
+"""
+#37. Write a Python program to replace dictionary values with their average.
+
+student_details= [
+  {'id' : 1, 'subject' : 'math', 'V' : 70, 'VI' : 82},
+  {'id' : 2, 'subject' : 'math', 'V' : 73, 'VI' : 74},
+  {'id' : 3, 'subject' : 'math', 'V' : 75, 'VI' : 86}
+]
+# output= [{'subject': 'math', 'id': 1, 'V+VI': 76.0}, {'subject': 'math', 'id': 2, 'V+VI': 73.5}, {'subject': 'math',
+#                                                                                                 'id': 3, 'V+VI': 80.5}]
+
+
+def dict_values_average(list_obj):
+    for dit in list_obj:                
+        n1 = dit.pop('V')
+        n2 = dit.pop('VI')
+        dit['V+VI'] = (n1+n2)/2           # Here we no need to append dict_obj to list_obj ...Here we are modifying the list_object
+
+    return list_obj
+
+
+print(dict_values_average(student_details))
+"""
+"""
+#38. Write a Python program to match key values in two dictionaries.
+# x = {'key1': 1, 'key2': 3, 'key3': 2}
+# y = {'key1': 1, 'key2': 2}
+
+# method:1 traditional approach
+
+def matching_dict(dict1, dict2):
+    for x in dict1.items():
+        if x in dict2.items():
+            return '{} is present in both dicts'.format(x)
+    return 'No matching'
+
+
+print(matching_dict({'key1': 1, 'key2': 3, 'key3': 2}, { 'key2': 3}))
+
+# method :2 with any() function
+
+
+def chenchu(dict1, dict2):
+
+    return any(x in dict2.items() for x in dict1.items())
+
+
+print(chenchu({'key1': 1, 'key2': 3, 'key3': 2}, {'key1': 4, 'key2': 2}))
+"""
+"""
+# very very very imp
+
+# 39. Write a Python program to store a given dictionary in a json file.
+
+dict_obj = {"students":[{"firstName": "Nikki", "lastName": "Roysden"},
+               {"firstName": "Mervin", "lastName": "Friedland"},
+               {"firstName": "Aron ", "lastName": "Wilkins"}],
+    "teachers":[{"firstName": "Amberly", "lastName": "Calico"},
+                {"firstName": "Regine", "lastName": "Agtarap"}]}
+
+
+import json
+
+with open('chenchu', "w") as f:
+    json.dump(dict_obj, f, indent=4)   #for dumping purpose (python to json) no need to create object 
+print(type(f))
+with open('chenchu', 'r') as f:
+    dit=json.load(f)                   # for loading purpose (json to python) we need to create an object
+print(dit)
+
+"""
+"""
+# 40. Write a Python program to create a dictionary of keys x, y, and z where each key has as value a list from 11-20, 21-30, and 31-40 respectively.
+# Access the fifth value of each key from the dictionary.
+# {'x': [11, 12, 13, 14, 15, 16, 17, 18, 19],
+# 'y': [21, 22, 23, 24, 25, 26, 27, 28, 29],
+# 'z': [31, 32, 33, 34, 35, 36, 37, 38, 39]}
+# 15
+# 25
+# 35
+# x has value [11, 12, 13, 14, 15, 16, 17, 18, 19]
+# y has value [21, 22, 23, 24, 25, 26, 27, 28, 29]
+# z has value [31, 32, 33, 34, 35, 36, 37, 38, 39]
+
+
+# note : using of range function is very important here.
+def making_dict():   # if we type x = range(11, 21) then x:range(11, 21) will come so we have to convert to list
+    dict1 = dict(x=list(range(11, 21)), y=list(range(21, 30)), z=list(range(31, 40)))
+    print(dict1)
+    for key, value in dict1.items():
+        print(value[4])
+        print(key, "has value", value)
+
+making_dict()
+"""
+"""
+# 41. Write a Python program to drop empty Items from a given Dictionary.
+# Original Dictionary:
+# {'c1': 'Red', 'c2': 'Green', 'c3': None}
+# New Dictionary after dropping empty items:
+# {'c1': 'Red', 'c2': 'Green'}
+
+# by using dictionary comprehension : it is a compact way to create new dictionary from the existing dictionary (we can alter existing dict)
+old_dict={'c1': 'Red', 'c2': 'Green', 'c3': None} # we are altering old dict
+old_dict={key: value for key, value in old_dict.items() if value != None}  # here we can also write if value is not None
+print(old_dict)
+"""
+
+"""
+# 42. Write a Python program to filter a dictionary based on values.
+# Original Dictionary:
+# dict1 = {'Cierra Vega': 175, 'Alden Cantrell': 180, 'Kierra Gentry': 165, 'Pierre Cox': 190}
+# Marks greater than 170:
+# {'Cierra Vega': 175, 'Alden Cantrell': 180, 'Pierre Cox': 190}
+
+
+def filter_dict(dict_obj):
+    return {key: value for key, value in dict_obj.items() if value > 170}
+
+
+print(filter_dict(dict1))
+"""
+
+"""
+# important_problem
+
+# 43. Write a Python program to convert more than one list to nested dictionary.
+# Original strings:
+# list1=['S001', 'S002', 'S003', 'S004']
+# list2=['Adina Park', 'Leyton Marsh', 'Duncan Boyle', 'Saim Richards']
+# list3=[85, 98, 89, 92]
+# Nested dictionary:
+# [{'S001': {'Adina Park': 85}}, {'S002': {'Leyton Marsh': 98}}, {'S003': {'Duncan Boyle': 89}}, {'S004': {'Saim Richards': 92}}]
+
+#Note = output is in list formate so use list comprehension
+
+# method:1 traditional zip method
+def convertion_of_morethan_one_list_to_nested_dictionary(list1, list2, list3):
+    return [{x: {y: z}} for x, y, z in zip(list1, list2, list3)]
+print(convertion_of_morethan_one_list_to_nested_dictionary(['S001', 'S002', 'S003', 'S004'],
+    ['Adina Park', 'Leyton Marsh', 'Duncan Boyle', 'Saim Richards'], [85, 98, 89, 92]))
+
+
+# method:2 by using range_len function
+def lists_to_nested_dict(list1, list2, list3):
+
+    return [{list1[i]:{list2[i]:list3[i]}} for i in range(len(list1))]
+
+print(lists_to_nested_dict(['S001', 'S002', 'S003', 'S004'],
+    ['Adina Park', 'Leyton Marsh', 'Duncan Boyle', 'Saim Richards'], [85, 98, 89, 92]))
+
+
+# by using *args method:
+def convertion(*lists):
+    return [{x:{y:z}}for x, y, z in zip(*lists)]
+
+print(convertion(['S001', 'S002', 'S003', 'S004'],
+    ['Adina Park', 'Leyton Marsh', 'Duncan Boyle', 'Saim Richards'], [85, 98, 89, 92]))
+"""
 
 
 

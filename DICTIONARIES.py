@@ -477,6 +477,76 @@ print(highest_three_values_corresponding_keys(my_dict, 3))
 
 
 """
+"""
+# 23. Write a Python program to combine values in python list of dictionaries.
+Sample_data= [{'item': 'item1', 'amount': 400}, {'item': 'item2', 'amount': 300}, {'item': 'item1', 'amount': 750}]
+# Expected Output: Counter({'item1': 1150, 'item2': 300})
+
+old_list = [{'item': 'item1', 'amount': 400}, {'item': 'item2', 'amount': 300}, {'item': 'item1', 'amount': 750}]
+
+
+def adding_item_values(dit_item):
+    new_dict = {}
+    for dit in old_list:
+        if dit['item'] not in new_dict:                 # dit['item'] = item1 ...., dit['amount'] = amount
+            new_dict[dit['item']] = dit['amount']
+        else:
+            new_dict[dit['item']] += dit['amount']
+    return new_dict
+
+
+print(adding_item_values(Sample_data))
+
+"""
+"""
+# 24. Write a Python program to create a dictionary from a string.
+# Note: Track the count of the letters from the string.
+# Sample string : 'w3resource'
+# Expected output: {'w': 1, '3': 1, 'r': 2, 'e': 2, 's': 1, 'o': 1, 'u': 1, 'c': 1}
+
+# method:1 this is traditional approach:
+
+string= "w3resource"
+
+
+def count_letters(item):
+    new_dict = {}
+    for x in string:
+        if x not in new_dict:
+            new_dict[x]=1
+        else:
+            new_dict[x]+=1
+    return new_dict
+
+
+print(count_letters(string))
+
+
+# method: 2 dictionary-comp
+
+new_dict = {x: string.count(x) for x in string}  # string.count(letter) = it counts the number of times it occurs. 
+
+print(new_dict)
+
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

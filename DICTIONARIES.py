@@ -545,6 +545,156 @@ student = [{'id': 1, 'success': True, 'name': 'Lary'}, {'id': 2, 'success': Fals
 
 print(sum(d['id'] for d in student), sum(x['success'] for x in student))      # we have to write inside sum function otherwise it will raise an error
 """
+"""
+# 27. very_very_very_very_very_very_very important problem
+
+# Write a Python program to convert a list into a nested dictionary of keys.
+
+num_list = [1, 2, 3, 4]
+# {1: {2: {3: {4: {}}}}}
+
+
+def adding_dict_to_nested_dict(item):
+    new_dict = current_dict = {}  # in this logic we taken 2 dictionaries
+    for x in num_list:
+        current_dict[x] = {}
+        current_dict = current_dict[x]  # every time we have to add to nested dictionary that's why this statement.
+    return new_dict
+
+
+print(adding_dict_to_nested_dict(num_list))
+"""
+"""
+# 28. Write a Python program to sort a list alphabetically in a dictionary.
+
+num = {'n1': [2, 3, 1], 'n2': [5, 1, 2], 'n3': [3, 2, 4]}
+
+# output={'n1': [1, 2, 3], 'n2': [1, 2, 5], 'n3': [2, 3, 4]}
+
+Note: where ever we mention k, v we must mention d.items() , otherwise error will come
+
+
+def sorted_list_in_dictionary(item):
+    return {k: sorted(v,reverse= False) for k, v in item.items()}  # we used sorted function here  , here no lambda function bcoz no nested list here
+                                                                   # we can mention reverse = True/False for ascending and decending pursose
+ 
+
+print(sorted_list_in_dictionary(num))
+"""
+"""
+# 29. Write a Python program to remove spaces from dictionary keys
+Original_dictionary= {'S  001': ['Math', 'Science'], 'S    002': ['Math', 'English']}
+# New dictionary:  {'S001': ['Math', 'Science'], 'S002': ['Math', 'English']}
+
+
+def remove_spaces_from_keys(dit_item):
+    return {key.replace(" ", ""): value for key, value in dit_item.items()}     # Note: there is no remove method in strings only replace method
+                                                                                # string is immutable
+                                                                                # string.replace(old_value, new_value)
+
+
+print(remove_spaces_from_keys(Original_dictionary))
+"""
+"""
+# 30. Write a Python program to get the top three items in a shop.
+# Sample data: {'item1': 45.50, 'item2':35, 'item3': 41.30, 'item4':55, 'item5': 24}
+# Expected Output:
+# item4 55
+# item1 45.5
+# item3 41.3
+
+
+def top_three_items(dict_obj, n):
+    sorted_dict = sorted(dict_obj.items(), key= lambda x: x[1], reverse=True)[:n]   # it always returns key,value pair in list in a tuple
+    for x, y in sorted_dict:                   # sorted function always returns list.
+        print(x, y)
+ 
+
+top_three_items({'item1': 45.50, 'item2':35, 'item3': 41.30, 'item4':55, 'item5': 24}, 3)
+"""
+"""
+# 31. Write a Python program to get the key, value and item in a dictionary.
+# dict_num = {1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60}
+# key  value  count
+# 1     10      1
+# 2     20      2
+# 3     30      3
+# 4     40      4
+# 5     50      5
+# 6     60      6
+
+# explanation : here they did not mention items , they mention item here so item is nothing but item1, item2, item3 etc...,
+
+
+# method:1
+def key_value_item(dict_obj):
+    print("count", "key", "value")
+    for count, (key, value) in enumerate(dict_obj.items(), 1):  # enumerate function takes iterable as input and adds the counter to the iterable
+        print(count, "    ", key, " ", value)                  # returns the enumerate object ...by default it starts counting from 0
+
+
+key_value_item({1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60})
+
+
+# method:2 Traditional approach
+
+def key_values_item(dict_obj):
+    print("key", "value", "count")
+    count = 1
+    for i, j in dict_obj.items():
+        print(i," ", j, " ",count)
+        count = count+1
+
+key_values_item({1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60})
+"""
+"""
+# 32. Write a Python program to print a dictionary line by line.
+students = {'Aex': {'class': 'V', 'rolld_id': 2}, 'Puja': {'class': 'V', 'roll_id': 3}}
+
+# output:
+# Aex
+# class : V
+# rolld_id : 2
+# Puja
+# class : V
+# roll_id : 3   
+
+for key, value in students.items():          # Note : if you type for x in dictionary it takes only keys ...same way if x in dictionary means
+    print(key)                               # it only searches the keys ....(same functionality for.....for and if)
+    for key1, value1 in value.items():
+        print(key1, ":", value1)
+
+"""
+
+"""
+# 33. Write a Python program to check multiple keys exists in a dictionary.
+
+# Explanation : multiple keys exists = all passed keys are exists in the dictionary or not .... multiple keys means not duplicate keys
+# by default dictionary does not allows multiple keys.
+
+def all_keys(dict_obj, *keys):   # *args in function
+    return all(x in dict_obj for x in keys)   # we will never write if in all function ..... Syntax error will come
+
+
+print(all_keys({'name': 'Alex','class': 'V','roll_id': '2'}, 'name', 'roll_id'))
+
+"""
+"""
+# 34. Write a Python program to count number of items in a dictionary value that is a list.
+# dict = {'Alex': ['subj1', 'subj2', 'subj3'], 'David': ['subj1', 'subj2']}
+# count=5
+
+
+def count_items_in_the_values_in_dict(dict_obj):
+    total_num_of_items = 0
+    for x in dict_obj.values():    # dict.values() returns the = dict_values([['subj1', 'subj2', 'subj3'], ['subj1', 'subj2']])
+        total_num_of_items += len(x)
+    return total_num_of_items
+
+
+print(count_items_in_the_values_in_dict({'Alex': ['subj1', 'subj2', 'subj3'], 'David': ['subj1', 'subj2']}))
+
+"""
 
 
 

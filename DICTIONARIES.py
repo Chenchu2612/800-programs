@@ -437,6 +437,27 @@ print(add_unique([{"V":"S001"}, {"V": "S002"}, {"VI": "S001"}, {"VI": "S005"}, {
 
 """
 
+"""
+# 21. Write a Python program to create and display all combinations of letters, selecting each letter from a different
+# key in a dictionary.
+# Sample data : {'1':['a','b'], '2':['c','d']}
+# Expected Output:
+# ac
+# ad
+# bc
+# bd
 
 
+Sample_data = {'1': ['a', 'b'], '2': ['c', 'd']}
 
+
+def combinations_values(dict_item):
+    l1, l2 = dict_item.values()              # it assigns first key value to l1 and second key value to l2
+    for i in l1:
+        for j in l2:                # inner loop will execute fully for each item in the outer loop
+            print(i+j)
+
+
+combinations_values(Sample_data)
+
+"""

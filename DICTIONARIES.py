@@ -898,13 +898,159 @@ def convertion(*lists):
 print(convertion(['S001', 'S002', 'S003', 'S004'],
     ['Adina Park', 'Leyton Marsh', 'Duncan Boyle', 'Saim Richards'], [85, 98, 89, 92]))
 """
+"""
+
+# double if conditions very important
+
+# 44. Write a Python program to filter the height and width of students, which are stored in a dictionary.
+# Original Dictionary:
+d={'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)}
+# Height > 6ft and Weight> 70kg:
+# {'Cierra Vega': (6.2, 70)}
 
 
+def filtering_dict_items(dict_obj):
+    return {key: value for key, value in d.items() if value[0] > 6 and value[1] >= 70}
 
 
+print(filtering_dict_items(d))
+
+"""
+"""
+# 45. Write a Python program to check all values are same in a dictionary.
 
 
+def check_values(dictionary, n):
+    return all(value == n for key, value in dictionary.items())  # no if statement in all() and any() function 
 
+
+print(check_values({'Cierra Vega': 12, 'Alden Cantrell': 11, 'Kierra Gentry': 12, 'Pierre Cox': 12},11))
+"""
+"""
+# 46. Write a Python program to create a dictionary grouping a sequence of key-value pairs into a dictionary of lists.
+# Original list:
+list1=[('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+# Grouping a sequence of key-value pairs into a dictionary of lists:
+# {'yellow': [1, 3], 'blue': [2, 4], 'red': [1]}
+
+
+def new_dictionary(list_obj):
+    d = {}
+    for (key, value) in list1:
+        if key not in d:
+            d[key]=[value]
+        else:
+            d[key].append(value)
+    return d
+
+
+print(new_dictionary(list1))
+"""
+
+"""
+# highly important
+# lightly difficult : dictionary of list to list of dictionaries [ LD id slightly difficult ]
+
+# 47. Write a Python program to split a given dictionary of lists into list of dictionaries.
+# Original dictionary of lists:
+x={'Science': [88, 89, 62, 95], 'Language': [77, 78, 84, 80]}
+# Split said dictionary of lists into list of dictionaries:
+# [{'Science': 88, 'Language': 77}, {'Science': 89, 'Language': 78}, {'Science': 62, 'Language': 84}, {'Science': 95, 'Language': 80}]
+
+
+def dict_of_list_to_list_of_dict(dict_obj):
+    b = len(x['Science'])
+    return[{key:value[i] for key, value in x.items()} for i in range(b)]
+
+
+print(dict_of_list_to_list_of_dict(x))
+"""
+"""
+# 48. Write a Python program to remove a specified dictionary from a given list.
+# Original list of dictionary:
+a=[{'id': '#FF0000', 'color': 'Red'}, {'id': '#800000', 'color': 'Maroon'}, {'id': '#FFFF00', 'color': 'Yellow'}, {'id': '#808000', 'color': 'Olive'}]
+# Remove id #FF0000 from the said list of dictionary:
+# [{'id': '#800000', 'color': 'Maroon'}, {'id': '#FFFF00', 'color': 'Yellow'}, {'id': '#808000', 'color': 'Olive'}]
+
+
+def removing_dict_in_list(list_obj):
+    return [x for x in list_obj if x['id'] != '#FF0000']  # we can remove based on the colour also x['color'] != specify color
+
+
+print(removing_dict_in_list(a))
+
+"""
+
+"""
+# 49. Write a Python program to convert string values of a given dictionary, into integer/float datatypes.
+# Original list:
+# [{'x': '10', 'y': '20', 'z': '30'}, {'p': '40', 'q': '50', 'r': '60'}]
+# String values of a given dictionary, into integer types:
+# [{'x': 10, 'y': 20, 'z': 30}, {'p': 40, 'q': 50, 'r': 60}]
+# Original list:
+# [{'x': '10.12', 'y': '20.23', 'z': '30'}, {'p': '40.00', 'q': '50.19', 'r': '60.99'}]
+# String values of a given dictionary, into float types:
+# [{'x': 10.12, 'y': 20.23, 'z': 30.0}, {'p': 40.0, 'q': 50.19, 'r': 60.99}]
+
+
+def string_to_numbers(list_object):
+    return [{key: int(value) for key, value in x.items()}for x in list_object]
+
+
+print(string_to_numbers([{'x': '10', 'y': '20', 'z': '30'}, {'p': '40', 'q': '50', 'r': '60'}]))
+
+
+def string_to_float(list_obj):
+    return [{key: float(value) for key, value in x.items()}for x in list_obj]
+
+
+print(string_to_float([{'x': 10.12, 'y': 20.23, 'z': 30.0}, {'p': 40.0, 'q': 50.19, 'r': 60.99}]))
+
+"""
+
+"""
+# 50. A Python Dictionary contains List as value. Write a Python program to clear the list values in the said dictionary.
+# Original Dictionary:
+# {'C1': [10, 20, 30], 'C2': [20, 30, 40], 'C3': [12, 34]}
+# Clear the list values in the said dictionary:
+# {'C1': [], 'C2': [], 'C3': []}
+
+# there are two methods in this clear value of dict >>>> imp point is we have to clear the value by using the key only
+
+# >>>>>>>>> very important we have to clear the value by using key only ... don't touch values<<<<<<<<<<<<<
+
+def clear_dict_value(dict_obj):
+    for key in dict_obj:  # by default it will takes keys >>> we can mention dict_obj.keys() also both will give same result
+        dict_obj[key].clear()
+    return dict_obj
+
+
+print(clear_dict_value({'C1': [10, 20, 30], 'C2': [20, 30, 40], 'C3': [12, 34]}))
+
+
+# by using dictionary comprehension
+
+
+def clear_values(dict_obj):
+    return {key: [] for key, value in dict_obj.items()}  # Formula = list.clear()
+
+
+print(clear_values({'C1': [10, 20, 30], 'C2': [20, 30, 40], 'C3': [12, 34]}))
+"""
+
+
+# 51. A Python Dictionary contains List as value. Write a Python program to update the list values in the said dictionary.
+# Original Dictionary:
+old_dict = {'Math': [88, 89, 90], 'Physics': [92, 94, 89], 'Chemistry': [90, 87, 93]}
+# Update the list values of the said dictionary:
+# {'Math': [89, 90, 91], 'Physics': [90, 92, 87], 'Chemistry': [90, 87, 93]}
+
+
+def sort_values(dict_obj):
+    return {key: sorted(value, reverse=False)for key, value in dict_obj.items()}
+
+
+print(sort_values(old_dict))
 
 
 

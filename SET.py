@@ -438,5 +438,3 @@ print("sn2: ",sn2)
 # set1>set2 (issuperset)
 # 3.isdisjoint() = set1.isdisjoint(set2) = it returns the boolean -- True if set1 and set2 have different elements
 
-
-dfdfvasfv

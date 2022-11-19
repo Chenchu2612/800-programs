@@ -1038,7 +1038,7 @@ def clear_values(dict_obj):
 print(clear_values({'C1': [10, 20, 30], 'C2': [20, 30, 40], 'C3': [12, 34]}))
 """
 
-
+"""
 # 51. A Python Dictionary contains List as value. Write a Python program to update the list values in the said dictionary.
 # Original Dictionary:
 old_dict = {'Math': [88, 89, 90], 'Physics': [92, 94, 89], 'Chemistry': [90, 87, 93]}
@@ -1047,10 +1047,250 @@ old_dict = {'Math': [88, 89, 90], 'Physics': [92, 94, 89], 'Chemistry': [90, 87,
 
 
 def sort_values(dict_obj):
-    return {key: sorted(value, reverse=False)for key, value in dict_obj.items()}
+    dict_obj['Math'] = [x+1 for x in dict_obj['Math']]    # here we are adding the +1 to values of the dictionaries
+    dict_obj['Physics'] = [x-2 for x in dict_obj['Physics']]  # Here we are less -2 to each values of the dictionaries  
+    return dict_obj
 
 
 print(sort_values(old_dict))
+
+"""
+"""
+#  this is very important problem
+# 52. Write a Python program to extract a list of values from a given list of dictionaries.
+# Original Dictionary:
+dict1=[{'Math': 90, 'Science': 92}, {'Math': 89, 'Science': 94}, {'Math': 92, 'Science': 88}]
+# Extract a list of values from said list of dictionaries where subject = Science
+# [92, 94, 88]
+# Original Dictionary:
+dict2=[{'Math': 90, 'Science': 92}, {'Math': 89, 'Science': 94}, {'Math': 92, 'Science': 88}]
+# Extract a list of values from said list of dictionaries where subject = Math
+# [90, 89, 92]
+
+
+def extract_science_values(list_obj):
+    return [value for dit_obj in list_obj for key, value in dit_obj.items() if key == "Science"]
+
+
+print(extract_science_values([{'Math': 90, 'Science': 92}, {'Math': 89, 'Science': 94}, {'Math': 92, 'Science': 88}]))
+
+
+def extract_maths_values(list_obj):
+    return [value for dit_obj in list_obj for key, value in dit_obj.items() if key == "Math"]
+
+
+print(extract_maths_values(dict2))
+
+"""
+"""
+# 53. Write a Python program to find the length of a given dictionary values.
+# Original Dictionary:
+# {1: 'red', 2: 'green', 3: 'black', 4: 'white', 5: 'black'}
+# Length of dictionary values:
+# {'red': 3, 'green': 5, 'black': 5, 'white': 5}
+# Original Dictionary:
+# {'1': 'Austin Little', '2': 'Natasha Howard', '3': 'Alfred Mullins', '4': 'Jamie Rowe'}
+# Length of dictionary values:
+# {'Austin Little': 13, 'Natasha Howard': 14, 'Alfred Mullins': 14, 'Jamie Rowe': 10}
+
+
+def dict_value_length(dict_obj):
+    return {value: len(value) for key, value in dict_obj.items()}
+
+
+print(dict_value_length({1: 'red', 2: 'green', 3: 'black', 4: 'white', 5: 'black'}))
+print(dict_value_length({'1': 'Austin Little', '2': 'Natasha Howard', '3': 'Alfred Mullins', '4': 'Jamie Rowe'}))
+"""
+"""
+# 54. Write a Python program to get the depth of a dictionary.
+
+
+def depth_of_dictionary(dict_obj):
+    a=str(dict_obj)
+    count=0
+    for x in a:
+        if x == "{":
+            count += 1
+    return count
+
+
+print(depth_of_dictionary({'a': 1, 'b': {'c': {'d': {}}}}))
+"""
+"""
+# 55. Write a Python program to access dictionary key's element by index.
+# num = {'physics': 80, 'math': 90, 'chemistry': 86}
+# Expected Output:
+# physics
+# math
+# chemistry
+
+
+def access_keys_element(dict_obj):
+    for key in dict_obj:
+        print(key)
+
+
+access_keys_element({'physics': 80, 'math': 90, 'chemistry': 86})
+"""
+
+"""
+# 56. Write a Python program to convert a given dictionary into a list of lists.
+# Original Dictionary:
+# {1: 'red', 2: 'green', 3: 'black', 4: 'white', 5: 'black'}
+# Convert the said dictionary into a list of lists:
+# [[1, 'red'], [2, 'green'], [3, 'black'], [4, 'white'], [5, 'black']]
+# Original Dictionary:
+# {'1': 'Austin Little', '2': 'Natasha Howard', '3': 'Alfred Mullins', '4': 'Jamie Rowe'}
+# Convert the said dictionary into a list of lists:
+# [['1', 'Austin Little'], ['2', 'Natasha Howard'], ['3', 'Alfred Mullins'], ['4', 'Jamie Rowe']]
+
+
+def dict_to_list_of_lists(dict_obj):
+    return [[key, values] for key, values in dict_obj.items()]
+
+
+print(dict_to_list_of_lists({1: 'red', 2: 'green', 3: 'black', 4: 'white', 5: 'black'}))
+"""
+"""
+# 57. Write a Python program to filter even numbers from a given dictionary values.
+# Original Dictionary:
+# {'V': [1, 4, 6, 10], 'VI': [1, 4, 12], 'VII': [1, 3, 8]}
+# Filter even numbers from said dictionary values:
+# {'V': [4, 6, 10], 'VI': [4, 12], 'VII': [8]}
+# Original Dictionary:
+# {'V': [1, 3, 5], 'VI': [1, 5], 'VII': [2, 7, 9]}
+# Filter even numbers from said dictionary values:
+# {'V': [], 'VI': [], 'VII': [2]}
+
+
+def filter_even_in_keys(dict_obj):
+    return {key: [x for x in values if x % 2 == 0]for key, values in dict_obj.items()}
+
+
+print(filter_even_in_keys({'V': [1, 3, 5], 'VI': [1, 5], 'VII': [2, 7, 9]}))
+"""
+"""
+# 58. Write a Python program to get all combinations of key-value pairs in a given dictionary.
+# Original Dictionary:
+# {'V': [1, 4, 6, 10], 'VI': [1, 4, 12], 'VII': [1, 3, 8]}
+# Combinations of key-value pairs of the said dictionary:
+# [{'V': [1, 4, 6, 10], 'VI': [1, 4, 12]}, {'V': [1, 4, 6, 10], 'VII': [1, 3, 8]}, {'VI': [1, 4, 12], 'VII': [1, 3, 8]}]
+# Original Dictionary:
+# {'V': [1, 3, 5], 'VI': [1, 5]}
+# Combinations of key-value pairs of the said dictionary:
+# [{'V': [1, 3, 5], 'VI': [1, 5]}]
+
+
+def all_combinations(dict_obj):
+    return [{key: value}for key, value in dict_obj.items()]
+
+
+print(all_combinations({'V': [1, 4, 6, 10], 'VI': [1, 4, 12], 'VII': [1, 3, 8]}))
+"""
+"""
+# 59. Write a Python program to find the specified number of maximum values in a given dictionary.
+# Original Dictionary:
+# {'a': 5, 'b': 14, 'c': 32, 'd': 35, 'e': 24, 'f': 100, 'g': 57, 'h': 8, 'i': 100}
+# 1 maximum value(s) in the said dictionary:
+# ['f']
+# 2 maximum value(s) in the said dictionary:
+# ['f', 'i']
+# 5 maximum value(s) in the said dictionary:
+# ['f', 'i', 'g', 'd', 'c']
+
+
+def specified_num_maximum_values(dict_obj, n):
+    return [key for key, values in sorted(dict_obj.items(), key=lambda x:x[1], reverse=True)][:n]
+
+
+print(specified_num_maximum_values({'a': 5, 'b': 14, 'c': 32, 'd': 35, 'e': 24, 'f': 100, 'g': 57, 'h': 8, 'i': 100}, 5))
+"""
+"""
+# 60. Write a Python program to find shortest list of values with the keys in a given dictionary. Go to the editor
+# Original Dictionary: {'V': [10, 12], 'VI': [10], 'VII': [10, 20, 30, 40], 'VIII': [20], 'IX': [10, 30, 50, 70], 'X': [80]}
+# Shortest list of values with the keys of the said dictionary: ['VI', 'VIII', 'X']
+
+# explanation : we have to find  keys which having short list of values(len of values is minimum). 
+
+def sortest_list_of_values(dict_obj):
+    return [key for key, values in dict_obj.items() if len(values) <= 1]
+
+
+print(sortest_list_of_values({'V': [10, 12], 'VI': [10], 'VII': [10, 20, 30, 40], 'VIII': [20], 'IX': [10, 30, 50, 70], 'X': [80]}))
+"""
+"""
+# 61. Write a Python program to count the frequency in a given dictionary.
+# Original Dictionary:
+# {'V': 10, 'VI': 10, 'VII': 40, 'VIII': 20, 'IX': 70, 'X': 80, 'XI': 40, 'XII': 20}
+# Count the frequency of the said dictionary:
+# Counter({10: 2, 40: 2, 20: 2, 70: 1, 80: 1})
+
+# Explanation: there is no frequency count for key in dict keys are unique ...only frequency for values
+
+
+def frequency_values(dict_obj):
+    dict1 = {}
+    for key, values in dict_obj.items():
+        if values not in dict1:
+            dict1[values]=1
+        else:
+            dict1[values] += 1
+
+    return dict1
+
+
+print(frequency_values({'V': 10, 'VI': 10, 'VII': 40, 'VIII': 20, 'IX': 70, 'X': 80, 'XI': 40, 'XII': 20}))
+"""
+
+# 62. Write a Python program to extract values from a given dictionaries and create a list of lists from those values. Go to the editor
+# Original Dictionary:
+a=[{'student_id': 1, 'name': 'Jean Castro', 'class': 'V'},
+ {'student_id': 2, 'name': 'Lula Powell', 'class': 'V'},
+ {'student_id': 3, 'name': 'Brian Howell', 'class': 'VI'},
+ {'student_id': 4, 'name': 'Lynne Foster', 'class': 'VI'},
+ {'student_id': 5, 'name': 'Zachary Simon', 'class': 'VII'}]
+# Extract values from the said dictionarie and create a list of lists using those values:
+# [[1, 'Jean Castro', 'V'], [2, 'Lula Powell', 'V'], [3, 'Brian Howell', 'VI'], [4, 'Lynne Foster', 'VI'], [5, 'Zachary Simon', 'VII']]
+# [[1, 'Jean Castro'], [2, 'Lula Powell'], [3, 'Brian Howell'], [4, 'Lynne Foster'], [5, 'Zachary Simon']]
+# [['Jean Castro', 'V'], ['Lula Powell', 'V'], ['Brian Howell', 'VI'], ['Lynne Foster', 'VI'], ['Zachary Simon', 'VII']]
+
+
+def extract_values(list_obj):
+    return [[value for key, value in dict_obj.items()][-2:]for dict_obj in list_obj]
+
+
+print(extract_values(a))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

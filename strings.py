@@ -174,6 +174,8 @@ def longestword_and_length(list_of_words):
 print(longestword_and_length(["PHP", "Exercises", "Backend"]))
 
 """
+
+"""
 # 9. Write a Python program to remove the nth index character from a nonempty string.
 
 
@@ -182,6 +184,248 @@ def remove_ch_in_string(string, n):
 
 
 print(remove_ch_in_string('chenchu', 0))
+"""
+"""
+# 10. Write a Python program to change a given string to a new string where the first and last chars have been exchanged.
+
+def exchange_first_and_last_letter(string):
+    return string[-1:]+string[1:-1]+string[:1]
+
+
+print(exchange_first_and_last_letter('chenchu'))
+"""
+
+"""
+# 11. Write a Python program to remove the characters which have odd index values of a given string. Go to the editor
+
+
+# Explanation: we have to remove only odd index so ....we can take even index ... vise-versa...use join() method
+
+# This is Traditional approach by using range(len()) function
+
+
+def remove_odd_index(string):
+    new_string = ''
+    for i in range(len(string)):
+        if i % 2 == 0:
+            new_string += string[i]
+
+    return new_string
+
+
+print(remove_odd_index('chenchu'))
+
+
+# super code:
+def remove_odd(string):
+    return "".join([string[i] for i in range(len(string)) if i % 2 == 0])
+
+
+print(remove_odd('chenchu'))
+"""
+"""
+# 12. Write a Python program to count the occurrences of each word in a given sentence.
+# a = 'the quick brown fox jumps over the lazy dog.'
+# {'the': 2, 'jumps': 1, 'brown': 1, 'lazy': 1, 'fox': 1, 'over': 1, 'quick': 1, 'dog.': 1} 
+
+# Explanation : string tho manam direct ga kanukkolemu ...so list loki marchi manam kanukko galamu
+
+# white spaces having length 1 where emepty string having length 0
+
+# split func===> string.split(separator, maximumsplits)
+
+
+def number_of_occurence_of_each_word(string):
+    freq_dict={}
+    for word in string.split():  # by default split() function splits based on white space. it converts string into list of words based on condition
+        if word not in freq_dict:
+            freq_dict[word] = 1
+        else:
+            freq_dict[word] += 1
+    return freq_dict
+
+
+print(number_of_occurence_of_each_word(a))
+"""
+
+"""
+# 13. Write a Python script that takes input from the user and displays that input back in upper and lower cases.
+
+# Explanation: console through dwara input tesukoni danni upper and lower case lo print cheyyali.
+
+# Functions = string.upper() , input()
+
+# manam input() function use cheste parameter ki arguments manam console dwara istam 
+
+def display_upper_and_lower(string):
+    return 'who is your favorate Hero ? {}\nwho is your favorate Hero ? {}'.format(string.upper(), string.upper())
+
+
+print(display_upper_and_lower(input("who is your favourate hero ?: ")))
+"""
+"""
+# pending
+# 14. Write a Python program that accepts a comma separated sequence of words as input and prints the unique words in sorted form (alphanumerically).
+# Sample Words : red, white, black, red, green, black
+# Expected Result : black, green, red, white,red
+
+
+def unique_words_in_sorted_form(words):
+    new_list=[]
+    for word in words.split():
+        if word not in new_list:
+            new_list.append(word)
+    sorted(new_list)
+    return "".join(new_list)
+
+
+print(unique_words_in_sorted_form(input("enter the list of words: ")))
+"""
+
+"""
+# 15. Write a Python function to create the HTML string with tags around the word(s).
+# Sample function and result :
+# add_tags('i', 'Python') -> '<i>Python</i>'
+# add_tags('b', 'Python Tutorial') -> '<b>Python Tutorial </b>'
+
+
+# Note: For html closing we always use forward slash i.e '/'
+
+# used format function
+def adding_html_tags(tag, string):
+    return '<{}>{}</{}>'.format(tag, string, tag)   
+
+
+print(adding_html_tags(input('enter the tag:'), input("enter the string:")))
+"""
+
+"""
+# 16. Write a Python function to insert a string in the middle of a string.
+# Sample function and result :
+# insert_sting_middle('[[]]<<>>', 'Python') -> [[Python]]
+# insert_sting_middle('{{}}', 'PHP') -> {{PHP}}
+
+
+# my method
+def insert_the_string_into_middle_of_the_string(string):
+    return '{{{}}}'.format(string)
+
+
+print(insert_the_string_into_middle_of_the_string(input("enter the string: ")))
+
+
+# w3 schools method.
+
+def insert_the_string(symbol, string):
+    return symbol[:2]+string+symbol[-2:]
+
+
+print(insert_the_string(input("Enter the symbol :"), input("Enter the string :")))
+"""
+"""
+# 17. Write a Python function to get a string made of 4 copies of the last two characters of a specified string (length must be at least 2).
+# Sample function and result :
+# insert_end('Python') -> onononon
+# insert_end('Exercises') -> eseseses
+
+# Explanation: last 2 charecters 4 times repeate ayyivundali.
+
+
+def get_string(string):
+    return string[-2:]*4
+
+
+print(get_string(input("Enther the string:")))
+"""
+
+"""
+# 18. Write a Python function to get a string made of its first three characters of a specified string.
+# If the length of the string is less than 3 then return the original string.
+# Sample function and result :
+# first_three('ipy') -> ipy
+# first_three('python') -> pyt
+
+# Explanation: string lo first three charecters kavali.
+
+
+def getting_string(string):
+    return string[:3]
+
+
+print(getting_string(input("enter the string:")))
+"""
+"""
+# 19. Write a Python program to get the last part of a string before a specified character.
+# https://www.w3resource.com/python-exercises
+# https://www.w3resource.com/python
+
+# Explanation : oka  specific charecter ki mundu vunde part kavali. 
+
+def last_part_before_specified_character(string, character):
+    return string.split(character)[0]    # string.split() anedi list lo vastundi danni nenu index adharam ga access chesa
+
+
+print(last_part_before_specified_character('https://www.w3resource.com/python-exercises', '/'))
+
+"""
+"""
+# 20. Write a Python function to reverses a string if it's length is a multiple of 4.
+
+
+def reverse_if_divisible_by_4(string):
+    new_string = ""
+    if len(string) % 4 == 0:
+        for ch in string:
+            new_string = ch+new_string
+    else:
+        return '{} It is not divisible by {}'.format(string, 4)
+    return new_string
+
+
+print(reverse_if_divisible_by_4(input("Enter the string:")))
+
+# w3 method:
+
+def reverse_string(str1):
+    if len(str1) % 4 == 0:
+       return ''.join(reversed(str1))
+    return str1
+
+print(reverse_string('abcd'))
+print(reverse_string('python'))
+"""
+"""
+# 21. Write a Python function to convert a given string to all uppercase if it contains at least 2 uppercase characters in the first 4 characters
+
+# Explanation : first 4 charecters lo 2 upper cases vunte aa string mothanni upper cases loki marchali
+
+
+def convertion_of_upper_case(string):
+    number_upper=0
+    for ch in string[:4]: # first 4 letters lo enni upper vundo count chestunnam
+        if ch.isupper():
+            number_upper += 1
+
+    if number_upper >= 2:   # first 4 letters lo 2 upper vunte motham string ni upper case chestunnam
+        return string.upper()
+    return string
+
+
+print(convertion_of_upper_case(input("Enter the string:")))
+"""
+
+# 22.Write a Python program to sort a string lexicographically.
+
+#
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1242,43 +1242,212 @@ def frequency_values(dict_obj):
 print(frequency_values({'V': 10, 'VI': 10, 'VII': 40, 'VIII': 20, 'IX': 70, 'X': 80, 'XI': 40, 'XII': 20}))
 """
 
+"""
+# important problem
 # 62. Write a Python program to extract values from a given dictionaries and create a list of lists from those values. Go to the editor
 # Original Dictionary:
-a=[{'student_id': 1, 'name': 'Jean Castro', 'class': 'V'},
- {'student_id': 2, 'name': 'Lula Powell', 'class': 'V'},
- {'student_id': 3, 'name': 'Brian Howell', 'class': 'VI'},
- {'student_id': 4, 'name': 'Lynne Foster', 'class': 'VI'},
- {'student_id': 5, 'name': 'Zachary Simon', 'class': 'VII'}]
-# Extract values from the said dictionarie and create a list of lists using those values:
+a = [{'student_id': 1, 'name': 'Jean Castro', 'class': 'V'},
+     {'student_id': 2, 'name': 'Lula Powell', 'class': 'V'},
+     {'student_id': 3, 'name': 'Brian Howell', 'class': 'VI'},
+     {'student_id': 4, 'name': 'Lynne Foster', 'class': 'VI'},
+     {'student_id': 5, 'name': 'Zachary Simon', 'class': 'VII'}]
+# Extract values from the said dictionaries and create a list of lists using those values:
 # [[1, 'Jean Castro', 'V'], [2, 'Lula Powell', 'V'], [3, 'Brian Howell', 'VI'], [4, 'Lynne Foster', 'VI'], [5, 'Zachary Simon', 'VII']]
 # [[1, 'Jean Castro'], [2, 'Lula Powell'], [3, 'Brian Howell'], [4, 'Lynne Foster'], [5, 'Zachary Simon']]
 # [['Jean Castro', 'V'], ['Lula Powell', 'V'], ['Brian Howell', 'VI'], ['Lynne Foster', 'VI'], ['Zachary Simon', 'VII']]
 
+# method:1
+
 
 def extract_values(list_obj):
-    return [[value for key, value in dict_obj.items()][-2:]for dict_obj in list_obj]
+    return [[value for key, value in dict_obj.items() if key != 'student_id']for dict_obj in list_obj]   # were ever key, values there must be a dit.items()
 
 
 print(extract_values(a))
 
+# method:2 Super method:
 
 
+def extract(list_obj, *keys):
+    return [list(dit[key] for key in keys) for dit in list_obj]
 
 
+print(extract(a, 'name'))
+"""
+
+"""
+# 63. Write a Python program to convert a given list of lists to a dictionary.
+# Original list of lists:
+a = [[1, 'Jean Castro', 'V'], [2, 'Lula Powell', 'V'], [3, 'Brian Howell', 'VI'], [4, 'Lynne Foster', 'VI'], [5, 'Zachary Simon', 'VII']]
 
 
+# Convert the said list of lists to a dictionary:
+# {1: ['Jean Castro', 'V'], 2: ['Lula Powell', 'V'], 3: ['Brian Howell', 'VI'], 4: ['Lynne Foster', 'VI'], 5: ['Zachary Simon', 'VII']}
+
+# method:1 this is my method.
 
 
+def list_of_lists_to_dictionaries_of_list(list_obj):
+    return {x[0]: [x[1], x[2]] for x in list_obj}
 
 
+print(list_of_lists_to_dictionaries_of_list(a))
 
 
+# ***** method:2 w3 method
 
 
+def list_to_dict(list_obj):
+    return {x[0]: x[1:] for x in list_obj}  # why it comes values in list formate bcoz >>> if we access one element in list no list will comes...
+    # if we access  morethan one element in slicing the list list will come
 
 
+print(list_to_dict(a))
+"""
+"""
+# super method 
+# 64. Write a Python program to create a key-value list pairings in a given dictionary.
+# Original dictionary:
+a = {1: ['Jean Castro'], 2: ['Lula Powell'], 3: ['Brian Howell'], 4: ['Lynne Foster'], 5: ['Zachary Simon']}
+# A key-value list pairings of the said dictionary:
+# [{1: 'Jean Castro', 2: 'Lula Powell', 3: 'Brian Howell', 4: 'Lynne Foster', 5: 'Zachary Simon'}]
 
 
+def key_value_list_paring(dict_obj):  
+    return [{key: x for x in value} for key, value in dict_obj.items()]
+
+# Explanation : if you writes value directly in the x place value comes in list so again one more for loop for extracting values in the list 
+
+
+print(key_value_list_paring(a))
+"""
+"""
+# 65. Write a Python program to get the total length of all values of a given dictionary with string values.
+# Original dictionary:
+a = {'#FF0000': 'Red', '#800000': 'Maroon', '#FFFF00': 'Yellow', '#808000': 'Olive'}
+# Total length of all values of the said dictionary with string values:
+# 20
+# Click me to see the sample solution
+
+# method:1 without using in_built
+
+
+def total_length_of_all_values(dict_obj):
+    total_length = 0
+    for value in dict_obj.values():
+        total_length += len(value)
+
+    return total_length
+
+
+print(total_length_of_all_values(a))
+
+
+# method:2 with sum() function
+
+def length_of_values(dict_obj):
+    return sum(len(values) for values in dict_obj.values())
+
+
+print(length_of_values(a))
+"""
+"""
+# 66. Write a Python program to check if a specific Key and a value exist in a dictionary.
+# Original dictionary:
+a= [{'student_id': 1, 'name': 'Jean Castro', 'class': 'V'},
+ {'student_id': 2, 'name': 'Lula Powell', 'class': 'V'},
+ {'student_id': 3, 'name': 'Brian Howell', 'class': 'VI'},
+ {'student_id': 4, 'name': 'Lynne Foster', 'class': 'VI'},
+ {'student_id': 5, 'name': 'Zachary Simon', 'class': 'VII'}]
+# Check if a specific Key and a value exist in the said dictionary:
+
+# Explanation : We have to find specific key and along with its value in the given dictionary.  manam ichina key vundali daniki manam ichina value
+                                                                                                                                    # vundali
+
+def specific_key_value(list_obj, key, value):
+    return any(dict_obj[key] == value for dict_obj in list_obj)
+
+
+print(specific_key_value(a, 'class', 'VII'))
+
+"""
+"""
+# THIS IS VERY VERY VERY VERY IMPORTANT PROBLEM.
+# 67. Write a Python program to invert a given dictionary with non-unique hashable values.
+a = {'Ora Mckinney': 8, 'Theodore Holland': 7, 'Mae Fleming': 7, 'Mathew Gilbert': 8, 'Ivan Little': 7}
+# Sample Output:
+# {8: ['Ora Mckinney', 'Mathew Gilbert'], 7: ['Theodore Holland', 'Mae Fleming', 'Ivan Little']}
+
+# Explanation: invert means reverse key>> value , value >> key
+
+
+def invert_non_unique_hashable_values(dict_obj):
+    new_dict={}
+    for key, value in dict_obj.items():
+        if value not in new_dict: # it searches given value in new_dict keys.
+            new_dict[value]=[key]   # reversing(inverting) key and values
+        else:
+            new_dict[value].append(key)
+    return new_dict
+
+
+print(invert_non_unique_hashable_values(a))
+
+"""
+"""
+# 68. Write a Python program to combines two or more dictionaries, creating a list of values for each key.
+# Sample Output:
+# Original dictionaries:
+# {'w': 50, 'x': 100, 'y': 'Green', 'z': 400}
+# {'x': 300, 'y': 'Red', 'z': 600}
+# Combined dictionaries, creating a list of values for each key:
+# {'w': [50], 'x': [100, 300], 'y': ['Green', 'Red'], 'z': [400, 600]}
+
+
+def adding_dictionaries(*dict_obj):  # this is tuple object so inside tuple object we have to extract dict_object.
+    new_dict={}
+    for x in dict_obj:
+        for key, values in x.items():
+            if key not in new_dict:
+                new_dict[key]=[values]
+            else:
+                new_dict[key].append(values)
+    return new_dict
+
+
+print(adding_dictionaries({'w': 50, 'x': 100, 'y': 'Green', 'z': 400}, {'x': 300, 'y': 'Red', 'z': 600}, {'z': 100}))
+"""
+"""
+# 69. Write a Python program to group the elements of a given list based on the given function.
+# Sample Output:
+# Original list & function:
+# [7, 23, 3.2, 3.3, 8.4] Function name: floor:
+# Group the elements of the said list based on the given function:
+# {7: [7], 23: [23], 3: [3.2, 3.3], 8: [8.4]}
+# Original list & function:
+# ['Red', 'Green', 'Black', 'White', 'Pink'] Function name: len:
+# Group the elements of the said list based on the given function:
+# {3: ['Red'], 5: ['Green', 'Black', 'White'], 4: ['Pink']}
+
+
+def group_of_elements(list_obj):
+    new_dict={}
+    for x in list_obj:
+        new_dict[x]=[]
+
+"""
+
+
+# 70. Write a Python program to map the values of a given list to a dictionary using a function,
+# where the key-value pairs consist of the original value as the key and the result of the function as the value.
+# Sample Output:
+# {1: 1, 2: 4, 3: 9, 4: 16}
+
+def list_to_dictionary(list_obj):
+    return {x: x**2 for x in list_obj}
+
+
+print(list_to_dictionary([1, 2, 3, 4, 5]))
 
 
 

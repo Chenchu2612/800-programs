@@ -413,43 +413,189 @@ def convertion_of_upper_case(string):
 
 print(convertion_of_upper_case(input("Enter the string:")))
 """
+"""
+#model : lexiographical order.
 
 # 22.Write a Python program to sort a string lexicographically.
 
-#
+# Explanation: lexographical order means >>> first sort number next: capital alphabet next:small alphabets oka daani tharuvatha okati.
+# ex: all numbers then after all acpital A's then after small a's then after capital B's then after small b's and so on. Dictionary order annamata
+# this order is different from sorted() function in sorted function first num next all capitals next all small but here different
 
 
+def lexicographically(string):
+    print(sorted(string)) # for difference purpose print this
+    return sorted(sorted(string), key=str.upper)   # here str.upper will plays crucial roll.
 
 
+print(lexicographically('w3reaSsouRce'))
+"""
+"""
+# model: Removing new line
+
+# 23. Write a Python program to remove a newline in Python.
+
+# there are two methods are the one is replace method another one is strip()method , strip()
+
+# Functions = strip() very imp ....with the help of strip we can also do lstrip()and rstrip() and string.strip('string') this will remove the string.
 
 
+def removing_white_space(string):
+    return string.strip()     # string.replace('\n', '') we can use replace method also  
 
 
+print(removing_white_space('Python Exercises\n'))
+
+"""
+"""
+# model : Starts with
+
+# 24. Write a Python program to check whether a string starts with specified characters
+
+# Function: startswith('charecter') >>>> it returns the boolean if starts with specified charecter.
 
 
+def check_starts_with(string, charecter):
+    return string.startswith(charecter)
 
 
+print(check_starts_with('w3resource', 'w3'))
+"""
+
+# Model:  Caesar encryption(not understood)
+# 25. Write a Python program to create a Caesar encryption.
+"""
+# 26.Write a Python program to display formatted text (width=50) as output.
+
+# medel: Textwrap
+
+# this module is used for modifying charecters in a string in a given line 
+
+sample_text = '''
+  Python is a widely used high-level, general-purpose, interpreted,
+  dynamic programming language. Its design philosophy emphasizes
+  code readability, and its syntax allows programmers to express
+  concepts in fewer lines of code than possible in languages such
+  as C++ or Java.
+'''
+import textwrap
 
 
+def modifying_the_text(string):
+    return textwrap.fill(string, width=50)
 
 
+print(sample_text)  # see the difference.
+print(modifying_the_text(sample_text))
+"""
+
+"""
+# model: remove indentation
+
+# 27. Write a Python program to remove existing indentation from all of the lines in a given text.
+
+sample_text = '''
+    Python is a widely used high-level, general-purpose, interpreted,
+    dynamic programming language. Its design philosophy emphasizes
+    code readability, and its syntax allows programmers to express
+    concepts in fewer lines of code than possible in languages such
+    as C++ or Java.
+    '''
 
 
+import textwrap
 
 
+def removing_indentation_from_each_line(string):
+    return textwrap.dedent(string)    # dedent function is used to remove the indentation from each line in the string
 
 
+print(sample_text)  # to see the difference
+print(removing_indentation_from_each_line(sample_text))
+"""
+
+"""
+# model: adding something to all the lines of the string.
+
+# 28. Write a Python program to add a prefix text to all of the lines in a string.
+
+# input:
+sample_text ='''
+    Python is a widely used high-level, general-purpose, interpreted,
+    dynamic programming language. Its design philosophy emphasizes
+    code readability, and its syntax allows programmers to express
+    concepts in fewer lines of code than possible in languages such
+    as C++ or Java.
+    '''
+
+# output:
+'''
+>  Python is a widely used high-level, general-                                                               
+> purpose, interpreted, dynamic programming                                                                   
+> language. Its design philosophy emphasizes code                                                             
+> readability, and its syntax allows programmers to                                                           
+> express concepts in fewer lines of code than                                                                
+> possible in languages such as C++ or Java.
+'''
+
+# Explanation: for adding any ch to prefix of each line of a string we have to follow this steps
+
+# step(1): remove indentation from each line >>> textwrap.dedent(string)
+# step(2): allign each line with specific width >>> textwrap.fill(string, width=number)
+# step(3): add specific charecter in each line >>> textwrap.indent(string, inserting_charecter)
 
 
+import textwrap
 
 
+def add_prefix_word_to_each_line(string, insert_charecter):
+    remove_indentation = textwrap.dedent(string)  # removing indentation
+    print(remove_indentation)
+    align_string = textwrap.fill(remove_indentation, width=50)  # aligning each_line correctly
+    print(align_string)
+    adding_prefix = textwrap.indent(align_string, insert_charecter) # adding specific charecter to each line
+
+    return adding_prefix
+
+print(sample_text)
+
+print(add_prefix_word_to_each_line(sample_text, '>'))
+
+"""
+"""
+# Model : setting indentation of firstline
+
+# 29. Write a Python program to set the indentation of the first line.
+
+# Explanation : indentation set cheyyali ante mundu prathi line ki begining lo vunna unequal spaces ni remove challi aa tharuvatha indentation
+# set cheyyali .... indetation function anni lines ki kalipi okesari indentation istundi ....so manam fill function vadali
+
+ 
+sample_text ='''
+Python is a widely used high-level, general-purpose, interpreted, dynamic
+programming language. Its design philosophy emphasizes code readability,
+and its syntax allows programmers to express concepts in fewer lines of
+code than possible in languages such as C++ or Java.
+    '''
+import textwrap
 
 
+def add_indentation_to_first_line(string):
+    remove_indetation = textwrap.dedent(string)
+    adding_indentation = textwrap.fill(string, initial_indent=" ", subsequent_indent= " "*4)
+    return adding_indentation
 
 
+print(add_indentation_to_first_line(sample_text))
+"""
+
+# model: shifting model
+
+# 30. Write a Python program to print the following floating numbers upto 2 decimal places.
 
 
+def floating_upto_two_decimals(string):
+    return '{:.2f}'.format(string)
 
 
-
-
+print(floating_upto_two_decimals(int(input("Enter the number:"))))

@@ -964,6 +964,298 @@ def swap_comma_fullstop(a):
 print(swap_comma_fullstop('32.054,23'))
 
 """
+"""
+# Model : count and display only vowels
+
+# 49. Write a Python program to count and display the vowels of a given text.
+
+# Explanation : ichina string lo vowels enni vunnai. (aeiouAEIOU)
+
+# This method is for counting the number of times wovel repeating(vowels enni sarlu vunnai ani)
+
+def count_display(string, vowels):
+    count_dict = {}
+    for ch in string:
+        if ch in vowels:
+            if ch not in count_dict:
+                count_dict[ch] = 1
+            else:
+                count_dict[ch] += 1
+    return count_dict
+
+
+# print(count_display(input("enter the string:"), input("Enter the vowels:")))
+
+
+# correct model:
+
+def counting_vowels(string):
+    vowels = 'aeiouAEIOU'
+    return len([ch for ch in string if ch in vowels]), [ch for ch in string if ch in vowels]
+
+
+print(counting_vowels('w3resource'))
+
+"""
+"""
+# 50. Write a Python program to split a string on the last occurrence of the delimiter.
+
+
+# 51.Write a Python program to find the first non-repeating character in given string.
+
+# Explanation : repeat kakunada vunde charecter lo first di.... dictionary prepare chey tharuvatha value 1 vundedi return chey.
+# if dict[key]==1 ani condition pedithe chala 1's vunna kunda andulo first one manaki return chestundi...
+
+def finding_first_non_repeating_char(string):
+    char_freq = {}
+    for ch in string:
+        if ch not in char_freq:
+            char_freq[ch] = 1
+        else:
+            char_freq[ch] += 1
+    for key, value in char_freq.items():
+        if char_freq[key] == 1:
+            return key              # loop stops if value of key ==1....because of return statement
+
+    return 'All are repeated charecters' # this is important because if condition is not satisfied by any value in dict it will returns
+
+
+print(finding_first_non_repeating_char('ababcdcdeeeeeff'))
+"""
+
+# 52.Write a Python program to print all permutations with given repetition number of characters of a given string.
+
+# ignored
+
+# 52. Write a Python program to print all permutations with given repetition number of characters of a given string.
+#
+# ignored
+
+"""
+# 53. Write a Python program to find the first repeated character in a given string
+
+# Explanation: repeat iena dantlo first time eadi repeat iendi ani kanukkovali
+
+
+def find_first_repeated_ch(string):
+    ch_dict={}
+    for ch in string:
+        if ch not in ch_dict:
+            ch_dict[ch] = 1
+        else:
+            ch_dict[ch] += 1
+    for key, value in ch_dict.items():
+        if ch_dict[key] > 1:
+            return key
+    return 'All charecters are unique only'     # this is important because if condition is not satisfied by any value in dict it will returns
+
+
+print(find_first_repeated_ch("bcdabcd"))
+
+"""
+"""
+# very important logic
+# Finding first repeating charecter and thier index also
+
+
+# 54. Write a Python program to find the first repeated character of a given string where the index of first occurrence is smallest.
+
+# Explanation: repeat iena letters lo renditi madhya indexing eadi thakkuva vundo danni return cheyyali.(first_repeated_char_smallest_distance)
+
+# index() method>>>>string.index(ch)>>>> string lo first time ekkada repeat iendo dani index position return chestundi
+
+def first_reap_ch_smallest_distance(string):
+    ch_dict={}
+    for ch in string:
+        if ch in ch_dict:
+            return ch, string.index(ch)
+        else:
+            ch_dict[ch] = 0
+    return None
+
+
+print(first_reap_ch_smallest_distance('caeghjiabcc'))
+"""
+"""
+# First repeated word
+
+# 55.Write a Python program to find the first repeated word in a given string.
+
+# Explanation: first repeated word kanukkovali
+
+
+def finding_first_repeated_charecter(string):
+    word_dict={}
+    for word in string.split():   # splits the strings to list of words
+        if word in word_dict:
+            return word
+        else:
+            word_dict[word] = 0
+
+    return 'No repeated words'
+
+
+print(finding_first_repeated_charecter("ab ca bc ca ab bc"))
+
+"""
+"""
+# very important
+# Method: second repeated word kanukkovali
+
+# 56.Write a Python program to find the second most repeated word in a given string.
+
+a="""
+# """   Both of these issues are fixed by postponing the evaluation of annotations.
+#    Instead of compiling code which executes expressions in annotations at their definition time,
+#    the compiler stores the annotation in a string form equivalent to the AST of the expression in question.
+#    If needed, annotations can be resolved at runtime using typing.get_type_hints(). In the common case where
+#    this is not required, the annotations are cheaper to store (since short strings are interned by the interpreter) and make startup time faster.
+#  """
+"""
+def second_most_repeated_word(string):
+    word_dict = {}
+    for word in string.split():
+        if word not in word_dict:
+            word_dict[word] = 1
+        else:
+            word_dict[word] += 1
+    return 'The second most repeated key :{}'.format(sorted(word_dict.items(), key= lambda x: x[1], reverse=True)[1][0])
+# Explanation :
+# 1. Find dictionary frequency then sorted ascending or decending...based on index position we can get first most repeated or second mosr repeated
+
+print(second_most_repeated_word(a))
+
+"""
+"""
+# Removing spaces in the string.
+
+# 57.Write a Python program to remove spaces from a given string.
+
+# By using replace method or by using join method.
+
+
+def remove_spaces(string):
+     return string.replace(" ", "")
+     return "".join(string.split())
+    
+
+print(remove_spaces("w 3 res ou r ce"))
+"""
+"""
+# Move spaces in the string to the begining
+
+# 58. Write a Python program to move spaces to the front of a given string.
+
+# Explanation:
+# 1. new_string = remove spaces in the string (words anni list loki append chesi , danni string loki marchu...join function use chesi)
+# 2. number of spaces = len(old_string)-len(new_string)
+# 3. numberof spaces*space+newstring
+
+
+def move_spaces_to_begining(string):
+    string_without_space = "".join([word for word in string if word != " "])     # removing whitespaces and converting into string
+    # print(string_without_space)   # for difference purpose
+    num_of_white_spaces = len(string)-len(string_without_space)   
+    return num_of_white_spaces*" "+string_without_space
+
+
+print(move_spaces_to_begining("   w3resource.com  "))
+"""
+"""
+# Maximum repeating charecter
+
+# 59. Write a Python program to find the maximum occurring character in a given string
+
+# Explanation: ekkuva repeat iena charecter ni return cheyyali.
+
+
+def most_repeating_charecter(string):
+    string_freq = {}
+    for ch in string:
+        if ch not in string_freq:
+            string_freq[ch] = 1
+        else:
+            string_freq[ch] += 1
+    return '{} Is The Most Repeated Charecter In The String'.format(sorted(string_freq.items(), key=lambda x: x[1], reverse=True)[0][0])
+
+# [0] ante maximum repeating charecter and their frequency in the tuple formate (key, value) key is charecter, frequency is value 
+
+print(most_repeating_charecter(input("Enter the string: ")))
+"""
+
+"""
+# 60. Write a Python program to capitalize first and last letters of each word of a given string.
+
+# First word ni and last word ni capital letter loki marchali.
+
+# Functions : upper() >>> string.upper()....>>> join() function
+
+def capitalize_first_and_last_word(string): 
+    return " ".join([word[0].upper()+word[1:-1]+word[-1].upper() for word in string.split()])  # all in single line 
+
+
+print(capitalize_first_and_last_word(input("Enter the string :")))
+
+"""
+"""
+# Model : remove duplicates.
+# 61. Write a Python program to remove duplicate characters of a given string.
+
+
+def remove_duplicate(string):
+    new_string = ""
+    for ch in string:
+        if ch not in new_string:
+            new_string += ch
+    return new_string
+
+
+print(remove_duplicate(input("Enter the string: ")))
+"""
+"""
+# Model : sum all numbers in string
+# 62. Write a Python program to compute sum of digits of a given string.
+
+
+# By using sum function:
+
+#Function: string.isnumeric()>>> it returns true if string is a numeric charecter peranthesis () are compulsary.
+# int() funtion to convert integer
+
+def sum_all_numbers(string):
+    return sum(int(ch) for ch in string if ch.isnumeric())  # if it is numeric string then convert into int()
+
+
+# print(sum_all_numbers(input("Enter the string: ")))
+
+
+# Traditional approach
+
+def sum_by_traditional_approach(string):
+    sum_num = 0
+    for ch in string:
+        if ch.isnumeric():
+            sum_num += int(ch)
+
+    return sum_num
+
+
+print(sum_by_traditional_approach(input("Enter the string: ")))
+"""
+
+# 63.Write a Python program to remove leading zeros from an IP address.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

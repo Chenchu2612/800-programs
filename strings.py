@@ -588,14 +588,162 @@ def add_indentation_to_first_line(string):
 
 print(add_indentation_to_first_line(sample_text))
 """
-
-# model: shifting model
+"""
+# model: decimal model
 
 # 30. Write a Python program to print the following floating numbers upto 2 decimal places.
 
+# Explanation : point tharuvatha 2 decimals matrame kavali so :.2f pettali .....
+#  manam console through dwara input isthe float rupamlo ivvali
 
-def floating_upto_two_decimals(string):
-    return '{:.2f}'.format(string)
+# number adjusting : ikkada 2 floating point number adugamuu ...2 numbers tharuvatha vunde 3rd number  (ante 3rd number) 5<= iethe manaku kavalsina
+# second number ki +1 add avuthundi
+
+# input console lo float ivvali
+
+def floating_numbers_upto_2_decimals(number):
+    return "{:.2f}".format(number)
 
 
-print(floating_upto_two_decimals(int(input("Enter the number:"))))
+print(floating_numbers_upto_2_decimals(float(input("enter the number:"))))  # very important ....float rupamlo ivvali.
+"""
+"""
+# decimal model with sign.
+
+
+# 31. Write a Python program to print the following floating numbers upto 2 decimal places with a sign.
+
+# Explanation: sign kavalante colon(:) ki,point(.) ki madhya + pedathamu..... positive , negative kina + vadathamu
+
+def decimal_with_sign(number):
+    return "{:+.2f}".format(number)
+
+
+print(decimal_with_sign(float(input("entre the number:"))))
+
+"""
+"""
+# removing decimals model
+
+# 32. Write a Python program to print the following floating numbers with no decimal places.
+
+# Explanation: floating ni remove cheyyali .... so point tharuvatha float point number ni 0 pettali ...+1 concept ikkada kuda vastundi
+# int() function proper function kaadu so manam format method use chestam  ....with sign kavali ante :+. add chestamu
+
+# input console lo float ivvali
+
+def remove_decimals(number):
+    return "{:.0f}".format(number)
+
+
+print(remove_decimals(float(input("Enter the number :"))))
+
+"""
+
+"""
+# Model: Number shifting model (shifting operator)
+# very important
+# 33. Write a Python program to print the following integers with zeros on the left of specified width.
+
+# Explanation : specific width lo number vundali kaali place lo 0's vundali adi kuda left side vundali.
+# manam ikkada d vadathamu.
+
+# greatherthan symbole (>) deni vipu vunte adi first lo vuntundi.
+
+
+def shift_number_with_specified_width(number):
+    return "{:0<6d}".format(number)
+
+
+print(shift_number_with_specified_width(int(input("Enter the specifies nnumber: "))))
+
+"""
+"""
+# 34. Write a Python program to print the following integers with '*' on the right of specified width
+
+
+def right_specified_width(number):
+    return "{:*<6d}".format(number)
+
+
+print(right_specified_width(int(input("Enter the specified nunmber: "))))
+"""
+"""
+# model: comasaparates number
+
+# 35. Write a Python program to display a number with a comma separator.
+
+# It separates three three number's
+
+def comma_saparated_number(number):
+    return "{:,}".format(number)
+
+
+print(comma_saparated_number(int(input("Enter the number :"))))
+
+"""
+"""
+# percentage model
+
+# 36. Write a Python program to format a number with a percentage.
+
+
+def formate_with_decimals(number):
+    return"{:.1%}".format(number)
+
+
+print(formate_with_decimals(float(input("Enter the number:"))))
+
+"""
+"""
+# very important concept's
+
+# model: 1 : Numbers after points >>> "{:.spicify number f}".format(number)
+# model: 2 : Numbers after points with sign >>> "{:+.spicify number f}".format(number)
+# model: 3 : shifting numbers with shift operator ....   "{:specified_symbole>d}".format(number) ... here left align and right align ... > decides
+                                                                                                                        # which side
+# model: 4 : percentage model "{:.specifynumber%}".format(number)
+
+# note: where ever .f exists mumust enter : spicifynumber and +1 concept applicable
+"""
+"""
+# model: alignment (right, left and center)
+
+
+# 37. Write a Python program to display a number in left, right and center aligned of width 10.
+
+# Explanation:  for center alignment ^ is used.
+
+def right_left_center_align(number):
+    return "right_align :", '{:0>10d}'.format(number), "left_align:" "{:0<10d}".format(number), "center_align" "{:0^10d}".format(number)
+
+
+print(right_left_center_align(int(input("Enter the number number:"))))
+"""
+"""
+# model: number of coourences of substring in a given string.
+
+# 38. Write a Python program to count occurrences of a substring in a string.
+
+# Explanation: oka string lo ichina sub strings enni sarlu repeat iendi....
+
+#  Function = count() >>>> string.count(substring) >>> it returns number.
+
+
+def counting_number_of_occurence(string, substring):
+    return string.count(substring)
+
+
+print(counting_number_of_occurence(input("Enter the string:"), input("Enter the substring:")))
+
+"""
+"""
+# Note : 
+
+# There are two requirements :
+
+# 1. number of occurences of each charecter: string frequency : manam each charecter ennisarlu repeat iendo chudali: dict method
+# 2. number of occurences of  specified substring: count() method use cheyyali
+"""
+
+# 39. Write a Python program to reverse a string.

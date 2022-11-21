@@ -745,5 +745,225 @@ print(counting_number_of_occurence(input("Enter the string:"), input("Enter the 
 # 1. number of occurences of each charecter: string frequency : manam each charecter ennisarlu repeat iendo chudali: dict method
 # 2. number of occurences of  specified substring: count() method use cheyyali
 """
-
+"""
 # 39. Write a Python program to reverse a string.
+
+# By using normal method:
+
+
+def string_reverse(string):
+    rev_string = ''
+    for ch in string:
+        rev_string=ch+rev_string
+    return rev_string
+
+
+# print(string_reverse(input("Enter the string:")))
+
+# By using join() & reversed method:
+
+# Explanation: reversed() function works on any iterable where as reverse() function only works on the list ...reverse is list method
+
+
+def rev_join_method(string):
+    return "".join(reversed((string)))
+
+
+print(rev_join_method(input("Enter the string: ")))
+
+"""
+"""
+# 40. Write a Python program to reverse words in a string
+
+# Explanation: reverse words ante  words ni rreverse order lo print cheyyali.... reverse word internally ante ade vere concept
+
+
+# Method:1 normal method
+
+def reverse_words(string):
+    new_list = []
+    for word in string.split():  # by default it splits based on white spaces
+        new_list = [word] + new_list
+    return " ".join(new_list)
+
+
+# print(reverse_words(input("Enter the reverse the string: ")))
+
+# method:2
+
+def reverse_string_words(string):
+    new_string = ''
+    for words in string.split():
+        new_string = words+" "+new_string    # Here adding of " " is important....analise how this line is working
+    return new_string
+
+
+print(reverse_string_words(input("Enter the string :")))
+
+"""
+
+"""
+# 41. Write a Python program to strip a set of characters from a string.
+
+
+def strip_specified_charecter(string, specified_charecter):
+    new_string = ''
+    for ch in string:
+        if ch not in specified_charecter:
+            new_string += ch
+    return new_string
+
+
+print(strip_specified_charecter(input("Enter the string: "), input("Enter the specified_charecter: ")))
+
+# model:2
+
+
+def strip_ch(string, char):
+    return "".join(ch for ch in string if ch not in char)  # join() function joins srings in the iterable 
+
+
+print(strip_ch(input("enter the string:")))
+
+"""
+"""
+# Model : print only repeated charecters.
+
+# 42. Write a Python program to count repeated characters in a string.
+sample_string='thequickbrownfoxjumpsoverthelazydog'
+# Expected output :
+# o 4
+# e 3
+# u 2
+# h 2
+# r 2
+# t 2
+
+
+# Explanation: count repeated characters ante avevi repeat iyyi vuntato avi matrame chupinchali
+
+def count_repeated_char(string):
+    new_dict= {}
+    for ch in string:
+        if ch not in new_dict:
+            new_dict[ch] = 1
+        else:
+            new_dict[ch] += 1
+    for key, value in new_dict.items():
+        if new_dict[key] >=2:     # we need repeated charecters only .... for that we can't directly access the values we have to aces the keys
+            print(key, 'charecter occuring :', value)
+
+
+count_repeated_char(sample_string)
+"""
+"""
+# Maths formula ignored
+
+# 43.Write a Python program to print the square and cube symbol in the area of a rectangle and volume of a cylinder.
+# Sample output:
+# The area of the rectangle is 1256.66cm2
+# The volume of the cylinder is 1254.725cm3
+
+"""
+
+"""
+# Method : index()
+
+# 44. Write a Python program to print the index of the character in a string.
+# Sample string: w3resource
+# Expected output:
+# Current character w position at 0
+# Current character 3 position at 1
+# Current character r position at 2
+
+
+# Important: we can find indexing by using 3 methods.
+
+# Method:1 By using formula::::: positive index-negative index=length of string >>>> positive index = length of string-negative index
+# Method 2 By using index() method:::::string.index(substring)
+# Method 3 By using enumerate function
+
+# index method:
+
+def index_of_specified_charecter(string, charecter):
+    return '{} charecter occuring : {}'.format(charecter, string.index(charecter))
+
+
+# print(index_of_specified_charecter('chenchu', 'h'))
+
+# By using enumerate function()
+
+
+def index_enum(string):
+    for index, ch in enumerate(string):
+        print(ch, "charecter occuring at:", index)
+
+
+# index_enum('chenchu')
+
+
+"""
+
+"""
+# Model: finding string contains all alphabets or not
+
+# 45. Write a Python program to check whether a string contains all letters of the alphabet.
+
+import string
+
+
+def checking(charecter):
+    alphabet = set(string.ascii_lowercase)
+    # return set(charecter.lower()) >= alphabet    # >= anthe ekkuva anna vundochu or equal ga anna vundochu.
+    return alphabet.issubset(set(charecter))
+
+
+print(checking('The quick brown fox jumps over the lazy dog'))
+"""
+
+"""
+# Model : String to list of words.
+
+# 46. Write a Python program to convert a given string into a list of words.
+
+
+def string_to_list(string):
+    return string.split()
+
+
+print(string_to_list(input("Enter the number of words: ")))
+
+"""
+"""
+# Method: convert only specific charecters upper case
+
+# 47. Write a Python program to lowercase first n characters in a string.
+
+
+def n_charecters_lower_case(string, n):
+    return string[:n].upper()+string[n:]
+
+
+print(n_charecters_lower_case(input("Enter the string :"), int(input("Enter the number_of char:"))))  # here we must provide int() otherwise it will 
+                                                                                                                # convert to string.
+
+"""
+
+"""
+# pending
+# 48. Write a Python program to swap comma and dot in a string.
+
+# Sample string: "32.054,23"
+# Expected Output: "32,054.23"
+
+
+def swap_comma_fullstop(a):
+    return a.swap('.', ',')
+
+
+print(swap_comma_fullstop('32.054,23'))
+
+"""
+
+
+

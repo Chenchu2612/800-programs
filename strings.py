@@ -1242,10 +1242,228 @@ def sum_by_traditional_approach(string):
 
 print(sum_by_traditional_approach(input("Enter the string: ")))
 """
+"""
+# Removing Zeros from the Ip adress.
 
 # 63.Write a Python program to remove leading zeros from an IP address.
 
+# Explanation : leading zeros is nothing but preceding zeros ex: 00012,0065 etc., we have to use int() function for removing this.
+# again we have to convert this to str().
 
+
+def removing_leading_zeros(ipadress):
+    return '.'.join([str(int(ch))for ch in ipadress.split('.')])  # int() function is used for removing preceding zeros from the number
+
+
+print(removing_leading_zeros(input("Enter the ipadress: ")))
+
+"""
+"""
+# very important and little trickey
+
+# 64. Write a Python program to find maximum length of consecutive 0's in a given binary string.
+
+# Explanation : varusaga vunna zeros lo maximum length vundedi entha.
+
+
+def finding_max_length(binary_string):
+    a = [ch for ch in binary_string.split('1') if ch != ""]  # Here we will never give spaces in the string " ".we have to give ""
+    b = [ch for ch in binary_string.split('1')]
+    print(a)  # for understanding purpose
+    print(b) # for understanding purpose
+    max_length = 0
+    for zeros in a:
+        if len(zeros) > max_length:
+            max_length = len(zeros)
+    return max_length
+
+
+print(finding_max_length('111000100000110'))
+"""
+"""
+# 65.Write a Python program to find all the common characters in lexicographical order from two given lower case strings.
+# If there are no common letters print "No common characters".
+
+# doubt
+"""
+"""
+# Anagrams:
+
+# 66. Write a Python program to make two given strings (lower case, may or may not be of the same length) anagrams removing
+# any characters from any of the strings.
+
+# Explanation : anagrams is nothing but if two words have same character of letters may or may not be in same order is called as anagrams
+# 1st string lo emi letters iethe vundo same letters 2nd string lo kunda ade vuntundi but different order lo vuntundi.
+
+
+def string_frequency(string):
+    string_freq = {}
+    for ch in string:
+        if ch not in string_freq:
+            string_freq[ch] = 1
+        else:
+            string_freq[ch] += 1
+    return string_freq
+
+
+def making_anagrams(str1, str2):
+    str1_string_freq = string_frequency(str1)
+    print(str1_string_freq)
+    str2_string_freq = string_frequency(str2)
+    print(str2_string_freq)
+
+    count = 0
+    for key in str1_string_freq:
+        if key not in str2_string_freq:
+            count += str1_string_freq[key]
+        else:
+            count += max(0, str1_string_freq[key] - str2_string_freq[key])
+    for key in str2_string_freq:
+        if key not in str1_string_freq:
+            count += str2_string_freq[key]
+        else:
+            count += max(0, str2_string_freq[key]-str1_string_freq[key])
+    return count
+
+
+print(making_anagrams(input("Enter the string: "), input("Enter the input string:")))
+
+"""
+"""
+# very important logic
+# 67.Write a Python program to remove all consecutive duplicates of a given string
+
+# Explantion : pakka pakkana vunde duplicates ni remove chesi unique cheyyali.
+
+
+def remove_consicutive_duplicates(string):
+    if len(string) == 1:
+        return string
+
+    elif string[0] != string[1]:
+        return string[0]+remove_consicutive_duplicates(string[1:]) # again calling and applying function from index 1 to end of string
+    return remove_consicutive_duplicates(string[1:])    # again calling and applying function from index 1 to end of string
+
+
+print(remove_consicutive_duplicates(input("Enter the string:")))
+
+"""
+"""
+# 68. Write a Python program to create two strings from a given string. Create the first string using those character which occurs only once
+# and create the second string which consists of multi-time occurring characters in the said string.
+
+# Explanation: oka string nunchi rendu string's create cheyyali>>>> first string lo only unique(non-repeated) charecters eavi iethe original string lo
+# vunnayo avi matrame vundali>>>second string lo Repeated characters (non-unique) eavithe original string lo vunnayo avi matrame vundali.
+
+
+def create_two_strings(string):
+    string_freq = {}
+    for ch in string:
+        if ch not in string_freq:
+            string_freq[ch] = 1
+        else:
+            string_freq[ch] += 1
+    first_string = "".join([key for key in string_freq if string_freq[key] == 1])   # if frequency is equals to 1.
+    second_string = "".join([key for key in string_freq if string_freq[key] > 1])   # if frequency is greatherthan 1.
+    return "First string = {}\nSecond string = {}".format(first_string, second_string)
+
+
+print(create_two_strings(input("Enter the string :")))
+
+"""
+"""
+# 69. Write a Python program to find the longest common sub-string from two given strings.
+
+# doubt
+"""
+"""
+# 70. Write a Python program to create a string from two given strings concatenating uncommon characters of the said strings.
+
+#  Explanation : rendu strings lo common ga leni letters tho string create cheyyali
+
+
+def create_strings(string1, string2):
+    a = "".join([ch for ch in string1 if ch not in string2])
+    b = "".join([ch for ch in string2 if ch not in string1])
+    return a+b
+
+
+print(create_strings(input("enter the string1:"), input("enter the string2:")))
+
+"""
+"""
+# 71. Write a Python program to move all spaces to the front of a given string in single traversal.
+
+# Explanation : spaces anni string first lo move cheyyali nenu chese mistake " " pettali kani "" pettanu... in a single traversal anedi confuse
+# cheyyadaniki pettadu..... "" & " " deni madhya difference kinda choodu
+
+def move_spaces_to_the_front(string):
+    string_with_out_spaces = ''.join([ch for ch in string if ch != " "])  # "">>> this is not a empty string it's length is zero
+    number_of_spaces = len(string)-len(string_with_out_spaces)          # " " >>> this is empty string it's length is one
+
+    return " "*number_of_spaces+string_with_out_spaces
+
+
+print(move_spaces_to_the_front(input("Enter the string:")))
+"""
+
+"""
+# 72. Write a Python code to remove all characters except a specified character in a given string.
+# Original string
+# Python Exercises
+# Remove all characters except P in the said string:
+# P
+# Original string
+# google
+# Remove all characters except g in the said string:
+# gg
+# Original string
+# exercises
+# Remove all characters except e in the said string:
+# eee
+
+
+# Explanation : ichina specified charecters thappa migatha charecters  anni remove cheyyali. little complicated related to traversal of which elements
+
+
+def remove_all_except_specified(string, specified_char):
+    return "".join([ch for ch in string if ch in specified_char])
+
+
+print(remove_all_except_specified(input("Enter the string :"), input("Enter the specified_string :")))
+"""
+
+"""
+# 73. Write a Python program to count Uppercase, Lowercase, special character and numeric values in a given string.
+
+
+def count_upper_lower_special_number(string):
+    upper = lower = special = number = 0
+    for ch in string:
+        if ch.isupper():
+            upper += 1
+        elif ch.islower():
+            lower += 1
+        elif ch.isdigit():
+            number += 1
+        else:
+            special += 1
+
+    return'lower_case_letters = {}\nupper_case_letters = {}\nspecial_charecters = {}\nnumbers ={}'.format(lower, upper, special, number)
+
+
+print(count_upper_lower_special_number(input("Enter the string :")))
+"""
+
+
+#74 ,75 window problem ignored
+
+
+# 76 substrings problem doubt
+
+
+# 77. Write a Python program to count number of non-empty substrings of a given string.
+# doubt
 
 
 

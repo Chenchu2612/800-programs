@@ -417,7 +417,8 @@ Square root after specific miliseconds:
 """
 
 
-
+with open("lambda.py", 'w+') as f:
+    print("file_opened")
 
 
 

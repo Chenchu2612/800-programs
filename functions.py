@@ -232,13 +232,189 @@ print(check_polindrome(input("Enter the number :")))
 
 """
 
+"""
+# Model : check Pangram or not
+
+#14. Write a Python function to check whether a string is a pangram or not.
+# Note : Pangrams are words or sentences containing every letter of the alphabet at least once.
+# For example : "The quick brown fox jumps over the lazy dog"
+
+# Mistakes : ikkakda nenu strings ni import chesthanu so... function definition lo parameter string ane name ivvakuadadu.
+
+# logic: 1. string ni import cheyyali 2.import chesina string dwara lowe/upper alphabets ni get chesi set() loki marchali 3. origina string ni
+# set loki marchali 3. marchina original string ni and get chesina daniki subset/super set kanukkovali.(issubset/issuperset)(>=)
 
 
+import string
 
 
+def check_pangrams(string_obj):
+    get_string = set(string.ascii_lowercase)   # here we have to provide ascii_lowercase compulsory
+    if set(string_obj)>=get_string: # Finding superset or not
+        return '{}>>>>>> The given string is the pangrams'.format(string_obj)
+    return '{}>>>>> The given string is not pangrams'.format(string_obj)
 
 
+print(check_pangrams(input("Enter the string: ")))
 
+ """
+"""
+# Model:1 sort words between '-'.
+
+
+# 15. Write a Python program that accepts a hyphen-separated sequence of words as input
+# and prints the words in a hyphen-separated sequence after sorting them alphabetically.
+# Sample Items : green-red-yellow-black-white
+# Expected Result : black-green-red-white-yellow
+
+# Explanation : 1. hypen saparated words ga tesukovali  2. danni sort chesi hypen saparate tho ouput return cheyyali
+
+
+def sort_words(string_object):
+    return '-'.join(sorted(string_object.split('-'), reverse=False))
+
+
+# split() function returns the string to list string.split()
+# sort() method eami return cheyyadu so manam denni varible ki assign cheyya kudadu
+# a= items.sort() ilaga and join() function lo kuda pettakudadu  "".join(list.sort()) ilaga.
+# join() function lo sorted vadadam manchidi.
+
+print(sort_words(input("Enter the string :")))
+"""
+
+"""
+# Model : creating a list
+
+# 16. Write a Python function to create and print a list where the values are square of numbers between 1 and 30 (both included).
+
+def creating_list(start_number, end_number):
+    return [num**2 for num in range(start_number, end_number+1)]
+
+
+print(creating_list(int(input("Enter the number:")), int(input("Enter the number :"))))
+
+"""
+"""
+# Very_Very_Very important problem
+# Model: @decorator
+# 17. Write a Python program to make a chain of function decorators (bold, italic, underline etc.) in Python.
+
+
+def make_bold_outer(func):
+    def bold_wrapper(b):
+        return '<b>'+func(b)+'</b>'
+    return bold_wrapper
+
+
+def make_italic_outer(func):
+    def italic_wrapper(i):
+        return '<i>'+func(i)+'</i>'
+    return italic_wrapper
+
+
+def make_underline(func):
+    def underline_wrapper(u):
+        return '<u>'+func(u)+'</u>'
+    return underline_wrapper
+
+
+@make_bold_outer
+@make_italic_outer
+@make_underline
+def chain_bold_italic_underline(string_obj):
+    return string_obj
+
+# Note: Main function lo parameter pass cheste inner decorator function lo edo oka positional argument pass cheyyali (same name or different name)
+# inner decorator function main function ni call chestundi ee place lo kuda manam positional argument pass cheyyali ex:func(b) in bold_wrapper.
+
+print(chain_bold_italic_underline(input("Enter the string :")))
+
+"""
+"""
+# Model: Code String rupam lo vunte danni executecheyyali.
+
+# New_function : exec() it is same as print() function .... 
+# exec() function is used for the dynamic execution of "Python programs" which can either be a string or object code.
+
+# 18. Write a Python program to execute a string containing Python code.
+
+# my_code = """
+# for x in range(10):
+#     print(x, end=" ")
+"""
+
+exec(my_code)
+
+
+def execute_code_in_string(string_code):
+    return exec(string_code)
+
+
+execute_code_in_string(my_code)
+"""
+"""
+# Model : acccessing function inside another function
+
+# 19. Write a Python program to access a function inside a function.
+
+
+# see this two models.
+
+# concept : outer function ki sambandinchina prathi okka vatibles inner function lo access cheyyochu but daani value inner function lo marchalante
+# nonlocal keyword use cheyyali.
+
+# Model:1(a) Without modifying the nonlocal varible
+
+def outer_function(parameter1):
+    def inner_function(parameter2):
+        return parameter1
+    return inner_function
+
+
+x= outer_function('hello')     #>>> deeni output >>>inner_function
+print(x(5))
+
+print(outer_function('hello')('2'))  #>>>> model.2
+
+# Model:1(b) with modifying the nonlocal varible
+
+def outer_func(a):
+    def inner_func(b):
+        nonlocal a
+        a+=b
+        return a
+    return inner_func
+
+print(outer_func(5)(5)) # >>> not a good approach
+
+c=outer_func(5)
+print(c(5))
+"""
+"""
+# Mothod: finding number of local varibles in the function.
+
+# 20. Write a Python program to detect the number of local variables declared in a function.
+
+def detect_local_varible():
+    x = 1
+    y = 2
+    str1 = "w3resource"
+
+
+print(detect_local_varible.__code__.co_nlocals)
+
+
+# not understanding
+"""
+"""
+21. Write a Python program that invoke a given function after specific milliseconds.
+Sample Output:
+Square root after specific miliseconds:
+4.0
+10.0
+158.42979517754858
+
+"""
 
 
 

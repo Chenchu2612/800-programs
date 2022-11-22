@@ -420,7 +420,7 @@ print("sn2: ",sn2)
 
 # part:-2
 
-# 1.intersection() --- set1.intersection(set2) it returns new set containing only intersection elements
+# 1.intersection() --- set1.intersection(set2) it returns new set containing only intersection elements  ...'&' symbole
 # 2.intersection_update() -- set1.intersection_updates(set2) it takes intersection elements updates in set1 vise-versa
 
 

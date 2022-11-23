@@ -395,6 +395,7 @@ print("The minimum length :", min(map(len, a)), "\nThe minimum length:", min(a, 
 # list akkade(position not be changed) vundali lopala elemants order sort avvali
 
 
+
 # 27. Write a Python program to sort each sublist of strings in a given list of lists using lambda.
 # Original list:
 a= [['green', 'orange'], ['black', 'white'], ['white', 'black', 'orange']]
@@ -402,7 +403,7 @@ a= [['green', 'orange'], ['black', 'white'], ['white', 'black', 'orange']]
 # [['green', 'orange'], ['black', 'white'], ['black', 'orange', 'white']]
 
 print(sorted(a, key=lambda x: x[0]))  # nenu ee logic raste prathi sub list lo vunde 0'th index position lo vunna word adharam ga sort avutundi
-# kaani manaki every nested list lo vunna elements sorted order lo vundali. so daniki manam for loop raasi okkoka list ni get chesi soet cheyyali
+# kaani manaki every nested list lo vunna elements sorted order lo vundali. so daniki manam for loop raasi okkoka list ni get chesi sor  t cheyyali
 
 print([sorted(x, key=lambda x:x[0], reverse=False)for x in a])
 
@@ -411,17 +412,180 @@ print([sorted(x, key=lambda x:x[0], reverse=False)for x in a])
 """
 
 
+"""
+# 28. Write a Python program to sort a given list of lists by length and value using lambda.
+# Original list:
+a = [[2], [0], [1, 3], [0,7], [9, 11], [13, 15, 17]]
+# Sort the list of lists by length and value:
+# [[0], [2], [0, 7], [1, 3], [9, 11], [13, 15, 17]]
 
+a.sort(key=lambda x: (len(x), x), reverse=False)
+
+print(sorted(a, key=lambda x: (len(x), x), reverse=False))
+print(a)
+"""
+
+"""
+# Model: Hetro genius elements lo maximum number kanukkovali
+
+# 29. Write a Python program to find the maximum value in a given heterogeneous list using lambda.
+# Original list:
+a = ['Python', 3, 2, 4, 5, 'version']
+# Maximum values in the said list using lambda:
+# 5
+
+
+# Explanation : max function manam iterable pass chesi danni lambda function dwara numbets matram bayataki tesi maximum kanukuntam.
+
+# a lo prathi element lambda function arguments loki veltundi lambda isinstance loki pampistundi ....isinstance function lo adi intaaa kada ani
+# choostundi ....int iethe further calculation ki pamputhundi ledante ledu.
+
+
+# isinstance function::::: it returns boolen >>>> isinstance(item,type) >>>it returns true if specific item and mentioned type is correct
+# The isinstance() function returns True if the specified object is of the specified type, otherwise False.
+
+print(max(a, key=lambda x: (isinstance(x, int), x)))
+print(min)
+
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+#Model: Sorting the matrix(nested_lists) according to the sum of elemnts of matrix
+
+# 30. Write a Python program to sort a given matrix in ascending order according to the sum of its rows using lambda.
+# Original Matrix:
+# a=[[1, 2, 3], [2, 4, 5], [1, 1, 1]]
+# Sort the said matrix in ascending order according to the sum of its rows
+# [[1, 1, 1], [1, 2, 3], [2, 4, 5]]
+# Original Matrix:
+# [[1, 2, 3], [-2, 4, -5], [1, -1, 1]]
+# Sort the said matrix in ascending order according to the sum of its rows
+# [[-2, 4, -5], [1, -1, 1], [1, 2, 3]]
+
+
+a.sort(key=lambda x: sum(x))  # by using sort() function. 
+print(a)
+print(sorted(a, key=lambda x: sum(x), reverse=False)) # by using sorted function.
+
+"""
+
+
+
+
+"""
+# Model: Extracting list items based on the length.
+
+# 31. Write a Python program to extract specified size of strings from a give list of string values using lambda.
+# Original list:
+a = ['Python', 'list', 'exercises', 'practice', 'solution']
+# length of the string to extract:
+# 8
+# After extracting strings of specified length from the said list:
+# ['practice', 'solution']
+
+print(list(filter(lambda x: (len(x) == 8), a)))  # it will only filter if len of x is equal to 8.
+
+"""
+
+"""
+# Model: counting float number
+
+# 32. Write a Python program to count float number in a given mixed list using lambda.
+# Original list:
+a = [1, 'abcd', 3.12, 1.2, 4, 'xyz', 5, 'pqr', 7, -5, -12.22]
+# Number of floats in the said mixed list:
+# 3
+
+
+# Explanation: prathi element check cheyyali and adi float iethe list lo petti danni length kanukkovali
+
+print(len(list(filter(lambda x: (type(x) == float), a))))   # if it is float filter it
+print(len(list(filter(lambda x: (type(x) == str), a))))  # if it is str filter it
+
+"""
+
+
+
+"""
+# 33.Write a Python program to check whether a given string contains a capital letter, a lower case letter, a number and a minimum length using lambda.
+# Input the string:
+# a=W3resource
+# ['Valid string.']
+
+
+# doubt
+
+
+
+
+
+
+
+
+"""
+"""
+# Model: Dict lo vunna values sort cheyyali
+
+# 34. Write a Python program to filter the height and width of students, which are stored in a dictionary using lambda.
+# Original Dictionary:
+a = {'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)}
+# Height> 6ft and Weight> 70kg:
+# {'Cierra Vega': (6.2, 70)}
+
+
+print(dict(filter(lambda x: (x[1][0] > 6 and x[1][1] >= 70), a.items())))  
+
+"""
+# Model : checking specified list sorted or not.
+
+
+# 35. Write a Python program to check whether a specified list is sorted or not using lambda.
+# Original list:
+a=[1, 2, 4, 6, 8, 10, 12, 14, 16, 17]
+# Is the said list is sorted!
+# True
+# Original list:
+# [1, 2, 4, 6, 8, 10, 12, 14, 16, 17]
+# Is the said list is sorted!
+# False
+
+# Explanation : ichina list  already sorted order lo vunte manaki True ledante False.
+
+#  not understood.
+
+
+
+
+
+
+
+
+
+
+
+"""
 # 36. Write a Python program to extract the nth element from a given list of tuples using lambda.
 # Original list:
-a=[('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)]
+a = [('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)]
 # Extract nth element ( n = 0 ) from the said list of tuples:
 # ['Greyson Fulton', 'Brady Kent', 'Wyatt Knott', 'Beau Turnbull']
 # Extract nth element ( n = 2 ) from the said list of tuples:
 # [99, 96, 94, 98]
 
-print(list(map(lambda x: x[0], a)))
-
+print(list(map(lambda x: x[0], a)))  # every element in a extract 0th element..
+print(list(map(lambda x: x[2], a)))  # every element in a extrace 1th element ..
+"""
 
 
 
@@ -437,17 +601,16 @@ print(list(map(lambda x: x[0], a)))
 # Model : sorting nested lists by using index
 
 
-
 # 37. Write a Python program to sort a list of lists by a given index of the inner list using lambda.
 # Original list:
-a=[('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)]
+a = [('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)]
 # Sort the said list of lists by a given index ( Index = 0 ) of the inner list
 # [('Beau Turnbull', 94, 98), ('Brady Kent', 97, 96), ('Greyson Fulton', 98, 99), ('Wyatt Knott', 91, 94)]
 # Sort the said list of lists by a given index ( Index = 2 ) of the inner list
 # [('Wyatt Knott', 91, 94), ('Brady Kent', 97, 96), ('Beau Turnbull', 94, 98), ('Greyson Fulton', 98, 99)]
 
 
-a.sort(key=lambda x:x[0])
+a.sort(key=lambda x: x[0])
 print(a)
 
 """
@@ -469,14 +632,14 @@ b = [2, 4, 6, 8]
 # Explanation: vere list lo vunde elements ee list lo teseyali.
 
 
-print(list(filter(lambda x: (x not in b), a)))   # x anedi b lo vundakudadu.
+print(list(filter(lambda x: (x not in b), a)))  # x anedi b lo vundakudadu.
 
 """
 
 """
 # 39. Write a Python program to find the elements of a given list of strings that contain specific substring using lambda.
 # Original list:
-a= ['red', 'black', 'white', 'green', 'orange']
+a = ['red', 'black', 'white', 'green', 'orange']
 # Substring to search:
 # ack
 # Elements of the said list that contain specific substring:
@@ -489,7 +652,6 @@ a= ['red', 'black', 'white', 'green', 'orange']
 
 print(list(filter(lambda x: ('ack' in x), a)))  # ('ack' in x) means filter if 'ack' in x ....
 print(list(filter(lambda x: ('abc' in x), a)))
-
 
 # # model with normal function
 # def find_substring(str1, sub_str):
@@ -527,7 +689,7 @@ print([list(filter(lambda x: (x in a), sublist)) for sublist in b])  # list func
 
 # 41. Write a Python program to reverse strings in a given list of string values using lambda.
 # Original lists:
-a=['Red', 'Green', 'Blue', 'White', 'Black']
+a = ['Red', 'Green', 'Blue', 'White', 'Black']
 # Reverse strings of the said given list:
 # ['deR', 'neerG', 'eulB', 'etihW', 'kcalB']
 
@@ -547,18 +709,19 @@ print("".join(reversed('chenhu')))  # for understanding purpose
 
 # 42. Write a Python program to calculate the product of a given list of numbers using lambda.
 # list1:
-a=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 # Product of the said list numbers:
 # 3628800
 # list2:
-b=[2.2, 4.12, 6.6, 8.1, 8.3]
+b = [2.2, 4.12, 6.6, 8.1, 8.3]
 # Product of the said list numbers:
 # 4021.8599520000007
 
 from functools import reduce
-print("THe multiplication of said list is:", reduce(lambda x, y: x*y, a))
 
-print("The multiplication of said list is:", reduce(lambda x, y: x*y, b))
+print("THe multiplication of said list is:", reduce(lambda x, y: x * y, a))
+
+print("The multiplication of said list is:", reduce(lambda x, y: x * y, b))
 
 """
 
@@ -568,10 +731,10 @@ print("The multiplication of said list is:", reduce(lambda x, y: x*y, b))
 
 # 43. Write a Python program to multiply all the numbers in a given list using lambda.
 # Original list:
-a= [4, 3, 2, 2, -1, 18]
+a = [4, 3, 2, 2, -1, 18]
 # Mmultiply all the numbers of the said list: -864
 # Original list:
-b= [2, 4, 8, 8, 3, 2, 9]
+b = [2, 4, 8, 8, 3, 2, 9]
 # Mmultiply all the numbers of the said list: 27648
 
 
@@ -584,10 +747,10 @@ b= [2, 4, 8, 8, 3, 2, 9]
 
 from functools import reduce
 
-print('The multiplying all elements in the said list:', reduce(lambda x, y: x*y, a))
-print("The multiplying all the elements in the said list:", reduce(lambda x, y: x*y, b))
+print('The multiplying all elements in the said list:', reduce(lambda x, y: x * y, a))
+print("The multiplying all the elements in the said list:", reduce(lambda x, y: x * y, b))
 
-print(reduce(lambda x, y: x+y, a))
+print(reduce(lambda x, y: x + y, a))
 """
 
 """
@@ -615,7 +778,7 @@ print(tuple((map(lambda x: sum(x) / float(len(x)), zip(*a)))))  # unpacking ever
 
 # 45. Write a Python program to convert string element to integer inside a given tuple using lambda.
 # Original tuple values:
-a=(('233', 'ABCD', '33'), ('1416', 'EFGH', '55'), ('2345', 'WERT', '34'))
+a = (('233', 'ABCD', '33'), ('1416', 'EFGH', '55'), ('2345', 'WERT', '34'))
 # New tuple values:
 # ((233, 33), (1416, 55), (2345, 34))
 
@@ -623,10 +786,8 @@ a=(('233', 'ABCD', '33'), ('1416', 'EFGH', '55'), ('2345', 'WERT', '34'))
 # use cheyyali....out put tuple lo kavali kabatti....tuple () function vadali.
 
 
-print(tuple(map(lambda x:(int(x[0]), int(x[-1])), a)))
+print(tuple(map(lambda x: (int(x[0]), int(x[-1])), a)))
 print(list(map(lambda x: (int(x[0]), int(x[-1])), a)))
-
-
 
 """
 # Model: Extract  Max,Min values fron the list and their index position also.
@@ -725,3 +886,5 @@ print(list(map(lambda x: (int(x[0]), int(x[-1])), a)))
 # filter(function, iterable)
 
 # print(list(filter(lambda x: x!= None, a)))
+"""
+"""

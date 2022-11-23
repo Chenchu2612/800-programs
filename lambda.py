@@ -1,4 +1,12 @@
-# Note: lambda function never start's with def keyword it start's with lambda keyword
+# Important_points : lambda function never start's with def keyword it start's with lambda keyword
+
+# lambda functions are most commonly use with filter(), map(), reduce() functions ....
+# filter() function returns iteraror, and map() function returns map object which is aloan iterator
+# we can extract values from filter(), map(), reduce() functions by using for loop and by using constructor methods(list(),tuple(),set() etc..,)
+#
+
+# confusion: nenu filter() ki , map() ki confuse avutunna >>>>> clarity :::: map() function lo  original list lo prathi element new list lo vuntundi
+# map() function lo original list ki , new_list ki same length vuntundi but every element ki some modifications vuntundi.
 
 """
 # 1. Write a Python program to create a lambda function that adds 15 to a given number passed in as an argument,
@@ -185,8 +193,7 @@ array=[-1, 2, -3, 5, 7, 8, 9, -10]
 
 print(sorted(array, key=lambda i: 0 if i == 0 else -1/i))  # [2, 5, 7, 8, 9, -10, -3, -1] positive lo ascending and negitive lo assending vastundi
 print(sorted(array, key=lambda i: 0 if i == 0 else 1/i))   # [-1, -3, -10, 9, 8, 7, 5, 2] negative lo desending and positive lo desending
-print(sorted(array, key=lambda i: 0 if i == 0 else i/-1)) # [9, 8, 7, 5, 2, -1, -3, -10] total desending (i/-1)
-print(sorted(array, key=lambda i: 0 if i == 0 else i/1))  # [-10, -3, -1, 2, 5, 7, 8, 9] total ascending  (i/1)
+
 
 """
 """
@@ -228,7 +235,6 @@ for days in len_6_days:
     print(days)
 
 """
-
 
 """
 # Model : adding two lists by using map and lambda.
@@ -319,16 +325,349 @@ string_number = sorted([int(x) for x in a.split() if x.isnumeric()])
 for num in filter(lambda x: (x > len(string_number)), string_number):
     print(num, end=" ")
 """
+"""
+# Method: multiply all the numbers in the list with specific function.
+
+# 21. Write a Python program that multiply each number of given list with a given number using lambda function. Print the result.
+# Original list:
+a= [2, 4, 6, 9, 11]
+# Given number: 2
+# Result:
+# 4 8 12 18 22
+
+# Function: map(function, iterable)
+
+
+# Explanation : 1. First every number ni given number tho multiplication cheyyali by using map function. 2. result line ga kavali 4 8 12 18 22 kabatti
+                                                                           # for loop and end =" " parameter.
+for x in map(lambda x: x*2, a): # we can extract values from map() function by using for loop.
+    print(x, end=" ")
+
+"""
+"""
+# 22. Write a Python program that sum the length of the names of a given list of names after removing the names that starts with an lowercase letter.
+# Use lambda function.
+
+a= ['sally', 'Dylan', 'rebecca', 'Diana', 'Joanne', 'keith']
+
+# Explanation: 1. mundu manam list lo nunchi words ni filter cheyyali by using filter() function . filter function iterable object ni return chestundi
+# 2. ee iterable object ni map function lo petti prathi element ki length kanukkoni danni sum cheyyali
+
+
+print(sum(map(len, filter(lambda x: x[0].isupper(), a))))
+"""
+"""
+# Model : Sum of all positive numbers , sum of all negative numbers.
+
+# 23. Write a Python program to calculate the sum of the positive and negative numbers of a given list of numbers using lambda function.
+# Original list:
+a=[2, 4, -6, -9, 11, -12, 14, -5, 17]
+# Sum of the positive numbers: -32
+# Sum of the negative numbers: 48
+
+print("The sum of positive integers: ", sum(filter(lambda x: x > 0, a)))
+print("The sum of all negative integers :", sum(filter(lambda x: x < 0, a)))
+"""
+
+# 24,25 do later.
+
+"""
+# 26. Write a Python program to find the list with maximum and minimum length using lambda.
+# Original list:
+a=[[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]]
+# List with maximum length of lists:
+# (3, [13, 15, 17])
+# List with minimum length of lists:
+# (1, [0])
+
+# Explanation : 1. maximum and minim length anedi map, max function use chesi bayataki tesamu 2. list aneni max() function lo lambda function-
+# use chesi dantlo  lenth adharamga list ni get chesamu.
+
+
+print("The maximum length :", max(map(len, a)), "\nThe minimum length:", max(a, key=lambda x: len(x)))
+print("The minimum length :", min(map(len, a)), "\nThe minimum length:", min(a, key=lambda x: len(x)))
+
+"""
+
+"""
+# Model: sorting of nested lists.
+
+# list akkade(position not be changed) vundali lopala elemants order sort avvali
+
+
+# 27. Write a Python program to sort each sublist of strings in a given list of lists using lambda.
+# Original list:
+a= [['green', 'orange'], ['black', 'white'], ['white', 'black', 'orange']]
+# After sorting each sublist of the said list of lists:
+# [['green', 'orange'], ['black', 'white'], ['black', 'orange', 'white']]
+
+print(sorted(a, key=lambda x: x[0]))  # nenu ee logic raste prathi sub list lo vunde 0'th index position lo vunna word adharam ga sort avutundi
+# kaani manaki every nested list lo vunna elements sorted order lo vundali. so daniki manam for loop raasi okkoka list ni get chesi soet cheyyali
+
+print([sorted(x, key=lambda x:x[0], reverse=False)for x in a])
+
+# for loop vaadi okkoka nested list lambda loki pampi prathi word lo vunna first letter adharam ga sort cheyyali.
+
+"""
 
 
 
-21. Write a Python program that multiply each number of given list with a given number using lambda function. Print the result. Go to the editor
-Original list: [2, 4, 6, 9, 11]
-Given number: 2
-Result:
-4 8 12 18 22
 
 
 
 
 
+
+
+"""
+# 39. Write a Python program to find the elements of a given list of strings that contain specific substring using lambda.
+# Original list:
+a= ['red', 'black', 'white', 'green', 'orange']
+# Substring to search:
+# ack
+# Elements of the said list that contain specific substring:
+# ['black']
+# Substring to search:
+# abc
+# Elements of the said list that contain specific substring:
+# []
+
+
+print(list(filter(lambda x: ('ack' in x), a)))  # ('ack' in x) means filter if 'ack' in x ....
+print(list(filter(lambda x: ('abc' in x), a)))
+
+
+# # model with normal function
+# def find_substring(str1, sub_str):
+#     result = list(filter(lambda x: sub_str in x, str1))
+#     return result
+# colors = ["red", "black", "white", "green", "orange"]
+# print("Original list:")
+# print(colors)
+# 
+# sub_str = "ack"
+"""
+"""
+# Model : nested list elements ni inko normal list(without nested) elements ni compare chesi common ni bayataki teyyali.
+
+# first llist : normal..... second list : nested....
+# 40. Write a Python program to find the nested lists elements, which are present in another list using lambda.
+# Original lists:
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+b = [[12, 18, 23, 25, 45], [7, 11, 19, 24, 28], [1, 5, 8, 18, 15, 16]]
+# Intersection of said nested lists:
+# [[12], [7, 11], [1, 5, 8]]
+
+
+# in filter() or map() or reduce() functions we must convert by using constructor functions.
+
+print([list(filter(lambda x: (x in a), sublist)) for sublist in b])  # list function is used for creating nested list
+# if you use [] instead of list constructor then output will be like bellow 
+# [[<filter object at 0x0000020E9E2CBA90>], [<filter object at 0x0000020E9E2CBA30>], [<filter object at 0x0000020E9E2CB9D0>]]
+"""
+"""
+
+# Model : Reverse the word's internally in a list
+
+# Explanation: words anni vunna position lone reverse avvli.
+
+# 41. Write a Python program to reverse strings in a given list of string values using lambda.
+# Original lists:
+a=['Red', 'Green', 'Blue', 'White', 'Black']
+# Reverse strings of the said given list:
+# ['deR', 'neerG', 'eulB', 'etihW', 'kcalB']
+
+
+# by using slicing function and by using join()and reversed function.
+
+# reversed function anedi iterator object ni return chestundi manam join function use chesi output bayataki teyyavachu.
+
+
+print(list((map(lambda x: x[::-1], a))))
+print(list(map(lambda x: ("".join(reversed(x))), a)))
+print("".join(reversed('chenhu')))  # for understanding purpose
+"""
+
+"""
+# Model: product of all the elements in the list.
+
+# 42. Write a Python program to calculate the product of a given list of numbers using lambda.
+# list1:
+a=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# Product of the said list numbers:
+# 3628800
+# list2:
+b=[2.2, 4.12, 6.6, 8.1, 8.3]
+# Product of the said list numbers:
+# 4021.8599520000007
+
+from functools import reduce
+print("THe multiplication of said list is:", reduce(lambda x, y: x*y, a))
+
+print("The multiplication of said list is:", reduce(lambda x, y: x*y, b))
+
+"""
+
+"""
+# Model : multiplication of all elements in a list
+
+
+# 43. Write a Python program to multiply all the numbers in a given list using lambda.
+# Original list:
+a= [4, 3, 2, 2, -1, 18]
+# Mmultiply all the numbers of the said list: -864
+# Original list:
+b= [2, 4, 8, 8, 3, 2, 9]
+# Mmultiply all the numbers of the said list: 27648
+
+
+# Explanation : anni elements kalipi oka element ga return cheyyali so manam reduce function vadali
+
+# reduce function lo rendu inputs tesukuntamu adi first rendu list elements ki assign iyyi aa tharuvatha expression ni first elemnt lo store-
+# chesukuntundi and 2nd element list lo vunna remeing elements loki traverse avutundi.
+
+# Reduce function : from functools import reduce  ::: reduce(lambda x, y: x*y, iterable)
+
+from functools import reduce
+
+print('The multiplying all elements in the said list:', reduce(lambda x, y: x*y, a))
+print("The multiplying all the elements in the said list:", reduce(lambda x, y: x*y, b))
+
+print(reduce(lambda x, y: x+y, a))
+"""
+
+"""
+# Method:1 Calculating average value in the tuple of tuples by
+
+# 44. Write a Python program to calculate the average value of the numbers in a given tuple of tuples using lambda.
+# Original Tuple:
+a = ((10, 10, 10), (30, 45, 56), (81, 80, 39), (1, 2, 3))
+# Average value of the numbers of the said tuple of tuples:
+# (30.5, 34.25, 27.0)
+# Original Tuple:
+# ((1, 1, -5), (30, -15, 56), (81, -60, -39), (-10, 2, 3))
+# Average value of the numbers of the said tuple of tuples:
+# (25.5, -18.0, 3.75)
+
+# Zip function is very important here.
+
+print(tuple((map(lambda x: sum(x) / float(len(x)), zip(*a)))))  # unpacking every tuple element >>> prathi tuple lo 0th elemnts anni add avutundi
+# aa tharuvatha prathi tuple lo 1st index position and so on...
+# Explanation : zip function is used for parrell iteration
+"""
+
+"""
+# Map function:  Converting string to the int in tuple of tuples.
+
+# 45. Write a Python program to convert string element to integer inside a given tuple using lambda.
+# Original tuple values:
+a=(('233', 'ABCD', '33'), ('1416', 'EFGH', '55'), ('2345', 'WERT', '34'))
+# New tuple values:
+# ((233, 33), (1416, 55), (2345, 34))
+
+# Explanation = oka tuple lo string elements ni intiger ga marchali .... idi nested tuple every tuple ki manam apply cheyyali so map function
+# use cheyyali....out put tuple lo kavali kabatti....tuple () function vadali.
+
+
+print(tuple(map(lambda x:(int(x[0]), int(x[-1])), a)))
+print(list(map(lambda x: (int(x[0]), int(x[-1])), a)))
+
+
+
+"""
+# Model: Extract  Max,Min values fron the list and their index position also.
+
+# 46. Write a Python program to find index position and value of the maximum and minimum values in a given list of numbers using lambda.
+# Original list:
+# a=[12, 33, 23, 10.11, 67, 89, 45, 66.7, 23, 12, 11, 10.25, 54]
+# Index position and value of the maximum value of the said list:
+# (5, 89)
+# Index position and value of the minimum value of the said list:
+# (3, 10.11)
+
+# Formula: max function lo enumerate function rayali.... endukante manam index position get cheyyadaniki...
+# enumerate function create cheste (index position , value) deenni lambda function adharam ga manam short chestamu.....
+#
+
+
+# print('The maximum value and index position :',max(enumerate(a), key= lambda x: x[1]))   # 0 for index and 1 for item .....based on item we are getting maximum value
+# print("The minimum value and their index:", min(enumerate(a), key=lambda x: x[1]))
+"""
+"""
+# Model : Sorting of mixed list (int & words)
+
+# 47. Write a Python program to sort a given mixed list of integers and strings using lambda. Numbers must be sorted before strings.
+# Original list:
+# a = [19, 'red', 12, 'green', 'blue', 10, 'white', 'green', 1]
+# Sort the said mixed list of integers and strings:
+# [1, 10, 12, 19, 'blue', 'green', 'green', 'red', 'white']
+# a.sort(key=lambda x: (isinstance(x, str), x))
+# print(a)
+
+# Model : sort numbers in a list
+
+# 48. Write a Python program to sort a given list of strings(numbers) numerically using lambda.
+# Original list:
+# a=['4', '12', '45', '7', '0', '100', '200', '-12', '-500']
+# Sort the said list of strings(numbers) numerically:
+# ['-500', '-12', '0', '4', '7', '12', '45', '100', '200']
+
+# Explanation : normal ga iethe manam list lo vunna prathi element ni int() loki convert chesi aa tharuvatha sort chesi malli str loki marchali
+# kaani lambda lo ala kaadu >>> daani intiger value adharamga sort cheyyamani cheppavachu (int(x))....
+
+# print(sorted(a, key=lambda x: int(x), reverse=False))
+
+"""
+"""
+# Model: frequency using lambda.
+
+# 49. Write a Python program to count the occurrences of the items in a given list using lambda. Go to the editor
+# Original list:
+# a= [3, 4, 5, 8, 0, 3, 8, 5, 0, 3, 1, 5, 2, 3, 4, 2]
+# Count the occurrences of the items in the said list:
+# {3: 4, 4: 2, 5: 3, 8: 2, 0: 2, 1: 1, 2: 2}
+
+# print(dict(map(lambda x: (x, a.count(x)), a)))  # (x, a.count(x)) >>> this will returns tuple contains x element and their count...
+# with these tuples we can convert to dict by using dict function.
+"""
+
+"""
+# 50. Write a Python program to remove specific words from a given list using lambda.
+
+# Original list:
+# a = ['orange', 'red', 'green', 'blue', 'white', 'black']
+# Remove words:
+# ['orange', 'black']
+# After removing the specified words from the said list:
+# ['red', 'green', 'blue', 'white']
+
+
+# print('The new list :', list(filter(lambda x: x != 'orange' and x != 'black', a)))
+
+# Note: if u have to remove more words then write this words in a list assign to a varible , write logic .... ( words not in) 
+
+"""
+"""
+# 51. Write a Python program to find the maximum and minimum values in a given list of tuples using lambda function.
+# Original list with tuples:
+# a=[('V', 62), ('VI', 68), ('VII', 72), ('VIII', 70), ('IX', 74), ('X', 65)]
+# Maximum and minimum values of the said list of tuples:
+# (74, 62)
+
+# map(function, iterable)
+
+# print("The maximum value :", max(map(lambda x: x[1], a)), "\nThe minimum value:", min(map(lambda x: x[1], a)))
+"""
+
+"""
+# Model: Remove none value by using lambda
+
+# 52. Write a Python program to remove None value from a given list using lambda function.
+# Original list:
+# a= [12, 0, None, 23, None, -55, 234, 89, None, 0, 6, -12]
+# Remove None value from the said list:
+# [12, 0, 23, -55, 234, 89, 0, 6, -12]
+
+# filter(function, iterable)
+
+# print(list(filter(lambda x: x!= None, a)))

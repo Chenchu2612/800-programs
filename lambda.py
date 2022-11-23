@@ -412,12 +412,66 @@ print([sorted(x, key=lambda x:x[0], reverse=False)for x in a])
 
 
 
+# 36. Write a Python program to extract the nth element from a given list of tuples using lambda.
+# Original list:
+a=[('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)]
+# Extract nth element ( n = 0 ) from the said list of tuples:
+# ['Greyson Fulton', 'Brady Kent', 'Wyatt Knott', 'Beau Turnbull']
+# Extract nth element ( n = 2 ) from the said list of tuples:
+# [99, 96, 94, 98]
+
+print(list(map(lambda x: x[0], a)))
 
 
 
 
 
 
+
+
+
+
+
+
+"""
+# Model : sorting nested lists by using index
+
+
+
+# 37. Write a Python program to sort a list of lists by a given index of the inner list using lambda.
+# Original list:
+a=[('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)]
+# Sort the said list of lists by a given index ( Index = 0 ) of the inner list
+# [('Beau Turnbull', 94, 98), ('Brady Kent', 97, 96), ('Greyson Fulton', 98, 99), ('Wyatt Knott', 91, 94)]
+# Sort the said list of lists by a given index ( Index = 2 ) of the inner list
+# [('Wyatt Knott', 91, 94), ('Brady Kent', 97, 96), ('Beau Turnbull', 94, 98), ('Greyson Fulton', 98, 99)]
+
+
+a.sort(key=lambda x:x[0])
+print(a)
+
+"""
+
+
+"""
+# Model: Removing elements from the first list which are presented at list2
+
+
+# 38. Write a Python program to remove all elements from a given list present in another list using lambda.
+# Original lists:
+# list1:
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# list2:
+b = [2, 4, 6, 8]
+# Remove all elements from 'list1' present in 'list2:
+# [1, 3, 5, 7, 9, 10]
+
+# Explanation: vere list lo vunde elements ee list lo teseyali.
+
+
+print(list(filter(lambda x: (x not in b), a)))   # x anedi b lo vundakudadu.
+
+"""
 
 """
 # 39. Write a Python program to find the elements of a given list of strings that contain specific substring using lambda.

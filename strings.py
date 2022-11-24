@@ -2017,19 +2017,162 @@ def check_buid(string):
 # print(check_buid(input("enter the string:")))
 
 """
+"""
+# 101. Write a Python program to add two strings as they are numbers (Positive integer values). Return a message if the numbers are string.
+# Sample Output:
+# 42
+# Error in input!
+# Error in input!
+
+# Explanation: string lo vunna numbers ni add cheyyali...
+# 2.positive intiger values matrame ani cheppadu so only positive numbers and there is no points
+
+# integers : intigers only 2 types positive and  negative....there is no points.
+# digits = is 0 to 9
+
+
+# what is question ::: ichina string ni numbers elagithe add chestamo ala  add chesi malli string loki convert cheyyali. (as they are numbers ki adi
+                                                                                                                                # meaning)
+
+def add_strings(num1, num2):
+    num1, num2 = '0'+num1, '0'+num2   # v.imp: okavela input emepty iste 0's print avvadaniki ee line ....this is very imp...'0' ni string lo pettem
+    if num1.isdigit() and num2.isdigit():                                       # endukante output manaki string lo ivvali kanuka.
+        return str(int(num1)+int(num2))
+    return 'Error in input'
+
+
+print(add_strings(input("Enter the num1 :"), input("Enter the num2 :")))
+
+
+# very very important point : isnumeric(), isdigit() functions negative values ni allow cheyyavu and point values ni allow cheyyavu ...only postitive
+# and without point values matrame allow chestundi.
+
+"""
+"""
+# Model: Remove punctuation's
+
+102. Write a Python program to remove punctuations from a given string. Go to the editor
+Sample Output:
+Original text:
+String! With. Punctuation?
+After removing Punctuations from the said string:
+String With Punctuation
+
+From Wikipedia,
+Punctuation is the use of spacing, conventional signs, and certain typographical devices as aids to the understanding and correct reading of ---- 
+written text. The marks, such as full stop, comma, and brackets, used in writing to separate sentences and their elements and to clarify meaning.
+
+
+import string
+
+
+def remove_punc(string_obj):
+    for punc in string.punctuation:  # string module lo eamemi punctuvations vunnayo avi vastundi.. print([ch for ch in string.punctuation])
+        string_obj = string_obj.replace(punc, '')  # Note: replace method lo kachitham ga varible ni assign cheyyali adi kuda ae string object ni
+    return string_obj                                                  # iethe change chestamo danne assign cheyyali idi chala important point.
+
+
+# print(remove_punc(input("Enter the string_object :")))
+
+"""
+"""
+# Model: Replace method:::::idi chala  confuse chesindi denni clarity ga chudali.
+
+# 103. Write a Python program to replace each character of a word of length five and more with hash character
+# Sample Output:
+# Original string:
+a='Count the lowercase letters in the said list of words'
+# Replace words (length five or more) with hash characters in the said string:
+# ##### the ######### ####### in the said list of ######
+# Original string:
+b= 'Python - Remove punctuations from a string:'
+# Replace words (length five or more) with hash characters in the said string:
+# ####### - ###### ############ from a #######
+
+
+# Explanation: length 5 mariyu anthakanna ekkuva vunna strings ni ade length tho '#' symbole tho marchali.
+
+
+def replace_hash(string_obj):
+    for word in string_obj.split():   # string.split() use cheste string lo vunna words anni list loki vastundi ... original string alane vuntundi
+        if len(word) >= 5:
+            string_obj = string_obj.replace(word, '#'*len(word))    # manam ikkada string_obj lo replace chestunnam anduvalle string_obj.replace
+                                                        # manam word lopala replace cheyyadam ledu word= word.replace() ani ivvakudadu
+    return string_obj
+
+
+print(replace_hash(input("Enter the string :")))
+
+"""
+"""
+# 104. Write a Python program that capitalizes the first letter and lowercases the remaining letters of a given string.
+# Sample Data:
+a="Red Green WHITE"    #-> "Red Green White"
+# ("w3resource") -> "W3resource"
+# ("dow jones industrial average") -> "Dow Jones Industrial Average"
+
+
+# Explanation: first letter ni uppercase cheyyali lower remaining ni lowecase cheyyali..
+
+# 1.mundhu string lo vunna words anni list rupam loki techukovali... 2. emepty string tesukovali 3. slice dwara upper and lower chesi 
+#   **** 3. daanni   +" "+ tho add cheyyali ledante words madhyalo spaces raavu.
+
+def cap_lower(string_obj):
+    new_string = ''
+    for word in string_obj.split():
+        new_string = new_string+" "+word[0].upper()+word[1:].lower()
+    return new_string
+
+
+print(cap_lower(input("Enter the string :")))
+
+
+# *****Method:2 By using capitalize method and join() function.  always prefer this method.
+
+#  capitalize() = string.capitalize() first letter matram upper case ga marustundi remaining motham lower case ga marunstundi...
+
+def test(strs):    
+    return ' '.join(word.capitalize() for word in strs.split())  # split() method mana cal calculation purpose kosam matrame vadathamu adi original 
+                                                                                                # string ni eami cheyyadu.
+                                                                                            
+# join() function mundu ''.join() pettala leda ' '.join() ani pettala '' or ' ' ... have a clear vision.
+                                                                                                
+"""
+
+"""
+# Model: Extraction of name from email adress.
+
+# 105. Write a Python program to extract and display the name from a given email address.
+# Sample Data:
+a = "john@example.com"    #-> ("john")
+b = "john.smith@example.com"  #-> ("johnsmith")
+c = "fully-qualified-domain@example.com"  # -> ("fullyqualifieddomain")
+
+
+# Model:1 By using index and join method.
+
+def extract_name(email_obj):
+    return ''.join([ch for ch in email_obj[:email_obj.index('@')] if ch.isalpha()])
 
 
 
+# Note: join function bayata space pettala vodda ani doubt ravali .... emailadress lo by default ga google spaces accept cheyyavu...so no spaces in
+                                                                                                            # mail_id.
+
+print(extract_name(input("Enter the email_address :")))
 
 
+# Model:2 by using split() method and join() function.
 
 
+def extrt_name(email_obj):
+
+    return ''.join([ch for word in email_obj.split('@')[0] for ch in word if ch.isalpha()])
 
 
+# Silly points : inni saarlu chesina tharuvatha naku telisindi join() functio enni forloops iena pettochu ani. 
 
+print(extrt_name(input("Enter the email_address :")))
 
-
-
-
-
+"""
 

@@ -1715,18 +1715,308 @@ print(checking_strings(input("Enter the string_obj : "), int(input("Enter the mi
 
 """
 
+"""
+# Model : removing unwanted charecters.
+
+# 89. Write a Python program to remove unwanted characters from a given string.
+# Sample Output:
+# Original String : Pyth*^on Exercis^es
+# After removing unwanted characters:
+# Python Exercises
+# Original String : A%^!B#*CD
+# After removing unwanted characters:
+# ABCD
 
 
+# Explanation: ikkada unwanted items lo vunna prathi element ni iteration dwara bayataki tesukoni vachi string lo remove cheyyali...
+# very very important .... manam replace method ki oka varilbe adikuda function lo define chesina stringobject varible ni assign cheyyali...ledante-
+# answer raadu.
+
+def removal_of_unwanted_items(string_obj, unwanted_items):
+    for ch in unwanted_items:
+        string_obj = string_obj.replace(ch, "")       # here we must assign a varible....other wise we wont get proper answer
+    return string_obj
 
 
+# print(removal_of_unwanted_items(input("Enter the string:"), input("Enter the unwanted items:")))
+
+# Without replace method....
+
+def removal_normal(string_obj, unwanted_items):
+    new_string = ''
+    for ch in string_obj:
+        if ch not in unwanted_items:  # unwanted items lo lekapothe danni add chey.
+            new_string += ch
+
+    return new_string
 
 
+print(removal_normal(input("Enter the new string: "), input("Enter the unwanted items:")))
+"""
+"""
+# Model: removing duplicate words.
+
+# 90. Write a Python program to remove duplicate words from a given string.
+# Sample Output:
+# Original String:
+a = 'Python Exercises Practice Solution Exercises'
+# After removing duplicate words from the said string:
+# Python Exercises Practice Solution
+
+# By using list and join method.
+
+# split() : it is used to split the words to the list of words...default separator is white space.
+# join(): it joins the string items in the iterable as the string by using specific join's
 
 
+def remove_duplicate_words(string_obj):
+    new_list = []
+    [new_list.append(word) for word in string_obj.split() if word not in new_list]
+    return " ".join(new_list)
 
 
+print(remove_duplicate_words(input("Enter the string: ")))
+
+# normal method:
 
 
+def remove_duplicates_normal(string_obj):
+    new_string = ''
+    for word in string_obj.split():
+        if word not in new_string:
+            new_string = new_string+" "+word
+    return new_string
+
+
+print(remove_duplicates_normal(input("Enter the strings: ")))
+
+"""
+"""
+# Model: converting all list object to a single string.
+
+# 91. Write a Python program to convert a given heterogeneous list of scalars into a string.
+# Sample Output:
+# Original list:
+# ['Red', 100, -50, 'green', 'w,3,r', 12.12, False]
+# Convert the heterogeneous list of scalars into a string:
+# Red,100,-50,green,w,3,r,12.12,False
+
+
+# Important : manam console dwara input enter chesetappudu string object thappa inka ea object manam enter cheyyalanna eval function lopala input func
+# rayali ledhante proper output raada.... ea datatype ichina adi string rupamlo tesukuntundi.
+
+
+def list_obj_to_string_obj(list_obj):
+    return ','.join([str(item) if type(item) != str else item for item in list_obj])
+
+
+print(list_obj_to_string_obj(eval(input("Enter the list of words: "))))
+
+"""
+
+"""
+# Model: finding similarity between strings.
+
+# 92. Write a Python program to find the string similarity between two given strings.
+
+# From Wikipedia:
+# In computer science, approximate string matching (often colloquially referred to as fuzzy string searching) is the technique of finding strings
+# that match a pattern approximately (rather than exactly).
+
+
+# Explanation: similarity/sequence matching/fuzzy string searching anna okate. rendu strings madhya enni substrings match iyyi vundo daani ratio
+# kanukkovali.
+
+# New module : difflib (in difflib we have to import SequenceMatcher function)
+
+# SequenceMatcher function lo manam string pass chesetappudu kachithamga danni oka vatible ki assign cheyyali endukante ratio kanukkovadaniki
+# aa tharuvatha ratio kanukkovali (ratio() function dwara)
+
+
+from difflib import SequenceMatcher
+
+
+def sequence_matcher(string1, string2):
+    return 'The string similarity between two strings are: {}'.format(SequenceMatcher(a=string1, b=string2).ratio())
+
+
+print(sequence_matcher(input("Enter the string1 :"), input("Enter the string2: ")))
+
+"""
+
+"""
+# Model: Extracting numbers from the string.
+
+# 93. Write a Python program to extract numbers from a given string.
+# Sample Output:
+# Original string: red 12 black 45 green
+# Extract numbers from the said string: [12, 45]
+
+
+def extracting_numbers(string_obj):
+    return [int(ch) for ch in string_obj.split() if ch.isdigit()]
+
+
+print(extracting_numbers(input("Enter the string_obj :")))
+
+"""
+"""
+# 94. it is hexa decimal and rgb components problem ...ignored
+"""
+"""
+# 95. it is also a hexa decimal and rgb components problem ... ignored
+"""
+"""
+# Model: camel case.
+
+# 96. Write a Python program to convert a given string to camelcase.
+# Sample Output:
+# javascript
+# fooBar
+# fooBar
+# foo.Bar
+# fooBar
+# foobar
+# fooBar
+
+# Note: camel case ante :: first word thappa remaining words lo vunna prathi word first letter capital lo vundali...kaani first word lo first letter
+# small letter lo vundali.
+
+
+# we have to do this problem while doing reguular expressions.
+"""
+"""
+# Model: snake case
+
+# 97. Write a Python program to convert a given string to snake case.
+# Sample Output:
+# java_script
+# foo_bar
+# foo_bar
+# foo.bar
+# foo_bar
+# foo_bar
+# foo_bar
+
+# Note : snake case ante string lo vunna every word underscore '_' tho join iyyi vundali
+
+# regular expressions.
+"""
+"""
+# 98. Write a Python program to decapitalize the first letter of a given string.
+# input : 'Java Script' 'Python'
+
+# Sample Output:
+# java Script
+# python
+
+# capitalise = string lo fisrt letter upper case lo vundali..... decaptilize = string lo first letter lowecase lo vundali.
+
+
+def de_cap(string_obj):
+    return string_obj[0].lower()+string_obj[1:]   # wea are decaptalizing the string.
+
+
+print(de_cap(input("Enter the string_obj: ")))
+
+"""
+"""
+# Model : multi line strings ni oka list lo pettali.
+
+# 99. Write a Python program to split a given multiline string into a list of lines.
+# Sample Output:
+# Original string:
+a='''
+This
+is a
+multiline
+string.
+'''
+b=['This', 'is a', 'multiline', 'string']
+# Split the said multiline string into a list of lines:
+# ['This', 'is a', 'multiline', 'string.', '']
+
+# Note : normal ga split() function anedi white space adharam ga split chestundi.... manam kaani '\n' ni pedithe  new line adharam ga split avutundi
+
+# string.split('\n') anna string.splitlines() anna rendu okate....
+
+# string.split('\n') and string.splitlines() ee rendu commands manaki new line adharamga split chesi list lo pedutundi.
+
+# Model:1 multiline string to a list.
+
+
+def multiline_to_list(string_obj):
+    return string_obj.split('\n')
+
+
+# print(multiline_to_list(a))
+
+# kinda ichina anni print statements pina rasina code rendu okate.
+
+# print(a.split('\n'))
+print(a.splitlines())
+
+# Model:2 convert string to multiline string.
+
+b='This\nis\nmultiline\nstring'
+print(b)
+"""
+"""
+# Model : very important model...  Every word in string cna contain repeated word or not.
+
+# 100. Write a Python program to check whether any word in a given sting contains duplicate characrters or not. Return True or False.
+# Sample Output:
+# Original text:
+a = 'Fillter out the factorials of the said list.'
+
+
+# Check whether any word in the said sting contains duplicate characrters or not!
+# False
+# Original text:
+# Python Exercise.
+# Check whether any word in the said sting contains duplicate characrters or not!
+# False
+# Original text:
+# The wait is over.
+# Check whether any word in the said sting contains duplicate characrters or not!
+# True
+
+# Explanation string lo prathi word lo eadina duplicate charecters vunnaya ani chesk cheyyali.
+
+# without using in built.
+
+# 1. mundu string ni list loki marchukovali  2. tharuvatha prathi word tesukoni daaniki rendu for loops raasi check cheyyali.
+
+def check(string):
+    words = string.split()
+    for word in words:
+        for i in range(len(word)):
+            for j in range(i+1, len(word)):
+                if word[i] == word[j]:
+
+                    return '{}'.format(' word in a string contains duplicates')
+    return "{}".format('each word in a string doesnot contains it does not contains duplicates.')
+
+
+print(check(input("Enter the string: ")))
+
+# Method :2 set method.
+
+
+# set method and len() function use chesi kanukkovochu.
+
+# with using inbuilt  set method
+
+def check_buid(string):
+    words_list = string.split()
+    for word in words_list:
+        if len(word) > len(set(word)):
+            return '{}'.format('it contains duplicates')
+
+
+# print(check_buid(input("enter the string:")))
+
+"""
 
 
 

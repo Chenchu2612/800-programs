@@ -1644,7 +1644,7 @@ print(normal(input("Enter the string_obj: "), input("Enter the specific_charecte
 
 """
 
-
+"""
 # Model: Compute common values.
 
 # 87. Write a Python program find the common values that appear in two given strings.
@@ -1678,6 +1678,49 @@ def common_values_normal(string1, string2):
 # print(common_values_normal(input("Enter the string1:"), input("Enter the string2:")))
 
 # by using set :::: don't use set result will comes in unorderd string.
+
+"""
+"""
+# Model: Checking given string with certain specifivations.
+
+# 88. Write a Python program to check whether a given string contains a capital letter, a lower case letter, a number and a minimum length.
+# Sample Output:
+# Input the string: W3resource
+# ['Valid string.']
+
+# Explanation: ichina string lo 1. string lo oka capital letter vunda ?  2. oka lower letter vunda ? 3. oka number vunda ? 4. minim length vunda?
+
+# output ikkada list lo kavali so manam list tesukunnam.
+
+# ikkada prathi condition satisfy avvali
+
+
+def checking_strings(string_obj, minimum_length):
+    messege =[]
+    if not any(ch.isupper() for ch in string_obj):
+        messege.append('The string must have atleast one upper charecter ')
+    if not any(ch.islower() for ch in string_obj):
+        messege.append('The string must have atleast one lower')
+    if not any(ch.isdigit() for ch in string_obj):
+        messege.append('The string must have one digit')
+    if len(string_obj) < minimum_length:   # length should have atleast specified minimum length.
+        messege.append('The string must have minimum_length of:{}'.format(minimum_length))
+    else:
+        messege.append('This is a valid string.')
+
+    return messege
+
+
+print(checking_strings(input("Enter the string_obj : "), int(input("Enter the minimum_length :"))))
+
+"""
+
+
+
+
+
+
+
 
 
 

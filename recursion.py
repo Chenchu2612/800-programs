@@ -67,7 +67,7 @@ def fib_recursion(n):
 print(fib_recursion(3))
 
 """
-
+"""
 # 6. Write a Python program to get the sum of a non-negative integer.
 # Test Data:
 # sumDigits(345) -> 12
@@ -82,8 +82,8 @@ def sum_of_digits(number):
 
     else:
         return number % 10 + sum_of_digits(int(number/10))
-
-
+"""
+"""
 
 # 10. Write a Python program to calculate the value of 'a' to the power 'b'.
 # Test Data :
@@ -110,5 +110,5 @@ print(pow(2,3))
 def pow(a, b):
     return a**b
 print(pow(2,3))
-
+"""
 

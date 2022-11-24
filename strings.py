@@ -1120,7 +1120,8 @@ def second_most_repeated_word(string):
         else:
             word_dict[word] += 1
     return 'The second most repeated key :{}'.format(sorted(word_dict.items(), key= lambda x: x[1], reverse=True)[1][0])
-# Explanation :
+# Explan
+ation :
 # 1. Find dictionary frequency then sorted ascending or decending...based on index position we can get first most repeated or second mosr repeated
 
 print(second_most_repeated_word(a))
@@ -1455,8 +1456,7 @@ def count_upper_lower_special_number(string):
 print(count_upper_lower_special_number(input("Enter the string :")))
 """
 
-
-#74 ,75 window problem ignored
+# 74 ,75 window problem ignored
 
 
 # 76 substrings problem doubt
@@ -1464,6 +1464,229 @@ print(count_upper_lower_special_number(input("Enter the string :")))
 
 # 77. Write a Python program to count number of non-empty substrings of a given string.
 # doubt
+
+"""
+
+# Model: Counting alphabets which are same position in the small abcd and capital ABCD
+
+# 78. Write a Python program to count characters at same position in a given string (lower and uppercase characters) as in English alphabet.
+
+
+# Explanation : ichina string lo vunna alphabets original alphabet positions lo vunte count+1 cheyyali.
+
+
+def count_character_position_count(string_obj):
+    count = 0
+    for i in range(len(str(string_obj))):
+        if i == ord(string_obj[i])-ord('A') or i == ord(string_obj[i])-ord('a'):
+            count += 1
+    return count
+
+
+print(count_character_position_count(input("Enter the string: ")))
+
+"""
+"""
+# Model: Finding smallest and largest word in the given string.
+
+# 79. Write a Python program to find smallest and largest word in a given string
+
+
+# Explanation: 1. string ni list loki marchukovali (marche tappudu emepty strings remove cheyyali)
+# 2. smallest and largest word anedi list lo first word ga tesukovali.
+# 3. list lo vunna prathi word tesukoni daani yokka length largest word length kanna peddadi ga vunte appudu largest word =word
+# 4. list lo vunna prathi word tesukoni danni yokka length smallest word kanna thakkuva vunte smallest word =word.
+#  last lo return smallest word and largest word
+
+
+def finding_smallest_largest_word_in_string(string_obj):
+    list_of_words = [word for word in string_obj.split() if word != ""]
+    largest_word=smallest_word= list_of_words[0]
+    for word in list_of_words:
+        if len(word) > len(largest_word):
+            largest_word = word
+        if len(word) < len(smallest_word):
+            smallest_word = word
+    return 'The smallest word is: {} \nThe largest word is :{}'.format(smallest_word, largest_word)
+
+
+print(finding_smallest_largest_word_in_string(input("Enter the string_obj :")))
+"""
+
+"""
+# 80. Write a Python program to count number of substrings with same first and last characters of a given string.
+
+# it is sub string problem.
+
+
+# 81. Write a Python program to find the index of a given string at which a given substring starts.
+# If the substring is not found in the given string return 'Not found'.
+
+#  it is sub string problem
+"""
+"""
+# Model: filling string with specified width.
+
+# 82. Write a Python program to wrap a given string into a paragraph of given width.
+# Sample input:
+a='The quick brown fox.'
+# Input the width of the paragraph: 10
+# Result:
+# The quick
+# brown fox.
+
+import textwrap
+
+def wrap_string(string_obj):
+    a = textwrap.fill(string_obj, width=10)
+    return a
+
+
+print(wrap_string(input("Enter the string: ")))
+"""
+"""
+# Model: converting  Intiger to different values.
+
+# 83. Write a Python program to print four values decimal, octal, hexadecimal (capitalized), binary in a single line of a given integer.
+# Sample Output:
+# Input an integer: 25
+# Decimal Octal Hexadecimal (capitalized), Binary
+# 25 31 19 11001
+
+
+# Explanation: number ni matrame manam decimal, octal, hexadecimal, binary ga marchagalam .... dentlo first two letters matram indication letters 
+# denni manam print cheyyalsina paniledu.
+
+
+def convertion_of_int(i):
+    return 'The decimal value is ={},\nThe octal value is ={}\nThe Hexadecimal value is ={},\nThe binary ={}'.format(str(i),
+                                                                                                                     oct(i)[2:],
+                                                                                                                     str(hex(i)[2:]).upper(),
+                                                                                                                     bin(i)[2:])
+print(convertion_of_int(25))
+
+"""
+
+"""
+# Model: swapping cases (upper to lower , lower to upper)
+
+
+# 84. Write a Python program to swap cases of a given string.
+# Sample Output:
+# pYTHON eXERCISES
+# jAVA
+# nUMpY
+
+def swap_cases(string_obj):
+    return ''.join([ch.lower() if ch.isupper() else ch.upper() for ch in string_obj])
+
+
+print(swap_cases(input("Enter the string : ")))
+
+"""
+
+"""
+# Model: Byte array ti hexa decimal.
+
+# 85.Write a Python program to convert a given Bytearray to Hexadecimal string.
+# Sample Output:
+# Original Bytearray :
+# [111, 12, 45, 67, 109]
+# Hexadecimal string:
+# 6f0c2d436d
+
+# ignored.
+
+
+"""
+"""
+# Model: Deleting the all occurance of specified string.
+
+# 86. Write a Python program to delete all occurrences of a specified character in a given string.
+# Sample Output:
+# Original string:
+# Delete all occurrences of a specified character in a given string
+# Modified string:
+# Delete ll occurrences of specified chrcter in given string
+
+# Explanation: icchina line lo specific charecter delete cheyyali.
+
+# With replace method:
+
+def del_all_occur(string_obj):
+    return string_obj.replace('a', "")
+
+
+# print(del_all_occur(input("Enter the string_obj: ")))
+
+
+# with join method:
+
+def del_all_occurances(string_obj, specific_charecter):
+    return "".join(["" if charecter == specific_charecter else charecter for charecter in string_obj ])
+
+
+# print(del_all_occurances(input("Enter the string: "), input("Enter the string: ")))
+
+
+# Normal method:
+
+
+def normal(string_obj, specific_charecter):
+    line =''
+    for ch in ["" if charecter == specific_charecter else charecter for charecter in string_obj]:
+        line+=ch
+
+    return line
+
+
+print(normal(input("Enter the string_obj: "), input("Enter the specific_charecter: ")))
+
+"""
+
+
+# Model: Compute common values.
+
+# 87. Write a Python program find the common values that appear in two given strings.
+# Sample Output:
+# Original strings:
+# Python3
+# Python2.7
+# Intersection of two said String:
+# Python
+
+# By using list comprehension and join() method.
+
+def common_values(string1, string2):
+    return ''.join([ch for ch in string1 if ch in string2])
+
+
+# print(common_values(input("Enter the string1 :"), input("Enter the string2 :")))
+
+
+# by using normal method:
+
+def common_values_normal(string1, string2):
+    common_word =''
+    for ch in string1:
+        if ch in string2:
+            common_word += ch
+
+    return common_word
+
+
+# print(common_values_normal(input("Enter the string1:"), input("Enter the string2:")))
+
+# by using set :::: don't use set result will comes in unorderd string.
+
+
+
+
+
+
+
+
+
 
 
 

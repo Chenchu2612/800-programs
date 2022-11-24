@@ -869,6 +869,12 @@ print(list(map(lambda x: (int(x[0]), int(x[-1])), a)))
 # Maximum and minimum values of the said list of tuples:
 # (74, 62)
 
+
+
+
+
+
+
 # map(function, iterable)
 
 # print("The maximum value :", max(map(lambda x: x[1], a)), "\nThe minimum value:", min(map(lambda x: x[1], a)))
@@ -887,4 +893,22 @@ print(list(map(lambda x: (int(x[0]), int(x[-1])), a)))
 
 # print(list(filter(lambda x: x!= None, a)))
 """
+"""
+
+"""
+
+# Fibonacii using lambda:
+
+from functools import reduce
+
+a=lambda n: reduce(lambda x, _: x+[x[-1]+x[-2]], range(n-2), [0, 1])
+
+print(a(5))
+
+from functools import reduce
+
+fib = lambda n: reduce(lambda x, _: x+[x[-1]+x[-2]], range(n-2), [0, 1])
+
+print(fib(5))
+
 """

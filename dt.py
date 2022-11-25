@@ -12,6 +12,7 @@ x=datetime.datetime.now()
 print(x)
 '''
 import datetime
+import time
 
 # import datetime
 
@@ -213,3 +214,216 @@ def new_day(enter_days):
 print(new_day(int(input("Enter number of days to reduce :"))))
 
 '''
+'''
+# Model: Unix time stamp to readable date.
+
+
+# 6. Write a Python program to convert unix timestamp string to readable date.
+# Sample Unix timestamp string : 1284105682
+# Expected Output : 2010-09-10 13:31:22
+
+
+# Explanation: time stamp nunchi manaki nachina vidham ga output techukovali ....daaniki manam fromtimestamp() ane function vaadathamu..
+
+# new_func: fromtimestamp()
+
+# The fromtimestamp() function is used to return the date corresponding to a specified timestamp.
+
+# Note: Here the timestamp is ranging from the year 1970 to the year 2038, and this function does not consider leap seconds if any present in the----
+# timestamp.
+
+# manam ikkada fromtimestamp() function lo string ni int() loki marchi pampali .... leda manam input() function lone marchavachu.int(input())........
+
+import datetime
+
+def unix_to_time(unix):
+     return datetime.datetime.fromtimestamp(int(unix)).strftime('%Y-%m-%d %H:%M:%S')
+
+
+print(unix_to_time(input("Enter the unix time: ")))
+
+'''
+
+'''
+# Model :  yesterday, Today, Tomorrow,
+
+# 7. Write a Python program to print yesterday, today, tomorrow.
+
+# Exp : based on timedelta we can add and remove dates from today dates....
+
+import datetime
+
+def yes_tod_tom():
+     today = datetime.date.today()
+     yesterday = today-datetime.timedelta(days=1)
+     tomorrow = today+datetime.timedelta(days=1)
+     return 'Yesterday is : {}, \nToday is : {}\nTomorrow is : {}'.format(yesterday, today, tomorrow)
+
+
+print(yes_tod_tom())
+
+
+# important : datetime.date.today() >>> it returns  only today date.....
+
+'''
+'''
+# Model : conversion of date to datetime.
+
+# 8. Write a Python program to convert the date to datetime (midnight of the date) in Python.
+# Sample Output : 2015-06-22 00:00:00
+
+# Exp: oka date ni datetime ga matchali...adi kuda mid night of the date ani ichadu...00.00.00
+
+# combine() ane function ni use chesi manam combie chestam.
+# combine(date, time) 
+# midnight vadda time 00.00.00 vuntundi kaabatti....manam min.time() use chesi get cheyyochu.
+
+import datetime
+
+date = datetime.datetime.today()
+print(datetime.datetime.combine(date, datetime.datetime.min.time()))
+
+'''
+
+'''
+# Model: printing next fivedays.
+
+# 9. Write a Python program to print next 5 days starting from today.
+
+# Exp: 1.currentdate kanukkoni 2. danni loop dwara timedelta function dwara add chesi print cheyyali. 
+
+# important : starting from today annadu kabatti today date tesukunnamu.  
+
+
+import datetime
+
+
+def printing_next_five_days(num_of_days):
+    base = datetime.datetime.today()
+    for i in range(0, num_of_days):
+         print(base+datetime.timedelta(days=i))
+
+
+printing_next_five_days(int(input("Enter the number of days :")))
+
+'''
+'''
+# Model: adding seconds to the model.
+
+
+# 10. Write a Python program to add 5 seconds with the current time.
+# Sample Data :
+# 13:28:32.953088
+# 13:28:37.953088
+
+# Exp:we can add by using the timedelta function...datetime.timedelta( weeks=0, days=0, hours=0, minutes=0, seconds=0, microseconds=0, milliseconds=0)
+
+import datetime
+
+
+def add_sec(num_of_sec):
+    base = datetime.datetime.now()
+    print(base)  # for understanding purpose. to see the difference.
+    return base+datetime.timedelta(seconds=num_of_sec)
+
+
+print(add_sec(int(input("Enter the number of seconda to add: "))))
+'''
+'''
+# *** imp
+# Model : Year/Month/Day to day of year.
+
+
+# 11. Write a Python program to convert Year/Month/Day to Day of Year in Python.
+
+
+# Exp: ichina date 366 days day's lo  enno day ani kanukkovali.....
+
+# 1. first  time ni cal calculate cheyyali strptime() dwara ...daani nunchi manaki ea formate lo kavalo strftime() ni vaadukovali....
+
+# Note : strftime() string input ki workout avvadu....manam strptime() ni vaadukovali....
+
+import datetime
+
+
+def day_of_year_(date_obj):
+    return datetime.datetime.strptime(date_obj, '%Y/%m/%d').strftime('%j')
+
+
+print(day_of_year_(input("Enter the date: ")))
+
+
+'''
+'''
+# Model: current time in milli seconds
+
+# 12. Write a Python program to get current time in milliseconds in Python
+
+# Exp: present time ni milliseconds lo kanukkovali...
+
+# 1. manam time.time() >>> from time module from time() function  we have to get current time ....the after multiply to 1000 to convert milli seconds.
+
+import datetime
+
+# print(int(round(time.time()*1000)))
+
+
+# Model: to get week number.
+
+# 13. Write a Python program to get week number.
+# Sample Date : 2015, 6, 16
+# Expected Output : 25
+
+
+# Exp: strptime() function dwara manam stringlonumchi time kanukkoni daani numchi strftime() function dwara manam week day ni kanukkuntaam.
+
+import datetime
+
+print(datetime.datetime.strptime('2015, 6, 16', '%Y, %m, %d').strftime('%W'))
+
+'''
+'''
+# Model: date of first monday of given week
+
+# 14. Write a Python program to find the date of the first Monday of a given week.
+# Sample Year and week : 2015, 50
+# Expected Output : Mon Dec 14 00:00:00 2015
+
+# Exp: year and week number istadu manam aa week number lo first monday date kanukkovali...
+
+# Imp: week ichadu...week lo monday kavali annadu kabatti 1 pettali as per weekday index '%w' (0-6)  prakaram....okati petti daaniki malli weekday---
+# index_number ivvali...
+
+
+import datetime
+
+print(datetime.datetime.strptime('2022 50 1', '%Y %U %w').strftime('%a %b  %d %H:%M:%S %Y'))
+
+'''
+
+# Model: selecting all sundays in a given year.
+
+# 15. Write a Python program to select all the Sundays of a specified year.
+
+import datetime
+
+print(datetime.datetime.strptime('2015 1 0', '%Y %U %w').strftime('%'))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

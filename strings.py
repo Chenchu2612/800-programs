@@ -2175,4 +2175,214 @@ def extrt_name(email_obj):
 print(extrt_name(input("Enter the email_address :")))
 
 """
+"""
 
+# Model : Eleminating repeated consicutive. (pakka pakkana vunna duplicates ni remove cheyyali)
+
+# 106. Write a Python program to remove repeated consecutive characters and replace with the single letters and print new updated string.
+# Sample Data:
+# ("Red Green White") -> "Red Gren White"
+# ("aabbbcdeffff") -> "abcdef"
+# ("Yellowwooddoor") -> "Yelowodor"
+
+
+# Explanation : new_string,old_string ni string_obj[0] ga tesukoni, string lo second letter  comparision cheyyali if previous value != string_obj[i]
+# iethe string ki add chey ang previous value = string_obj[i].
+
+def remove_only_con_duplicates(string_obj):
+    new_string = prev_value = string_obj[0]     # initilize new_string, prev_value as string_obj[0]
+    for i in range(1, len(string_obj)):      # 1st index nunchi manam compare cheyyali. anduke 1 nunchi range tesukunnam.
+        if string_obj[i] != prev_value:
+            new_string += string_obj[i]
+            prev_value = string_obj[i]
+    return 'The value of the new_string after removing consicitive duplicates is = {}'.format(new_string)
+
+
+print(remove_only_con_duplicates(input("Enter the string_obj :")))
+
+"""
+
+"""
+# Model : Same charecters at same index..... super method....
+
+# 107. Write a Python program to that takes two strings. Count the number of times each string contains the same three letters at the same index
+
+# Sample Data:
+# ("Red RedGreen") -> 1
+# ("Red White, Red White) -> 7
+# ("Red White White Red") -> 0
+#
+# Explanation: rendu strings tesukoni dantlo first  three words match ienda leda tharuvatha oka charecter vadilesi next three words ala check ----
+#  chesukuntuu povale.
+
+
+def check_three(str1, str2):
+    count = 0
+    for i in range(len(str1)-2):  # manam threee charecters matrame check chestunnam and kinda +3 pedutuunam anduvalla ikkada -2 ...
+        if str1[i:i+3] == str2[i:i+3]:                                        # ledante out of range vastundi...
+            count += 1
+    return count
+
+
+print(check_three(input("Enter the str1 : "), input("Enter the str2 :")))
+
+"""
+
+"""
+# 108. Write a Python program to that takes a string and returns # on both sides each element, which are not vowels.
+# Sample Data:
+# ("Green" -> "-G--r-ee-n-"
+# ("White") -> "-W--h-i-t-e"
+# ("aeiou") -> "aeiou"
+
+
+# Explanation : string lo charecter wowel kakapothe aa string ki mundu, venakala edo okati kalipi add chey ledante  normal ga add chey
+
+# Model:1 traditinal approach.
+
+def add_both_sides(string_obj):
+    new_str = ''
+    for ch in string_obj:
+        if ch not in "AEIOUaeiou":
+            new_str += '-' + ch + '-'
+        else:
+            new_str += ch
+    return new_str
+
+
+# print(add_both_sides(input("Enter the string_obj: ")))
+
+
+# Method :2 by using list comprehension.
+
+def add_symb(string_obj):
+    print(['-'+ch+'-' if ch not in 'AEIOUaeiou' else ch for ch in string_obj])  # for understanding purpose.
+    return ''.join(['-'+ch+'-' if ch not in 'AEIOUaeiou' else ch for ch in string_obj])
+
+
+print(add_symb(input("Enter the string :")))
+
+"""
+
+"""
+# Model : Counting the number of leaf years with in the range
+
+# 109. Write a Python program that counts the number of leap years within the range of years. The range of years should be accepted as a string.
+# Sample Data:
+# ("1981-1991") -> 2
+# ("2000-2020") -> 6
+
+# Explanation : ichina range lo enni leaf years vunnayo kanukkovali.
+
+
+# date time module problem.
+
+
+# Model: Insert space before specified char.
+
+# 110. Write a Python program to insert space before every capital letter appears in a given word.
+# Sample Data:
+# ("PythonExercises") -> "Python Exercises"
+# ("Python") -> "Python"
+# ("PythonExercisesPracticeSolution") -> "Python Exercises Practice Solution"
+
+
+def insert_space(string_obj):
+    print([' ' + ch if ch.isupper() else ch for ch in string_obj]) # for clarity purpose.
+    return "".join([' ' + ch if ch.isupper() else ch for ch in string_obj])    # prathi saaeri join mundu confusion '' or ' ' ani...output choosi
+                                                                                                    # daani adharamga pettali...
+
+print(insert_space(input("Enter the string_obj : ")))
+
+
+"""
+
+"""
+# Model : Replacing charecters with their alphabatical numbers values
+
+
+# 111. Write a Python program that takes a string and replaces all the characters with their respective numbers
+
+# Sample
+# Data:
+# ("Python") -> "16 25 20 8 15 14"
+# ("Java") -> "10 1 22 1"
+# ("Python Tutorial") -> "16 25 20 8 15 14 20 21 20 15 18 9 1 12"
+
+
+# Explanation : ch yokka alphabatic order number ni print cheyyali
+# 1. string motham ni upper case or lower case loki marchali.
+# 2. prathi charecter tesukoni adi alpha bet iethe daani ordinal value nunchi teseyali. capital = ord(capital_letter-64)
+# small_letter = ord(small_letter - 96)
+
+def replace_char_ord(string_obj):
+    return " ".join([str(ord(ch)-96) for ch in string_obj.lower() if ch.isalpha()])
+
+
+# Formula : upper iethe 64 ni ...lower iethe 96 ni ordinal values nunchi teseyali.
+
+
+# print(replace_char_ord(input("Enter the string_obj : ")))
+"""
+
+"""
+# Model : adding two string numbers.
+
+# 112. Write a Python program to calculate the sum of two numbers given as strings. Return the result in the same string representation.
+# Sample Data:
+# ( "234242342341", "2432342342") -> "236674684683"
+# ( "", "2432342342") -> False ( "1000", "0") -> "1000"
+# ( "1000", "10") -> "1010"
+
+
+def add_str(str1, str2):
+    if str1 == '' or str2 == '':
+        return False
+    return str(int(str1) + int(str2))
+
+
+# print(add_str(input("Enter the str1 :"), input("Enter the str2 :")))
+
+#  Note : there is one big method also available.
+"""
+
+"""
+
+Model : Sorted alphabatically by first charecter.
+
+
+# 113. Write a Python program that returns a string sorted alphabetically by the first character of a given string of words.
+
+
+# Sample Data:
+# ("Red Green Black White Pink") -> "Black Green Pink Red White"
+# ("Calculate the sum of two said numbers given as strings.") -> ("Calculate as given numbers of sum said strings. the two")
+# ("The quick brown fox jumps over the lazy dog.") -> ("The brown dog. fox jumps lazy over quick the")
+
+
+# Explanation : string lo vunde prathi word aa word lo vunna first letter adharamga sort cheyyali.... daaniki rendu methods sort(),sorted()
+
+
+def sorted_alphabatically(string_obj):
+    return ' '.join(sorted(string_obj.split(), key=lambda x: x[0], reverse=False))   # 0 means first charecter 1 means second charecter and so on...
+
+
+# print(sorted_alphabatically(input("Enter the string value: ")))
+
+
+# sort() function lo nenu chese thappulu ::: danni nenu vere varible ki assign chestunna....
+
+# list.sort(key= lambda x:x[n], reverse =False/True) 
+
+
+def sort_alphabaticall(string_obj):
+    a = string_obj.split()
+    a.sort(key=lambda x: x[0], reverse= False)  # ekkada iethe manam sort() ani rastamo  aa line ni vere varible ki assign cheyyakudadu ...
+    return " ".join(a)
+
+
+print(sort_alphabaticall(input("Enter the string value: ")))
+
+# Note : ekkadithe sort() function rastamo aa line ni manam vere varible ki assign cheyyakudaddu.
+
+"""

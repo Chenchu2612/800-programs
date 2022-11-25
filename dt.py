@@ -1,5 +1,9 @@
 # The datetime module supplies classes for manipulating dates and times in both simple and complex ways.
 
+
+#  Date and datetime are an object in Python, so when you manipulate them, you are actually manipulating objects and not string or timestamps.
+
+
 # date in python is not a data type we can use datetime module to work with date objects.
 
 # if you want to work with date we have to import the datetime module from python library... kachithamga import cheyyalsinde ledante output raadu....
@@ -90,6 +94,15 @@ print(time_stamp.strftime('%c'))
 
 
 # datetime.timedelta( weeks=0, days=0, hours=0, minutes=0, seconds=0, microseconds=0, milliseconds=0 )
+
+# ________ replace() function___________:
+
+
+# Datetime.replace() function is used to replace the contents of the DateTime object with the given parameters.
+
+# Syntax: Datetime_object.replace(year,month,day,hour,minute,second,microsecond,tzinfo)
+
+# Returns: It returns the modified datetime object
 
 
 # problems:
@@ -400,7 +413,7 @@ import datetime
 print(datetime.datetime.strptime('2022 50 1', '%Y %U %w').strftime('%a %b  %d %H:%M:%S %Y'))
 
 '''
-
+'''
 # Model: selecting all sundays in a given year.
 
 # 15. Write a Python program to select all the Sundays of a specified year.
@@ -409,15 +422,103 @@ import datetime
 
 print(datetime.datetime.strptime('2015 1 0', '%Y %U %w').strftime('%'))
 
+'''
+
+'''
+# 15. Write a Python program to select all the Sundays of a specified year.
+import datetime
+
+
+def getting_all_sundays(year):
+    dt = datetime.date(year, 1, 1)       # initializing date
+    dt += datetime.timedelta(6 - dt.weekday())    # to get first sunday .....print(dt.weekday()) returns the week day (0-6)of that date.
+    while dt.year == year:  # manam initialize chesina year and nenu kanukkovalsina year rendu equal ienantha varaku loop run chey.
+        yield dt
+        dt += datetime.timedelta(days=7)
+
+    return dt
+
+
+for i in getting_all_sundays(int(input("Enter the year :"))):
+    print(i)
+'''
+
+'''
+# 16. Write a Python program to add year(s) with a given date and display the new date.
+#
+# Sample Data : (addYears is the user defined function name)
+# print(addYears(datetime.date(2015,1,1), -1))
+# print(addYears(datetime.date(2015,1,1), 0))
+# print(addYears(datetime.date(2015,1,1), 2))
+# print(addYears(datetime.date(2000,2,29),1))
+
+# Expected Output :
+# 2014-01-01
+# 2015-01-01
+# 2017-01-01
+# 2001-03-01
+
+
+# Exp: ichina date ki years add chesi new date ni print cheyyali....
+
+import datetime
+
+# print(datetime.date(2015, 1, 1))
+
+# Datetime_object.replace(year,month,day,hour,minute,second,microsecond,tzinfo)
+
+# replace method is used to change the contents of the datetime module.
 
 
 
+def add_date(d, years):
+    try:
+        return d.replace(year=d.year + years)         # d.year is nothing but dateobject.year
+    except ValueError:
+        return d + (datetime.date(d.year + years, 1, 1) - datetime.date(d.year, 1, 1))
 
 
+print(add_date(datetime.date(2015,1,1),-1))
+print(add_date(datetime.date(2015,1,1),2))
+print(add_date(datetime.date(2000, 2,29),1))
+ 
+'''
+
+'''
+# Model : eliminate microseconds.
+
+# 17. Write a Python program to drop microseconds from datetime.
+
+# Exp:
+
+# 1.manam replace() method dwara cheyya vachhu....date_obj.replace(parameter)...oka date time object lo eamemi iethe vunnayo avanni change cheyyochu
+
+import datetime
+
+def drop_microsecond():
+    return datetime.datetime.now().replace(microsecond=0)
+
+print(drop_microsecond())
+
+'''
+
+'''
+# Model: Getting days between two days.
+
+# 18. Write a Python program to get days between two dates.
+# Sample Dates : 2000,2,28, 2001,2,28
+# Expected Output : 366 days, 0:00:00
+
+import datetime
 
 
+def getting_days_btwn_two_days():
+    return datetime.date(2001, 2, 28)-datetime.date(2000, 2, 28)       # Note: pedda date mundu vundali chinna date tharuvatha vundali ledante result
 
+                                                                                                                        # negative lo vastundi...
+print(getting_days_btwn_two_days())
 
+'''
 
 
 

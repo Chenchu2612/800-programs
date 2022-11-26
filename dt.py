@@ -9,11 +9,18 @@
 # if you want to work with date we have to import the datetime module from python library... kachithamga import cheyyalsinde ledante output raadu....
 
 # To print current date
+
 '''
 import datetime
 
 x=datetime.datetime.now()
 print(x)
+print(datetime.datetime.now())   # date and time both
+print(datetime.datetime.now().today()) # above and this commands are same
+print(datetime.datetime.now().date()) # only date will print
+print(datetime.datetime.now().year) # only year will print
+print(datetime.datetime.now().weekday()) # week day in numbers(0-6)
+print(datetime.date()) # is used to create date.
 '''
 import datetime
 import time
@@ -31,6 +38,9 @@ import time
 # Ex : create date i.e 2015 dec 24
 
 # print(datetime.datetime(2015, 12, 24))
+
+
+# To get current date :- from datetime import date  >>>> date.today() >>> it will retuen today's date
 
 
 # datetime() class requires must three parameters for creating date i.e year, month, date ...these three are mandatory... remaining are optional---
@@ -65,7 +75,7 @@ print(time_stamp.strftime('%c'))
 
 # weekday index, week index, month index and day index......
 
-# %w = weekday as number(week day index) (0-6) sunday starts at 0
+# %w = weekday as number(week day index) (0-6) monday(start's at 0) to (sunday at 6)
 # %m = month as number (month index) (1-12) jan starts at 1
 # %j = day number of the year (day index) (1-366)
 # %W = week number (week index) monday as the first day of week (0-52)
@@ -86,6 +96,11 @@ print(time_stamp.strftime('%c'))
 # %z = utc offset
 
 
+# print(date_object.date) = it will print's the  date_object date (1 to 31).
+# print(date_object.month) = it will print the date_object month (1 to 12).
+# print(date_object.year) = it will print the date_object year.
+
+
 # timedelta() : calculating differences in dates and also can be used for date manipulations in Python.   Returns : Date
 
 # we have to import it from the datetime module >>>> from datetime import timedelta
@@ -103,6 +118,24 @@ print(time_stamp.strftime('%c'))
 # Syntax: Datetime_object.replace(year,month,day,hour,minute,second,microsecond,tzinfo)
 
 # Returns: It returns the modified datetime object
+
+
+# time.mktime() method of Time module is used to convert a time.struct_time object or a tuple containing 9 elements corresponding to time.struct_time object------
+# to time in seconds passed since epoch in local time.
+
+# ichina time epoch time difference seconds lo chupistundi.
+
+# syntax:  time.mktime(t)
+# Return type: This method returns a float value which represents the time expressed in seconds since the epoch.(1st jan 1970)
+
+
+# Time stamp = It is the number of seconds that have elapsed since the Unix epoch, minus leap seconds.
+# The Unix epoch is 00:00:00 UTC on 1 January 1970 (an arbitrary date); leap seconds are
+
+# The timetuple() method does not take any parameters.
+
+# Return value :-
+# timetuple() returns the time.struct_time() object as a tuple that contains the date and time information, i.e., timestamps.
 
 
 # problems:
@@ -520,11 +553,614 @@ print(getting_days_btwn_two_days())
 
 '''
 
+'''
+# Model: date of last tuesday
+
+# 19. Write a Python program to get the date of the last Tuesday.
+
+
+# Exp: 1. mundu manam today date kanukkoni danini time delta dwara tesiveyyali.
+# 2. off_set kanukkovali ::: today weekday kanukkoni, problem lo adigina day ki  daani mundu weekday ni tesivesi mothanni %7 tho modulardivision-----  
+# cheyyali.
 
 
 
+from datetime import date
+from datetime import timedelta
+
+
+def date_of_last_tuesday():
+    today = datetime.date.today()
+    off_set = (today.weekday()-1) % 7    # 1 is before weekday of tuesday i.e monday  % 7 means modular division of total number of days.
+    print(off_set)                                   # off_set is a formula....
+    last_tuesday = today - timedelta(days=off_set)
+    return last_tuesday
+
+
+print(date_of_last_tuesday())
+
+'''
+'''
+# Model: third tuesday of the month.
+
+# 20. Write a Python program to test the third Tuesday of a month
+
+# Exp : ichina date ni strp dwara convert chesukovali.... chesukunna danniki wee day kanukkovali....aa week day 1 anna vundali and 14 nunchi 22----
+# madhyalo iena vundali.
+
+
+# week day and day.
+
+import datetime
+
+
+def third_tuesday(dat):
+    d= datetime.datetime.strptime(dat, '%b %d, %Y')
+    print(d.weekday())   # (0 to 6)
+    print(d.day)  # month lo date vastundi.
+    print(d.month) # understanding purpose
+    print(d.year)  # understanding purpose
+    return d.weekday() == 1 and 14 < d.day < 22   #(deeni ardham 15 nunchi 21 varaku)(above 14 bellow 21) 
+
+
+print(third_tuesday('Jun 23, 2015'))
+'''
+
+'''
+# Model : fetching last day of specified year and sprcified month.
+
+#21. Write a Python program to get the last day of a specified year and month.
+
+
+# Exp : year and nela istadu aa nelalo manam last date kaunukkovali.
+
+
+# calender ni import chesi.... month range kanukkovali.
+
+import calendar
+
+def last_day(year, month):
+    return calendar.monthrange(year, month)[1]
+
+# print(calendar.monthrange(2015,5))   # for understanding purpose.....>>>> it will prints the range in tuple format (starts, end)
+
+
+print(last_day(int(input("Enter the year :")), int(input("Enter the month :"))))
+
+'''
+'''
+# Model : number of days in a month for a specified year.
+
+# 22. Write a Python program to get the number of days of a given month and year.
+
+from calendar import monthrange
+
+
+def num_days_in_a_month(year, month):
+    return 'The total number of days in a month : {}'.format(monthrange(year=year, month=month)[1])
+
+
+print(num_days_in_a_month(int(input('Enter the year :')), int(input('Enter the month: '))))
+
+'''
+'''
+# Model : specified date ki month add cheyyali.
+
+Error came
+
+# 23. Write a Python program to add a month with a specified date.
 
 
 
+from datetime import date
+import calendar
+from datetime import timedelta
 
 
+def add_month_to_date():
+    start_date = date(2014, 12, 25)
+    number_of_days_in_a_month = calendar.monthrange(start_date.year, start_date.month)[1]
+    return datetime.date(start_date+timedelta(number_of_days_in_a_month))
+
+
+print(add_month_to_date())
+'''
+'''
+# Model: number of mondays as 1st day of month.
+
+# 24. Write a Python program to count the number of Monday of the 1st day of the month from 2015 to 2016.
+
+# Exp: 2015-16 lo enni months starting monday tho start avutundi.
+
+
+from datetime import date
+import calendar
+from datetime import timedelta
+
+
+def finding_mondays():
+    count =0
+    for year in range(2015, 2017):
+        for month in range(1, 13):                              # weekday 0 means monday.
+            if datetime.datetime(year, month, 1).weekday() == 0:  # datetime.date(year, month, date) is used to initialise the date object...
+                count += 1                     
+    return count
+
+
+print(finding_mondays())
+
+'''
+'''
+
+# 25. Write a Python program to print a string five times, delay three seconds
+
+
+# Python time sleep:
+
+# Python time sleep function is used to add delay in the execution of a program
+
+# syntax : time.sleep(seconds)
+
+# exp: oka string ni 5 times print chey okkoka time execute chesetappudu 3 sec delay chey.
+
+import time
+
+
+def delay_3sec_prog():
+    x = 0
+    while x < 5:
+       print("before sleep")
+       print('hi')
+       time.sleep(3)     # program execution ni three seconds stop chestundi......
+       print("after sleep")
+       x = x+1
+
+
+delay_3sec_prog()
+
+'''
+'''
+# Model : current date nunchi six months tharuvatha date kanukkovali.  >>> current date ki six month's kalapali.
+
+# 26. Write a Python program calculates the date six months from the current date using the datetime module.
+
+# Exp: current date ki 6months add cheyyali...so months ni days rupamloki marchukoni add cheyyali.
+
+# Important : date ki month add cheyyalante months ni date loki marchukovali.... >>>> months_to_be_added*365/12
+
+# Convert Months to Days (formula) => days = months × 30.436875 (365/12)
+
+import datetime
+
+print((datetime.date.today()+datetime.timedelta(6*365/12)).isoformat())
+
+# isoformate: international organisation for standardisation.
+'''
+'''
+# Model : creating 12 dates from the given date...the days differnce between two dates is 20 days.
+
+# 27. Write a Python program to create 12 fixed dates from a specified date over a given period. The difference between two dates will be 20
+
+# Exp : ichina date nunchi 20 rojulu theda gala 12 dates ni kanukkovali.
+
+# 12 dates kavali kabatti manam range function use chesi 12 iterations chestam.....given date every ki prathi iteration lo timedelta dwara 20days add chestam.
+
+import datetime
+
+def every_20_days(date):
+    print('starting date :{}'.format(date))
+    print('12 days time differnce')
+    for i in range(12):
+        date += datetime.timedelta(days=20)
+        print('{}'.format(date))
+
+
+every_20_days(datetime.date(2016,8,1))
+
+'''
+'''
+# Model : fetch date 30days before date and 30days after date.
+
+# 28. Write a Python program to get the dates 30 days before and after from the current date.
+
+# Exp: ichina date nunchi 30rojulu mundu date ni and 30 rojulu tharuvatha date ni kanukkovali.
+
+
+# my code:::
+
+import datetime
+
+
+def before_30_after_30(date):
+    print('30 days before date ::: {}'.format(date-datetime.timedelta(days=30)))
+    print('30 days after date ::: {}'.format(date+datetime.timedelta(days=30)))
+
+
+before_30_after_30(datetime.date(2022, 12, 1))
+
+
+# w3 code:::
+
+from datetime import date, timedelta
+
+current_date = date.today().isoformat()
+days_before = (date.today()-timedelta(days=30)).isoformat()
+days_after = (date.today()+timedelta(days=30)).isoformat()
+
+print("\nCurrent Date: ",current_date)
+print("30 days before current date: ",days_before)
+print("30 days after current date : ",days_after)
+
+'''
+'''
+# Model : fetch green wich mean time and local time
+
+# 29. Write a Python program to get the GMT and local current time.
+
+
+from datetime import time
+from time import gmtime
+import time
+
+print(time.strftime('%a, %d %b %Y, %I:%M:%S, %p, %Z', time.gmtime()))
+print(time.strftime('%a, %d %b %Y, %I:%M:%S, %p, %Z'))
+
+'''
+'''
+# Model : conversion date to timestamp.
+
+# 30. Write a Python program to convert a date to the timestamp.
+
+
+import datetime
+
+# print(datetime.datetime.now())
+
+
+# time.mktime() method of Time module is used to convert a time.struct_time object or a tuple containing 9 elements corresponding to time.struct_time object------
+# to time in seconds passed since epoch in local time.
+
+# ichina time epoch time difference seconds lo chupistundi.
+
+# syntax:  time.mktime(t)
+# Return type: This method returns a float value which represents the time expressed in seconds since the epoch.(1st jan 1970)
+
+
+# Time stamp = It is the number of seconds that have elapsed since the Unix epoch, minus leap seconds.
+# The Unix epoch is 00:00:00 UTC on 1 January 1970 (an arbitrary date); leap seconds are
+
+# The timetuple() method does not take any parameters. >>>> timeobject.timetuple()
+
+# Return value :-
+# timetuple() returns the time.struct_time() object as a tuple that contains the date and time information, i.e., timestamps.
+
+
+print(time.mktime(datetime.datetime.now().timetuple()))    #  very very important.
+'''
+'''
+# Model : string date to time stamp...
+
+# 31.Write a Python program to convert a string date to the timestamp.
+
+
+# Exp: string formate lo ichina date ni timestamp loki marchali.
+
+import datetime
+
+
+# timeobject.timetuple() >>>> output is timestamp.
+
+# time.mktime() is used to convert time structure.
+
+print(time.mktime(datetime.datetime.strptime('26/11/2022', '%d/%m/%Y').timetuple()))
+
+'''
+'''
+# Model: number of days between twodays.
+
+# 32. Write a Python program to calculate a number of days between two dates
+
+# Exp: rendu dates istadu daani madhya enni rojulu vundo kanukkovali
+
+
+# Note: date object vadetappudu manam direct ga date ni import cheyyadam manchidi... ledante errors vache chance vundi....
+
+import datetime
+from datetime import date
+
+
+def diff_days(date1, date2):
+    return (date1 - date2).days
+
+
+print(diff_days(date(2022, 12, 24), date(2022, 12, 1)))
+
+'''
+'''
+# Model : number of days between datetimes.
+
+
+# 33. Write a Python program to calculate no of days between two datetimes.
+
+from datetime import date
+
+def days_between_datetimes(dt1, dt2):
+    return (dt1-dt2).days
+
+
+print(days_between_datetimes(datetime.datetime(2022, 12, 2, 12, 12, 12), datetime.datetime(2022, 12, 1, 11, 50, 11)))
+
+'''
+'''
+# Model : date to Unix time stamp.
+
+# 35. Write a Python program to convert a date to Unix timestamp
+
+# Exp: date ni unix timestamp ga marchali.....unix anna epoh anna okate...manam timestamp ga marchali anthe....
+
+
+# time.mktime() function is used to convert datetime object structure and timetuple() is used to convert timestamp... 
+
+from datetime import date
+import time
+
+print(time.mktime(datetime.date(2022, 12, 25).timetuple()))
+
+'''
+
+'''
+# Model: Difference between two dates in seconds...
+
+# 36. Write a Python program to calculate two date difference in seconds.
+
+# Model :1 this is my approach .... from epoch time.
+
+from datetime import time
+import datetime
+import time
+
+print(time.mktime(datetime.datetime.now().timetuple())-time.mktime(datetime.datetime(2015, 1, 1).timetuple()), 'seconds')
+
+
+# Model :2 this is w3 model....  by converting days to seconds (days*hours_per_day * minutes_per_day)
+
+
+from datetime import datetime, time
+def date_diff_in_Seconds(dt2, dt1):
+  timedelta = dt2 - dt1
+  return timedelta.days * 24 * 3600 + timedelta.seconds
+#Specified date
+date1 = datetime.strptime('2015-01-01 01:00:00', '%Y-%m-%d %H:%M:%S')
+#Current date
+date2 = datetime.now()
+print("\n%d seconds" %(date_diff_in_Seconds(date2, date1)))
+print()
+
+'''
+'''
+# Model :  two date difference in >>>> days, hours, minutes, seconds.
+
+# 37. Write a Python program to convert two date difference in days, hours, minutes, seconds
+
+# Exp: bellow method is super method...
+
+# new func: divmod(arg1, arg2)  ::: in this function argument1 is devided by argument2
+
+# %d instead of formate method. vimp...
+
+# minutes = seconds/60 ...hours=minutes/60...days=hours/24.
+
+
+from datetime import date
+import time
+import datetime
+
+
+def difference(dt1, dt2):
+    timedelta = dt2 - dt1
+    return timedelta.days * 24 * 3600 + timedelta.seconds
+
+
+def dhms_from_seconds(seconds):  # This seconds will goes to bellow parameter.
+    minutes, seconds = divmod(seconds, 60)     # lesf side of '=' minutes value calculate iena tharuvatha assign avutindi...seconds 60 ani ichamu...function call---
+    hours, minutes = divmod(minutes, 60)                                      # daggara ichina seconds divmod seconds ki assign avutundi......
+    days, hours = divmod(hours, 24)
+    return days, hours, minutes, seconds
+
+
+dt1 = datetime.datetime.strptime('2015-01-01 01:00:00', '%Y-%m-%d %H:%M:%S')
+dt2 = datetime.datetime.now()
+
+print('%d days, %d hours, %d minutes, %d seconds'% dhms_from_seconds(difference(dt1, dt2)))
+
+'''
+
+'''
+# Model: last modified file information.
+
+# 38. Write a Python program to get last modified information of a file.
+
+
+# not understanding.
+
+'''
+'''
+# Model : finding age
+
+# 39. Write a Python program to calculate an age in year
+
+# Super method....
+
+# Exp: mundu years ni minus chesi tharuvatha  (today.month , today.day) < (dob.month , dob.day)  0 add avutundi ledante 1 add avutundi----
+
+# adi ela ani daoubt vachindi naku ela ? ... today.month, today.day anedi ichina condition(<,>) prakaram true iethe 1 false 
+
+
+
+from datetime import datetime
+from datetime import date
+
+
+def age(dob):
+    today = datetime.today()
+    return today.year-dob.year-((today.month, today.day) < (dob.month, dob.day))
+
+
+print(age(date(1993, 12,24)))
+'''
+
+
+'''
+# 40. Write a Python program to get the current date time information.
+
+
+import datetime
+
+a=datetime.datetime.now() # it wi  return's date and time also.
+b=datetime.date.today()   # it will return only today date.
+print(a)
+print(b)
+print(b.strftime('%Y'))
+print(b.strftime('%y'))
+print(b.strftime('%B'))
+print(b.strftime('%b'))
+print(b.strftime('%A'))
+print(b.strftime('%a'))
+print(b.strftime('%j'))
+print(b.strftime('%W'))
+print(b.strftime('%w'))
+print(b.strftime('%d/%m/%Y'))
+'''
+'''
+# Model : date and time as a string.
+
+# 41. Write a python program to generate a date and time as a string.
+
+# Exp : date and time ni string formate lo generate cheyyamannaru....
+
+
+import datetime
+
+print(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S %p'))
+print(type(datetime.datetime.now()))  # obj datetime.datetime
+print(type(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S %p')))  # string formate
+
+'''
+'''
+# Model : printing calender
+
+# 42. Write a Python program to display formatted text output of a month and start weeks on Sunday.
+
+# Exp : oka month calender print cheyyali calender sunday nunchi start avvali.
+
+# 1. mundu manam calender ni import chesukovali 2.textCalender kavali ani adagali 3.calender ea day nuchi start avvalo cheppali. 4. ee mudu kalipi---
+# object ni return chetunsdi 5.deeni nuncchi manam peryear kavala ? leda per month kavala ani adugutham( year, month) parameter lo pass ccheyyali.
+
+
+
+import calendar
+
+print(calendar.TextCalendar(calendar.SUNDAY).prmonth(2022, 12))  # per month
+print(calendar.TextCalendar(calendar.SUNDAY).pryear(2023)) # per year
+
+
+'''
+'''
+# Model : printing 3 column calender
+
+# 43. Write a Python program to print a 3-column calendar for an entire year.
+
+# Exp : it is same as above problem but er have to use for mate year method.
+
+import calendar
+
+print(calendar.TextCalendar(calendar.SUNDAY).formatyear(2023, 2, 1, 1, 3))
+'''
+'''
+# Model: calender for locale.
+
+# 44. Write a Python program to display a calendar for a locale
+
+# Exp: aa locale= ani rasindi endo naku teliyadu
+
+import calendar
+
+print(calendar.LocaleTextCalendar(locale='en_AU.utf8').pryear(2023, 12))
+
+'''
+'''
+# Getting current week
+
+# 45. Write a Python program to get the current week.
+
+
+# Exp : naku telisina method strftime() kaani w3 lo isocalender method ichadu....
+
+# isocalender output vareity ga vuntundi... year vastundi next week numer (0-52) vastundi tharuvatha weekday(0-6)
+
+import datetime
+
+print(datetime.date(2022, 12, 24).isocalendar())  # it's output is >>>> datetime.IsoCalendarDate(year=2022, week=51, weekday=6)
+
+year, week_number, day_of_the_week = datetime.datetime.now().isocalendar()
+
+print('Year = %d, Week_number = %d, Day_of_the_week = %d' %(year, week_number, day_of_the_week ))
+'''
+
+'''
+# Model : creation of HTML calender with data.
+
+# Write a Python program to create a HTML calendar with data for a specific year and month
+
+
+# Exp: HTML calender with data for specific year and month.
+
+import calendar
+
+print((calendar.HTMLCalendar(calendar.SUNDAY)).formatmonth(2022,12))
+
+'''
+
+'''
+# Model : list of all second saturdaya in a year.
+
+
+import calendar
+
+# print((calendar.monthcalendar(2022, 2))[0])  *** very important  
+
+# month calender.monthcalender yappudu every seven days nested list's tho vastundi...okavela week lo month start kakpothe 0's vastundi.
+# every nested lists manam index dwara access cheyyochu...
+
+# print(calendar.TextCalendar(calendar.SUNDAY).formatmonth(2022,3))  
+
+# TextCalendar manaki calder ni istundi.manam ea day tho start avvalo mention cheyyochu. 
+# and formate dwara manam total year calendar or particular month kanukkovachu.
+
+
+# print(calendar.SATURDAY)
+
+
+
+# print(calendar.monthcalendar(2022,12)[2])  # third week
+
+
+# print(calendar.TextCalendar(calendar.MONDAY).formatmonth(2022, 12))
+
+
+for month in range(1, 13):
+    cal = calendar.monthcalendar(2022, month)
+    first_week = cal[0]
+    second_week = cal[1]
+    third_week = cal[2]
+    if first_week[calendar.SATURDAY]:
+        holiday = second_week[calendar.SATURDAY]
+    else:
+        holiday = third_week[calendar.SATURDAY]
+
+    print(calendar.month_abbr[month], holiday)
+
+
+print(calendar.TextCalendar(calendar.SATURDAY).formatyear(2022, 12))
+
+'''

@@ -51,9 +51,17 @@ import time
 # print(datetime.datetime(2015, 12, 24, 13, 15, 25))
 
 # strftime(): we can convert datetime object to the readable strings by using strftime() ::: datetime object nunchi manaki kavalsina rupam lo date---
-# ni techukovadaniki manam strftime() method vadathamu.
+# ni techukovadaniki manam strftime() method vadathamu.  datetime obj to string....strftime(format, object)
 
 # strftime() takes one parameter that is format ....format is used To specify the format of returned string.
+
+
+# strptime() :- string representation to date and time object  strptime(format, string) >>> string to datetime object.
+
+# time.gmtime() :::- time.struct_time(tm_year=2022, tm_mon=11, tm_mday=27, tm_hour=4, tm_min=2, tm_sec=2, tm_wday=6, tm_yday=331, tm_isdst=0)
+
+# time.localtime() :- time.struct_time(tm_year=2022, tm_mon=11, tm_mday=27, tm_hour=9, tm_min=34, tm_sec=12, tm_wday=6, tm_yday=331, tm_isdst=0)
+
 
 # We must use strftime() method with dateobject...... >>>> dateobject.strftime(format)....to represent specific formate.
 '''
@@ -82,9 +90,10 @@ print(time_stamp.strftime('%c'))
 # %U = week number (week index) sunday as the first day of week (0-52)
 # %d = day of the month (1-31)
 # %x%X%c%C = local version of the date| local version of the time | local version of the date and time | Century
+#                24/12/2022                  09:23:41                       Sun Nov 27 09:25:15 2022
+
 
 # Hours... HIMS
-
 # %H = hour in 24 hours format
 # %I = hours in 12 hours format
 # %M = minutes (0-59)
@@ -1365,18 +1374,114 @@ print(time.ctime(36000))
 
 '''
 
+'''
+
+# Model :  simple for mate and preffered date time formate
+
+# 60. Write a Python program to print simple format of time, full names and the representation format and preferred date time format.
 
 
+import time
+
+print(time.strftime('%y %b %d  %H:%M:%S + 1010', time.gmtime()))
+
+print(time.strftime('%Y %B %d %H:%M:%S + 0000', time.gmtime()))
+
+print(time.strftime('%c'))
+print(time.strftime('%x %X %y %Y'))
 
 
+# w3 resource:
+
+import time
+print("\nSimple format of time:")
+s = time.strftime("%a, %d %b %Y %H:%M:%S + 1010", time.gmtime())
+print(s)
+print("\nFull names and the representation:")
+s = time.strftime("%A, %D %B %Y %H:%M:%S + 0000", time.gmtime())
+print( s)
+print("\nPreferred date time format:")
+s = time.strftime("%c")
+print(s)
+s = time.strftime("%x, %X, %y, %Y")
+print("Example 11:", s)
+
+'''
 
 
+'''
+# 61. Write a Python program that takes a given number of seconds and pass since epoch as an argument. Print structure time in local time.
+# Sample Output:
+# Result: time.struct_time(tm_year=1983, tm_mon=2, tm_mday=19, tm_hour=21, tm_min=38, tm_sec=18, tm_wday=5, tm_yday=50, tm_isdst=0)
+# Year: 1983
 
 
+import time
+
+result = time.localtime(3000000)
+
+print(result, '\n Year:', result.tm_year)   # it will prints the resultant year.
+
+'''
+'''
+# New function:
+
+# asctime()
+
+# Pythom time method asctime() converts a tuple or struct_time representing a time as returned by gmtime() or localtime()
+# to a 24-character string of the following form: 'Tue Feb 17 23:21:05 2009'. input tuple lo tesukuntundi.
+
+# this tuple contains nine element's. relating to the datetime data information.
+
+# localtime() ni kaani or gmtime() ni 24hours string formate lo marchutundi.
+
+# Return Value
+# This method returns 24-character string of the following form: 'Tue Feb 17 23:21:05 2009'.
+'''
+
+'''
+# model : ascctime() model
+
+# 62. Write a Python program that takes a tuple containing 9 elements corresponding to structure time as an argument and returns a string representing it.
+# Sample Output:
+# Result: Sun Jan 22 02:34:06 2020
+# Result: Tue Nov 12 02:54:08 1982
 
 
+# Exp: input tuple ga tesukovali....andhulo time structure ki sambandinchina data vundali ....ee motham string rupam lo output ravali.
+
+import time
+
+tup = (2022, 12, 24, 12, 12, 12, 360, 25, 63)
+
+print(time.asctime(tup))
+
+'''
 
 
+# Model: input in string formate output in the structure formate.
+
+
+# 63. Write a Python program to parse a string representing time and returns the structure time.
+# Sample Output:
+# String representing time: 22 January, 2020
+# time.struct_time(tm_year=2020, tm_mon=1, tm_mday=22, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=2, tm_yday=22, tm_isdst=-1)
+# String representing time: 30 Nov 00
+# time.struct_time(tm_year=2000, tm_mon=11, tm_mday=30, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=3, tm_yday=335, tm_isdst=-1)
+# String representing time: 04/11/15 11:55:23
+# time.struct_time(tm_year=2015, tm_mon=4, tm_mday=11, tm_hour=11, tm_min=55, tm_sec=23, tm_wday=5, tm_yday=101, tm_isdst=-1)
+# String representing time: 12-11-2019
+# time.struct_time(tm_year=2019, tm_mon=12, tm_mday=11, tm_hour=0, tm_min=0, tm_sec=0, tm_wday=2, tm_yday=345, tm_isdst=-1)
+# String representing time: 13::55::26
+# time.struct_time(tm_year=1900, tm_mon=1, tm_mday=1, tm_hour=13, tm_min=55, tm_sec=26, tm_wday=0, tm_yday=1, tm_isdst=-1)
+
+import time
+print(time.strptime('22 January, 2020', '%d %B, %Y'))
+print(time.strptime('30 Nov 00', '%d %b %y'))
+print(time.strptime('04/11/15 11:55:23', '%d/%m/%y %H:%M:%S'))
+print(time.strptime('12-11-2019', '%d-%m-%Y'))
+print(time.strptime('13::55::26', '%H::%M::%S'))
+# phrase meaning : a group of two or more words that express a single idea
 
 
 

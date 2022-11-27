@@ -81,6 +81,7 @@ print(time_stamp.strftime('%c'))
 # %a = week short form (sat)
 
 
+
 # weekday index, week index, month index and day index......
 
 # %w = weekday as number(week day index) (0-6) monday(start's at 0) to (sunday at 6)
@@ -151,7 +152,9 @@ print(time_stamp.strftime('%c'))
 
 # strptime() :- string representation to date and time object..... idi year/month/date formate lo vuntundi.
 
+
 # problems:
+
 
 '''
 
@@ -1457,7 +1460,7 @@ tup = (2022, 12, 24, 12, 12, 12, 360, 25, 63)
 print(time.asctime(tup))
 
 '''
-
+'''
 
 # Model: input in string formate output in the structure formate.
 
@@ -1483,9 +1486,7 @@ print(time.strptime('12-11-2019', '%d-%m-%Y'))
 print(time.strptime('13::55::26', '%H::%M::%S'))
 # phrase meaning : a group of two or more words that express a single idea
 
-
-
-
+'''
 
 
 

@@ -1,6 +1,6 @@
 # Serialization: the process of converting an object from python supported form into network supported or file supported form is called as serialization
 # this conversion process by default considered as serializtion.
-import json
+import jsn
 
 # Deserialization : the process of converting an object from file supported form or network supported form into python object is called as deserialization
 
@@ -30,6 +30,8 @@ import json
 
 # code : with open('emp.json', 'w+') as f :
 #             json.dump(python_dict_object, f, indent=num, separator= (", ", ": "), sort_keys = True/False)
+
+# kotha file okati open iyyi dantao json objecct save avutundi...
 
 # manam koasari aliyas name ichinappudu aa entire code lo danne vadali...ex: f
 
@@ -72,7 +74,7 @@ import json
 # sort_keys is used to sort the keys (sort_keys= True or False) ...the sort_keys parameter to specify if the result should be sorted or not.
 
 
-
+'''
 
 
 # Questions:
@@ -81,13 +83,40 @@ import json
 
 # 1. Write a Python program to convert JSON data to Python object.
 
+# Exp: json string nunchi dictionary object ga marchali... so json loads.....(deserialization from string)
+
+json_obj = '{ "Name":"David", "Class":"I", "Age":6 }'
+
+import json
+
+student_dict = json.loads(json_obj)
+
+print(student_dict['Name'])
+print(student_dict['Class'])
+
+for key, value in student_dict.items():
+    print(key, value)
 
 
 
+# NOTE : nenu json file ni import chesnappudu attribute error vacchindi... endukante nenu python file json.py ane perutho create chesanu
+# inbuild module json.py and nenu create chesina file json.py so error due to  circular import ani vastundi.
 
+#  conclusion: python inbuilt names meeda manam eami create cheyyakudadu.
 
+'''
 
+# Model : python to json
 
+# 2. Write a Python program to convert Python object to JSON data.
+
+# Exp:
+
+python_obj = {
+  "name": "David",
+  "class":"I",
+  "age": 6
+}
 
 
 

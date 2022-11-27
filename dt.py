@@ -138,6 +138,10 @@ print(time_stamp.strftime('%c'))
 # timetuple() returns the time.struct_time() object as a tuple that contains the date and time information, i.e., timestamps.
 
 
+# strftime() :- date and time object to string representation.
+
+# strptime() :- string representation to date and time object..... idi year/month/date formate lo vuntundi.
+
 # problems:
 
 '''
@@ -1009,7 +1013,6 @@ def age(dob):
 print(age(date(1993, 12,24)))
 '''
 
-
 '''
 # 40. Write a Python program to get the current date time information.
 
@@ -1164,3 +1167,229 @@ for month in range(1, 13):
 print(calendar.TextCalendar(calendar.SATURDAY).formatyear(2022, 12))
 
 '''
+
+'''
+
+# Model : printing  speified month calendar
+
+# 48. Write a Python program to display a simple, formatted calendar of a given year and month.
+
+import calendar
+
+
+print('+++++++dec++++++++')
+print('---------------------')
+print(calendar.TextCalendar(calendar.MONDAY).formatmonth(2022, 12))
+print('---------------------')
+
+'''
+'''
+# Model :-
+
+# 49. Write a Python program to convert a string into datetime
+
+# Exp :- string representation of date and time ni date and time object ga marchali...
+
+import datetime
+
+date_obj = datetime.datetime.strptime('24/12/1993 2:30 AM', '%d/%m/%Y %H:%M %p')
+
+print(date_obj)
+
+'''
+
+'''
+# Model: dates between two dates.
+
+# 50. Write a Python program to get a list of dates between two dates.
+from datetime import date
+from datetime import timedelta
+import datetime
+
+
+def daterange(date1, date2):
+    for n in range(int((date2-date1).days)+1):  # ikkada rendu dates madhya days ni kanukoni daaniki +1 add cheyyali ...
+        yield date1+timedelta(n)  # date1 ki time delta adharaamga +1 add ccheyyali   # renge lo last xclude kada anduke +1 add cheyyali.
+
+
+start = date(2022, 12, 1)   # date() yappudu formate ee vidhamgane vundali. year, month, day.
+end = date(2023, 1, 25)
+
+for dates in daterange(start, end):
+    print(dates.strftime('%d-%m-%Y')) # manaki kavalsina formate lo print cheyyadaniki strftime() ...form datetime object to string representation
+
+'''
+'''
+# Model : RFC 3339 timestamp.
+
+# 51. Write a Python program to generate RFC 3339 timestamp.
+
+# im not understanding.
+'''
+'''
+# Model : fetching first and last second.
+
+# 52. Write a Python program to get the first and last second.
+
+# Exp : first second and last second kanukkovalante min and max functions kanukkovali....datetime.time.min , datetime.time.max
+
+import datetime
+
+print('First_second :', datetime.time.min)
+print('Last_second :', datetime.time.max)
+
+'''
+'''
+# Model : Gregorian validation
+
+# 53. Write a Python program to validate a Gregorian date. The month is between 1 and 12 inclusive, the day is within the allowed number of days for the given month.
+# Leap year's are taken into consideration. The year is between 1 and 32767 inclusive.
+
+
+# Exp: gograin formatr lo vunda leda ani checkcheyyali.
+
+import datetime
+
+
+def checking(d, m, y):
+    try:
+        d, m, y = map(int, (d, m, y))
+        datetime.date(y, m, d)   # datetime.date lo kachithamga date int rupamlovundsli and comma saparated tho vundali.
+        return True
+    except ValueError:
+        return False
+
+
+print(checking('21', '12', '2023'))
+print(checking(21, 12, 2023))
+print(checking(24,1993,12))
+
+'''
+'''
+# Model: setting timezone
+
+# 54. Write a Python program to set the default timezone used by all date/time functions.
+
+# Exp :  manam create cchese prathi date, time ativities ki default timezone ni set cheyyamannadu so manaki kavalsindi time matrame
+
+# ERROR vastundi enduko teliyadu.
+
+import os, time
+
+# print(time.strftime('%Y %m %d %H:%M:%S'))  # before timezone setting.
+# os.environ['TZ'] = 'Indian Standard Time-IST Time Zone/ India Time'   # setting time zone
+# time.tzset()  # saving timezone
+# print(time.strftime('%Y %m %d %H:%M:%S'))  # printing after timezone setting.
+
+
+
+print(time.strftime('%H:%M:%S %p %Z %B %A'))
+'''
+'''
+# Model : time from epoh
+
+# 55. The epoch is the point where the time starts, and is platform dependent. For Unix, the epoch is January 1, 1970, 00:00:00 (UTC).
+# Write a Python program to find out what the epoch is on a given platform. Also convert a given time in seconds since the epoch.
+
+
+# Exp: epoh at starting kanukkovali and ichina seconds ni epoh time nunchi entha duram lo vundo kanukkovali.
+
+
+import time
+
+print(time.gmtime(0))
+print(time.gmtime(30000))
+
+'''
+'''
+# Model : local time and gmtime
+
+# 56. Write a Python program to get time values with components using local time and gmtime.
+
+
+import time
+def time_struct(s):
+   print(' tm_year :', s.tm_year)
+   print(' tm_mon :', s.tm_mon)
+   print(' tm_mday :', s.tm_mday)
+   print(' tm_hour :', s.tm_hour)
+   print(' tm_min :', s.tm_min)
+   print(' tm_sec :', s.tm_sec)
+   print(' tm_wday :', s.tm_wday)
+   print(' tm_yday :', s.tm_yday)
+   print(' tm_isdst:', s.tm_isdst)
+print('\nlocaltime:')
+time_struct(time.localtime())
+print('\ngmtime:')
+time_struct(time.gmtime())
+
+'''
+'''
+# Model : different time zones
+
+# 57. Write a Python program to get different time values with components timezone, timezone abbreviations, the offset of the local (non-DST) timezone, DST timezone and
+# time of different timezones.
+
+
+
+# Not understanding
+
+'''
+'''
+# Model : execution suspended for a given period time  
+
+# 58. Write a Python program that can suspend execution of a given script a given number of seconds.
+
+# Exp : oka program execution ni ichina seconds varaku nilipi aa tharuvatha runcheyyai.
+
+# stop execution ante ::: amalu nilipiyeyyandi ani ardham
+
+import time
+
+for i in range(5):
+    time.sleep(3)   # three seconds program execution stops.
+    print('Execution stops for 3 seconds')
+
+'''
+'''
+# Model : since epoh to string local.
+
+# 59. Write a Python program to convert a given time in seconds since the epoch to a string representing local time
+
+# Exp: c ante local ani C ante centuray ani ardham.
+
+import time
+
+print(time.ctime())
+print(time.ctime(36000))
+
+'''
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

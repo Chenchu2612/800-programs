@@ -1223,9 +1223,438 @@ print(new_list)
 
 
 
+"""
+# 90. Write a Python program to count number of lists in a given list of lists.
+# Original list:
+a = [[1, 3], [5, 7], [9, 11], [13, 15, 17]]
+# Number of lists in said list of lists:
+# 4
+# Original list:
+b = [[2, 4], [[6, 8], [4, 5, 8]], [10, 12, 14]]
+# Number of lists in said list of lists:
+# 3
+
+# Without inbuld
+
+def count_num_of_lists(list_obj):
+    count =0
+    for x in list_obj:
+        count+=1
+    return count
+
+
+print(count_num_of_lists(b))
+
+# with len() func
+
+def count_num(list_obj):
+    return len(list_obj)
+
+
+print(count_num_of_lists(b))
+
+"""
+
+"""
+# Model : max, min length kaligina lists kanukkovali.
+
+# 91. Write a Python program to find the list with maximum and minimum length.
+# Original list:
+a = [[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]]
+# List with maximum length of lists:
+# (3, [13, 15, 17])
+# List with minimum length of lists:
+# (1, [0])
+# Original list:
+b= [[0], [1, 3], [5, 7], [9, 11], [3, 5, 7]]
+# List with maximum length of lists:
+# (3, [3, 5, 7])
+# List with minimum length of lists:
+# (1, [0])
+# Original list:
+c=[[12], [1, 3], [1, 34, 5, 7], [9, 11], [3, 5, 7]]
+# List with maximum length of lists:
+# (4, [1, 34, 5, 7])
+# List with minimum length of lists:
+# (1, [12])
+
+# Model : 1  
+
+# Exp: list lo vunns edo oka object ni max or min ga tesukoni dani adharamga compare cheyyadam
+
+def max_min(list_obj):
+
+    maxa = list_obj[0]
+    mina = list_obj[0]
+    for x in list_obj:
+        if len(x) > len(maxa):
+            maxa = x
+        elif len(x) < len(mina):
+            mina = x
+
+    return [(maxa, len(maxa)), (mina, len(mina))]
+
+print(max_min(b))
+
+
+# Model: 2
+
+# NEW : max(object, key =len) max function lo key pass cheyyadam.
+
+def max_list(list_obj):
+    max_len = max(len(x)for x in list_obj)
+    max_list = max(list_obj, key=len)
+
+    return max_len, max_list
+
+print(max_list(b))
+
+
+def min_list(list_obj):
+    min_length = min(len(x) for x in list_obj)
+    min_list = min(list_obj, key=len)
+
+    return min_length, min_list
+
+print(min_list(b))
+"""
+"""
+# 92. Write a Python program to check if a nested list is a subset of another nested list.
+# Original list:
+a = [[1, 3], [5, 7], [9, 11], [13, 15, 17]]
+b =[[1, 3], [13, 15, 17]]
+# If the one of the said list is a subset of another.:
+# True
+# Original list:
+c = [[[1, 2], [2, 3]], [[3, 4], [5, 6]]]
+d = [[[3, 4], [5, 6]]]
+# If the one of the said list is a subset of another.:
+# True
+# Original list:
+e = [[[1, 2], [2, 3]], [[3, 4], [5, 7]]]
+f = [[[3, 4], [5, 6]]]
+# If the one of the said list is a subset of another.:
+# False
+
+
+# what is subset? : subset ante oka object(object a) lo vunde prathi element inko object(object b) lo kachithamga vundali. prathi element vundali.
+
+# Appudu object(a) anedi subset avutundi object(b) anedi super set avutundi.
+
+# Model: 1
+
+def check(list1, list2):
+
+    exist = True
+    for x in list2:
+        if x not in list1:
+            exist = False
+    return exist
+
+
+print(check(c, d))
+
+
+def checking(list1, list2):
+    return all(x in list1 for x in list2)    # Note: all function lo condition jagrathaga rayali
+
+
+# print(checking(a, b))
+
+"""
+
+
+"""
+# Model: Counting number of sublists contains a particular element.
+
+
+# 93. Write a Python program to count the number of sublists contain a particular element.
+# Original list:
+a=[[1, 3], [5, 7], [1, 11], [1, 15, 7]]
+# Count 1 in the said list:
+# 3
+# Count 7 in the said list:
+# 2
+# Original list:
+b=[['A', 'B'], ['A', 'C'], ['A', 'D', 'E'], ['B', 'C', 'D']]
+# Count 'A' in the said list:
+# 3
+# Count 'E' in the said list:
+# 1
+
+# Exp : manam ichina element enni sublists lo vundo count cheyyali.
+
+
+def count_particular_element(list_obj, element):
+    count = 0
+    for sub_list in list_obj:
+        if element in sub_list:   # element sublists lo vunte.
+            count += 1
+    return count
+
+
+print(count_particular_element(b, "E"))
+
+"""
 
 
 
+
+
+
+
+
+
+
+
+"""
+# Model : Counting unique sublist's in a lists
+
+# 94. Write a Python program to count number of unique sublists within a given list.
+# Original list:
+a = [[1, 3], [5, 7], [1, 3], [13, 15, 17], [5, 7], [9, 11]]
+# Number of unique lists of the said list:
+# {(1, 3): 2, (5, 7): 2, (13, 15, 17): 1, (9, 11): 1}
+# Original list:
+# [['green', 'orange'], ['black'], ['green', 'orange'], ['white']]
+# Number of unique lists of the said list:
+# {('green', 'orange'): 2, ('black',): 1, ('white',): 1}
+
+
+# Exp: count unique sublists ante frquency kanukkovli (bu using dict concept)
+
+# Note : ikkada vundedi nested list's so dictionary keys ga nested pettalemu .... because dict keys are immutable and hashable ... tuple can be a dict keys...
+
+
+# Concept : list's cannot be act as a dict keys.
+
+
+def count_unique(list_obj):
+    result = {}    # initializing dictionary
+    for i in a:
+        if tuple(i) not in result:  # manam ikkada tuple loki marchali ledante dict keys ga nested lists aaccept cheyyadu.  
+            result[tuple(i)] = 1    # manam ikkada tuple loki marchali ledante dict keys ga nested lists aaccept cheyyadu.
+        else:
+            result[tuple(i)] += 1  # manam ikkada tuple loki marchali ledante dict keys ga nested lists aaccept cheyyadu.
+    return result
+
+
+print(count_unique(a))
+
+"""
+
+"""
+# 95. Write a Python program to sort each sublist of strings in a given list of lists.
+# Original list:
+a = [["green", "orange"], ["black", 'apple'], ["white", "black", "orange"]]
+# Sort the list of lists by length and value:
+# [['green', 'orange'], ['apple', 'black'], ['black', 'orange', 'white']]
+
+
+# Exp: sorted or sort function lo nested list ni enter chesinappudu adi list lopala nested list's yokka position ni matrame  marustundi...
+
+# okavela nested lists lo elements order kuda sort avvalante manam list comprehension lo loop rundhesi okkoka list ni sorted function loki pampali.
+
+
+
+def sort_sublists(list_obj):
+    return [sorted(x, reverse=False) for x in a]
+
+
+print(sort_sublists(a))
+"""
+"""
+# Model : sort list by length and value
+
+# 96. Write a Python program to sort a given list of lists by length and value.
+# Original list:
+a = [[2], [0], [1, 3], [0, 7], [9, 11], [13, 15, 17]]
+# Sort the list of lists by length and value:
+# [[0], [2], [0, 7], [1, 3], [9, 11], [13, 15, 17]]
+
+
+# Exp: rendu saarlu sort cheyyali ::: okati normal sorting (value) redodhi length adharamga sort
+
+
+def sort_lists_len_and_value(list_obj):
+    list_obj.sort()                         # sort function nested list's ichinappudu prathi lists lo first elemant adharamga nested lists order ni sort chestundi
+    # print(list_obj)     # for understanding purpose.
+    list_obj.sort(key=len)  # based on length it is sorted.
+    return list_obj
+
+
+print(sort_lists_len_and_value(a))
+
+"""
+"""
+
+# Model : remove list's if element's of list's does not contain the specified range.
+
+# 97. Write a Python program to remove sublists from a given list of lists, which contains an element outside a given range.
+# Original list:
+a=[[2], [0], [1, 2, 3], [0, 1, 2, 3, 6, 7], [9, 11], [13, 14, 15, 17]]
+# After removing sublists from a given list of lists, which contains an element outside the given range:
+# [[13, 14, 15, 17]]
+
+
+# Exp: oka nested list lo chala lists vunatai ....aa list's lo elemants manam icchina left range, right range madhyalo vundaa ani chudali.
+
+
+def remove_lists(list_obj, left_range, right_range):
+    return [x for x in a if(min(x) >= left_range and max(x) <= right_range)]
+
+
+print(remove_lists(a, int(input("Enter the left range :")), int(input("Enter the right range : "))))
+"""
+
+"""
+# Method : list lo vunna prathi word scramble cheyyali..
+
+# scramble =  to put things such as words or letters in the wrong order so that they do not make sense
+
+# 98. Write a Python program to scramble the letters of string in a given list.
+# Original list:
+a = ['Python', 'list', 'exercises', 'practice', 'solution']
+# After scrambling the letters of the strings of the said list:
+# ['tnPhyo', 'tlis', 'ecrsseiex', 'ccpitear', 'noiltuos']
+
+
+# shuffle()
+
+# The shuffle() method takes only list and reorganize the order of the items.
+
+# Note: This method changes the original list, it does not return a new list.
+
+# shuffle function only list ni matrame tesukuntundi list lo vunna shuffle objects ni shuffle chestundi... ee method denni return cheyyadu
+
+# original list lo vunn elements ni matrame marustundi.
+
+#
+
+from random import shuffle, sample
+
+
+def shuff_items(list_obj):
+    list_obj = list(list_obj)  # ['p', 'y', 't', 'h', 'o', 'n']  >>>> string ni list loki maariste ee vidham ga vastundi.
+    shuffle(list_obj)     # ['h', 't', 'n', 'o', 'y', 'p']  >>> original list lo vunna elemants ee vidhamga
+    return ''.join(list_obj)  # 'htnoyp' >>>>> ee vidham ga list lo vunnavanni join avutundi.
+
+
+# Note : join lo shuffle rayakudadu >>> shuffle function returns nothing.
+
+print([shuff_items(x)for x in a])   # print() function lo manam list comprehension raasi andulo manam shuffle functio ni call cchestam.
+
+# Method : By using sample function.
+
+# The sample() method returns a list with a randomly selection of a specified number of items from a sequnce.
+
+#  sample(sequence, k)    >>>> k is nothing but size of returned list.
+
+print([''.join(sample(x, len(x))) for x in a])
+
+"""
+
+"""
+
+# 99. Write a Python program to find the maximum and minimum values in a given heterogeneous list.
+# Original list:
+a = ['Python', 3, 2, 4, 5, 'version']
+# Maximum and Minimum values in the said list:
+# (5, 2)
+
+
+# Exp: manam list lo edo oka value ni max ga and edo oka value ni min ga tesukovali....
+
+# list ni iteration lo run chesi prathi element type() check chesi adi number type iethe (type(element) != str) danni condition check cheyyali
+
+# same thing with minimum tho.
+
+def max_min_in_hetro(list_obj):
+    maximum = 3
+    minimum = 2
+    for x in a:
+        if type(x) != str and x > maximum:
+            maximum = x
+        elif type(x) != str and x < minimum:
+            minimum = x
+
+    return 'The maximum value is = {} The minimum value is = {}'.format(maximum, minimum)
+
+
+print(max_min_in_hetro(a))
+
+
+# Model 2 with max() and min() func:
+
+def max_min(list_obj):
+    return 'The maximum value = {} The minimum value is = {}'.format(max([x for x in list_obj if type(x) != str]), min([x for x in list_obj if type(x) != str]))
+
+
+print(max_min(a))
+
+# W3 method: isinstance
+
+
+# *** isinstance = it is used to check if specific element if of specific type...
+
+def max_min_val(list_val):
+    max_val = max(i for i in list_val if isinstance(i, int))    # int iethene i loki vastundi
+    min_val = min(i for i in list_val if isinstance(i, int))
+    return max_val, min_val
+"""
+
+"""
+# Model : Finding common index elements
+
+# 100. Write a Python program to extract common index elements from more than one given list.
+# Original lists:
+a = [1, 1, 3, 4, 5, 6, 7]
+b = [0, 1, 2, 3, 4, 5, 7]
+c = [0, 1, 2, 3, 4, 5, 7]
+# Common index elements of the said lists:
+# [1, 7]
+
+
+# Exp:  common index values annadu kabatti manam index ni compare cheyyali ..... index ni access cheyyali ante range len function vadali.
+
+# i dwara manam prathi llist lo vunde element ni compare cheyyali.
+
+# Method : 1 ... by using list comprehension.
+
+def common_values_by_index(list1, list2, list3):
+    new = [a[i] for i in range(len(a)) if a[i] == b[i] == c[i]]  # accessing through index...ikkada manam a[i] anna or b[i] anna or c[i] anna pettochu
+    return new
+
+
+print(common_values_by_index(a, b, c))
+
+
+# Method : 2  normal method
+
+def common_index_values(list1, list2, list3):
+    result = []
+    for i in range(len(a)):
+        if a[i] == b[i] == c[i]:
+            result.append(a[i])       # ikkada manam a[i] anna or b[i] anna or c[i] anna pettochu
+    return result
+
+
+print(common_index_values(a, b, c))
+
+
+# by using zip function.
+
+def common_by_zip(list1, list2, list3):
+    new_list = []
+    for x, y, z in zip(list1, list2, list3):
+        if x == y == z:
+            new_list.append(x)    # ikkada manam x anna or y anna or z anna pettochu
+    return new_list
+
+
+print(common_by_zip(a, b, c))
+
+"""
 
 
 

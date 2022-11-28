@@ -231,6 +231,99 @@ with open('chenchu.csv', newline='') as f:
     print('field names:',  ','.join(fields))
 
 """
+"""
+# Model : create writer object , write, print it .
+
+# 9. Write a Python program to create an object for writing and iterate over the rows to print the values
+
+
+import csv
+
+with open ('chenchu.csv', 'w+', newline="") as f:
+    wrt = csv.writer(f)
+    wrt.writerow(('s.no', 'date', 'event'))
+    for i in range(5):
+        s_no = i+1
+        date = input("Enter the date :")
+        event = input('Enter the event :')
+        wrt.writerow((s_no, date, event))
+
+with open('chenchu.csv', newline="") as f:
+    red = csv.reader(f)
+    for data in red:
+        print(', '.join(data))
+
+"""
+
+"""
+# Model : writing list of list to a csv file (nested_lists) and read those csv file.
+
+# 10. Write a Python program to write a Python list of lists to a csv file. After writing the CSV file read the CSV file and display the content.
+
+
+# Exp: python lo csv file lo prathi row manaki list rupam lo chupistundi and motham data kalipi oka list rupam lo cupistundi...so list lopala ---
+
+#     every row oka nested list's  list lopala nested lists.
+
+import csv
+
+data = [[10, 'a1', 1], [12, 'a2', 3], [14, 'a3', 5], [16, 'a4', 7], [18, 'a5', 9]]
+
+with open('chenchu.csv', 'w+', newline='') as f:
+    wrt = csv.writer(f, delimiter=',')
+    wrt.writerows(data)   # csv lo prathi row oka list and motham data kalipi oka list lo vuntundi ... so list lopla nested lists
+
+with open('chenchu.csv', newline="") as f:
+    red = csv.reader(f)
+    for data in red:            # for loop can be used to extract values from the iterator object
+        print(', '.join(data))
+
+"""
+
+"""
+# Model : dict data ni csv loki marchali. and ela read cheyyali.
+
+# 11. Write a Python program to write a Python dictionary to a csv file. After writing the CSV file read the CSV file and display the conten
+
+# Exp: oka dict data ni csv loki marchali ante mundu column names field names initialize cheyyali....
+
+# tharuvatha column names or field names ni initialize cheyyali....
+
+
+# csv.DictReader() is used to create csv dict reader object for reading data as dictionary from csv file
+
+
+# csv.DictWriter() is used to create  csv DictWriter ..this writer object is used to write dict data to the csv file ... 
+
+# keys are filed names ...we have to initialize this first.... and them write rows...
+
+csv_columns = ['id', 'Column1', 'Column2', 'Column3', 'Column4', 'Column5']
+dict_data = {'id': ['1', '2', '3'], 'Column1': [33, 25, 56], 'Column2': [35, 30, 30], 'Column3': [21, 40, 55], 'Column4': [71, 25, 55], 'Column5': [10, 10, 40]}
+
+import csv 
+
+try:
+    with open('chenchu.csv', 'w+') as f:
+        wrt = csv.DictWriter(f, fieldnames=csv_columns)   # dict writer object ni initialize cheyyali...
+        wrt.writeheader()    # heading ni rayali. (field names)
+        for data in dict_data:
+            print(data)  # only keys it will prints.
+            wrt.writerow(dict_data)
+except IOError:
+    print('I/O error')
+
+
+data = csv.DictReader(open('chenchu.csv'))   # reading data from csv as dict
+for dat in data:
+    print(dat)
+
+"""
+
+
+
+
+
+
 
 
 

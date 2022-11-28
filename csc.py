@@ -157,10 +157,80 @@ for row in red_obj :  # object nunchi okkoka row ni print cheyyadaniki manam for
 
 """
 
+"""
+# Model : skipping initial spaces.
+
+# 5. Write a Python program to read a given CSV files with initial spaces after a delimiter and remove those initial spaces
+import csv
+
+with open('chenchu.csv', 'r') as f:
+    red= csv.reader(f, skipinitialspace=False) # with initial spaces after delimeter.
+    for data in red:
+        print(data)
+        
+
+with open('chenchu.csv', 'r') as f:
+    red = csv.reader(f, skipinitalspace=True) # without initial spaces.
+    for data in red:
+        print(data)
+
+"""
+"""
+# not understanding
+
+# 6. Write a Python program that reads a CSV file and remove initial spaces, quotes around each entry and the delimiter.
+
+import csv
+
+csv.register_dialect('csv_dialect', delimiter='|', skipinitailspace=True, quoting=csv.QUOTE_ALL)
+
+# not understanding
+
+"""
+"""
+# Model: Reading csv file and printing onlly specified columns.
+
+# 7. Write a Python program to read specific columns of a given CSV file and print the content of the columns.
+
+# Exp: manam csv file lo specific fields matrame kavali.
 
 
+# Exp: ikkada DictReader object ni create cheyyali....dantlo manaki eadi kavalo manam dictionary key method dwara get chesukovocchunu.
 
+import csv
 
+with open('chenchu.csv', 'r') as f:
+    red = csv.DictReader(f)
+    for row in red:
+        print(row['department_name'])
+
+"""
+
+"""
+# Model : 1. skipping headder of the file
+#         2. print number of rows and field names.
+
+# 8. Write a Python program that reads each row of a given csv file and skip the header of the file. Also print the number of rows and the field names.
+
+# For skipping the headder file : fields = next(red)
+
+# number of rows = readerobj.line_num  .... Our csv_reader_object has a method called line_num that returns the number of lines in our CSV.
+# NOte :- idi last line yokka number ni return chestundi.....
+
+#
+
+import csv
+
+with open('chenchu.csv', newline='') as f:
+    reader_obj = csv.reader(f)
+    fields = next(reader_obj)     # its like a pop function in removes the headding part and returns it
+    for data in reader_obj:
+        print(','.join(data))
+
+    print('no of lines :', reader_obj.line_num)  # idi manam enno line lo vunnamo return chestundi.
+    print('field names:',  ','.join(fields))
+
+"""
 
 
 

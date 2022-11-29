@@ -12,6 +12,8 @@ def sum_list(items):
 print(sum_list([1, 2, 3]))
 
 """
+import random
+
 """
 # 2. Write a Python program to multiply all the items in a list.
 
@@ -1208,20 +1210,279 @@ for i in list:
 print(new_list)
 """
 
+"""
+
+# 80. Write a Python program to insert an element at a specified position into a given list.
+# Original list:
+a = [1, 1, 2, 3, 4, 4, 5, 1]
+# After inserting an element at kth position in the said list:
+# [1, 1, 12, 2, 3, 4, 4, 5, 1]
+
+
+# By using slicing concept.
+
+def inserting_an_element(ele, list_obj, pos):
+    return list_obj[:pos]+[ele]+list_obj[pos:]
+
+
+print(inserting_an_element(12, a, 2))
+
+
+# By using insert method...
+
+# insert method = list.insert(index_pos, element)   >>> withou removing any elemnt it will insert the list... it returns nothing it only modify the original list.
+
+def insert_using_inbuilt(ele, list_obj, pos):
+    list_obj.insert(ele, pos)
+    return list_obj
+
+
+print(insert_using_inbuilt(2, a, 12))
+"""
+"""
+# 81. Write a Python program to extract a given number of randomly selected elements from a given list.
+# Original list:
+a = [1, 1, 2, 3, 4, 4, 5, 1]
+# Selected 3 random numbers of the above list:
+# [4, 4, 1]
+
+
+# Exp: iccina list lo nunchi manam randoom ga n numbers tesukovali.
+
+# New : random.sample(list_obj, num)
+
+
+import random
+
+
+def rand_select(list_obj, n):
+    return random.sample(list_obj, n)
+
+
+print(rand_select(a, 3))
+"""
+"""
+# Model : combination of n distinct objects.
+
+# Little trickey.
+
+# 82. Write a Python program to generate the combinations of n distinct objects taken from the elements of a given list.
+# Original list: [1, 2, 3, 4, 5, 6, 7, 8, 9] Combinations of 2 distinct objects: [1, 2] [1, 3] [1, 4] [1, 5] .... [7, 8] [7, 9] [8, 9]
+
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+
+def combination(n, list_obj):
+    if n <= 0:
+        yield []
+        return
+    for i in range(len(list_obj)):
+        first_num = list_obj[i:i+1]
+        for last_num in combination(n-1, list_obj[i+1:]):
+            yield first_num+last_num
+
+
+result = combination(2, a)
+
+
+for i in result:
+    print(i)
+"""
+"""
+# 83. Write a Python program to round every number of a given list of numbers and print the total sum multiplied by the length of the list.
+# Original list:
+a = [22.4, 4.0, -16.22, -9.1, 11.0, -12.22, 14.2, -5.2, 17.5]
+# Result:
+# 243
+
+# Exp: oka list lo vunna elements anni round off cheyyali ....round off chesina number ni list yokka length tho multiply cheyyali... multiply chesina danni 
+# sum cheyyali.
+
+
+def sum_new_list(list_obj):
+    new_list = []
+    sum_of_new = 0
+    for num in list_obj:
+        new_list.append(round(num)*len(list_obj))
+    for new_num in new_list:
+        sum_of_new += new_num
+    return sum_of_new
+
+
+print(sum_new_list(a))
+
+print(sum([round(x)*len(a) for x in a]))
+"""
+
+"""
+# 84. Write a Python program to round the numbers of a given list, print the minimum and maximum numbers and multiply the numbers by 5.
+# Print the unique numbers in ascending order separated by space.
+# Original list:
+a = [22.4, 4.0, 16.22, 9.1, 11.0, 12.22, 14.2, 5.2, 17.5]
+# Minimum value: 4
+# Maximum value: 22
+# Result:
+# 20 25 45 55 60 70 80 90 110
+
+
+# Exp: prathi number ni round off cheyyali.... max, min numbers ni print cheyyali... round off chesina every number ni 5 tho multiply chesi oka line lo print cheyyali.
+
+
+def max_min(list_obj):
+    new_list = [round(i) for i in list_obj]
+    max_value = new_list[0]
+    min_value = new_list[0]
+
+    for num in new_list:
+        if num > max_value:
+            max_value = num
+        elif num < min_value:
+            min_value = num
+    new_list_1 = sorted([x*5 for x in new_list])
+    print('Result_list :')
+    for x in new_list_1:
+        print(x, end=" ")
+
+    return '\nThe maximum value = {}\nThe minumum value ={}'.format(max_value, min_value)
+
+
+print(max_min(a))
+"""
+# W3 resource method:
+"""
+nums = [22.4, 4.0, 16.22, 9.10, 11.00, 12.22, 14.20, 5.20, 17.50]
+print("Original list:", nums)
+numbers=list(map(round,nums))
+print("Minimum value: ",min(numbers))
+print("Maximum value: ",max(numbers))
+numbers=list(set(numbers))
+numbers=(sorted(map(lambda n:n*5,numbers)))
+print("Result:")
+for numb in numbers:
+    print(numb,end=' ')
+
+"""
+"""
+# Model : creating multi_dimention list.
+
+# 85. Write a Python program to create a multidimensional list (lists of lists) with zeros.
+# Multidimensional list: [[0, 0], [0, 0], [0, 0]]
+
+# Exp: mundu rows next columns ni initialize cheyyali...okkoka nested list okkoka row....nested list lo vunna items columns loni items ni suchistundi.
+
+# 3X2 matrix ante 3 rows(3 nested lists) 2 columns ( nested list lo 2 items ani ardham) 
+
+
+def creating_multi_dimentional_list(rows, columns):
+    new_list = []
+    for i in range(rows):
+        new_list.append([])
+        for j in range(columns):
+            new_list[i].append(0)
+
+    return new_list
+
+
+print(creating_multi_dimentional_list(3, 2))
+
+
+# Model :2 by using list comprehension.
+
+def multi_dim_com(rows, columns):
+    return [[0 for j in range(columns)]for i in range(rows)]
+
+
+print(multi_dim_com(int(input("Enter the number of rows :")), int(input("Enter the number of columns : "))))
+"""
+
+"""
+# Model : matrix model
+
+# 86. Write a Python program to create a 3X3 grid with numbers.
+# 3X3 grid with numbers:
+# [[1, 2, 3], [1, 2, 3], [1, 2, 3]]
+
+
+def create_matrix(rows, columns):
+    new =[]
+    for i in range(rows):
+        new.append([])
+        for j in range(1, columns+1):
+            new[i].append(j)
+    return new
+
+
+# print(create_matrix(3, 3))
+
+
+def mat_using_list_comp(rows, columns):
+    return [[j for j in range(1, columns+1)]for i in range(rows)]
+
+
+print(mat_using_list_comp(int(input("Enter the number of rows : ")), int(input("Enter the number of columns: "))))
+"""
+
+# Model :
+
+
+# 87.Write a Python program to read a matrix from console and print the sum for each column.
+# Accept matrix rows, columns and elements for each column separated with a space(for every row) as input from the user.
+#
+
+def create_matrix(rows, columns):
+    matrix = [[int(input("Enter the column element: ")) for j in range(columns)]for i in range(rows)]
+    for row in matrix:
+        print(' '.join(map(str, row)))
+
+    for i in range(rows):
+        sum_rows = 0
+        for j in range(columns):
+            sum_rows += matrix[i][j]
+        print('sum of' + str(i+1), ':' + str(sum_rows))
+    for i in range(rows):
+        sum_columns = 0
+        for j in range(columns):
+            sum_columns += matrix[j][i]
+        print('sum of' + str(i+1), ":" + str(sum_columns))
+
+
+create_matrix(int(input("Enter the number of rows :")), int(input("Enter the number of columns :")))
 
 
 
 
 
+"""
+# 89. Write a Python program to Zip two given lists of lists.
+# Original lists:
+a=[[1, 3], [5, 7], [9, 11]]
+b=[[2, 4], [6, 8], [10, 12, 14]]
+# Zipped list:
+# [[1, 3, 2, 4], [5, 7, 6, 8], [9, 11, 10, 12, 14]]
+# Click me to see the sample solution
 
 
+# Exp: map function use chesi manam parell iteration cheyyadaniki vadathamu but ikkada anni lists same length lo vundali ....
+
+# Model :1
+
+def zipped(list1, list2):
+    return list(map(list.__add__, list1, list2))
 
 
+print(zipped(a, b))
+
+# Model:2
 
 
+def zipp(list1, list2):
+    for i in range(len(list1)):
+        list1[i].extend(list2[i])
+    return list1
 
 
-
+print(zipp(a, b))
+"""
 
 """
 # 90. Write a Python program to count number of lists in a given list of lists.

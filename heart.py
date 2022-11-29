@@ -74,4 +74,4 @@ def students(name, villege, Class):
     return 'name ={}\nvillege = {}\nClass = {}'.format(name, villege, Class)
 
 
-print(students('chenchu', 'stvd', 12))
+# print(students('chenchu', 'stvd', 12))

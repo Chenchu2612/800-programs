@@ -2049,24 +2049,96 @@ c ['c', 'c', 'c', 'c']
 d ['d']    
 """
 
+"""
+
+# Model : consicutive numbers differences.
+
 # 104. Write a Python program to find the difference between consecutive numbers in a given list.
 # Original list:
-a = [1, 1, 3, 4, 4, 5, 6, 7]
+# a = [1, 1, 3, 4, 4, 5, 6, 7]
 # Difference between consecutive numbers of the said list:
 # [0, 2, 1, 0, 1, 1, 1]
 # Original list:
-b = [4, 5, 8, 9, 6, 10]
+# b = [4, 5, 8, 9, 6, 10]
 # Difference between consecutive numbers of the said list:
 # [1, 3, 1, -3, 4]
 
-# Exp:
+# Exp: pakka pakka vunna elements differsnts kavali....
+
+# NOTE: VIMP :::: ikkada manam range(length) dwara elements ni access chestamu...ikkada length okati thagginchakapothe last element ki index out of range
+#  vastundi.... last elemant ki +1 ledu kada ....so manam length okati thagginchali.....appudu last elemant ni vadilestundi i+1 petti manam access cheyyochu.
 
 
 def diff_consecutive(list_obj):
     return [list_obj[i+1]-list_obj[i] for i in range(len(list_obj)-1)]
 
 
-print(diff_consecutive(a))
+print(diff_consecutive(b))
+
+"""
+"""
+# Model : average of two lists.
+
+# 105. Write a Python program to compute average of two given lists.
+# Original list:
+# a = [1, 1, 3, 4, 4, 5, 6, 7]
+# b = [0, 1, 2, 3, 4, 4, 5, 7, 8]
+# Average of two lists:
+# 3.823529411764706
+
+
+def average_part(list1, list2):          # a+b ante rendu lists kalipi okalist avutundi...
+    return sum(a+b)/len(a+b)
+
+
+print(average_part(a, b))
+
+"""
+
+
+"""
+# 106. Write a Python program to count integer in a given mixed list.
+# Original list:
+a = [1, 'abcd', 3, 1.2, 4, 'xyz', 5, 'pqr', 7, -5, -12.22]
+# Number of integers in the said mixed list:
+# 6
+
+
+# Exp : integer ante positive number (positive integer) iena vundavochu leda(negative integer) iena vundavocchu kaaani float matram vundakudadu.
+
+
+def count_int(list_obj):
+    count = 0
+    for x in list_obj:
+        if type(x) == int:
+            count+=1
+    return count
+
+
+# print(count_int(a))
+
+# Model : 2 isinstance method.
+
+def is_in(list_obj):
+    count = 0
+    for x in list_obj:
+        if isinstance(x, int):
+            count += 1
+    return count
+
+
+print(is_in(a))
+"""
+
+# 107. Write a Python program to remove a specified column from a given nested list.
+# Original Nested list:
+a = [[1, 2, 3], [2, 4, 5], [1, 1, 1]]
+# After removing 1st column:
+# [[2, 3], [4, 5], [1, 1]]
+# Original Nested list:
+b = [[1, 2, 3], [-2, 4, -5], [1, -1, 1]]
+# After removing 3rd column:
+# [[1, 2], [-2, 4], [1, -1]]
 
 
 

@@ -530,7 +530,6 @@ def new_list(list1, number):
 print(new_list(["p", "q"], 5))
 """
 
-
 # 36.Write a Python program to get variable unique identification number or string.
 # less important
 """
@@ -1421,8 +1420,8 @@ def mat_using_list_comp(rows, columns):
 
 print(mat_using_list_comp(int(input("Enter the number of rows : ")), int(input("Enter the number of columns: "))))
 """
-
-# Model :
+"""
+# Model :  Matrix model rows from console, column from console, add every row and add every column ....
 
 
 # 87.Write a Python program to read a matrix from console and print the sum for each column.
@@ -1432,7 +1431,7 @@ print(mat_using_list_comp(int(input("Enter the number of rows : ")), int(input("
 def create_matrix(rows, columns):
     matrix = [[int(input("Enter the column element: ")) for j in range(columns)]for i in range(rows)]
     for row in matrix:
-        print(' '.join(map(str, row)))
+        print(' '.join(map(str, row)))        # this line is very very very important ..... to print matrix with out any square braces.
 
     for i in range(rows):
         sum_rows = 0
@@ -1446,12 +1445,62 @@ def create_matrix(rows, columns):
         print('sum of' + str(i+1), ":" + str(sum_columns))
 
 
-create_matrix(int(input("Enter the number of rows :")), int(input("Enter the number of columns :")))
+# create_matrix(int(input("Enter the number of rows :")), int(input("Enter the number of columns :")))
+
+
+def mat(rows, columns):
+    matrix = [[int(input("Enter the elements for each column : "))for j in range(columns)]for i in range(rows)]
+    for row in matrix:
+        print(' '.join(map(str, row)))
+
+    for i in range(rows):
+        sum_rows = 0
+        for j in range(columns):
+            sum_rows += matrix[i][j]
+        print('The sum of ', str(i+1), 'row is :', sum_rows)
+
+    for i in range(rows):
+        sum_columns = 0
+        for j in range(columns):
+            sum_columns += matrix[j][i]
+        print('The sum of ', str(i+1), sum_columns)
+
+
+print(mat(int(input("Enter the number of rows :")), int(input("Enter the number of columns :"))))
 
 
 
 
+# 88. Write a Python program to read a square matrix from console and print the sum of matrix primary diagonal.
+# Accept the size of the square matrix and elements for each column separated with a space (for every row) as input from the user.
+# Input the size of the matrix: 3
+# 2 3 4
+# 4 5 6
+# 3 4 7
+# Sum of matrix primary diagonal:
+# 14
 
+
+# Exp : square matrix : If a matrix order is n x n, then it is a square matrix. ex: 3X3, 4X4, 5X5, 6X6 etc.
+
+
+def square_matrix(rows, columns):
+    matrix = [[int(input("Enter the elements :")) for j in range(columns)] for i in range(rows)]
+    for row in matrix:
+        print(' '.join(map(str, row)))
+    primary_diagonal = 0
+    for i in range(len(matrix)):
+
+        for j in range(len(matrix[i])):
+            if i == j:
+                primary_diagonal = primary_diagonal + matrix[i][j]
+
+    return primary_diagonal
+
+
+print(square_matrix(int(input("Enter the number of rows :")), int(input("Enter the number of columns :"))))
+
+"""
 """
 # 89. Write a Python program to Zip two given lists of lists.
 # Original lists:
@@ -1515,25 +1564,25 @@ def count_num(list_obj):
 print(count_num_of_lists(b))
 
 """
-
+"""
 """
 # Model : max, min length kaligina lists kanukkovali.
 
 # 91. Write a Python program to find the list with maximum and minimum length.
 # Original list:
-a = [[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]]
+# a = [[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]]
 # List with maximum length of lists:
 # (3, [13, 15, 17])
 # List with minimum length of lists:
 # (1, [0])
 # Original list:
-b= [[0], [1, 3], [5, 7], [9, 11], [3, 5, 7]]
+# b= [[0], [1, 3], [5, 7], [9, 11], [3, 5, 7]]
 # List with maximum length of lists:
 # (3, [3, 5, 7])
 # List with minimum length of lists:
 # (1, [0])
 # Original list:
-c=[[12], [1, 3], [1, 34, 5, 7], [9, 11], [3, 5, 7]]
+# c=[[12], [1, 3], [1, 34, 5, 7], [9, 11], [3, 5, 7]]
 # List with maximum length of lists:
 # (4, [1, 34, 5, 7])
 # List with minimum length of lists:
@@ -1542,58 +1591,58 @@ c=[[12], [1, 3], [1, 34, 5, 7], [9, 11], [3, 5, 7]]
 # Model : 1  
 
 # Exp: list lo vunns edo oka object ni max or min ga tesukoni dani adharamga compare cheyyadam
-
-def max_min(list_obj):
-
-    maxa = list_obj[0]
-    mina = list_obj[0]
-    for x in list_obj:
-        if len(x) > len(maxa):
-            maxa = x
-        elif len(x) < len(mina):
-            mina = x
-
-    return [(maxa, len(maxa)), (mina, len(mina))]
-
-print(max_min(b))
-
+#
+# def max_min(list_obj):
+#
+#     maxa = list_obj[0]
+#     mina = list_obj[0]
+#     for x in list_obj:
+#         if len(x) > len(maxa):
+#             maxa = x
+#         elif len(x) < len(mina):
+#             mina = x
+#
+#     return [(maxa, len(maxa)), (mina, len(mina))]
+#
+# print(max_min(b))
+#
 
 # Model: 2
 
 # NEW : max(object, key =len) max function lo key pass cheyyadam.
-
-def max_list(list_obj):
-    max_len = max(len(x)for x in list_obj)
-    max_list = max(list_obj, key=len)
-
-    return max_len, max_list
-
-print(max_list(b))
-
-
-def min_list(list_obj):
-    min_length = min(len(x) for x in list_obj)
-    min_list = min(list_obj, key=len)
-
-    return min_length, min_list
-
-print(min_list(b))
+#
+# def max_list(list_obj):
+#     max_len = max(len(x)for x in list_obj)
+#     max_list = max(list_obj, key=len)
+#
+#     return max_len, max_list
+#
+# print(max_list(b))
+#
+#
+# def min_list(list_obj):
+#     min_length = min(len(x) for x in list_obj)
+#     min_list = min(list_obj, key=len)
+#
+#     return min_length, min_list
+#
+# print(min_list(b))
 """
 """
 # 92. Write a Python program to check if a nested list is a subset of another nested list.
 # Original list:
-a = [[1, 3], [5, 7], [9, 11], [13, 15, 17]]
-b =[[1, 3], [13, 15, 17]]
+# a = [[1, 3], [5, 7], [9, 11], [13, 15, 17]]
+# b =[[1, 3], [13, 15, 17]]
 # If the one of the said list is a subset of another.:
 # True
 # Original list:
-c = [[[1, 2], [2, 3]], [[3, 4], [5, 6]]]
-d = [[[3, 4], [5, 6]]]
+# c = [[[1, 2], [2, 3]], [[3, 4], [5, 6]]]
+# d = [[[3, 4], [5, 6]]]
 # If the one of the said list is a subset of another.:
 # True
 # Original list:
-e = [[[1, 2], [2, 3]], [[3, 4], [5, 7]]]
-f = [[[3, 4], [5, 6]]]
+# e = [[[1, 2], [2, 3]], [[3, 4], [5, 7]]]
+# f = [[[3, 4], [5, 6]]]
 # If the one of the said list is a subset of another.:
 # False
 
@@ -1603,28 +1652,27 @@ f = [[[3, 4], [5, 6]]]
 # Appudu object(a) anedi subset avutundi object(b) anedi super set avutundi.
 
 # Model: 1
-
-def check(list1, list2):
-
-    exist = True
-    for x in list2:
-        if x not in list1:
-            exist = False
-    return exist
-
-
-print(check(c, d))
-
-
-def checking(list1, list2):
-    return all(x in list1 for x in list2)    # Note: all function lo condition jagrathaga rayali
-
+#
+# def check(list1, list2):
+#
+#     exist = True
+#     for x in list2:
+#         if x not in list1:
+#             exist = False
+#     return exist
+#
+#
+# print(check(c, d))
+#
+#
+# def checking(list1, list2):
+#     return all(x in list1 for x in list2)    # Note: all function lo condition jagrathaga rayali
+#
 
 # print(checking(a, b))
 
 """
-
-
+"""
 """
 # Model: Counting number of sublists contains a particular element.
 
@@ -1657,23 +1705,13 @@ def count_particular_element(list_obj, element):
 print(count_particular_element(b, "E"))
 
 """
-
-
-
-
-
-
-
-
-
-
-
+"""
 """
 # Model : Counting unique sublist's in a lists
 
 # 94. Write a Python program to count number of unique sublists within a given list.
 # Original list:
-a = [[1, 3], [5, 7], [1, 3], [13, 15, 17], [5, 7], [9, 11]]
+# a = [[1, 3], [5, 7], [1, 3], [13, 15, 17], [5, 7], [9, 11]]
 # Number of unique lists of the said list:
 # {(1, 3): 2, (5, 7): 2, (13, 15, 17): 1, (9, 11): 1}
 # Original list:
@@ -1688,22 +1726,22 @@ a = [[1, 3], [5, 7], [1, 3], [13, 15, 17], [5, 7], [9, 11]]
 
 
 # Concept : list's cannot be act as a dict keys.
-
-
-def count_unique(list_obj):
-    result = {}    # initializing dictionary
-    for i in a:
-        if tuple(i) not in result:  # manam ikkada tuple loki marchali ledante dict keys ga nested lists aaccept cheyyadu.  
-            result[tuple(i)] = 1    # manam ikkada tuple loki marchali ledante dict keys ga nested lists aaccept cheyyadu.
-        else:
-            result[tuple(i)] += 1  # manam ikkada tuple loki marchali ledante dict keys ga nested lists aaccept cheyyadu.
-    return result
-
-
-print(count_unique(a))
+#
+#
+# def count_unique(list_obj):
+#     result = {}    # initializing dictionary
+#     for i in a:
+#         if tuple(i) not in result:  # manam ikkada tuple loki marchali ledante dict keys ga nested lists aaccept cheyyadu.
+#             result[tuple(i)] = 1    # manam ikkada tuple loki marchali ledante dict keys ga nested lists aaccept cheyyadu.
+#         else:
+#             result[tuple(i)] += 1  # manam ikkada tuple loki marchali ledante dict keys ga nested lists aaccept cheyyadu.
+#     return result
+#
+#
+# print(count_unique(a))
 
 """
-
+"""
 """
 # 95. Write a Python program to sort each sublist of strings in a given list of lists.
 # Original list:
@@ -1725,30 +1763,31 @@ def sort_sublists(list_obj):
 print(sort_sublists(a))
 """
 """
+"""
 # Model : sort list by length and value
 
 # 96. Write a Python program to sort a given list of lists by length and value.
 # Original list:
-a = [[2], [0], [1, 3], [0, 7], [9, 11], [13, 15, 17]]
+# a = [[2], [0], [1, 3], [0, 7], [9, 11], [13, 15, 17]]
 # Sort the list of lists by length and value:
 # [[0], [2], [0, 7], [1, 3], [9, 11], [13, 15, 17]]
 
 
 # Exp: rendu saarlu sort cheyyali ::: okati normal sorting (value) redodhi length adharamga sort
-
-
-def sort_lists_len_and_value(list_obj):
-    list_obj.sort()                         # sort function nested list's ichinappudu prathi lists lo first elemant adharamga nested lists order ni sort chestundi
-    # print(list_obj)     # for understanding purpose.
-    list_obj.sort(key=len)  # based on length it is sorted.
-    return list_obj
-
-
-print(sort_lists_len_and_value(a))
+#
+#
+# def sort_lists_len_and_value(list_obj):
+#     list_obj.sort()                         # sort function nested list's ichinappudu prathi lists lo first elemant adharamga nested lists order ni sort chestundi
+#     # print(list_obj)     # for understanding purpose.
+#     list_obj.sort(key=len)  # based on length it is sorted.
+#     return list_obj
+#
+#
+# print(sort_lists_len_and_value(a))
 
 """
 """
-
+"""
 # Model : remove list's if element's of list's does not contain the specified range.
 
 # 97. Write a Python program to remove sublists from a given list of lists, which contains an element outside a given range.
@@ -1767,7 +1806,7 @@ def remove_lists(list_obj, left_range, right_range):
 
 print(remove_lists(a, int(input("Enter the left range :")), int(input("Enter the right range : "))))
 """
-
+"""
 """
 # Method : list lo vunna prathi word scramble cheyyali..
 
@@ -1791,19 +1830,19 @@ a = ['Python', 'list', 'exercises', 'practice', 'solution']
 # original list lo vunn elements ni matrame marustundi.
 
 #
-
-from random import shuffle, sample
-
-
-def shuff_items(list_obj):
-    list_obj = list(list_obj)  # ['p', 'y', 't', 'h', 'o', 'n']  >>>> string ni list loki maariste ee vidham ga vastundi.
-    shuffle(list_obj)     # ['h', 't', 'n', 'o', 'y', 'p']  >>> original list lo vunna elemants ee vidhamga
-    return ''.join(list_obj)  # 'htnoyp' >>>>> ee vidham ga list lo vunnavanni join avutundi.
-
+#
+# from random import shuffle, sample
+#
+#
+# def shuff_items(list_obj):
+#     list_obj = list(list_obj)  # ['p', 'y', 't', 'h', 'o', 'n']  >>>> string ni list loki maariste ee vidham ga vastundi.
+#     shuffle(list_obj)     # ['h', 't', 'n', 'o', 'y', 'p']  >>> original list lo vunna elemants ee vidhamga
+#     return ''.join(list_obj)  # 'htnoyp' >>>>> ee vidham ga list lo vunnavanni join avutundi.
+#
 
 # Note : join lo shuffle rayakudadu >>> shuffle function returns nothing.
 
-print([shuff_items(x)for x in a])   # print() function lo manam list comprehension raasi andulo manam shuffle functio ni call cchestam.
+# print([shuff_items(x)for x in a])   # print() function lo manam list comprehension raasi andulo manam shuffle functio ni call cchestam.
 
 # Method : By using sample function.
 
@@ -1811,12 +1850,12 @@ print([shuff_items(x)for x in a])   # print() function lo manam list comprehensi
 
 #  sample(sequence, k)    >>>> k is nothing but size of returned list.
 
-print([''.join(sample(x, len(x))) for x in a])
+# print([''.join(sample(x, len(x))) for x in a])
 
 """
 
-"""
 
+"""
 # 99. Write a Python program to find the maximum and minimum values in a given heterogeneous list.
 # Original list:
 a = ['Python', 3, 2, 4, 5, 'version']
@@ -1830,40 +1869,42 @@ a = ['Python', 3, 2, 4, 5, 'version']
 
 # same thing with minimum tho.
 
-def max_min_in_hetro(list_obj):
-    maximum = 3
-    minimum = 2
-    for x in a:
-        if type(x) != str and x > maximum:
-            maximum = x
-        elif type(x) != str and x < minimum:
-            minimum = x
-
-    return 'The maximum value is = {} The minimum value is = {}'.format(maximum, minimum)
-
-
-print(max_min_in_hetro(a))
+# def max_min_in_hetro(list_obj):
+#     maximum = 3
+#     minimum = 2
+#     for x in a:
+#         if type(x) != str and x > maximum:
+#             maximum = x
+#         elif type(x) != str and x < minimum:
+#             minimum = x
+#
+#     return 'The maximum value is = {} The minimum value is = {}'.format(maximum, minimum)
+#
+#
+# print(max_min_in_hetro(a))
 
 
 # Model 2 with max() and min() func:
+#
+# def max_min(list_obj):
+#     return 'The maximum value = {} The minimum value is = {}'.format(max([x for x in list_obj if type(x) != str]), min([x for x in list_obj if type(x) != str]))
 
-def max_min(list_obj):
-    return 'The maximum value = {} The minimum value is = {}'.format(max([x for x in list_obj if type(x) != str]), min([x for x in list_obj if type(x) != str]))
 
-
-print(max_min(a))
+# print(max_min(a))
 
 # W3 method: isinstance
 
 
 # *** isinstance = it is used to check if specific element if of specific type...
+#
+# def max_min_val(list_val):
+#     max_val = max(i for i in list_val if isinstance(i, int))    # int iethene i loki vastundi
+#     min_val = min(i for i in list_val if isinstance(i, int))
+#     return max_val, min_val
+#
 
-def max_min_val(list_val):
-    max_val = max(i for i in list_val if isinstance(i, int))    # int iethene i loki vastundi
-    min_val = min(i for i in list_val if isinstance(i, int))
-    return max_val, min_val
 """
-
+"""
 """
 # Model : Finding common index elements
 
@@ -1914,18 +1955,118 @@ def common_by_zip(list1, list2, list3):
 
 
 print(common_by_zip(a, b, c))
-
+"""
 """
 
+# Model : nested list's sorting.
 
 
+# 101. Write a Python program to sort a given matrix in ascending order according to the sum of its rows.
+# Original Matrix:
+a = [[1, 2, 3], [2, 4, 5], [1, 1, 1]]
+# Sort the said matrix in ascending order according to the sum of its rows
+#  [[1, 1, 1], [1, 2, 3], [2, 4, 5]]
+# Original Matrix:
+b = [[1, 2, 3], [-2, 4, -5], [1, -1, 1]]
 
 
+# Sort the said matrix in ascending order according to the sum of its rows
+# [[-2, 4, -5], [1, -1, 1], [1, 2, 3]]
 
 
+def sorted_mat(list_obj):
+    return sorted(list_obj, key = lambda x:sum(x))
+
+print(sorted_mat(a))
+
+def sorted_matrix(list_obj):
+    return sorted(list_obj, key=sum)
+
+"""
+"""
+# 102. Write a Python program to extract specified size of strings from a give list of string values.
+# Original list:
+a = ['Python', 'list', 'exercises', 'practice', 'solution']
+# length of the string to extract:
+# 8
+# After extracting strings of specified length from the said list:
+# ['practice', 'solution']
 
 
+def extract_specified_size(list_obj, size):
+    return [x for x in list_obj if len(x) == size]
 
+
+print(extract_specified_size(a, 8))
+"""
+"""
+# 103. Write a Python program to extract specified number of elements from a given list, which follows each other continuously.
+# Original list:
+a = [1, 1, 3, 4, 4, 5, 6, 7]
+# Extract 2 number of elements from the said list which follows each other continuously:
+# [1, 4]
+# Original lists:
+b = [0, 1, 2, 3, 4, 4, 4, 4, 5, 7]
+# Extract 4 number of elements from the said list which follows each other continuously:
+# [4]
+
+from itertools import groupby
+
+def extract_num(list_obj, num):
+    return [i for i, j in groupby(list_obj) if len(list(j)) == 2]
+
+
+print(extract_num(a, 2))
+
+
+# Q) what is meany by groupby function ?
+
+# it groups the consicutive elements .... itertools.groupby(iterable_obj, key) 
+# the output of the function consists of keys and groups from the iterable.
+
+# it returns keys and its itrator object in tuples (these tuples contains all the consicutive items) 
+a = "aaabbbccccd"
+x = itertools.groupby(a)
+for k,g in x:
+    print(k, g)
+
+keys            iterator_objects
+a <itertools._grouper object at 0x000001E59C28DBE0>
+b <itertools._grouper object at 0x000001E59C28D9E8>
+c <itertools._grouper object at 0x000001E59C28DC18>
+d <itertools._grouper object at 0x000001E59C28DBE0>
+
+
+import itertools
+a = "aaabbbccccd"
+x = itertools.groupby(a)
+for k,g in x:
+    print(k, list(g))
+    
+a ['a', 'a', 'a']
+b ['b', 'b', 'b']
+c ['c', 'c', 'c', 'c']
+d ['d']    
+"""
+
+# 104. Write a Python program to find the difference between consecutive numbers in a given list.
+# Original list:
+a = [1, 1, 3, 4, 4, 5, 6, 7]
+# Difference between consecutive numbers of the said list:
+# [0, 2, 1, 0, 1, 1, 1]
+# Original list:
+b = [4, 5, 8, 9, 6, 10]
+# Difference between consecutive numbers of the said list:
+# [1, 3, 1, -3, 4]
+
+# Exp:
+
+
+def diff_consecutive(list_obj):
+    return [list_obj[i+1]-list_obj[i] for i in range(len(list_obj)-1)]
+
+
+print(diff_consecutive(a))
 
 
 

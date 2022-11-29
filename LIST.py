@@ -1428,6 +1428,11 @@ print(mat_using_list_comp(int(input("Enter the number of rows : ")), int(input("
 # Accept matrix rows, columns and elements for each column separated with a space(for every row) as input from the user.
 #
 
+
+# Note : sum of each rows/columns ni chesetappudu manam sum varible loops madhya lo pettali ledante manaki cumulative sum vastundi...
+
+# iko row/column malli daiki add avutundi ....so manam sum varible loops madhayalo ivvali.... 
+
 def create_matrix(rows, columns):
     matrix = [[int(input("Enter the column element: ")) for j in range(columns)]for i in range(rows)]
     for row in matrix:
@@ -1483,12 +1488,13 @@ print(mat(int(input("Enter the number of rows :")), int(input("Enter the number 
 
 # Exp : square matrix : If a matrix order is n x n, then it is a square matrix. ex: 3X3, 4X4, 5X5, 6X6 etc.
 
+# Note : primary diagonals ni add chese tappudu sum varible rendu loops bayata vundali.
 
 def square_matrix(rows, columns):
     matrix = [[int(input("Enter the elements :")) for j in range(columns)] for i in range(rows)]
     for row in matrix:
         print(' '.join(map(str, row)))
-    primary_diagonal = 0
+    primary_diagonal = 0  # sun varible rendu loops bayata vundali.
     for i in range(len(matrix)):
 
         for j in range(len(matrix[i])):
@@ -2129,6 +2135,10 @@ def is_in(list_obj):
 
 print(is_in(a))
 """
+"""
+# Model : removing specific column for matrix.
+
+# VIMP
 
 # 107. Write a Python program to remove a specified column from a given nested list.
 # Original Nested list:
@@ -2139,6 +2149,47 @@ a = [[1, 2, 3], [2, 4, 5], [1, 1, 1]]
 b = [[1, 2, 3], [-2, 4, -5], [1, -1, 1]]
 # After removing 3rd column:
 # [[1, 2], [-2, 4], [1, -1]]
+
+
+def remove_specific_column(list_obj, column):
+    for x in list_obj:
+        del x[column]
+    return list_obj
+
+
+print(remove_specific_column(a, int(input("Enter the specific column :"))))
+
+"""
+"""
+# Model : extracting specified column from matrix
+
+# 108. Write a Python program to extract a specified column from a given nested list.
+# Original Nested list:
+a = [[1, 2, 3], [2, 4, 5], [1, 1, 1]]
+# Extract 1st column:
+# [1, 2, 1]
+# Original Nested list:
+b = [[1, 2, 3], [-2, 4, -5], [1, -1, 1]]
+# Extract 3rd column:
+# [3, -5, 1]
+# Click me to see the sample solution
+
+# Exp: ikkada manam coloumn ni index dwara access chestam.
+
+def extracting(list_obj, specified_column):
+    return [x[specified_column] for x in list_obj]  # every nested list x loki veltundi daanni index dwara access chestam.
+
+
+print(extracting(a, int(input("Enter the specific column: "))))
+
+"""
+
+
+
+
+
+
+
 
 
 

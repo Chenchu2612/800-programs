@@ -2386,7 +2386,7 @@ print(sort_alphabaticall(input("Enter the string value: ")))
 # Note : ekkadithe sort() function rastamo aa line ni manam vere varible ki assign cheyyakudaddu.
 
 """
-
+"""
 # Model : Two strings are anagrams or not...
 
 # Exp :
@@ -2416,7 +2416,7 @@ if anagrams(string1) == anagrams(string2):
     print("Both strings are anagrams")
 else:
     print("Both strings are not anagrams")
-
+"""
 
 
 

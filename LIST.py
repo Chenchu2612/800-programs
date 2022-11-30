@@ -2674,7 +2674,9 @@ def prod_list(list_obj):
 
 print(prod_list(a))
 """
+"""
 
+# VIMP
 # Model : interleave multiple lists
 
 # interleave =  mixing together different topics
@@ -2694,7 +2696,8 @@ c = [100, 200, 300, 400, 500, 600, 700]
 
 
 def inter_leave_list(list1, list2, list3):
-    return [y for x in zip(list1, list2, list3) for y in x]
+    return [y for x in zip(list1, list2, list3) for y in x]   # x value lo prathi list loni 1st index element's vastundi daani nunchi manam okko elemant
+# manam tesukoni okkoka element ga vestam....
 
 
 # print(inter_leave_list(a, b, c))
@@ -2702,19 +2705,125 @@ def inter_leave_list(list1, list2, list3):
 
 i=0
 new_list = []
-while i <= len(a)-1:
-    new_list.extend([a[i], b[i], c[i]])
+while i <= len(a)-1:  # maam oka list ni index dwara access cheyyali ante len-1 cheyyali lednte list index out of range veltundi...
+    new_list.extend([a[i], b[i], c[i]])  # extend function lo eami rasina adi iterable lone vundali.....
     i += 1
 
 print(new_list)
 
+"""
 
-l = [1, 2, {3: [0, {5: [10, 11]}]}, 500]
+# Model :
+
+# # 127. Write a Python program to remove words from a given list of strings containing a character or string.
+# # Original list:
+# # list1:
+# a = ['Red color', 'Orange#', 'Green', 'Orange @', 'White']
+# # Character list:
+# b = ['#', 'color', '@']
+# # New list:
+# # ['Red', '', 'Green', 'Orange', 'White']
+#
 
 
-def access_element(list_obj):
-    return max([b for x in l if type(x) == dict for y in x.values() for z in y if type(z) == dict for a in z.values() for b in a])
 
 
-print(access_element(l))
+
+
+
+
+
+"""
+# 128. Write a Python program to calculate the sum of the numbers in a list between the indices of a specified range.
+# Original list:
+a = [2, 1, 5, 6, 8, 3, 4, 9, 10, 11, 8, 12]
+# Range: 8 , 10
+# Sum of the specified range:
+# 29
+
+# Exp : ikkada indices ni highlight cheyyali... ichina range of numbers nunchi  index ni access chesi sum cheyyali...
+
+# Range : 8 , 10 ani ichadu so manam 10+1 ani pettalli.(end_index+1) other wise end index not includes.
+
+
+def sum_of_ele(list_obj, start_index, end_index):
+    sum = 0
+    for i in range(start_index, end_index+1):  # end index+1 otherwise it won't includes...
+        sum += list_obj[i]
+
+    return sum
+
+
+print(sum_of_ele(a, int(input("Enter the start_index :")), int(input("Enter the end_index :"))))
+
+"""
+"""
+
+# Model: nested lists items reverse.
+
+# 129. Write a Python program to reverse each list in a given list of lists.
+# Original list of lists:
+a = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]]
+# Reverse each list in the said list of lists:
+# [[4, 3, 2, 1], [8, 7, 6, 5], [12, 11, 10, 9], [16, 15, 14, 13]]
+
+
+# Exp: manam prathi list lo vunna nested lists ni tesukoni danni sort() function dwara reverse chestamu....
+
+# With sort method. 
+
+def reverse_list(list_obj):
+    for x in list_obj:
+        x.sort(reverse= True)  # sort() dwara reverse chestamu....
+    return list_obj
+
+
+print(reverse_list(a))
+
+# WIthout sort method.
+
+new = []
+for x in a:
+    nest = []
+    for y in x:
+        nest = [y]+nest
+    new.append(nest)
+
+"""
+
+
+"""
+# 130. Write a Python program to count the same pair in three given lists.
+# Original lists:
+a=[1, 2, 3, 4, 5, 6, 7, 8]
+b=[2, 2, 3, 1, 2, 6, 7, 9]
+c=[2, 1, 3, 1, 2, 6, 7, 9]
+# Number of same pair of the said three given lists:
+# 3
+
+
+def count_pair(l1, l2, l3):
+    count =0
+    for i in range(len(a)-1):
+        if a[i] == b[i] == c[i]:
+            count += 1
+    return count
+
+
+print(count_pair(a, b, c))
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

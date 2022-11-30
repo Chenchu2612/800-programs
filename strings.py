@@ -2398,7 +2398,7 @@ print(sort_alphabaticall(input("Enter the string value: ")))
 
 
 def anagrams(str_obj):
-    str_list = [x.lower() for x in str_obj if x != " "]
+    str_list = [x.lower() for x in str_obj if x != " "]   # spaces remove cheyyadaniki and lower/upper loki marchukovadaniki.
     str_dict = {}
     for x in str_list:
         if x not in str_dict:

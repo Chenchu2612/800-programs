@@ -2391,6 +2391,330 @@ def check_unique(list_obj):
 
 """
 
+"""
+# Model : sort list of tuples based on given index.
 
 
+# 116. Write a Python program to sort a list of lists by a given index of the inner list.
+# Original list:
+a = [('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)]
+# Sort the said list of lists by a given index ( Index = 0 ) of the inner list
+# [('Beau Turnbull', 94, 98), ('Brady Kent', 97, 96), ('Greyson Fulton', 98, 99), ('Wyatt Knott', 91, 94)]
+# Sort the said list of lists by a given index ( Index = 2 ) of the inner list
+# [('Wyatt Knott', 91, 94), ('Brady Kent', 97, 96), ('Beau Turnbull', 94, 98), ('Greyson Fulton', 98, 99)]
+# Click me to see the sample solution
+
+# Exp : ikkada manam tuple objects ni sort cheyyali.... kaani tuple object lo vunna elements ni kaadu.... so manam direct ga sort and sorted function rayavochu.
+
+# sort : it is list method it does not retens nothing.....sorted : it is applicable on any iterable... it returns the modified iterable.
+
+
+# By using sort function:
+
+
+def sort_list_of_lists(list_obj, n):
+    list_obj.sort(key=lambda x: x[n], reverse=False)  # sort function retrns nothing it modifes the original lists only.
+    return list_obj
+
+
+print(sort_list_of_lists(a, int(input("Enter the index number :"))))
+
+
+# By using sorted function:
+
+
+def sorted_list_tuples(list_obj, n):
+    return sorted(list_obj, key=lambda x: x[n], reverse=False)
+
+
+print(sorted_list_tuples(a, int(input('Enter the index_number :'))))
+
+"""
+
+"""
+
+# Model : removing elements. which are present in the another list.
+
+
+# 117. Write a Python program to remove all elements from a given list present in another list.
+# Original lists:
+list1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+list2 = [2, 4, 6, 8]
+# Remove all elements from 'list1' present in 'list2:
+# [1, 3, 5, 7, 9, 10]
+
+
+def remove_elements(list_obj1, list_obj2):
+    return [x for x in list_obj1 if x not in list_obj2]
+
+
+# print(remove_elements(list1, list2))
+
+
+def remove_ele(list_obj1, list_obj2):
+    for x in list_obj2:
+        if x in list_obj1:
+            list_obj1.remove(x)
+
+    return list_obj1
+
+
+print(remove_ele(list1, list2))
+"""
+"""
+
+# Model : differnece between nth element and n+1th element.
+
+
+# 118. Write a Python program to find the difference between elements (n+1th - nth) of a given list of numeric values.
+# Original list:
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# Dfference between elements (n+1th - nth) of the said list :
+# [1, 1, 1, 1, 1, 1, 1, 1, 1]
+# Original list:
+b = [2, 4, 6, 8]
+# Dfference between elements (n+1th - nth) of the said list :
+# [2, 2, 2]
+
+
+# Exp: manam range length adharamga access chesi difference kanukkuntamu... length tesukune tappudu -1 cheyyali ledante index out of range vastudi
+
+# range(len(list)-1)
+
+def difference(list_obj):
+    return [list_obj[i+1]-list_obj[i] for i in range(len(list_obj)-1)]
+
+
+print(difference(b))
+
+"""
+"""
+# Model : substrings present in the given list of strings.
+
+# 119. Write a Python program to check if a substring presents in a given list of string values.
+# Original list:
+a = ['red', 'black', 'white', 'green', 'orange']
+# Substring to search:
+# ack
+# Check if a substring presents in the said list of string values:
+# True
+# Substring to search:
+# abc
+# Check if a substring presents in the said list of string values:
+# False
+
+# Exp : ichina substring....list lo vunna words lo vunte true ledante false...so true vaste akkaditho break cheseddam ledante daani tharuvatha vunna elements ni kuda
+# check chestundi.
+
+
+def check(list_obj, substring):
+    for word in list_obj:
+        if substring in word:  
+            result = True
+            break            # break ivvakapothe loop end varaku veltundi.
+        else:
+            result = False
+    return result
+
+
+print(check(a, input("Enter the value : ")))
+
+"""
+"""
+# Model : creating list with alternative elements....
+
+# 120. Write a Python program to create a list taking alternate elements from a given list.
+# Original list:
+a = ['red', 'black', 'white', 'green', 'orange']
+# List with alternate elements from the said list:
+# ['red', 'white', 'orange']
+# Original list:
+b = [2, 0, 3, 4, 0, 2, 8, 3, 4, 2]
+# List with alternate elements from the said list:
+# [2, 3, 0, 8, 4]
+
+# Exp:  1. by using range and step  2. by using index value. 
+
+# okkoka element vadili list create cheyyali.... range function lo start, stop, step ki madhya lo comma(,) ivvali .... slicing laga colons(:) ivvakudadu.
+
+def create_alternative(list_obj):
+    return 'New_list = {}'.format([list_obj[i] for i in range(0, len(list_obj), 2)])
+
+
+print(create_alternative(b))
+
+
+# W3 model:
+
+
+def alternate_elements(list_data):
+    result=[]
+    for item in list_data[::2]:  # start from beginig end to end of the list and step is 2  
+        result.append(item)
+    return result 
+
+
+"""
+"""
+# Model : finding nestedlist elements which are present in another given list
+
+# 121. Write a Python program to find the nested lists elements which are present in another list.
+# Original lists:
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+b = [[12, 18, 23, 25, 45], [7, 11, 19, 24, 28], [1, 5, 8, 18, 15, 16]]
+# Intersection of said nested lists:
+# [[12], [7, 11], [1, 5, 8]]
+
+# Exp: oka nested lists lo vunna elements ichina vere list lo vunte danni vunchukovali.  List_comp.
+
+
+def checking_lists(list_obj1, list_obj2):
+    return 'The new lists : {}'.format([[ele for ele in n_l if ele in list_obj1]for n_l in list_obj2])
+
+
+print(checking_lists(a, b))
+
+"""
+"""
+
+Model : Extract  common elements in all the nested lists.....
+
+# 122. Write a Python program to find common element(s) in a given nested lists.
+# Original lists:
+a = [[12, 18, 23, 25, 45], [7, 12, 18, 24, 28], [1, 5, 8, 12, 15, 16, 18]]
+# Common element(s) in nested lists:
+# [18, 12]
+
+# Exp : anni nested lists lo vunna common elements ni bayataki teyyali.
+1. first point  nested list lo duplicates remove cheyyali daiki set vadathamu(loop raasi prathi list ni set ga marustamu)...ee set ni reduce function lo pampinchi
+# common ga vundevi intersection method '&' use chesi common elements bayataki testamu.
+
+
+# reduce(lambda x,y :x&y, set)  >>> this is formula
+
+from functools import reduce
+
+
+def common_elements(list_obj):
+    return tuple(reduce(lambda i, j : i & j, (set(x) for x in list_obj)))
+
+
+print(common_elements(a))
+
+"""
+"""
+# Model : reverse the every word in the list.
+
+
+# 123. Write a Python program to reverse strings in a given list of string values.
+# Original lists:
+a =['Red', 'Green', 'Blue', 'White', 'Black']
+# Reverse strings of the said given list:
+# ['deR', 'neerG', 'eulB', 'etihW', 'kcalB']
+
+
+def str_reverse(str_obj):
+    new_str = ''
+    for x in str_obj:
+        new_str = x+new_str
+    return new_str
+
+# print("The reverse of each word in the string is :", [str_reverse(x) for x in a])  # if you have object
+print('The reverse of each word in the string is :', [str_reverse(x) for x in eval(input("Enter the list_obj :"))])  # input from the console...
+"""
+"""
+# Model : maximum product and minimum product of the list of tuples.
+
+# Exp: mundu manam list comprehension vaadi prathi tuple lo vunde elements ni product chesukuntam tharuvatha max ela kanukkovalo logic rastamu
+
+# list comprehension lo x,y ani kotha model tesukunnamu...
+
+# max_pro and min_pro ni initialize chesukuntam....
+
+
+
+def max_min_product(list_obj):
+    list1 = [x*y for x, y in list_obj]   # This is new for me... oka object lo rendu elemnts vunte adi x, y ki assign avutundi...okavela 3 vunte x,y,z
+    max_pro = list1[0]
+    min_pro = list1[0]
+    for x in list1[1:]:
+        if x > max_pro:   # x kanna ekkuva iethe max_pro = x ani tesukuntam 
+            max_pro = x
+        elif x < min_pro:
+            min_pro = x
+    return max_pro, min_pro
+
+
+print(max_min_product([(2, 7), (2, 6), (1, 8), (4, 9)]))
+
+"""
+"""
+
+# Model : product of unique numbers in a list.
+
+# 125. Write a Python program to calculate the product of the unique numbers of a given list.
+# Original List :
+a = [10, 20, 30, 40, 20, 50, 60, 40]
+# Product of the unique numbers of the said list: 720000000
+# Click me to see the sample solution
+
+# Exp : unique numbers ante duplicates ni remove cheyyali...remove chesina duplicates ni mltiplication cheyyali...don't use count method.
+
+def prod_list(list_obj):
+    new_list = []
+    prod = 1
+    for x in list_obj:
+        if x not in new_list:
+            new_list.append(x)
+    for x in new_list:
+        prod *= x
+
+    return prod
+
+
+print(prod_list(a))
+"""
+
+# Model : interleave multiple lists
+
+# interleave =  mixing together different topics
+
+# 126. Write a Python program to interleave multiple lists of the same length.
+# Original list:
+# list1:
+a = [1, 2, 3, 4, 5, 6, 7]
+# list2:
+b = [10, 20, 30, 40, 50, 60, 70]
+# list3:
+c = [100, 200, 300, 400, 500, 600, 700]
+# Interleave multiple lists:
+# [1, 10, 100, 2, 20, 200, 3, 30, 300, 4, 40, 400, 5, 50, 500, 6, 60, 600, 7, 70, 700]
+
+# Exp: interleave ante first indexing position lo prathi lists
+
+
+def inter_leave_list(list1, list2, list3):
+    return [y for x in zip(list1, list2, list3) for y in x]
+
+
+# print(inter_leave_list(a, b, c))
+
+
+i=0
+new_list = []
+while i <= len(a)-1:
+    new_list.extend([a[i], b[i], c[i]])
+    i += 1
+
+print(new_list)
+
+
+l = [1, 2, {3: [0, {5: [10, 11]}]}, 500]
+
+
+def access_element(list_obj):
+    return max([b for x in l if type(x) == dict for y in x.values() for z in y if type(z) == dict for a in z.values() for b in a])
+
+
+print(access_element(l))
 

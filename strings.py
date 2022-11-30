@@ -2386,3 +2386,47 @@ print(sort_alphabaticall(input("Enter the string value: ")))
 # Note : ekkadithe sort() function rastamo aa line ni manam vere varible ki assign cheyyakudaddu.
 
 """
+
+# Model : Two strings are anagrams or not...
+
+# Exp :
+
+# 1. mundu manam ichina string lo anni small/ capital letters ga marukovali and spaces remove chesukovali.
+# 2. mundu manam ichina string ki frequency kanukkune vidhamga code rasukovali
+# 3. input strings ni console dwara enter cheyyali.
+# 4.strings ni ee functionl loki pampi frequency check cheyyali.
+
+
+def anagrams(str_obj):
+    str_list = [x.lower() for x in str_obj if x != " "]
+    str_dict = {}
+    for x in str_list:
+        if x not in str_dict:
+            str_dict[x] = 1
+        else:
+            str_dict[x] += 1
+    return str_dict
+
+
+string1 = input("Enter the string1 :")
+string2 = input("Enter the string2 :")
+
+
+if anagrams(string1) == anagrams(string2):
+    print("Both strings are anagrams")
+else:
+    print("Both strings are not anagrams")
+
+
+
+
+
+
+
+
+
+
+
+
+
+

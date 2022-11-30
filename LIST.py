@@ -2736,7 +2736,7 @@ def remove_words(list_obj1, list_obj2):
     return new_list
 
 
-print(remove_words(a, b))
+# print(remove_words(a, b))
 
 
 
@@ -2769,8 +2769,8 @@ def sum_of_ele(list_obj, start_index, end_index):
 print(sum_of_ele(a, int(input("Enter the start_index :")), int(input("Enter the end_index :"))))
 
 """
-"""
 
+"""
 # Model: nested lists items reverse.
 
 # 129. Write a Python program to reverse each list in a given list of lists.
@@ -2790,19 +2790,22 @@ def reverse_list(list_obj):
     return list_obj
 
 
-print(reverse_list(a))
+# print(reverse_list(a))
 
 # WIthout sort method.
 
-new = []
-for x in a:
-    nest = []
-    for y in x:
-        nest = [y]+nest
-    new.append(nest)
+def reverse_new(list_obj):
+    new = []
+    for x in list_obj:
+        nest = []           
+        for y in x:
+            nest = [y]+nest
+        new.append(nest)         # ikkada for loop bayata nenu new.append(nest) ani raastunnanu.....adi first forloop ki rayali.....
 
+    return new
+
+print(reverse_new(a))
 """
-
 
 """
 # 130. Write a Python program to count the same pair in three given lists.
@@ -2825,10 +2828,24 @@ def count_pair(l1, l2, l3):
 print(count_pair(a, b, c))
 """
 
+# 131. Write a Python program to count the frequency of consecutive duplicate elements in a given list of numbers.
+# Original lists:
+a = [1, 2, 2, 2, 4, 4, 4, 5, 5, 5, 5]
+# Consecutive duplicate elements and their frequency:
+# ([1, 2, 4, 5], [1, 3, 3, 4])
 
 
+def freq_of_con_dup(list_obj):
+    freq = {}
+    for i in range(len(list_obj)-1):
+        if list_obj[i] == list_obj[i+1] and list_obj[i] not in freq:
+            freq[list_obj[i]] = 1
+        elif list_obj[i] == list_obj[i+1] and list_obj[i] in freq:
+            freq[list_obj[i]] += 1
+    return freq
 
 
+print(freq_of_con_dup(a))
 
 
 

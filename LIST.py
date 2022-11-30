@@ -2713,18 +2713,30 @@ print(new_list)
 
 """
 
+# ******* *****vvvvviiiiimmmmmppppp........
+
 # Model :
 
 # # 127. Write a Python program to remove words from a given list of strings containing a character or string.
 # # Original list:
 # # list1:
-# a = ['Red color', 'Orange#', 'Green', 'Orange @', 'White']
+a = ['Red color', 'Orange#', 'Green', 'Orange @', 'White']
 # # Character list:
-# b = ['#', 'color', '@']
+b = ['#', 'color', '@']
 # # New list:
 # # ['Red', '', 'Green', 'Orange', 'White']
 #
 
+
+def remove_words(list_obj1, list_obj2):
+    new_list=[]
+    for words in list_obj1:
+        new_words = ''.join([word for word in words.split() if not any([phrase in word for phrase in list_obj2])])
+        new_list.append(new_words)
+    return new_list
+
+
+print(remove_words(a, b))
 
 
 

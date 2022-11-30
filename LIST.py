@@ -2101,7 +2101,6 @@ print(average_part(a, b))
 
 """
 
-
 """
 # 106. Write a Python program to count integer in a given mixed list.
 # Original list:
@@ -2183,13 +2182,213 @@ def extracting(list_obj, specified_column):
 print(extracting(a, int(input("Enter the specific column: "))))
 
 """
+"""
+# 109. Write a Python program to rotate a given list by specified number of items to the right or left direction.
+# original List:
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# Rotate the said list in left direction by 4:
+# [4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4]
+# Rotate the said list in left direction by 2:
+#  [3, 4, 5, 6, 7, 8, 9, 10, 1, 2]
+# Rotate the said list in Right direction by 4:
+# [8, 9, 10, 1, 2, 3, 4, 5, 6]
+# Rotate the said list in Right direction by 2:
+# [9, 10, 1, 2, 3, 4, 5, 6, 7, 8]
+
+# Left direction ante positive and right direction ante negative.
+
+# left direction by 4 :
+
+print(a[4:]+a[:4])
+
+print(a[2:]+a[:2])
+print(a[-4:]+a[:-4])
+
+print(a[-2:]+a[:-2])
+
+"""
+"""
+# Model : highest repeated element.
+
+# 110. Write a Python program to find the item with maximum occurrences in a given list.
+# Original list:
+a = [2, 3, 8, 4, 7, 9, 8, 2, 6, 5, 1, 6, 1, 2, 3, 4, 6, 9, 9, 9, 9, 9, 1, 2]
 
 
+# Item with maximum occurrences of the said list:
+# 2
+
+def max_occur_element(list_obj):
+    d = {}
+    for x in list_obj:
+        if str(x) not in d.keys():
+            d[str(x)] = 1
+        else:
+            d[str(x)] += 1
+
+    return sorted(d.items(), key=lambda x: x[1], reverse=False)[-1][0]  # dict loni items() ni vaule base meeda manam sorted chesamu output list lo vuntundi.
+    # last tuple maximum occurance key and value so...-1 ante max occur key value pair daantlo 0 ante key and 1 ante value ani ardham
 
 
+# print(max_occur_element(a))
+
+# By using count funtion:
+
+# Exp: ikkada manaki rendu kavali ....okati maximum occurance item daani value... maximum occurance item ni result ga tesukoni and daani occurance ni---
+# max_occur ga tesukuntamu.
 
 
+def max_occurance(list_obj):
+    result = list_obj[0]
+    max_occur_value = 0
+    for x in list_obj:
+        max_occur_value_of_x = list_obj.count(x)
+        if max_occur_value_of_x > max_occur_value:
+            result = x
+            max_occur_value = max_occur_value_of_x
+    return 'The maximum occurance items : {}\n The number of times occured :{}'.format(result, max_occur_value)
 
 
+print(max_occurance(a))
+
+"""
+"""
+# Model : accessing multiple elements of specified index.
+
+
+# 111. Write a Python program to access multiple elements of specified index from a given list.
+# Original list:
+a = [2, 3, 8, 4, 7, 9, 8, 2, 6, 5, 1, 6, 1, 2, 3, 4, 6, 9, 1, 2]
+# Index list:
+b = [0, 3, 5, 7, 10]
+# Items with specified index of the said list:
+# [2, 4, 9, 2, 1]
+
+
+# Exp: index list istadu aa list lo vunna index adharamga original list lo vunna items ni access cheyyali.
+
+def access_items(list_obj, index_obj):
+    result = [list_obj[i] for i in index_obj]
+    return result
+
+print(access_items(a, b))
+
+"""
+"""
+#***Model : checking list is in sored order or not.
+
+# Vimp.
+
+# 112. Write a Python program to check whether a specified list is sorted or not.
+# Original list:
+a = [1, -2, 4, 6, 8, 10, 12, 14, 16, 17]
+# Is the said list is sorted!
+# True
+# Original list:
+b = [2, 3, 8, 4, 7, 9, 8, 2, 6, 5]
+# Is the said list is sorted!
+# False
+
+
+# Exp: oka previous value ni initialize chesukovali...tharuvatha logic ravai...
+
+def check_sorted(list_obj):
+    previous_element = list_obj[0]
+    for x in list_obj[1:]:
+        if x > previous_element:
+            previous_element = x
+            result = True
+        else:
+            result = False
+            break
+    return result
+
+
+print(check_sorted(a))
+"""
+"""
+# Model : removing duplicate dictionary in the list.
+
+# 113. Write a Python program to remove duplicate dictionary from a given list.
+# Original list with duplicate dictionary:
+a = [{'Green': '#008000'}, {'Black': '#000000'}, {'Blue': '#0000FF'}, {'Green': '#008000'}]
+# After removing duplicate dictionary of the said list:
+# [{'Black': '#000000'}, {'Blue': '#0000FF'}, {'Green': '#008000'}]
+
+def removing_dup_dict(list_obj):
+    new_list = []
+    for x in list_obj:
+        if x not in new_list:
+            new_list.append(x)
+
+    return new_list
+
+
+print(removing_dup_dict(a))
+"""
+
+"""
+# Model : extracting elements in the list of tuples...
+
+# 114. Write a Python program to extract the nth element from a given list of tuples.
+# Original list:
+a = [('Greyson Fulton', 98, 99), ('Brady Kent', 97, 96), ('Wyatt Knott', 91, 94), ('Beau Turnbull', 94, 98)]
+# Extract nth element ( n = 0 ) from the said list of tuples:
+# ['Greyson Fulton', 'Brady Kent', 'Wyatt Knott', 'Beau Turnbull']
+# Extract nth element ( n = 2 ) from the said list of tuples:
+# [99, 96, 94, 98]
+
+
+# simple list comprehension:
+
+
+def extracting_list(list_obj, n):
+    return [x[n] for x in list_obj]
+
+
+print(extracting_list(a, int(input("Enter the list_obj : "))))
+
+def extracting(list_obj, n):
+    return list(map(lambda x: x[n], list_obj))
+
+
+# print(extracting(a, int(input("Enter the element : "))))
+
+"""
+"""
+# Model : checking elements are unique or not
+
+# 115. Write a Python program to check if the elements of a given list are unique or not.
+# Original list:
+a = [1,2,3,4]
+# Is the said list contains all unique elements!
+# False
+# Original list:
+# [2, 4, 6, 8, 10, 12, 14]
+# Is the said list contains all unique elements!
+# True
+
+# Exp : elements repeated ga vundakudadu.
+
+
+# Exp: new_list okati tesukoni daantlo not in operator vaadi append chestamu...tharuvatha condition check chestamu....
+
+# Model: 1
+
+def check_unique(list_obj):
+    new_list = []
+    for x in list_obj:
+        if x not in new_list:
+            new_list.append(x)   # ikkada append chestene ee element vunda leda ani new list lo chudagalam.
+            result = True
+        else:
+            result = False
+            break
+    return result
+
+
+# print(check_unique(a))
+
+"""
 
 

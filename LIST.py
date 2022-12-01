@@ -3020,7 +3020,7 @@ def duplicates_list(list_obj):
 
 print(duplicates_list(a))
 """
-
+"""
 # Model : first even numbers and first odd numbers in a list...
 
 # 137. Write a Python program to find a first even and odd number in a given list of numbers.
@@ -3029,23 +3029,277 @@ a = [1, 3, 5, 7, 4, 1, 6, 8]
 # First even and odd number of the said list of numbers:
 # (4, 1)
 
-def first_even_odd(list_obj):
+# Exp : loop raasi break statement vadali...
+
+
+def first_even_first_odd(list_obj):
     first_even = None
     first_odd = None
     for x in list_obj:
         if x % 2 == 0:
             first_even = x
-            brea
-
+            break
+    for x in list_obj:
+        if x % 2 != 0:
+            first_odd = x
     return first_even, first_odd
 
 
-print(first_even_odd(a))
+print(first_even_first_odd(a))
+
+"""
+"""
+# Model : sorting of hetro genious elements.
+
+# 138. Write a Python program to sort a given mixed list of integers and strings. Numbers must be sorted before strings.
+# Original list:
+a = [19, 'red', 12, 'green', 'blue', 10, 'white', 'green', 1]
+# Sort the said mixed list of integers and strings:
+# [1, 10, 12, 19, 'blue', 'green', 'green', 'red', 'white']
+
+# Exp : list lo num and str type rendu istadu manam str ni saparate chesi sorted and int ni saparate chesi sorted chesi ee mothanni kalipi oka list ---
+
+#  ga chestamu.... so see bellow code.
+
+
+def sorting_lists(list_obj):
+    return sorted([x for x in list_obj if type(x) == int], reverse=False) + sorted([x for x in list_obj if type(x) == str], reverse=False)
 
 
 
+print(sorting_lists(a))
+
+"""
+
+"""
+# Model : sort numarical strings based on their numarical values
+
+# 139. Write a Python program to sort a given list of strings(numbers) numerically.
+# Original list:
+a = ['4', '12', '45', '7', '0', '100', '200', '-12', '-500']
+# Sort the said list of strings(numbers) numerically:
+# [-500, -12, 0, 4, 7, 12, 45, 100, 200]
 
 
+def sorting(list_obj):
+    # return sorted(list_obj, key=lambda x: int(x), reverse=False)     # it is for string output
+    # ( we can speccify sort ascending or sort decending by specify True or False)
+    list_obj.sort(key=lambda x:int(x), reverse=False)   # sorting by using sort() method str output
+
+    return list_obj
+
+
+# print(sorting(a))
+
+
+def sorting_int_output(list_obj):
+    # return sorted([int(x) for x in list_obj], reverse=False)   # this is int output
+    new_list = [int(x) for x in list_obj]    # for int output...
+    new_list.sort(reverse=False)
+    return new_list
+
+
+print(sorting_int_output(a))
+
+"""
+
+"""
+# 140. Write a Python program to remove the specific item from a given list of lists.
+# Original list of lists:
+a = [['Red', 'Maroon', 'Yellow', 'Olive'], ['#FF0000', '#800000', '#FFFF00', '#808000'], ['rgb(255,0,0)', 'rgb(128,0,0)', 'rgb(255,255,0)', 'rgb(128,128,0)']]
+# Remove 1st list from the saod given list of lists:
+# [['Maroon', 'Yellow', 'Olive'], ['#800000', '#FFFF00', '#808000'], ['rgb(128,0,0)', 'rgb(255,255,0)', 'rgb(128,128,0)']]
+# Remove 2nd list from the saod given list of lists:
+# [['Red', 'Yellow', 'Olive'], ['#FF0000', '#FFFF00', '#808000'], ['rgb(255,0,0)', 'rgb(255,255,0)', 'rgb(128,128,0)']]
+# Remove 4th list from the saod given list of lists:
+# [['Red', 'Maroon', 'Yellow'], ['#FF0000', '#800000', '#FFFF00'], ['rgb(255,0,0)', 'rgb(128,0,0)', 'rgb(255,255,0)']]
+
+
+# ikkada specific item ni remove cheyyamannadu so.. manam remove method ni vadavochu or slicing ni vada vochu....
+
+def remove_specific(list_obj, item):
+    new=[]
+    for x in list_obj:
+        x.remove(x[item-1])  # remove method....
+        new.append(x)
+    return new
+
+
+# print(remove_specific(a, int(input("Enter the item : "))))
+
+# Edi koddiga trickey :::: item no 1 annadante adi daani yokka index number 0 annamata....appudu item nunnchi -1 cheyyali ...rendo slicing lo manam
+
+# item ani iste chalu index ki manam iche item ki okati ekkuvaga vunntundi.... ee problem baga chudu...idi little trickey.... 
+
+
+def remove_slice(list_obj, item):
+    new = []
+    for x in list_obj:
+        new.append(x[:item-1]+x[item:])
+    return new
+
+
+print(remove_slice(a, int(input("Enter the item :"))))
+"""
+
+"""
+# Model : remove empty list
+
+# 141. Write a Python program to remove empty lists from a given list of lists.
+# Original list:
+a = [[], [], [], 'Red', 'Green', [1, 2], 'Blue', [], []]
+# After deleting the empty lists from the said lists of lists
+# ['Red', 'Green', [1, 2], 'Blue']
+
+
+# Exp : manam len function base chesukoni vadathamu ..... kothaga list comprehension method kanukkunam chudu
+
+def remove_empty_list(list_obj):
+    # return [x for x in list_obj if len(x) >= 1]
+    return [x for x in list_obj if x]   # new for me by W3 schools.
+
+
+print(remove_empty_list(a))
+
+"""
+
+"""
+# Model : sum of specific column......edemi pedda brahma vidhya kaadu.....
+
+# 142. Write a Python program to sum a specific column of a list in a given list of lists.
+# Original list of lists:
+a = [[1, 2, 3, 2], [4, 5, 6, 2], [7, 8, 9, 5]]
+# Sum: 1st column of the said list of lists:
+# 12
+# Sum: 2nd column of the said list of lists:
+# 15
+# Sum: 4th column of the said list of lists:
+# 9
+
+
+# Exp: list lo vunde prathi element okkoka column ni suchistundi ex : first list tesukuntam andulo 1st column 1, 2nd column 2, 3rd column 3 and 4th column 2
+
+# ade vidhmga prathi nested list's ki varthistudi.... ikkada column ki index ki difference vundi 1 column ante daani yokka index lists lo 0
+
+# ade vidhamga 2nd column ante daani yokka index every list lo 1 annamanta..... idi ardham chesukunte chalu manam.....
+
+# ee problem lo manam mundhu ea column kavalo danni  extract chesukoni daani tharuvatha sum chesukovali....
+
+def sum_of_specific(list_obj, column):
+    specific_column_items= [x[column-1]for x in list_obj]
+    sum = 0
+    for x in specific_column_items:
+        sum += x
+    return sum
+
+
+print(sum_of_specific(a, int(input("Enter the specific column:"))))
+
+
+
+"""
+
+"""
+# Model : Frequency of nested lists.
+
+# 143. Write a Python program to get the frequency of the elements in a given list of lists.
+# Original list of lists:
+a = [[1, 2, 3, 2], [4, 5, 6, 2], [7, 8, 9, 5]]
+# Frequency of the elements in the said list of lists:
+# {1: 1, 2: 3, 3: 1, 4: 1, 5: 2, 6: 1, 7: 1, 8: 1, 9: 1}
+# Click me to see the sample s
+
+# Exp: mundhu nestes lists lo vunnavanni oka normal list loki techukovali( by using list comprehension) aa tharuvatha daaniki frequesncy ni kanukkovali..
+
+
+def freq_of_nested(list_obj):
+    freq = {}
+    new_list = [y for x in a for y in x]
+    for x in new_list:
+        if x not in freq:
+            freq[x] = 1
+        else:
+            freq[x] += 1
+    return freq
+
+
+print(freq_of_nested(a))
+"""
+"""
+# Model : extract specific element's from the matrix
+
+# 144. Write a Python program to extract every first or specified element from a given two-dimensional list.
+# Original list of lists:
+
+a = [[1, 2, 3, 2], [4, 5, 6, 2], [7, 1, 9, 5]]
+# Extract every first element from the said given two dimensional list:
+# [1, 4, 7]
+# Extract every third element from the said given two dimensional list:
+# [3, 6, 9]
+
+
+def ext_specific(list_obj, specific):
+    return [x[specific-1] for x in a]
+
+
+print(ext_specific(a, int(input("Enter the number specific item :"))))
+
+"""
+"""
+# Exp : generating one number....from a range.... that number must not contains in the specific list
+
+# 145. Write a Python program to generate a number in a specified range except some specific numbers.
+# Generate a number in a specified range (1, 10) except
+a = [2, 9, 10]
+# 7
+# Generate a number in a specified range (-5, 5) except
+b = [-5, 0, 4, 3, 2]
+# -4
+
+# Exp : ikkada generate a number annadu kabatti...manam oka number ni generate cheyyali...so random functio vadali....manam print chese number anedi
+
+# ichina specific list lo vundakudadu...
+
+
+# choice::: it will extract the random element from the given iterable() >>>> random.choice(iterable)  
+
+from random import choice
+
+
+def generate_num(start_range, end_range, list_obj):
+    return random.choice([i for i in range(start_range, end_range+1) if i not in list_obj])  # we have to include end number so +1 must be includes..
+
+# the specific object is must not be in the specified list.... 
+
+
+print(generate_num(int(input("Enter the start range :")), int(input("Enter the end range:")), eval(input(":Enter the list_obj"))))
+"""
+
+
+# 146. Write a Python program to compute the sum of digits of each number of a given list.
+# Original tuple:
+a= [10, 2, 56]
+# Sum of digits of each number of the said list of integers:
+# 14
+# Original tuple:
+b =[10, 20, 4, 5, 'b', 70, 'a']
+# Sum of digits of each number of the said list of integers:
+# 19
+# Original tuple:
+c = [10, 20, -4, 5, -70]
+# Sum of digits of each number of the said list of integers:
+# 19
+
+
+def sum_of_digits(list_obj):
+    new = ''.join([str(num)for num in list_obj if type(num) != str])
+    sum = 0
+    for ch in new:
+        if ch.isdigit():
+            sum +=
+
+    return sum
+print(sum_of_digits(c))
 
 
 

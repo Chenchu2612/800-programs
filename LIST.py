@@ -2723,13 +2723,15 @@ print(new_list)
 a = ['Red color', 'Orange#', 'Green', 'Orange @', 'White']
 # # Character list:
 b = ['#', 'color', '@']
+
+
 # # New list:
 # # ['Red', '', 'Green', 'Orange', 'White']
 #
 
 
 def remove_words(list_obj1, list_obj2):
-    new_list=[]
+    new_list = []
     for words in list_obj1:
         new_words = ''.join([word for word in words.split() if not any([phrase in word for phrase in list_obj2])])
         new_list.append(new_words)
@@ -2737,12 +2739,6 @@ def remove_words(list_obj1, list_obj2):
 
 
 # print(remove_words(a, b))
-
-
-
-
-
-
 
 
 """
@@ -3559,8 +3555,8 @@ print(mrege(a, b))
 
 """
 
-
-# Model : adding of two list elements... from left to right...
+"""
+# Model : adding of two list elements... from left to right... dentlo rendu models vunnai ...okati left lo add cheyyandi ani ...rendu right lo add cheyyandi ani
 
 # 155. Write a Python program to add two given lists of different lengths, start from left.
 # Original lists:
@@ -3575,25 +3571,53 @@ d = [2, 4, -3]
 # [3, 6, 0, 4, 5, 6]
 
 
-def adding_list_left_to_right(list_obj1, list_obj2):
-    f_len = len(list_obj1) - (len(list_obj2)-1)
-    for i in range(len(list_obj2)):
-        if f_len -i >= len(list_obj1):
-            break
-        else:
-            list_obj1[i] += list_obj2[i]
+# Exp : index adharam ga add cheyyali....rendu lists lo eadithe thakkuva length vuntundo daani length tesukovali...iteration jaripi add chesi pedda list---
+# ni return cheyyali
 
-    return list_obj1
+def adding_list_left_to_right(list_obj1, list_obj2):
+    for i in range(len(list_obj2)):
+        list_obj1[i] += list_obj2[i]
+
+    return list_obj1    # len eadi iethe ekkuva vuntundo danni return cheyyali...
 
 
 print(adding_list_left_to_right(c, d))
 
+"""
+
+# Model : different lengths of lists .... add from right..
 
 
+# 156. Write a Python program to add two given lists of different lengths, start from right.
+# Original lists:
+a = [2, 4, 7, 0, 5, 8]
+b = [3, 3, -1, 7]
+# Add said two lists from left:
+# [2, 4, 10, 3, 4, 15]
+# Original lists:
+c = [1, 2, 3, 4, 5, 6]
+d = [2, 4, -3]
 
 
+# Add said two lists from left:
+# [1, 2, 3, 6, 9, 3]
 
 
+# MISTAKES : manam oka list ni normal ga access cheyyalante range(len(list)) ani raste chalu ....
+
+# ade oka list ni reverse nunchi access cheyyali ante range 1 nunchi start cheyyali len()+1 cheyyali...range lo starting ki okati penchithe length ki--
+
+# kuda okati penchali... if u start from 1 add +1 to length.... range(1, len(list)+1)
+
+
+def add_from_right(list_obj1, list_obj2):
+    for i in range(1, len(list_obj2)+1):   # akkada okati penchithe ikkada kuda okati penchali....
+        list_obj1[-i] += list_obj2[-i]
+
+    return list_obj1   # len eadi ithe peddado danni return cheyyali...
+
+
+print(add_from_right(c, d))
 
 
 

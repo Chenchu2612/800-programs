@@ -3275,7 +3275,7 @@ def generate_num(start_range, end_range, list_obj):
 print(generate_num(int(input("Enter the start range :")), int(input("Enter the end range:")), eval(input(":Enter the list_obj"))))
 """
 
-
+"""
 # 146. Write a Python program to compute the sum of digits of each number of a given list.
 # Original tuple:
 a= [10, 2, 56]
@@ -3290,22 +3290,160 @@ c = [10, 20, -4, 5, -70]
 # Sum of digits of each number of the said list of integers:
 # 19
 
+# Exp : sum of digits ante number lo vunde prathi didgit ni add cheyyali...positive vunna negative vunna add cheyyali...
 
-def sum_of_digits(list_obj):
-    new = ''.join([str(num)for num in list_obj if type(num) != str])
-    sum = 0
-    for ch in new:
-        if ch.isdigit():
-            sum +=
+# ichina number ni string loki marchukovali... dantlo nunchi neagtive symbole ni remove cheyyadaniki isdigit() ni vaadi str nunchi int loki marchukoni add cheyyali...
 
+# manam isinstance mathod kuda vadocchu......isinstance(num, type)
+
+
+def add_digit(list_obj):   #### we can use isinstance() mathod also...
+    new = ''.join([str(num) for num in list_obj if type(num) != str])  # removing alphabets and extracting only numbers with signs also... it is in straing formate.
+    print(new)  # for understanding purpose...see the join function output....
+    sum = 0  # initializing sum varible...
+    for num in new:
+        if num.isdigit():  # removing the negative signs by using isdigit function()....
+            sum += int(num)  # converting the str to int...and adding...
     return sum
-print(sum_of_digits(c))
+
+
+print(add_digit(a))
+
+"""
+
+"""
+# 147. Write a Python program to interleave two given list into another list randomly.
+# Original lists:
+a = [1, 2, 7, 8, 3, 7]
+b = [4, 3, 8, 9, 4, 3, 8, 9]
+# Interleave two given list into another list randomly:
+# [4, 1, 2, 3, 8, 9, 4, 3, 7, 8, 9, 8, 3, 7]
+
+
+# The sample() method returns a list with a randomly selection of a specified number of items from a sequnce.
+
+# idi new list ni create chestundi.....random ga iterable lo vunde numbers ni select chesukoni...
+
+# Note: This method does not change the original sequence.
+
+# random.sample(sequence, k)   >>>>> k >Required. The size of the returned list... sequence and k is for length of the returned list...
+
+from random import shuffle
+ 
+
+def inter_leave_randomly(list_obj1, list_obj2):
+    return random.sample((list_obj1+list_obj2), len(list_obj1+list_obj2))
+
+
+print(inter_leave_randomly(a, b))
+"""
+"""
+# Model : remove words from specific words from a given list...
+
+# 148. Write a Python program to remove specific words from a given list.
+# Original list:
+a = ['red', 'green', 'blue', 'white', 'black', 'orange']
+# Remove words:
+b = ['white', 'orange']
+# After removing the specified words from the said list:
+# ['red', 'green', 'blue', 'black']
+
+
+# We can do it by using list comprehension and by using lambda and filter function
+
+# By using list_comprehension.
+
+def new_list(list_obj1, list_obj2):
+    return [x for x in list_obj1 if x not in list_obj2]
+
+
+# print(new_list(a, b))
+
+#  By using lambda
+
+# filter(function, iterable) 
+
+
+def new_list_lambda(list_obj1, list_obj2):
+    return list(filter(lambda x: x not in list_obj2, list_obj1))  # lambda function and iterable....
+
+# >>>>>>>>>>>>>>>>>>>>>ikkada varaku lambda function..<>>idi iterable>>><<<<<<
+
+
+print(new_list_lambda(a, b))
+
+"""
+
+"""
+
+# *********Moodel : all possible combinations...
+
+
+# 149. Write a Python program to get all possible combinations of the elements of a given list.
+# Original list:
+a = ['orange', 'red', 'green', 'blue']
+# All possible combinations of the said list's elements:
+# [[], ['orange'], ['red'], ['red', 'orange'], ['green'], ['green', 'orange'], ['green', 'red'], ['green', 'red', 'orange'], ['blue'], ['blue', 'orange'], ['blue', 'red']
+#  ['blue', 'red', 'orange'], ['blue', 'green'], ['blue', 'green', 'orange'], ['blue', 'green', 'red'], ['blue', 'green', 'red', 'orange']]
+
+# Exp: manam all posiible combinations ni kannukkovali....
+
+# 1. mundu manam len of list == 0 iethe emepty list ni retur cheyyali [[]]
+
+# 2. recursive function dwara ee logic rayali...
+
+
+def all_possible_comb(list_obj):
+    if len(list_obj) == 0:
+        return [[]]
+    result = []
+    for x in all_possible_comb(list_obj[1:]):
+        result += [x, x+[list_obj[0]]]     # This is very important line.....i dont understand...
+
+    return result
+
+
+print(all_possible_comb(a))
+
+"""
+"""
+# Model : reverse the original list...
+
+# 150. Write a Python program to reverse a given list of lists.
+# Original list:
+a = [['orange', 'red'], ['green', 'blue'], ['white', 'black', 'pink']]
+# Reverse said list of lists:
+# [['white', 'black', 'pink'], ['green', 'blue'], ['orange', 'red']]
+# Original list:
+b = [[1, 2, 3, 4], [0, 2, 4, 5], [2, 3, 4, 2, 4]]
+# Reverse said list of lists:
+# [[2, 3, 4, 2, 4], [0, 2, 4, 5], [1, 2, 3, 4]]
+
+
+# Exp: original list ni reverse cheyyali....
+
+# by using lambda.
+
+def reverse_list(list_obj):
+    new_list = [] #>>> my mistake...range function lo length raste correct ga access every element ni access cheyyochu...ikkada
+    for i in range(1, len(list_obj)+1):
+        new_list += [list_obj[-i]]  # manam ikkada 1 nunci start chesam sooo end ki +1 kalapali...  ikkada add chese element ki kachithamga list[]--
+    return new_list           # ani pettali appude adi nested list laga consider chestundi ledante []+[] = [] .... []+[[]] = [[]] <<<Vimp...
+
+print(reverse_list(a))
 
 
 
+def reverse_list(list_obj):
+    new_list = []
+    for x in list_obj:
+        new_list = [x]+new_list
+    return new_list
 
 
+print(reverse_list(a))
 
+"""
 
 
 

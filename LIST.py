@@ -2828,24 +2828,228 @@ def count_pair(l1, l2, l3):
 print(count_pair(a, b, c))
 """
 
+"""
+
+# Model : frequency of consicutive duplicates.
+
 # 131. Write a Python program to count the frequency of consecutive duplicate elements in a given list of numbers.
 # Original lists:
 a = [1, 2, 2, 2, 4, 4, 4, 5, 5, 5, 5]
 # Consecutive duplicate elements and their frequency:
 # ([1, 2, 4, 5], [1, 3, 3, 4])
 
+# Exp : 1. mundu elements, frequency and running_count = 1 ani initialize chestamu...
+# 2. condition rastamu 3. consicutive frequency vunna elemnts ni loop bayata append cheyyali ledante anni elements frequency vachestundi.....
 
-def freq_of_con_dup(list_obj):
-    freq = {}
+
+def freq_cons(list_obj):
+    elements = []
+    frequency = []
+    running_count = 1
     for i in range(len(list_obj)-1):
-        if list_obj[i] == list_obj[i+1] and list_obj[i] not in freq:
-            freq[list_obj[i]] = 1
-        elif list_obj[i] == list_obj[i+1] and list_obj[i] in freq:
-            freq[list_obj[i]] += 1
-    return freq
+        if list_obj[i] == list_obj[i+1]:
+            running_count += 1
+
+        else:
+            elements.append(list_obj[i])
+            frequency.append(running_count)
+            running_count = 1
+    frequency.append(running_count)
+    elements.append(list_obj[i+1])
+
+    return elements, frequency
 
 
-print(freq_of_con_dup(a))
+print(freq_cons(a))
+
+"""
+"""
+# Model : index of maximum value and index of minimum value.
+
+# 132. Write a Python program to find all index positions of the maximum and minimum values in a given list of numbers.
+# Original list:
+a = [12, 33, 23, 10, 67, 89, 45, 667, 23, 12, 11, 10, 54]
+# Index positions of the maximum value of the said list:
+# 7
+# Index positions of the minimum value of the said list:
+# 3, 11
+
+
+# Exp : maximum value and min_value.... max_index and min_index kanukkovali....condition raasi check chesukovali...
+
+# max_value, min_value ni list lo first object ga tesukovali...max_index, min_index ni 0th index ga tesukovali... tharuvatha logic rayali...
+
+def index_max_min(list_obj):
+    max_val = list_obj[0]
+    min_value = list_obj[0]
+    max_index = 0
+    min_index = 0
+    for i in range(len(list_obj)-1):
+        if list_obj[i+1] > max_val:
+            max_val = list_obj[i+1]
+            max_index = i+1
+        elif list_obj[i+1] < min_value:
+            min_value = list_obj[i+1]
+            min_index = i+1
+
+    return (max_val, max_index), (min_value, min_index)
+
+
+print(index_max_min(a))
+"""
+"""
+
+# 133. Write a Python program to check common elements between two given list are in same order or not.
+# Original lists:
+a = ['red', 'green', 'black', 'orange']
+b = ['red', 'pink', 'green', 'white', 'black']
+c = ['white', 'orange', 'pink', 'black']
+# Test common elements between color1 and color2 are in same order?
+# True
+# Test common elements between color1 and color3 are in same order?
+# False
+# Test common elements between color2 and color3 are in same order?
+# False
+
+
+# Exp : common ga vunnna elements order and list lo vunna elemants order commmon ga vunnaya leda ani chudali
+
+# 1. first manam common elements ni kannukkovali.... 
+
+# 2. ee common elements order and list lo vunna common elements same order lo vunda leda ani kanukkovali.....
+
+# 3. list comprehension vaadi common elements adharam ga list lo vunna elemants ni bayataki tiyyali...ee vidhamga rendu list's lo saparate cheyyali...
+
+# 4. ee rendu lists same order lo vunte common elements same order lo vunnattu ledante same order lo lenattu...
+
+
+def common(list_obj1, list_obj2):
+    common_elements = [x for x in list_obj1 if x in list_obj2]
+    print(common_elements)
+    l1 = [x for x in list_obj1 if x in common_elements]
+    print('The l1 : ', l1)
+    l2 = [x for x in list_obj2 if x in common_elements]
+    print('The l2 :', l2)
+    return l1 == l2
+
+
+print(common(c, a))
+
+
+"""
+"""
+# 134. Write a Python program to find the difference between two list including duplicate elements.
+# Original lists:
+a = [1, 1, 2, 3, 3, 4, 4, 5, 6, 7]
+b = [1, 1, 2, 4, 5, 6]
+# Difference between two said list including duplicate elements):
+# [3, 3, 4, 7]
+
+
+# Exp : cancellation method laga ...first list lonunchi second list ni cancell cheyyali... so manam mumdu 1st list ni tesukovali daantlo nunchi second list lo vunna ---
+# elements ni cancell cheyyali....ila chesukuntu povali...result ni return cheyyali...
+
+def diff(list_obj1, list_obj2):
+    result = list_obj1
+    for ele in list_obj2:
+        result.remove(ele)
+    return result
+
+
+print(diff(a, b))
+
+"""
+"""
+
+# Model : iterate over consicutive elements.....
+
+# what is mean  by consicutive...
+
+Ans)  వరుస క్రమంలో వచ్చుచున్న  .....one after another....
+
+# 135. Write a Python program to iterate over all pairs of consecutive items in a given list.
+# Original lists:
+a = [1, 1, 2, 3, 3, 4, 4, 5]
+# Iterate over all pairs of consecutive items of the said list:
+# [(1, 1), (1, 2), (2, 3), (3, 3), (3, 4), (4, 4), (4, 5)]
+
+
+# Exp : first element & daani thruvatha elemant oka pair ga ravali ...aa tharuvatha di daani next di oka pair ga ravali....ala pothu vundali...
+
+# list comprehension vaadi range and index adharam ga cheyyali....
+
+def iterate_consicutive(list_obj):
+    return [(list_obj[i], list_obj[i+1]) for i in range(len(list_obj)-1)]
+
+
+print(iterate_consicutive(a))
+
+
+# W3 method:
+
+def pairwise(l1):
+    temp = []
+    for i in range(len(l1) - 1):
+        current_element, next_element = l1[i], l1[i + 1]
+        x = (current_element, next_element)
+        temp.append(x)
+    return temp
+
+
+"""
+"""
+# Model : removing duplicates from the list...
+
+# 136. Write a Python program to remove duplicate words from a given list of strings.
+# Original String:
+a = ['Python', 'Exercises', 'Practice', 'Solution', 'Exercises']
+# After removing duplicate words from the said list of strings:
+# ['Python', 'Exercises', 'Practice', 'Solution']
+
+# Exp: list com prehension vaadi duplicates ni remove cheyyali...
+
+# list comprehension ni vaadi duplicates ni remove cheyyali ante mundu oka emepty list tesukoni tharuvatha daani kinda list comprehension raasi
+# emepty list lo leni elements ni emepty list ki append cheyyali....last lo emepty list return cheyyali...kinda vunna code chudu neeku ardham avutundi....
+
+
+def duplicates_list(list_obj):
+    res = []
+    [res.append(word) for word in list_obj if word not in res]
+    return res
+
+
+print(duplicates_list(a))
+"""
+
+# Model : first even numbers and first odd numbers in a list...
+
+# 137. Write a Python program to find a first even and odd number in a given list of numbers.
+# Original list:
+a = [1, 3, 5, 7, 4, 1, 6, 8]
+# First even and odd number of the said list of numbers:
+# (4, 1)
+
+def first_even_odd(list_obj):
+    first_even = None
+    first_odd = None
+    for x in list_obj:
+        if x % 2 == 0:
+            first_even = x
+            brea
+
+    return first_even, first_odd
+
+
+print(first_even_odd(a))
+
+
+
+
+
+
+
+
+
 
 
 

@@ -3444,6 +3444,158 @@ def reverse_list(list_obj):
 print(reverse_list(a))
 
 """
+"""
+# Model : max, min with in the given range...
+
+
+# 151. Write a Python program to find the maximum and minimum values in a given list within specified index range.
+# Original list:
+a = [4, 3, 0, 5, 3, 0, 2, 3, 4, 2, 4, 3, 5]
+# Index range:
+# 3 to 8
+# Maximum and minimum values of the said given list within index range:
+# (5, 0)
+
+
+# by using slicing...
+
+def max_min_in_range(list_obj, start, end):
+    max = list_obj[start]
+    min = list_obj[start]
+    for x in list_obj[start:end+1]:   # print(list_obj[start:end+1]) print chesi chudu for understanging purpose....
+        if x > max :
+            max = x
+        elif x < min:
+            min = x
+    return max, min
+
+
+print(max_min_in_range(a, int(input("Enter the start range :")), int(input("Enter the end range :"))))
+
+
+# by using range function...
+
+def max_min_range_ranfun(list_obj, start, end):
+    new= [list_obj[i] for i in range(start, end+1)]    # mistake ikkada list_obj(i) ani pettanu ....list_obj[i] ani pettali....
+    max= new[0]
+    min= new[0]
+    for x in new:
+        if x > max:
+            max = x
+        elif x < min:
+            min = x
+    return max, min
+
+
+print(max_min_range_ranfun(a, int(input("Enter the start :")), int(input("Enter the end :"))))
+"""
+"""
+# Model : heapq model
+
+# this is new model
+
+# 152. Write a Python program to combine two given sorted lists using heapq module.
+# Original sorted lists:
+a = [1, 3, 5, 7, 9, 11]
+b = [0, 2, 4, 6, 8, 10]
+# After merging the said two sorted lists:
+# [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+
+
+from heapq import merge
+
+
+# merge returns generator object we can conver into this by list or tuple, by list constructor tuple constructor
+
+def heap_tech(llist_obj1, list_obj2):
+    return list(merge(llist_obj1, list_obj2)) # it returns jenetaor object soo we have converted into list by using list conteructor..   
+
+
+print(heap_tech(a, b))
+
+
+"""
+
+"""
+# Model : join two list of lists....
+
+# 154. Write a Python program to join two given list of lists of same length, element wise.
+# Original lists:
+a = [[10, 20], [30, 40], [50, 60], [30, 20, 80]]
+b = [[61], [12, 14, 15], [12, 13, 19, 20], [12]]
+# Join the said two lists element wise:
+# [[10, 20, 61], [30, 40, 12, 14, 15], [50, 60, 12, 13, 19, 20], [30, 20, 80, 12]]
+# Original lists:
+# [['a', 'b'], ['b', 'c', 'd'], ['e', 'f']]
+# [['p', 'q'], ['p', 's', 't'], ['u', 'v', 'w']]
+# Join the said two lists element wise:
+# [['a', 'b', 'p', 'q'], ['b', 'c', 'd', 'p', 's', 't'], ['e', 'f', 'u', 'v', 'w']]
+
+
+# Exp : list of lists ante nested lists....same length ante rendu pedda lists(outer lists) same length lo vundali....
+
+# join list of lists ante list lo vunna nested lists add cheyyali...
+
+# element wise ante oke index position lo vundevi kalapali >>>> i.e list[1]+list[1], list[2]+list[2]
+
+
+# accessing by using range length function...
+
+
+def merge_list_of_lists(list_obj1, list_obj2):
+    return [list_obj1[i]+list_obj2[i] for i in range(len(list_obj1))]   # >>> here also mistake again []+[]=[]...[[]]+[[]]=[[]]
+                                                                     # list_obj[i] anthe list lo 'i'-th element ikkada 'i'th element oka list...
+
+
+print(merge_list_of_lists(a, b))
+
+# By using zip function...
+
+def mrege(list_obj1, list_obj2):
+    return [x+y for x, y in zip(list_obj1, list_obj2)]
+
+
+print(mrege(a, b))
+
+"""
+
+
+# Model : adding of two list elements... from left to right...
+
+# 155. Write a Python program to add two given lists of different lengths, start from left.
+# Original lists:
+a = [2, 4, 7, 0, 5, 8]
+b = [3, 3, -1, 7]
+# Add said two lists from left:
+# [5, 7, 6, 7, 5, 8]
+# Original lists:
+c = [1, 2, 3, 4, 5, 6]
+d = [2, 4, -3]
+# Add said two lists from left:
+# [3, 6, 0, 4, 5, 6]
+
+
+def adding_list_left_to_right(list_obj1, list_obj2):
+    f_len = len(list_obj1) - (len(list_obj2)-1)
+    for i in range(len(list_obj2)):
+        if f_len -i >= len(list_obj1):
+            break
+        else:
+            list_obj1[i] += list_obj2[i]
+
+    return list_obj1
+
+
+print(adding_list_left_to_right(c, d))
+
+
+
+
+
+
+
+
+
 
 
 

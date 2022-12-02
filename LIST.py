@@ -3943,48 +3943,298 @@ def remove_lambda(list_obj, specified_value):
 print(remove_lambda(a, eval(input("Enter the specific_value_to_remove : "))))
 
 '''
+'''
+# Model :
+
+# 167. Write a Python program to convert a given list of strings into list of lists.
+# Original list of strings:
+a = ['Red', 'Maroon', 'Yellow', 'Olive']
+# Convert the said list of strings into list of lists:
+# [['R', 'e', 'd'], ['M', 'a', 'r', 'o', 'o', 'n'], ['Y', 'e', 'l', 'l', 'o', 'w'], ['O', 'l', 'i', 'v', 'e']]
+
+# by using list comp
+
+def list_of_strings_to_list_of_lists(list_obj):
+    return [list(i) for i in list_obj]
+
+
+# print(list_of_strings_to_list_of_lists(a))
+
+
+# by using noraml append method...
+
+def str_list(list_obj):
+    new = []
+    for x in list_obj:
+        new.append(list(x))
+    return new
+
+print(str_list(a))
+
+'''
+
+'''
+
+# 168. Write a Python program to display vertically each element of a given list, list of lists.
+# Original list:
+a = ['a', 'b', 'c', 'd', 'e', 'f']
+# Display each element vertically of the said list:
+# a
+# b
+# c
+# d
+# e
+# f
+# Original list:
+b = [[1, 2, 5], [4, 5, 8], [7, 3, 6]]
+# Display each element vertically of the said list of lists:
+# 1 4 7
+# 2 5 3
+# 5 8 6
+
+# for normal objects...
+
+
+def vertical(list_obj):
+    for i in list_obj :
+        print(i)
+
+
+vertical(a)
+
+
+# for nested objects...
+
+# VIMP ::: nested lists ni iterate chese tapudu manaki list lopala enni elements vunte anni i, j, k, l, m, lu rasukovocchu.... zipping and unzipping vimp...
+
+def nested_lists(list_obj):
+    for i, j, k in list_obj:    # ikkada 3 elements vundi sooo....i, j, k mudu rasamu....
+        print(i, j, k)
+
+
+nested_lists(b)
+
+
+# by using zip function:
+
+def using_zip(list_obj):
+    for x, y, z in zip(*list_obj):   # unzipping kosam manam star pettali ledante unzip avvadu...
+        print(x, y, z)
+        
+        
+------see the concept of zipping and unzipping in bellow the codes ::::  tuple of lists, tuples, normal 
+a=[[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+#
+# for x in zip(a):  # we are not unzipping here
+#     print(x)
+#
+# # output will be like this..
+#
+# ([1, 2, 3],)
+# ([4, 5, 6],)
+# ([7, 8, 9],)
+
+for x, y, z in zip(a):
+    print(x, y, z) >>> error ...too many values
+a=[[1, 2, 3], [4, 5, 6], [6, 7, 8]]
+
+for x in zip(*a):
+    print(x)
+
+(1, 4, 6)
+(2, 5, 7)
+(3, 6, 8)
+
+conclusion ===>>> unzip cheyyakunda oke element isthe list of tuples ustundi
+
+# unzip chesi oke element iste only tuple lo vastundi
+
+# unzip chesi equal elements iste normal ga vastundi....
+
+
+for x, y, z in zip(*a):
+    print(x, y, z)
+
+# 1 4 7
+# 2 5 8
+# 3 6 9
+
+'''
+'''
+# Model : list of strings and characters to list of characters...
+
+# 169. Write a Python program to convert a given list of strings and characters to a single list of characters.
+# Original list:
+a = ['red', 'white', 'a', 'b', 'black', 'f']
+# Convert the said list of strings and characters to a single list of characters:
+# ['r', 'e', 'd', 'w', 'h', 'i', 't', 'e', 'a', 'b', 'b', 'l', 'a', 'c', 'k', 'f']
+
+# By using list comprehension...
+
+
+def list_of_char(list_obj):
+    return [y for x in list_obj for y in x]  # inko forr loop ::: for y in x anedi list lo vunna strings ni charecters ga marchadaniki 
+
+
+print(list_of_char(a))
+
+
+# by using constructor method:::
+
+def list_strings(list_obj):
+    new = []
+    for x in list_obj:
+        new += list(x)   # idi simple method....every string ni list() constructor lo petti strings ga vidagottatam... 
+    return new
+
+
+print(list_strings(a))
+
+'''
+'''
+# Model : inserting element after every nth element...
+
+# vimp...
+
+# 170. Write a Python program to insert an element in a given list after every nth position.
+# Original list:
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+# Insert a in the said list after 2 nd element:
+# [1, 2, 'a', 3, 4, 'a', 5, 6, 'a', 7, 8, 'a', 9, 0]
+# Insert b in the said list after 4 th element:
+# [1, 2, 3, 4, 'b', 5, 6, 7, 8, 'b', 9, 0]
+
+
+# Vimp : manam while loop tesukovali....
+
+# 1. first i value ni initialize chesukovali...
+
+# 2. insert function vaadali
+
+# 3. i value ni position +1 tho increment cheyyali..... why +1 ? prathi saari k include cheyyadam valla length increasing avutundi anduvalla..
+
+
+def insert_after_nth_pos(list_obj, position, element):
+    i = position
+    while i < len(list_obj):
+        list_obj.insert(i, element)   # ikkada position ani ivvakudadu...position value change kaadu ...i value matrame change avutundi...i value matrame ivvali..
+        i += position+1    #>>> v.imp  +1 add cheyyali...
+
+    return list_obj
+
+
+print(insert_after_nth_pos(a, int(input("Enter the positions:")), input("Enter the element")))
+
+'''
+
+'''
+# model : concatinate element wise...
 
 
 
+# 171. Write a Python program to concatenate element-wise three given lists.
+# Original lists:
+a = ['0', '1', '2', '3', '4']
+b = ['red', 'green', 'black', 'blue', 'white']
+c = ['100', '200', '300', '400', '500']
+# Concatenate element-wise three said lists:
+# ['0red100', '1green200', '2black300', '3blue400', '4white500']
 
 
+# By using list comprehension...
+
+def concatenate_element_wise(list_obj1, list_obj2, list_obj3):
+    return [list_obj1[i]+list_obj2[i]+list_obj3[i] for i in range(len(a))]
 
 
+print(concatenate_element_wise(a, b, c))
 
 
+# by using ...append method
+
+def con_zip(list_obj1, list_obj2, list_obj3):
+    new = []
+    for i in range(len(list_obj1)):
+        new.append(list_obj1[i]+list_obj2[i]+list_obj3[i])
+
+    return new
 
 
+print(con_zip(a, b, c))
+
+# normal list method
+
+def con_normal(list_obj1, list_obj2, list_obj3):
+    new = []
+    for i in range(len(list_obj1)):
+        new += [list_obj1[i]+list_obj2[i]+list_obj3[i]]
+    return new
 
 
+print(con_normal(a, b, c))
+
+# Vimp...
 
 
+def using_zip(list_obj1, list_obj2, list_obj3):
+    new = []
+    for x, y, z in zip(*(list_obj1, list_obj2, list_obj3)):
+        new.append(x+y+z)
+    return new
 
 
+print(using_zip(a, b, c))
+
+# By using map function....
+
+def using_map(list_obj1, list_obj2, list_obj3):
+    return list(map(lambda x, y, z: x+y+z, list_obj1, list_obj2, list_obj3))
 
 
+print(using_map(a, b, c))
 
 
+'''
 
 
+'''
+
+# Little trickey...
+
+# Model : removing last N numbers.
+
+# 172. Write a Python program to remove the last N number of elements from a given list.
+# Original lists:
+a = [2, 3, 9, 8, 2, 0, 39, 84, 2, 2, 34, 2, 34, 5, 3, 5]
+# Remove the last 3 elements from the said list:
+# [2, 3, 9, 8, 2, 0, 39, 84, 2, 2, 34, 2, 34]
+# Remove the last 5 elements from the said list:
+# [2, 3, 9, 8, 2, 0, 39, 84, 2, 2, 34]
+# Remove the last 1 element from the said list:
+# [2, 3, 9, 8, 2, 0, 39, 84, 2, 2, 34, 2, 34, 5, 3]
 
 
+def remove_elements(list_obj, n_positions):
+    return list_obj[0:-n_positions]
 
 
+print(remove_elements(a, int(input("Enter the n_th_position :"))))
 
 
+'''
+
+# Model : merging some list items based in the index value...
+
+# 173. Write a Python program to merge some list items in given list using index value.
+# Original lists:
+a = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+# Merge items from 2 to 4 in the said List:
+# ['a', 'b', 'cd', 'e', 'f', 'g']
+# Merge items from 3 to 7 in the said List:
+# ['a', 'b', 'c', 'defg']
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+def merging_index(list_obj, start, end):
+    return
 
 

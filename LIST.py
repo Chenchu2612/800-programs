@@ -3584,7 +3584,7 @@ def adding_list_left_to_right(list_obj1, list_obj2):
 print(adding_list_left_to_right(c, d))
 
 """
-
+"""
 # Model : different lengths of lists .... add from right..
 
 
@@ -3618,6 +3618,245 @@ def add_from_right(list_obj1, list_obj2):
 
 
 print(add_from_right(c, d))
+
+
+"""
+
+"""
+# Model : inter leave different length's of lists....
+
+# 157. Write a Python program to interleave multiple given lists of different lengths.
+# Original lists:
+a = [2, 4, 7, 0, 5, 8]
+b = [2, 5, 8]
+c = [0, 1]
+d = [3, 3, -1, 7]
+# Interleave said lists of different lengths:
+# [2, 2, 0, 3, 4, 5, 1, 3, 7, 8, -1, 0, 7, 5, 8]
+
+
+def inter_diff_len(list_obj1, list_obj2, list_obj3, list_obj4):
+    length = max(len(list_obj1), len(list_obj2), len(list_obj3), len(list_obj4))
+    new = []
+    for i in range(length):
+        if len(list_obj1) > i:    # ikkada >= pettakudadu endukante ex: oka list length 5 vundi i value ki equal...list[i] element anedi index out of range ---
+            new.append(list_obj1[i])    #  ani vastundi... length 5 gala list_obj yokka index anedi 0 to 4 varaku vuntundi...5 index vundadu so >= pettakudadu  
+        if len(list_obj2) > i:
+            new.append(list_obj2[i])
+        if len(list_obj3) > i:
+            new.append(list_obj3[i])
+        if len(list_obj4) > i:
+            new.append(list_obj4[i])
+    return new
+
+
+print(inter_diff_len(a, b, c, d))
+
+"""
+"""
+# Model : max and min value... from list of tuples...
+
+# 158. Write a Python program to find the maximum and minimum values in a given list of tuples.
+# Original list with tuples:
+a = [('V', 60), ('VI', 70), ('VII', 75), ('VIII', 72), ('IX', 78), ('X', 70)]
+# Maximum and minimum values of the said list of tuples:
+# (78, 60)
+
+
+# Exp: 
+
+def max_min(list_obj):
+    max_val = list_obj[0][1]
+    min_val = list_obj[0][1]
+    for x, y in list_obj:
+        if y > max_val:
+            max_val = y
+        elif y < min_val:
+            min_val = y
+    return max_val, min_val
+
+
+print(max_min(a))
+
+"""
+"""
+# Model : append same value multiple times in  a list ...
+
+# 159. Write a Python program to append the same value /a list multiple times to a list/list-of-lists.
+# Add a value(7), 5 times, to a list:
+# ['7', '7', '7', '7', '7']
+# Add 5, 6 times, to a list:
+# [1, 2, 3, 4, 5, 5, 5, 5, 5, 5]
+# Add a list, 4 times, to a list of lists:
+# [[1, 2, 5], [1, 2, 5], [1, 2, 5], [1, 2, 5]]
+# Add a list, 3 times, to a list of lists:
+# [[5, 6, 7], [1, 2, 5], [1, 2, 5], [1, 2, 5], [1, 2, 5]]
+
+
+def append_multiple_times(list_obj, element, number_of_times):
+    list_obj += [element] * number_of_times     # ikkada manam  element ni kachithamga list lo pettali ledante type error >>> we can't add element to list---
+    return list_obj             # ani error vatundi....same tpe ni matrame manam add cheyyagalam...
+
+
+print(append_multiple_times(eval(input("Enter the list_obj :")), eval(input("Enter the element :")), int(input("Enter the number of times :"))))
+"""
+"""
+# Model : removing n number of elements based on certain condition....
+
+# 160. Write a Python program to remove first specified number of elements from a given list satisfying a condition.
+# Remove the first 4 number of even numbers from the following list:
+a = [3,10,4,7,5,7,8,3,3,4,5,9,3,4,9,8,5]
+# Output:
+# [3, 7, 5, 7, 3, 3, 5, 9, 3, 4, 9, 8, 5]
+# Original list:
+b = [3, 10, 4, 7, 5, 7, 8, 3, 3, 4, 5, 9, 3, 4, 9, 8, 5]
+# Remove first 4 even numbers from the said list:
+# [3, 7, 5, 7, 3, 3, 5, 9, 3, 4, 9, 8, 5]
+
+
+# Exp: ichina list lo nunchi  only 'n' number of even numbers matrame remove cheyyali...
+ 
+# remaining elements alane vundali...
+
+def remove_specified(list_obj, number):
+    count = 0
+    for x in a:
+        if x % 2 == 0:
+            list_obj.remove(x)
+            count += 1
+            if count == number:
+                break
+    return list_obj
+
+
+print(remove_specified(a, int(input("Enter the number of elements to be removed :"))))
+
+"""
+
+# Model : list is increasing sequence or not...if you remove one element from the list result list is strightly increasing or not...
+
+
+# 161. Write a Python program to check if a given list is strictly increasing or not. Moreover,
+# If removing only one element from the list results in a strictly increasing list, we still consider the list true.
+# True
+# True
+# True
+# True
+# True
+# True
+# True
+# True
+# True
+# True
+# True
+# False
+# False
+# False
+# False
+# False
+
+
+# def strightly_increasing(list_obj):
+#     if len(list_obj) < 3:
+#         return True
+#     a, b, *sequence = list_obj
+#     skipped = 0
+#     for c in list_obj:
+#         if a < b < c:
+#             a, b = b, c
+#         elif b < c :
+#             a, b = b, c
+#         elif a < c :
+#             a, b =
+#
+
+
+
+
+'''
+
+# Model : last occurance of specified element....
+
+# 162. Write a Python program to find the last occurrence of a specified item in a given list.
+# Original list:
+a = ['s', 'd', 'f', 's', 'd', 'f', 's', 'f', 'k', 'o', 'p', 'i', 'w', 'e', 'k', 'c']
+# Last occurrence of f in the said list:
+# 7
+# Last occurrence of c in the said list:
+# 15
+# Last occurrence of k in the said list:
+# 14
+# Last occurrence of w in the said list:
+# 12
+
+
+# Exp : manam ichina element last ga ekkada occur iendo kanukkovali.... daniki method vachi rindex...
+
+# str.rindex(element) >>> ichina list items ni manam str loki marchukoni oka string laga chesukuntamu....already string rupam lo vunte marchhukovalsina pani ledu...
+
+
+def finding_last_occur(list_obj, element):
+    return ''.join(list_obj).rindex(element)   # new method  :: rindex() >>> string.rindex >>> join method makes the string and rindex method finds the index...
+
+
+print(finding_last_occur(a, input("Enter the specific list object :")))
+
+'''
+
+
+# 163. Write a Python program to get the index of the first element which is greater than a specified element.
+# Original list:
+a = [12, 45, 23, 67, 78, 90, 100, 76, 38, 62, 73, 29, 83]
+# Index of the first element which is greater than 73 in the said list:
+# 4
+# Index of the first element which is greater than 21 in the said list:
+# 1
+# Index of the first element which is greater than 80 in the said list:
+# 5
+# Index of the first element which is greater than 55 in the said list:
+# 3
+
+# Exp: icchina specified element kanna peddadi ga vunde
+
+def index_specified(list_obj, specified_element):
+    for x in
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

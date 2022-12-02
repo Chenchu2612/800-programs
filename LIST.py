@@ -3802,7 +3802,7 @@ def finding_last_occur(list_obj, element):
 print(finding_last_occur(a, input("Enter the specific list object :")))
 
 '''
-
+'''
 
 # 163. Write a Python program to get the index of the first element which is greater than a specified element.
 # Original list:
@@ -3816,12 +3816,133 @@ a = [12, 45, 23, 67, 78, 90, 100, 76, 38, 62, 73, 29, 83]
 # Index of the first element which is greater than 55 in the said list:
 # 3
 
-# Exp: icchina specified element kanna peddadi ga vunde
+# Exp: icchina specified element kanna peddadi ga vunde first element ...aa first highest element yokka index number return cheyyali....
+
+# Note ::: vimp -> ekkada ithe first highest elemnt vastundo akkada break cheyyali ...ledante loop end varaku runavutundi....
 
 def index_specified(list_obj, specified_element):
-    for x in
+    for x in list_obj:
+        if x > specified_element:
+            first_highest = x
+            break       # manam ikkaada break rayakapothe loop last element varaku run iyyi ....last lo vunde specified element kanna ekkuva vunde alament vatsundi..
+    return list_obj.index(first_highest)
 
 
+print(index_specified(a, int(input("Enter the specified element :"))))
+
+'''
+'''
+# Model : getting items with specified condition...
+
+# 164. Write a Python program to get the items from a given list with specific condition.
+# Original list:
+a = [12, 45, 23, 67, 78, 90, 45, 32, 100, 76, 38, 62, 73, 29, 83]
+# Number of Items of the said list which are even and greater than 45
+# 5
+
+
+# Exp : enni items vunnai ....even and greather than 45.
+
+def even_gr_ff(list_obj):
+    count = 0
+    for x in list_obj:
+        if x % 2 == 0 and x > 45:
+            count += 1
+    return count
+
+
+print(even_gr_ff(a))
+
+
+'''
+'''
+----vimp-----....
+# Model : list into specified sized chunks....
+
+# chunks =  ముక్క భాగం
+
+# 165. Write a Python program to split a given list into specified sized chunks.
+# Original list:
+a = [12, 45, 23, 67, 78, 90, 45, 32, 100, 76, 38, 62, 73, 29, 83]
+# Split the said list into equal size 3
+# [[12, 45, 23], [67, 78, 90], [45, 32, 100], [76, 38, 62], [73, 29, 83]]
+# Split the said list into equal size 4
+# [[12, 45, 23, 67], [78, 90, 45, 32], [100, 76, 38, 62], [73, 29, 83]]
+# Split the said list into equal size 5
+# [[12, 45, 23, 67, 78], [90, 45, 32, 100, 76], [38, 62, 73, 29, 83]]
+
+# Exp : oka list ni cheppina length prakaram  chinna chinna nested list's ga create cheyyali... daanikosam manam slicing cheyyali...
+
+# confucing part :::
+
+# slicing ante mukkalu cheyyadam... ani ardham ::: manam ea object ni mukkalu cheste aa object vastundi....
+
+# list ni slicing cheste list output vastundi... string ni mukkalu cheste string output vastundi....etc
+
+
+# Exp: manam ikkada range() lo start , stop ,step mudu vadali.... formula === > list_obj[i:i+chunk_size or step] >>> it will return mini list
+
+# Ela slice cheyyali anedi chala important...
+
+
+def creating_chunks(list_obj, chunk_size):
+    return [list_obj[i:i+chunk_size]for i in range(0, len(list_obj), chunk_size)]  # list_obj[i:i+chunk_size] >>> returns mini list... we are slicing the list_obj
+
+
+# print(creating_chunks(a, int(input("Enter the chunk size :"))))
+
+
+def create(list_obj, chunk_size):
+    new =[]
+    for i in range(0, len(list_obj), chunk_size):
+        new.append(list_obj[i:i+chunk_size])     # list_obj[i:i+chunk_size] return's mini list's......we are slicing the list_obj
+
+    return new
+
+
+print(create(a, int(input("Enter the  chunk_size:"))))
+
+  
+
+# by using generator function ::::
+
+def divide_chunks(l, n):
+     
+    # looping till length l
+    for i in range(0, len(l), n):
+        yield l[i:i + n]
+
+
+'''
+'''
+# Model : removing sprcifies value.
+
+# 166. Write a Python program to remove None value from a given list.
+# Original list:
+a = [12, 0, None, 23, None, -55, 234, 89, None, 0, 6, -12]
+# Remove None value from the said list:
+# [12, 0, 23, -55, 234, 89, 0, 6, -12]
+
+
+# By using list_comp :::
+
+def remove_specified(list_obj, specified_value):
+    return [i for i in list_obj if i != specified_value]
+
+
+# print(remove_specified(a, eval(input("Enter the specified_item : "))))  # ikkada eval chala important...list lo None, string, number vundi...soo---
+# list lo None vundi None anedi string kaadu...list contains different data types...eval vadithe daani yokka internal charecter ni batti input nunchi bayataki tesukoni vastundi
+
+
+# By using lambda :::
+
+def remove_lambda(list_obj, specified_value):
+    return list(filter(lambda x: x != specified_value, list_obj))
+
+
+print(remove_lambda(a, eval(input("Enter the specific_value_to_remove : "))))
+
+'''
 
 
 

@@ -4774,5 +4774,365 @@ print(largest_prod(a, b, int(input("Enter the specified_numbers :"))))
 
 """
 
+"""
+# 191. Write a Python program to find the maximum and minimum value of the three given lists.
+# Original lists:
+a = [2, 3, 5, 8, 7, 2, 3]
+b = [4, 3, 9, 0, 4, 3, 9]
+c = [2, 1, 5, 6, 5, 5, 4]
+# Maximum value of the said three lists:
+# 9
+# Minimum value of the said three lists:
+# 0
+
+# Exp: logic: ee mudu lists ni add chesi normal ga ela iehe kaunukuntamo alane kaunkkovali..
+
+
+def finding_min_with_three_lists(list_obj1, list_obj2, list_obj3):
+    new_list = list_obj1+list_obj2+list_obj3
+    max_value = new_list[0]
+    min_value = new_list[0]
+    for x in new_list:
+        if x > max_value:
+            max_value = x
+        elif x < min_value:
+            min_value = x
+    return 'The maximum value of given three lists is : {}\nThe minimum value of given three lists is : {}'.format(max_value, min_value)
+
+
+print(finding_min_with_three_lists(a, b, c))
+
+"""
+
+"""
+
+# V.imp model
+
+# Model : list of tuples lo manam str type ni remove cheyyali...
+
+# 192. Write a Python program to remove all strings from a given list of tuples.
+# Original list:
+a = [(100, 'Math'), (80, 'Math'), (90, 'Math'), (88, 'Science', 89), (90, 'Science', 92)]
+# Remove all strings from the said list of tuples:
+# [(100,), (80,), (90,), (88, 89), (90, 92)]
+
+
+Exp : ikkada list of tuples lo manam str ni remove chesi migatha vi pettali...
+
+# list lo vunde prathi tuple ni extract chesi danni tuple() constructor lo type check cheyyali...
+
+# kinda ichina logic laga tuple() constructor lo filter chestene manaki correct output vastundi ...ledante every element saparate ga single tuple lo vastundi...
+
+def remove_str_in_list_of_tuples(list_obj):
+    return [tuple(y for y in x if type(y) != str)for x in list_obj]    
+
+
+print(remove_str_in_list_of_tuples(a))
+
+
+"""
+"""
+# Model : finding the dimentions of an array(matrix)
+
+# 193. Write a Python program to find the dimension of a given matrix.
+# Original list:
+a = [[1, 2], [2, 4]]
+# Dimension of the said matrix:
+# (2, 2)
+# Original list:
+b = [[0, 1, 2], [2, 4, 5]]
+# Dimension of the said matrix:
+# (2, 3)
+# Original list:
+c = [[0, 1, 2], [2, 4, 5], [2, 3, 4]]
+# Dimension of the said matrix:
+# (3, 3)
+
+
+# Exp : row = list yokka length len(list_obj)
+#       column  = number of elements in the row  len(list_obj[0]) ....understand this concept...
+
+
+def dimentions_of_matrix(list_obj):
+    return 'The dimentions of a matrix is : {}X{}'.format(len(list_obj), len(list_obj[0]))
+
+
+print(dimentions_of_matrix(c))
+
+"""
+"""
+# Model : sum of  uneven length of a nested lists.
+
+
+# 194. Write a Python program to sum two or more lists, the lengths of the lists may be different.
+# Original list:
+a = [[1, 2, 4], [2, 4, 4], [1, 2]]
+# Sum said lists with different lengths:
+# [4, 8, 8]
+# Original list:
+b = [[1], [2, 4, 4], [1, 2], [4]]
+# Sum said lists with different lengths:
+# [8, 6, 4]
+
+
+def add_uneven(list_obj):
+    return list(zip(sum, list_obj))
+
+
+print(add_uneven(a))
+
+"""
+"""
+# Model : traverse element in reverse order.
+
+# 195. Write a Python program to traverse a given list in reverse order, also print the elements with original index.
+# Original list:
+a = ['red', 'green', 'white', 'black']
+# Traverse the said list in reverse order:
+# black
+# white
+# green
+# red
+# Traverse the said list in reverse order with original index:
+# 3 black
+# 2 white
+# 1 green
+# 0 red
+
+
+# positive_index : positive index access cheyyali ante range(len(list_obj)) pedithe saripotundi....negative index ni access cheyyali ante range(1, len(list_obj)+1)
+
+# range lo okati nunnchi start chesi length ki okati add cheyyali...
+
+
+def traverse_reverse(list_obj):
+    for i in range(1, len(list_obj)+1):  # NOTE : reverse order lo print cheyyali ante range() lo 1 nunchi start avvali and end lo length ki +1 add cheyyali....
+        print(list_obj[-i])
+
+
+# traverse_reverse(a)
+
+# W3 method:
+
+# for i in reversed(a):
+#     print(i)
+
+# My method:::
+
+def reversed_with_index(list_obj):
+    i = len(list_obj)-1   # -1 ani enduku pettamu ante positive index ki , length ki okati thakkuvaga vuntundi anduvalla...
+    for x in range(1, len(list_obj)+1):
+        print(i, list_obj[-x])
+        i -= 1  # every time manam okati thaginchali ....ledante same index vastundi...
+
+"""
+
+"""
+# Model : moving specific element to the end of the list.
+
+# 196. Write a Python program to move a specified element in a given list.
+# Original list:
+a = ['red', 'green', 'white', 'black', 'orange']
+# Move white at the end of the said list:
+# ['red', 'green', 'black', 'orange', 'white']
+# Original list:
+b = ['red', 'green', 'white', 'black', 'orange']
+# Move red at the end of the said list:
+#  ['green', 'white', 'black', 'orange', 'red']
+# Original list:
+c = ['red', 'green', 'white', 'black', 'orange']
+# Move black at the end of the said list:
+# ['red', 'green', 'white', 'orange', 'black']
+
+
+# pop() method lo index matrame ivvali...
+
+# insert() method lo mundu manam index positin ichi tharuvatha element ivvali.... guddi_gurthu::: insert ante illu >>> nelani batti illu kattali...
+
+# nela anedi index illu anedi element....so first nela tharuvatha illu....(jagananna housing colony)
+
+def remove_specific_element_to_end_of_list(list_obj, element):
+    ele = list_obj.pop(list_obj.index(element))   # it removes specific element based on the index() method and return it...
+    list_obj.insert(len(list_obj), ele)
+    return list_obj
+
+
+print(remove_specific_element_to_end_of_list(a, eval(input("Enter the element :"))))
+
+
+"""
+"""
+# Model : average of list of list's with different lengths....
+
+# 197. Write a Python program to compute the average of nth elements in a given list of lists with different lengths.
+# Original list:
+a = [[0, 1, 2], [2, 3, 4], [3, 4, 5, 6], [7, 8, 9, 10, 11], [12, 13, 14]]
+# Average of n-th elements in the said list of lists with different lengths:
+# [4.8, 5.8, 6.8, 8.0, 11.0]
+
+# Exp: zip_longest function is used for the uneven length objects.
+
+import itertools
+
+def average(list_obj):
+    return sum([i for i in list_obj if i != None])/len(list_obj)   
+    
+# Note :::--  ikkada None ni remove cheyyakapothe zip longest function lo length thakkuvaga vunna elements place lo None vastundi...None ni manam 
+
+# add cheyyalemu kada anduvalla... None ni remove cheyyali....
+
+
+print(list(map(average, itertools.zip_longest(*a))))
+
+"""
+
+"""
+# Model : comparing the both lists and print the matching values index value.
+
+
+
+# 198. Write a Python program to compare two given lists and find the indices of the values present in both lists.
+# Original lists:
+a = [1, 2, 3, 4, 5, 6]
+b = [7, 8, 5, 2, 10, 12]
+# Compare said two lists and get the indices of the values present in both lists:
+# [1, 4]
+# Original lists:
+c = [1, 2, 3, 4, 5, 6]
+d = [7, 8, 5, 7, 10, 12]
+# Compare said two lists and get the indices of the values present in both lists:
+# [4]
+# Original lists:
+e = [1, 2, 3, 4, 15, 6]
+f = [7, 8, 5, 7, 10, 12]
+# Compare said two lists and get the indices of the values present in both lists:
+# []
+
+
+# Exp : mundu manam common elements ni saparate cheyyali... tharuvatha comomon element's ki index kanukkovali...
+
+
+def printing_matching_value_index(list_obj1, list_obj2):
+    matching = [x for x in list_obj1 if x in list_obj2]
+    matching_elements_index = []
+    for x in matching:
+        matching_elements_index.append(list_obj1.index(x))
+    return matching_elements_index
+
+
+# print(printing_matching_value_index(e, f))
+
+
+# W3 method by using enumerate function....
+
+def matching(list_obj1, list_obj2):
+    return [x for x,el in enumerate(list_obj1) if el in list_obj2]
+
+
+print(matching(a, b))
+
+"""
+"""
+# Model : convertion of unicode to string...
+
+# 199. Write a Python program to convert a given unicode list to a list contains strings.
+# Original lists:
+a = [u'S001', u'S002', u'S003', u'S004']
+# Convert the said unicode list to a list contains strings:
+# ['S001', 'S002', 'S003', 'S004']
+  
+#Exp : This is unicode string : [u'S001', u'S002', u'S003', u'S004'] 
+  
+
+def conversion_uni_to_str(list_obj):
+    return [str(x) for x in list_obj]
+
+
+print(conversion_uni_to_str(a))
+"""
+"""
+# model : paring up consicutive links....
+
+# 200. Write a Python program to pair up the consecutive elements of a given list.
+# Original lists:
+a =[1, 2, 3, 4, 5, 6]
+# Pair up the consecutive elements of the said list:
+# [[1, 2], [2, 3], [3, 4], [4, 5], [5, 6]]
+# Original lists:
+b = [1, 2, 3, 4, 5]
+# Pair up the consecutive elements of the said list:
+# [[1, 2], [2, 3], [3, 4], [4, 5]]
+
+
+# Exp: manam index position adaharam   ga access chestam ....ikkada purthi length isthe last element kada i+1 ki out of range vastundi...---
+
+# so manam length anedi -1 chestamu...
+
+
+def pairing_up_con(list_obj):
+    return [[list_obj[i], list_obj[i+1]] for i in range(len(list_obj)-1)]
+
+
+print(pairing_up_con(b))
+
+"""
+"""
+# Model : checking string contains the list elements.....
+
+# 201. Write a Python program to check if a given string contains an element, which is present in a list.
+# The original string and list:
+string1 = 'https://www.w3resource.com/python-exercises/list/'
+a =['.com', '.edu', '.tv']
+# Check if https://www.w3resource.com/python-exercises/list/ contains an element, which is present in the list ['.com', '.edu', '.tv']
+# True
+# The original string and list: https://www.w3resource.net
+string2 = 'https://www.w3resource.net'
+b = ['.com', '.edu', '.tv']
+# Check if https://www.w3resource.net contains an element, which is present in the list ['.com', '.edu', '.tv']
+# False
+
+
+# Exp: ichina string list lo vunna  elements lo edo okati vunna True ledante False...
+
+def checking(str_obj, list_obj):
+    return bool([x for x in list_obj if x in str_obj])   # bool of emepty anything is false... bool([]) >>> False...
+ 
+
+print(checking(string2, b))
+"""
+"""
+# Model : indeces of all None
+
+# 202. Write a Python program to find the indexes of all None items in a given list.
+# Original list:
+a = [1, None, 5, 4, None, 0, None, None]
+# Indexes of all None items of the list:
+# [1, 4, 6, 7]
+
+# Exp: ekkadekkada None vundo daani index value return cheyyali.... deniki while loop perfect....
+
+
+# my mistake....i+=1 anedi if conditio lo ivvakudadu ala iste i value None iethe adi incriment avutundi ledante ledu ....ikkada first element ---
+
+# first element 1 so i value increment avvadu ...loop infinite loop loki vellipotundi.... 
+
+# always give incremented value in only while loop not in any condition...
+
+def finding_index(list_obj):
+    index_list =[]
+    i = 0
+    while i < len(list_obj):  # i anedi list length kanna thakuvaga vunte kindi code of block runchey...
+        if list_obj[i] is None:
+            index_list.append(i)
+        i += 1           # increment value must be given under while block not in if condition               
+    return index_list
+
+
+print(finding_index(a))
+
+"""
+
+
+
 
 

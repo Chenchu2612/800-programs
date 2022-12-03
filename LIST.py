@@ -4529,8 +4529,8 @@ def max_min(list_obj):
 print(max_min(a))
 
 """
-
-# Model : nested lists lo unique values kanukkovali...
+"""
+# Model : list motham  lo unique values kanukkovali...
 
 # 183. Write a Python program to get the unique values in a given list of lists.
 # Original list:
@@ -4541,5 +4541,238 @@ a = [[1, 2, 3, 5], [2, 3, 5, 4], [0, 5, 4, 1], [3, 7, 2, 1], [1, 2, 1, 2]]
 b = [['h', 'g', 'l', 'k'], ['a', 'b', 'd', 'e', 'c'], ['j', 'i', 'y'], ['n', 'b', 'v', 'c'], ['x', 'z']]
 # Unique values of the said list of lists:
 # ['e', 'd', 'c', 'b', 'x', 'k', 'n', 'h', 'g', 'j', 'i', 'a', 'l', 'y', 'v', 'z']
+
+
+# Exp :  ikkada unique values adigaadu ... so vunna elements annintilonu okkokati  get cheyyali....
+
+def getting_unique(list_obj):
+    new = [y for x in list_obj for y in x]
+    result = []
+    for x in new:
+        if x not in result:
+            result.append(x)
+    return result
+
+
+print(getting_unique(b))
+
+"""
+"""
+
+# Model : big grams model.
+
+# 184. Write a Python program to form Bigrams of words in a given list of strings.
+# From Wikipedia:
+# A bigram or digram is a sequence of two adjacent elements from a string of tokens, which are typically letters, syllables, or words. A bigram is an n-gram for n=2.
+# The frequency distribution of every bigram in a string is commonly used for simple statistical analysis of text in many applications,
+# including in computational linguistics, cryptography, speech recognition, and so on.
+# Original list:
+a = ['Sum all the items in a list', 'Find the second smallest number in a list']
+# Bigram sequence of the said list:
+# [('Sum', 'all'), ('all', 'the'), ('the', 'items'), ('items', 'in'), ('in', 'a'), ('a', 'list'), ('Find', 'the'), ('the', 'second'),
+#  ('second', 'smallest'), ('smallest', 'number'), ('number', 'in'), ('in', 'a'), ('a', 'list')]
+
+
+def big_gram(list_obj):
+    return [y for x in list_obj for y in zip(x.split(" ")[:-1], x.split(" ")[1:])]   # split()[:-1] ante starting nunchi -1 varaku...
+                                                                                     # split()[1:] ante 1 nunchi ending varaku... 
+
+
+# Doubts : ikkada manam split daggara slicing chesamu... out put list lo tavali kada ?
+
+a) manam chesindi slice iena zip function aa slice chesina list lo nunchi okkoka element ni tesukoni y lo pedutundi....
+
+# [:-1] starting nunchi -1 varsku... -1 excluded -2 varaku.....[1:] ante 1 nunchi ending varaku....
+
+print(big_gram(a))
+
+
+# example::: for split()[:-1], split()[1:]
+# a= "chenchu mahesh"
+ 
+#  print(a.split()[1:])
+# print(a.split()[:-1])
+ 
+"""
+
+"""
+# Model : decimal to binary list...
+
+# 185. Write a Python program to convert a given decimal number to binary list.
+# Original Number: 8
+# Decimal number ( 8 ) to binary list:
+# [1, 0, 0, 0]
+# Original Number: 45
+# Decimal number ( 45 ) to binary list:
+# [1, 0, 1, 1, 0, 1]
+# Original Number: 100
+# Decimal number ( 100 ) to binary list:
+# [1, 1, 0, 0, 1, 0, 0]
+
+
+# Exp : idi gurthu pettuko '{0:0b}'.format(number)
+
+def decimal_to_binary(number):
+    if number == 1:
+        return 1
+    return [int(x) for x in '{0:0b}'.format(number)]   # format lo number string formate lo vuntundi... daanni manam int() loki marchukovali...
+
+
+print(decimal_to_binary(int(input("Enter the number :"))))
+
+
+"""
+"""
+# Model : swapping two sub lists in a given list .
+
+# 186. Write a Python program to swap two sublists in a given list.
+# Original list:
+a = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+# Swap two sublists of the said list:
+# [0, 6, 7, 8, 9, 3, 4, 5, 1, 2, 10, 11, 12, 13, 14, 15]
+# Swap two sublists of the said list:
+# [0, 9, 3, 8, 6, 7, 4, 5, 1, 2, 10, 11, 12, 13, 14, 15]
+
+# Exp : ikkada manam sub list ni original list nunchi manam decide cheyyali...start position and end position icchi...
+
+# a, b = b, a (lagane... but ikkada manam a, b place lo slicing lists range pedataham...) 
+
+def swap_list(list_obj):
+    list_obj[4:8], list_obj[10:14] = list_obj[10:14], list_obj[4:8]
+
+    return list_obj
+
+
+print(swap_list(a))
+
+"""
+"""
+# Model : list of tuples to list of strings.
+
+# 187. Write a Python program to convert a given list of tuples to a list of strings.
+# Original list of tuples:
+a = [('red', 'green'), ('black', 'white'), ('orange', 'pink')]
+# Convert the said list of tuples to a list of strings:
+# ['red green', 'black white', 'orange pink']
+# Original list of tuples:
+b = [('Laiba', 'Delacruz'), ('Mali', 'Stacey', 'Drummond'), ('Raja', 'Welch'), ('Saarah', 'Stone')]
+# Convert the said list of tuples to a list of strings:
+# ['Laiba Delacruz', 'Mali Stacey Drummond', 'Raja Welch', 'Saarah Stone']
+
+# Exp : list a lo anni tuples same length lo vunnai....  Normal manaki telisina method raste chalu....
+# but list b lo matram different length's lo vunnai... but ikkada koncham critical..
+
+
+def list_of_tuples_to_lists_of_strings(list_obj):
+    return [x+y for x, y in list_obj]     # here we no need to convert x, y to str bcoz it is already in str formate.
+
+
+# print(list_of_tuples_to_lists_of_strings(a))
+
+
+def uneven_length_tuples_to_list_of_strings(list_obj):
+    new_list = []
+    for x in list_obj:
+        new_list += (' '.join(y for y in x)for x in list_obj)   # tuple length uneven ga vunte manam += join function vaadali...
+    return new_list                                              # for every string in tuple join string...                    
+
+
+print(uneven_length_tuples_to_list_of_strings(b))
+
+"""
+"""
+# 188. Write a Python program to sort a given list of tuples on specified element.
+# Original list of tuples:
+a = [('item2', 10, 10.12), ('item3', 15, 25.1), ('item1', 11, 24.5), ('item4', 12, 22.5)]
+# Sort on 1st element of the tuple of the said list:
+#  [('item1', 11, 24.5), ('item2', 10, 10.12), ('item3', 15, 25.1), ('item4', 12, 22.5)]
+# Sort on 2nd element of the tuple of the said list:
+# [('item2', 10, 10.12), ('item1', 11, 24.5), ('item4', 12, 22.5), ('item3', 15, 25.1)]
+# Sort on 3rd element of the tuple of the said list:
+# [('item2', 10, 10.12), ('item4', 12, 22.5), ('item1', 11, 24.5), ('item3', 15, 25.1)]
+
+
+# Exp : manam ikkada ichedi index kaadu position so manaki index kavali ante manam position nunchi -1 ni tesi veyyali...
+
+def sort_using_position(list_obj, position):
+    return sorted(list_obj, key=lambda x: x[position-1], reverse=False)
+
+
+print(sort_using_position(a, int(input("Enter the specify the position : "))))
+
+"""
+"""
+# Model : first element to last last element to first....
+
+# 189. Write a Python program to shift last element to first position and first element to last position in a given list.
+# Original list:
+a = [1, 2, 3, 4, 5, 6, 7]
+# Shift last element to first position and first element to last position of the said list:
+# [7, 2, 3, 4, 5, 6, 1]
+# Original list:
+b = ['s', 'd', 'f', 'd', 's', 's', 'd', 'f']
+
+
+# Shift last element to first position and first element to last position of the said list:
+# ['f', 'd', 'f', 'd', 's', 's', 'd', 's']
+
+
+# By using slicing model :::
+
+def position_change(list_obj):
+    return [list_obj[-1]] + list_obj[1:len(list_obj) - 1] + [list_obj[0]]  # ikkada list_obj[-1], list_obj[0] anedi element's list_obj[1:len(list_obj)] oka list
+    # soo.... manam element ni list tho add cheyyakudadu...danni list loki marchi add cheyyali.
+    # ikkada length nunchi length ani iste adi(ex: len = 6 anukundam slice ending lo adi 5 avutundi so last element ni access chestundi...---
+    # manaki last element access cheyyanavasaramledu last element iis replaced by first element..so manam last before element ni access cheyyali..--
+    # danike manam length-1 chesam
+
+
+print(position_change(a))
+
+
+# Very very important......
+
+# pop() : it will remove and return specific index position value...
+
+def position_by_pop(list_obj):
+    x = list_obj.pop(0)  # ikkada oka element tesesam length okati thakkuva iendi
+    y = list_obj.pop(-1)  # ikkada malli inko element tesesam langth malli okati thakkuva iendi...
+    list_obj.insert(0, y)  # ikkada length okati perigindi...
+    list_obj.insert(len(list_obj), x)  # ante last place lo manam insert cheyyali..so manam length tesukunnam...it will insert element at last
+    return list_obj
+
+# last lo element pettali ante len(list_obj)
+
+print(position_by_pop(a))
+
+"""
+"""
+# 190. Write a Python program to find the specified number of largest products from two given list, multiplying an element from each list.
+# Original lists:
+a =[1, 2, 3, 4, 5, 6]
+b =[3, 6, 8, 9, 10, 6]
+# 3 Number of largest products from the said two lists:
+# [60, 54, 50]
+# 4 Number of largest products from the said two lists:
+# [60, 54, 50, 48]
+
+
+# Exp: sorted function vaadi manam ee code ni solve cheyyochu... 1. sorted function lo list_obj ga product ni enter chesi reverse true pettamu ante--
+
+# product's value decending order lo vastundi...sorted return list kabatti manam slice vaadi enni kabvalante anni list loki extract cheyyochu...
+
+# sorted lo list_obj ga manam comprehension ni use chesi... products ni pettali...
+
+
+def largest_prod(list_obj1, list_obj2, specified_numbers):
+    return sorted([x*y for x in list_obj1 for y in list_obj2], reverse=True)[:specified_numbers]
+
+# [x*y for x in list_obj1 for y in list_obj2] >>>>> this part returns the product of x*y elements in list form...
+
+
+print(largest_prod(a, b, int(input("Enter the specified_numbers :"))))
+
+"""
+
 
 

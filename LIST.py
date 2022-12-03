@@ -3771,8 +3771,6 @@ print(remove_specified(a, int(input("Enter the number of elements to be removed 
 #
 
 
-
-
 '''
 
 # Model : last occurance of specified element....
@@ -4196,7 +4194,6 @@ print(using_map(a, b, c))
 
 '''
 
-
 '''
 
 # Little trickey...
@@ -4222,19 +4219,327 @@ print(remove_elements(a, int(input("Enter the n_th_position :"))))
 
 
 '''
-
+'''
 # Model : merging some list items based in the index value...
 
 # 173. Write a Python program to merge some list items in given list using index value.
 # Original lists:
 a = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+
+
 # Merge items from 2 to 4 in the said List:
 # ['a', 'b', 'cd', 'e', 'f', 'g']
 # Merge items from 3 to 7 in the said List:
 # ['a', 'b', 'c', 'defg']
 
 
-def merging_index(list_obj, start, end):
-    return
+def merge_list_obj(list_obj, start, stop):
+    list_obj[start:stop] = [''.join(list_obj[start:stop])]     # deeeni ardham ... list[start:stop] anedi list_obj lo join iyyi vundali...---
+    return list_obj                                             # ade [''.join(list_obj([start:stop]] ki meaning
+
+
+print(merge_list_obj(a, int(input("Enter the start :")), int(input("Enter the end :"))))
+'''
+"""
+# Model : adding a number to each item in a list...
+
+# 174. Write a Python program to add a number to each element in a given list of numbers.
+# Original lists:
+a = [3, 8, 9, 4, 5, 0, 5, 0, 3]
+# Add 3 to each element in the said list:
+# [6, 11, 12, 7, 8, 3, 8, 3, 6]
+# Original lists:
+b =[3.2, 8, 9.9, 4.2, 5, 0.1, 5, 3.11, 0]
+# Add 0.51 to each element in the said list:
+# [3.71, 8.51, 10.41, 4.71, 5.51, 0.61, 5.51, 3.62, 0.51]
+
+
+def add_each(list_obj, specify_number):
+    return list(map(lambda x: x+specify_number, list_obj))
+
+
+# print(add_each(a, eval(input("Enter the number to add :"))))    # a ki intiger add cheyyali... b ki float add cheyyali...so better ga eval ani isthe no problem
+
+
+def add(list_obj, specify_number):
+    return [x+specify_number for x in list_obj]
+
+
+# print(add(a, eval(input("Enter the number to add :"))))
+
+
+
+def normal_add(list_obj, specify_element):
+    new = []
+    for x in list_obj:
+        new += [x+specify_element]   #ikkada kachithamga list lo pettali ledante list_obj and int error vastundi
+    return new
+
+
+print(normal_add(a, eval(input("Enter the element :"))))
+
+"""
+"""
+# Model : minimum and maximum value for each tuple position...
+
+# 175. Write a Python program to find the minimum, maximum value for each tuple position in a given list of tuples.
+# Original list:
+a = [(2, 3), (2, 4), (0, 6), (7, 1)]
+# Maximum value for each tuple position in the said list of tuples:
+# [7, 6]
+# Minimum value for each tuple position in the said list of tuples:
+# [0, 1]
+
+# Note :
+
+# ichina list of tuples lo ....tuples lo 0th position lo vunna elements lo maximum eadi and minimum eadi......1st position lo maximum eadi and minimum eadi
+
+# 0th position ni antha oka list lo petti max and min kanukko and 1st posistion ni antha oka list lo petti max and min kanukko...
+
+# 0th lonu, 1st lonu max ni and 0th lonu, 1st lonu min ni return chey.
+
+def finding_min_max(list_obj):
+    zeroth = [x for x, y in list_obj]
+    first = [y for x, y in list_obj]
+    max_zero = zeroth[0]
+    min_zero = zeroth[0]
+    max_first = first[0]
+    min_first = first[0]
+    for x in zeroth:
+        if x > max_zero:
+            max_zero = x
+        elif x < min_zero:
+            min_zero = x
+    for x in first:
+        if x > max_first:
+            max_first = x
+        elif x < min_first:
+            min_first = x
+    return 'maximum value for eachtuple position {}\nmaximumfor first position of list of tuples {}'.format([max_zero, max_first],[min_zero,min_first])
+
+
+print(finding_min_max(a))
+
+"""
+
+"""
+
+# Model : dividing two lists.
+
+# 176. Write a Python program to create a new list dividing two given lists of numbers.
+# Original list:
+a = [7, 2, 3, 4, 9, 2, 3]
+b = [9, 8, 2, 3, 3, 1, 2]
+# [0.7777777777777778, 0.25, 1.5, 1.3333333333333333, 3.0, 2.0, 1.5]
+
+
+def div_of_two_lists(list_obj1, list_obj2):
+    return list(map(lambda x, y: x/y, a, b))
+
+
+# print(div_of_two_lists(a, b))
+
+
+def div(list_obj1, list_obj2):
+    return [x/y for x, y in zip(list_obj1, list_obj2)]
+
+
+print(div(a, b))
+
+
+"""
+"""
+# Model : common elements in the nested lists.
+
+# 177. Write a Python program to find common elements in a given list of lists. Go to the editor
+# Original list:
+a = [[7, 2, 3, 4, 7], [9, 2, 3, 2, 5], [8, 2, 3, 4, 4]]
+# Common elements of the said list of lists:
+# [2, 3]
+# Original list:
+b = [['a', 'b', 'c'], ['b', 'c', 'd'], ['c', 'd', 'e']]
+# Common elements of the said list of lists:
+# ['c']
+
+
+
+# by using reduce function...
+
+from functools import reduce
+
+
+def common_in_nested(list_obj):
+    return list(reduce(lambda x, y: x & y, (set(i)for i in list_obj)))   # every nested list oka set gammari lambda func loki veltundi... '&'> anedi intersection...
+
+
+print(common_in_nested(b))
+
+"""
+"""
+# 178. Write a Python program to insert a specified element in a given list after every nth element.
+# Original list:
+a = [1, 3, 5, 7, 9, 11, 0, 2, 4, 6, 8, 10, 8, 9, 0, 4, 3, 0]
+# Insert 20 in said list after every 4 th element:
+# [1, 3, 5, 7, 20, 9, 11, 0, 2, 20, 4, 6, 8, 10, 20, 8, 9, 0, 4, 20, 3, 0]
+# Original list:
+b = ['s', 'd', 'f', 'j', 's', 'a', 'j', 'd', 'f', 'd']
+# Insert Z in said list after every 3 th element:
+# ['s', 'd', 'f', 'Z', 'j', 's', 'a', 'Z', 'j', 'd', 'f', 'Z', 'd']
+
+
+# by while loop ::::: >>>> insert after nth element anna nth element ann okkate.....same logic gollow avvu
+
+def inserting(list_obj, position, element):
+    i = position
+    while i < len(list_obj):
+        list_obj.insert(i, element)
+        i += position+1  # ikkada okkoka element insert avvadam valla length 1 perugutundi...
+    return list_obj
+
+
+print(inserting(b, int(input("Enter the position :")), eval(input("Enter the element :"))))  # NEW : eval function lo list anna , tupple anna, set anna,---
+# string with quotationslo ivvali... int, float lo ivvali... manam ee function lo eami iethe mention chetsamo ade datastructure object tesukuntundi...
+
+
+# Note : in eval function we must mention the datastructure type while giving input to this function....
+
+"""
+"""
+# Model : biggest possible number....
+
+
+# 179. Write a Python program to create the largest possible number using the elements of a given list of positive integers.
+# Original list:
+a = [3, 40, 41, 43, 74, 9]
+# Largest possible number using the elements of the said list of positive integers:
+# 9744341403
+# Original list:
+b = [10, 40, 20, 30, 50, 60]
+# Largest possible number using the elements of the said list of positive integers:
+# 605040302010
+# Original list:
+c = [8, 4, 2, 9, 5, 6, 1, 0]
+# Largest possible number using the elements of the said list of positive integers:
+# 98654210
+
+
+# Exp: list lo ichina numbers annintini tesukoni dantlo manam peddaga vache number ni form cheyyali....
+
+# lambda func lo len mothanni  *2 cheyyali... daanni // lan(x) chesi aa mothanni lambda x tho multiply cheyyali... ikkada x aneni lambda argument...
+
+# this is important...
+
+def biggest_number(list_obj):
+    return ''.join(sorted((str(x) for x in list_obj), reverse=True, key=lambda x: x*((len(str(max(list_obj))))*2//len(x))))
+
+
+print(biggest_number(a))
+
+"""
+"""
+
+# Model : minimum possible number.
+
+# 180. Write a Python program to create the smallest possible number using the elements of a given list of positive integers.
+# Original list:
+a = [3, 40, 41, 43, 74, 9]
+# Smallest possible number using the elements of the said list of positive integers:
+# 3404143749
+# Original list:
+b = [10, 40, 20, 30, 50, 60]
+# Smallest possible number using the elements of the said list of positive integers:
+# 102030405060
+# Original list:
+c=[8, 4, 2, 9, 5, 6, 1, 0]
+# Smallest possible number using the elements of the said list of positive integers:
+# 01245689
+
+
+# Exp : list lo vunna numbers anninti kalipi small possible number ni create cheyyali...
+
+def smallest(list_obj):
+    return ''.join(sorted((str(x)for x in list_obj), reverse=False, key=lambda x: x * ((len(str(min(list_obj)))) * 2//len(x))))
+
+
+print(smallest(c))
+
+"""
+"""
+# Model : iterate given list cyclically on specific index...
+
+
+# Super problem....
+
+# 181. Write a Python program to iterate a given list cyclically on specific index position.
+# Original list:
+a = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+# Iterate the said list cyclically on specific index position 3 :
+# ['d', 'e', 'f', 'g', 'h', 'a', 'b', 'c']
+# Iterate the said list cyclically on specific index position 5 :
+# ['f', 'g', 'h', 'a', 'b', 'c', 'd', 'e']
+
+
+def iterate_cyclically(list_obj, in_pos):
+    new_list = []
+    for x in range(len(list_obj)):
+        new_list.append(list_obj[in_pos % len(list_obj)])  # Note : ikkada manam slicing cheyyadam ledu indexind dwara access chestunnamu...
+        in_pos += 1       # specific position nunchi manam cyclic cheyyali kabatti...manam in_pos ki +1 add chestamu...
+    return new_list
+
+
+print(iterate_cyclically(a, int(input("Enter the specific position : "))))
+
+"""
+"""
+# Model : finding maximum nested list element and minimum nested list element....
+
+# 182. Write a Python program to calculate the maximum and minimum sum of a sublist in a given list of lists.
+# Original list:
+a = [[1, 2, 3, 5], [2, 3, 5, 4], [0, 5, 4, 1], [3, 7, 2, 1], [1, 2, 1, 2]]
+# Maximum sum of sub list of the said list of lists:
+# [2, 3, 5, 4]
+# Minimum sum of sub list of the said list of lists:
+# [1, 2, 1, 2]
+
+
+# by using reduce function....
+
+from functools import reduce
+
+def max_min_sum_element(list_obj):
+    max= reduce(lambda x, y: x if sum(x) > sum(y) else y, list_obj)
+    min = reduce(lambda x, y : y if sum(x) > sum(y) else x, list_obj)
+
+    return 'The maximum sum of element is : {}\nThe minimum sum of sum of element is : {}'.format(max, min)
+
+
+# print(max_min_sum_element(a))
+
+
+
+# by using max and min func:
+
+
+def max_min(list_obj):
+    maxi = max(list_obj, key=sum)
+    mini = min(list_obj, key=sum)
+    return maxi, mini
+
+
+print(max_min(a))
+
+"""
+
+# Model : nested lists lo unique values kanukkovali...
+
+# 183. Write a Python program to get the unique values in a given list of lists.
+# Original list:
+a = [[1, 2, 3, 5], [2, 3, 5, 4], [0, 5, 4, 1], [3, 7, 2, 1], [1, 2, 1, 2]]
+# Unique values of the said list of lists:
+# [0, 1, 2, 3, 4, 5, 7]
+# Original list:
+b = [['h', 'g', 'l', 'k'], ['a', 'b', 'd', 'e', 'c'], ['j', 'i', 'y'], ['n', 'b', 'v', 'c'], ['x', 'z']]
+# Unique values of the said list of lists:
+# ['e', 'd', 'c', 'b', 'x', 'k', 'n', 'h', 'g', 'j', 'i', 'a', 'l', 'y', 'v', 'z']
 
 

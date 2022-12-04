@@ -5131,6 +5131,250 @@ def finding_index(list_obj):
 print(finding_index(a))
 
 """
+"""
+# 203. Write a Python program to join adjacent members of a given list.
+# Original list:
+a = ['1', '2', '3', '4', '5', '6', '7', '8']
+# Join adjacent members of a given list:
+# ['12', '34', '56', '78']
+# Original list:
+b = ['1', '2', '3']
+# Join adjacent members of a given list:
+# ['12']
+
+
+# Exp : oka list lo elements rendu renditini oka pair cheyyali... 1st,2nd element kalipi okati, 3rd,4th kalipi okati,5th,6th kalipi okati...
+
+# ikkada range length function vaadi index adharamga manam kaluputhamu...
+
+# rangefunction lo step kachithamga vadali ledante 1st+2nd, 2nd+3rd, 3rd+4th ani add avutundi....so range 2 pettali appude prathi sari index skip avutundi...
+
+# Note : compulsari step 2 pettali appude 0th nunchi 2nd ki, 2nd nunchi 4th ki index value velthuvuntundi.... 
+
+
+def join_adj(list_obj):
+    return [list_obj[i]+list_obj[i+1]for i in range(0, len(list_obj)-1, 2)]
+
+
+print(join_adj(b))
+
+"""
+"""
+# Model : checking every 0th character in the elements of the list is same or not ?
+
+# 204. Write a Python program to check if first digit/character of each element in a given list is same or not.
+# Original list:
+a = [1234, 122, 1984, 19372, 100]
+# Check if first digit in each element of the said given list is same or not!
+# True
+# Original list:
+b =[1234, 922, 1984, 19372, 100]
+# Check if first digit in each element of the said given list is same or not!
+# False
+# Original list:
+c = ['aabc', 'abc', 'ab', 'a']
+# Check if first character in each element of the said given list is same or not!
+# True
+# Original list:
+d = ['aabc', 'abc', 'ab', 'ha']
+# Check if first character in each element of the said given list is same or not!
+# False
+
+
+# Exp: list lo vunna prathi element lo 0th index charecter same or not ani check cheyali...
+
+# manam list lo vunna prathi element ni check cheyyali  kabatti all function ni vadali...
+
+
+def checking_index_element(list_obj):
+    return all(str(x)[0] == str(list_obj[0])[0] for x in list_obj)
+
+# Clarity ::: list[0] ante list lo first element str(list[0]) ante 0th index position lo vunde elemnt ni string ga marustundi...str(list_obj[0])[0] ante aa string lo ---
+
+# first element ani ardham ...
+
+# every element ni x rupam lo str ga marchi daani first element ni index dwara check chestunnam...equal ki right side vundedi constant...left side vundedi marutundi...
+
+# equal ki rendu sides manam str ga marchali..
+
+
+print(checking_index_element(a))
+"""
+"""
+# Model : index of elements which satisfies the condition....
+
+# 205. Write a Python program to find the indices of elements of a given list, greater than a specified value.
+# # Original list:
+a =[1234, 1522, 1984, 19372, 1000, 2342, 7626]
+# Indices of elements of the said list, greater than 3000
+# [3, 6]
+# Original list:
+b=[1234, 1522, 1984, 19372, 1000, 2342, 7626]
+# Indices of elements of the said list, greater than 20000
+# []
+
+
+def finding_indeces(list_obj, specified_value):
+    i = 0     # initializing the index varible...
+    index_list = []
+    while i < len(list_obj):
+        if list_obj[i] > specified_value:
+            index_list.append(i)
+        i+=1   # incrimenting of i is always outside of the if condition but inside of while loop
+    return index_list
+
+
+print(finding_indeces(b, int(input("Enter the value :"))))
+
+"""
+"""
+# Model : removing additional spaces.
+
+# 206. Write a Python program to remove additional spaces in a given list.
+# Original list:
+a = ['abc ', ' ', ' ', 'sdfds ', ' ', ' ', 'sdfds ', 'huy']
+# Remove additional spaces from the said list:
+# ['abc', '', '', 'sdfds', '', '', 'sdfds', 'huy']
+
+
+# Exp: elemnt lo ' ' vunte '' denni return chey ledante normal element ni return chey...
+
+def removing_additional_spaces(list_obj):
+    return ['' if i == ' ' else i for i in list_obj]
+
+
+print(removing_additional_spaces(a))
+
+
+"""
+
+"""
+# Model : common tuples between two two lists
+
+# 207. Write a Python program to find the common tuples between two given lists.
+# Original lists:
+a = [('red', 'green'), ('black', 'white'), ('orange', 'pink')]
+b = [('red', 'green'), ('orange', 'pink')]
+# Common tuples between two said lists
+# [('orange', 'pink'), ('red', 'green')]
+# Original lists:
+c = [('red', 'green'), ('orange', 'pink')]
+d = [('red', 'green'), ('black', 'white'), ('orange', 'pink')]
+# Common tuples between two said lists
+# [('orange', 'pink'), ('red', 'green')]
+
+
+
+# By using list_comp
+
+
+def common_tupples(list_obj1, list_obj2):
+    return [x for x in list_obj1 if x in list_obj2]
+
+
+print(common_tupples(c, d))
+
+
+# By uisng set_method..
+
+def common_using_set(list_obj1, list_obj2):
+    return set(list_obj1) & set(list_obj2)
+
+
+print(common_using_set(a, b))
+
+"""
+
+"""
+# Model : sum of consecutive numbers and avg also
+
+
+# 208. Sum a list of numbers. Write a Python program to sum the first number with the second and divide it by 2, then sum the second with the third and divide by 2,
+# and so on.
+# Original list:
+a = [1, 2, 3, 4, 5, 6, 7]
+# Sum the said list of numbers:
+# [1.5, 2.5, 3.5, 4.5, 5.5, 6.5]
+# Original list:
+b = [0, 1, -3, 3, 7, -5, 6, 7, 11]
+# Sum the said list of numbers:
+# [0.5, -1.0, 0.0, 5.0, 1.0, 0.5, 6.5, 9.0]
+
+# Exp : first number and next number ni kalipi add cheyyali and ee mothanni 2 tho devide cheyyali...ala pothu vundali....
+
+
+def sum_avg(list_obj):
+    return [(list_obj[i]+list_obj[i+1])/2 for i in range(len(list_obj)-1)]
+
+
+print(sum_avg(b))
+
+"""
+"""
+# Vimp logic
+
+# Model : count the group of non zero numbers.
+
+# 209. Write a Python program to count the number of groups of non-zero numbers separated by zeros of a given list of numbers
+# Original list:
+a = [3, 4, 6, 2, 0, 0, 0, 0, 0, 0, 6, 7, 6, 9, 10, 0, 0, 0, 0, 0, 5, 9, 9, 7, 4, 4, 0, 0, 0, 0, 0, 0, 5, 3, 2, 9, 7, 1]
+# Number of groups of non-zero numbers separated by zeros of the said list: 4
+
+
+# Exp : zeros tho saparate iyye number group kanukkovali.... so manam logic gurthupettuko >>> previous value zero avvali current number non zero avvali..
+
+# every iteration ki previous value ni current number tho replace cheyyali...>> anthe kadha prathi sari iteration jarigi nappudu current value previous value avutundi...
+
+
+# Doubt : ikkada manam chustene ardham avutundi...zeros tho saparate iyye groups 4 ani....kaani first group ki previous zero kaadu kada ani doubt ravali
+
+# manam previous value ni zero ga initialize chesam anduvalle count 1 add iendi... ala previuos value ni initialize ceyyakapothe oka group thakkuva vastundi
+
+#  previous value initialize cheyyakpothe first group mundara zeros lekapothe adi add avvadu.... so logic baga gurthu pettuko
+
+def counting_non_zero_group(list_obj):
+    count = 0
+    previous = 0
+    for num in list_obj:
+        if previous == 0 and num != 0:
+            count += 1
+        previous = num
+    return count
+
+
+print(counting_non_zero_group(a))
+
+"""
+
+# Model : sum of non zero groups
+
+
+# 210. Write a Python program to compute the sum of non-zero groups (separated by zeros) of a given list of numbers.
+# Original list:
+a = [3, 4, 6, 2, 0, 0, 0, 0, 0, 0, 6, 7, 6, 9, 10, 0, 0, 0, 0, 0, 7, 4, 4, 0, 0, 0, 0, 0, 0, 5, 3, 2, 9, 7, 1, 0, 0, 0]
+# Compute the sum of non-zero groups (separated by zeros) of the said list of numbers: [15, 38, 15, 27]
+
+
+def sum_of_non_zero_group(list_obj):
+    sum_list = []
+    previous = 0
+    for num in list_obj:
+        if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

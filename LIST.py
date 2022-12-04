@@ -5345,9 +5345,10 @@ def counting_non_zero_group(list_obj):
 print(counting_non_zero_group(a))
 
 """
-
+"""
 # Model : sum of non zero groups
 
+# Little complicated...
 
 # 210. Write a Python program to compute the sum of non-zero groups (separated by zeros) of a given list of numbers.
 # Original list:
@@ -5355,12 +5356,150 @@ a = [3, 4, 6, 2, 0, 0, 0, 0, 0, 0, 6, 7, 6, 9, 10, 0, 0, 0, 0, 0, 7, 4, 4, 0, 0,
 # Compute the sum of non-zero groups (separated by zeros) of the said list of numbers: [15, 38, 15, 27]
 
 
-def sum_of_non_zero_group(list_obj):
-    sum_list = []
-    previous = 0
-    for num in list_obj:
-        if
 
+# Exp : We just traverse the list each element to test for it’s succeeding element to be non-zero value and perform the summation ---
+# once we find a next value to be zero and append it in result list.
+
+# prathi element ni traverse cheyyali.... numbers lo zero iyyi vundakudadu... daani next number kuda zero iyyi vundakudadu...then manamu summation--
+
+# cheyyali...manam next value zero vaste appudu aa sum ni list loki append cheyyali...
+
+
+# conclusion : successiding element (tharuvatha vache element) zero kakapothe sum ki add cheyyali.... succeding element zero iethe sum ni list ki append cheyyali.
+
+
+def sum_list_of_non_zero_group(list_obj):
+    sum_list = []
+    sum = 0  #initializing the sum
+    for x in list_obj:
+        if x == 0:  # x value zero iethe sum ni append cheyyali....
+            if sum != 0:   # sum anedi zero iyyi vundakudadu...edo okati iyyi vundali...ledante proper result raadu...
+                sum_list.append(sum)   # sum ni append cheyyali...
+                sum = 0    # ikkada sum append chesina tharuvatha sum ni append cheyyali.... ledante previous sum group ki add avutundi...to separate every group sum
+                # oka group sum ni append chesina tharuvatha next group sum ni zero numchi start cheyyali ledante previous sum ki element add avutundi...
+        else:
+            sum += x
+    return sum_list
+
+
+print(sum_list_of_non_zero_group(a))
+
+"""
+"""
+# Model : remove specific element...
+
+# 211. Write a Python program to remove an element from a given list.
+# Original list:
+a = ['Ricky Rivera', 98, 'Math', 90, 'Science']
+# After deleting an element:, using index of the element: [98, 'Math', 90, 'Science']
+
+
+# Model : by using remove method
+
+def removing_specific_element(list_obj, element):
+    list_obj.remove(element)
+    return list_obj
+
+
+# print(removing_specific_element(a, eval(input("Enter the value :"))))
+
+
+# Model : by using list comprehension
+
+def removing_by_using_list_comp(list_obj, element):
+    return [x for x in list_obj if x != element]
+
+
+# print(removing_specific_element(a, eval(input("Enter the element to remove :"))))
+
+# By using lambda and filter...
+
+
+def removing_by_lambda(list_obj, element):
+    return list(filter(lambda x: x != element, list_obj))
+
+
+print(removing_by_lambda(a, eval(input("Enter the element :"))))
+"""
+"""
+# Model : removing all except int values....
+
+# 212. Write a Python program to remove all the values except integer values from a given array of mixed values.
+# Original list: \
+a =[34.67, 12, -94.89, 'Python', 0, 'C#']
+# After removing all the values except integer values from the said array of mixed values: [12, 0]
+
+# Normal method..
+
+def removing_all_except_int(list_obj):
+    return [x for x in list_obj if type(x) == int]
+
+
+print(removing_all_except_int(a))
+
+
+# isinstance(x, type) >>> isintance() method returns only boolen value >>> is it used for type check >>> six>>x so first is element next is type...
+
+def removing_by_using_isinstance(list_obj):
+    return [x for x in list_obj if isinstance(x, int)]
+
+
+print(removing_by_using_isinstance(a))
+
+"""
+"""
+# 213. Write a Python program to calculate the sum of two lowest negative numbers of a given array of integers.
+# An integer (from the Latin integer meaning "whole") is colloquially defined as a number that can be written without a fractional component. For example, 21, 4, 0, and -2048 are integers.
+# Original list elements:
+a = [-14, 15, -10, -11, -12, -13, 16, 17, 18, 19, 20]
+# Sum of two lowest negative numbers of the said array of integers: -27
+# Original list elements:
+b = [-4, 5, -2, 0, 3, -1, 4, 9]
+# Sum of two lowest negative numbers of the said array of integers: -6
+
+# By using sum and sorted
+
+
+def sum_lowest(list_obj):
+    return sum(sorted(list_obj)[:2])
+
+
+print(sum_lowest(b))
+
+
+def sum_negative(list_obj):
+    result = sorted([x for x in list_obj if x < 0])   # manam ikkkada sorted cheyyakapothe list lo negative elements ea order lo iethe vundo ade order lo vastundi
+    return result[0]+result[1]                                          # so compulsory ga sorted vaadali...
+
+
+print(sum_negative(a))
+
+"""
+
+"""
+# 214. Write a Python program to sort a given positive number in descending/ascending order.
+# Descending -> Highest to lowest.
+# Ascending -> Lowest to highest
+# Original Number:
+a = 134543
+# Descending order of the said number: 544331
+# Ascending order of the said number: 133445
+# Original Number:
+b = 43750973
+# Descending order of the said number: 97754330
+# Ascending order of the said number: 3345779
+
+
+def ascending_decending_string_num(number):
+    ascending_order = ''.join(sorted([x for x in str(number)], reverse=False))
+    descending_order = ''.join(sorted([x for x in str(number)], reverse=True))
+
+    return 'The ascending order of a given number{}\nThe decending order of a given number is {}'.format(ascending_order, descending_order)
+
+
+print(ascending_decending_string_num(b))
+
+"""
 
 
 

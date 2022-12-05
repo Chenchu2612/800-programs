@@ -5501,18 +5501,19 @@ print(ascending_decending_string_num(b))
 
 """
 
+# Model : merging two or more uneven length (uneven_length's) of list's to lists of lists...
+
+# 215. Write a Python program to merge two or more lists into a list of lists, combining elements from each of the input lists based on their positions.
+# Sample Output:
+# After merging lists into a list of lists:
+# [['a', 1, True], ['b', 2, False]]
+# [['a', 1, True], [None, 2, False]]
+# [['a', 1, True], ['_', 2, False]]
 
 
+# Exp: uneven lenghth kaligina lists vuntundi daantlo index adharamga list of list's ga marchali...
 
-
-
-
-
-
-
-
-
-
+#merge = kalapadam (విలీనం)
 
 
 

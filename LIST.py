@@ -5535,10 +5535,41 @@ def merge_two_or_more_uneven(*args, fill_value=None):
 print(merge_two_or_more_uneven(['a', 'b'], [1, 2], [True, False, None], fill_value='_'))
 
 """
+"""
+# Model : make the group based on the given function.... and counting the elements in the group.
+
+# 216. Write a Python program to group the elements of a list based on the given function and returns the count of elements in each group.
+
+
+# Sample Output:
+# {6: 2, 4: 1}
+# {3: 2, 5: 1}
+
+
+# Exp : ichina function adharam ga elements ni group cheyyali...okko group lo enni vunnayo count cheyyali.
+
+
+from collections import defaultdict
+
+
+def count_val(list_obj, fn=lambda x: x):
+    count = defaultdict(int)   # initializing the default dict.
+    for x in map(fn, list_obj):
+        count[x] += 1
+    return dict(count)   # here we must specify the dict() otherwise it will return the class dict obj...
+
+
+from math import floor   # floor function will consider only int value
+
+# floor func() : floor() method in Python returns the floor of x i.e., the largest integer not greater than x. 
+
+# integer may be positive or negative but not contain float value.
+
+print(count_val([6.1, 4.2, 6.3], floor))
 
 """
-# 216 is not understand...
 
+"""
 # Model : splitting the list based on the filtering function....
 
 # 217. Write a Python program to split values into two groups, based on the result of the given filtering function. Go to the editor
@@ -5572,13 +5603,9 @@ print(splitting_function(a, lambda d: d[0] == 'w'))
 # 218. Write a Python program to sort one list based on another list containing the desired indexes.
 
 
-
-Sample Output:
-['apples', 'bread', 'eggs', 'jam', 'milk', 'oranges']
-['oranges', 'milk', 'jam', 'eggs', 'bread', 'apples']
-
-
-
+# Sample Output:
+# ['apples', 'bread', 'eggs', 'jam', 'milk', 'oranges']
+# ['oranges', 'milk', 'jam', 'eggs', 'bread', 'apples']
 
 
 

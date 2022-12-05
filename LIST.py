@@ -5500,6 +5500,8 @@ def ascending_decending_string_num(number):
 print(ascending_decending_string_num(b))
 
 """
+"""
+# Very important and merging concept...
 
 # Model : merging two or more uneven length (uneven_length's) of list's to lists of lists...
 
@@ -5514,6 +5516,69 @@ print(ascending_decending_string_num(b))
 # Exp: uneven lenghth kaligina lists vuntundi daantlo index adharamga list of list's ga marchali...
 
 #merge = kalapadam (విలీనం)
+
+
+# Exp: ikkada manam length equal ga vundedi first merge chestam tharuvatha length ekkuvaga vunna elements ki vaatiki length thakkuvaga vunna pairs ki---
+
+# manam ichhina fill_value vastundi...
+
+# i, k are very important here... 
+
+def merge_two_or_more_uneven(*args, fill_value=None):
+    max_length = max([len(x) for x in args])  # ikkada manam * ani loop lo ivvakudadu.
+    result_list = [] 
+    for i in range(max_length):  # i anedi maximum length samdinchina value...
+        result_list.append([args[k][i] if i < len(args[k]) else fill_value for k in range(len(args))]) # k anedi present vunna list yokka value...
+    return result_list
+
+
+print(merge_two_or_more_uneven(['a', 'b'], [1, 2], [True, False, None], fill_value='_'))
+
+"""
+
+"""
+# 216 is not understand...
+
+# Model : splitting the list based on the filtering function....
+
+# 217. Write a Python program to split values into two groups, based on the result of the given filtering function. Go to the editor
+# Sample Output:
+
+a = ['red', 'green', 'black', 'white']
+
+# [['white'], ['red', 'green', 'black']]
+
+
+# Exp : ichina list ni function adharam ga split cheyyali....
+
+# New : if if not ( manam ikkkada lambda lo condition ichestamu...so malli list compreshenion lo conditions ivvakudadu)
+
+# 1. fn satisfy chese list_obj anni oka group and fn satisfy cheyyani elements anni inko group...
+
+
+def splitting_function(list_obj, fn):
+    return [[x for x in list_obj if fn(x)], [x for x in list_obj if not fn(x)]]
+
+
+print(splitting_function(a, lambda d: d[0] == 'w'))
+
+
+"""
+
+# Model : sort the list based on another list
+
+# Not understanding...
+
+# 218. Write a Python program to sort one list based on another list containing the desired indexes.
+
+
+
+Sample Output:
+['apples', 'bread', 'eggs', 'jam', 'milk', 'oranges']
+['oranges', 'milk', 'jam', 'eggs', 'bread', 'apples']
+
+
+
 
 
 

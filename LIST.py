@@ -5706,6 +5706,10 @@ def only_unique(list_obj):
 
 # print(only_unique(a))
 
+# Note : ikkada Counter ni import chesetappudu kachithamga capital 'C' vadali... ledante import kaadu...
+
+#  Counter function ni collection module nunchi import cheyyali...
+
 
 # By using collections and count...
 
@@ -5718,4 +5722,163 @@ def using_collections_using_counter(list_obj):
 print(using_collections_using_counter(a))
 
 """
+"""
+# 224. Write a Python program to create a list with the unique values filtered out.
+# Sample Output:
+a = [1, 2, 2, 3, 4, 4, 5]
+
+# out_put:
+# [2, 4]
+
+# Counter() :
+
+# Counter is a subclass of dict that's specially designed for counting hashable objects in Python.
+
+# It's a dictionary that stores objects as keys and counts as values. ( object's are keys and count's are values)
+
+from collections import Counter
+
+
+def create_list_with_unique(list_obj):
+    return [x for x, count in Counter(list_obj).items() if count > 1]
+
+
+# print(create_list_with_unique(a))
+
+
+def count_normal(list_obj):
+    new_list = []
+    for x in list(filter(lambda x: list_obj.count(x) > 1, list_obj)):
+        if x not in new_list:
+            new_list.append(x)
+    return new_list
+
+
+print(count_normal(a))
+"""
+"""
+# Model : retriving the value of nested dict...
+
+# 225. Write a Python program to retrieve the value of the nested key indicated by the given selector list from a dictionary or list.
+users = {
+  'freddy': {
+    'name': {
+      'first': 'Fateh',
+      'last': 'Harwood'
+    },
+    'postIds': [1, 2, 3]
+  }
+}
+
+# Sample Output:
+# Harwood
+# 2
+
+# Exp : idi new method reduce ni import cheyyali and operator nunchi manam get item ni import cheyyali...
+
+# manaki eami kavalo danni selectors loki pettukovali...
+
+# idi koncham naku ardham kaledu...
+
+from functools import reduce
+
+from operator import getitem
+
+
+def getting(a, selectors):
+    return reduce(getitem, selectors, a)
+
+
+# print(getting(users, ['freddy', 'name', 'last']))
+
+# print(getting(users, ['freddy', 'postIds', 1]))
+
+"""
+"""
+# Model : applying the function to all elements of list objects and saparate the common elements...
+
+# 226. Write a Python program to get a list of elements that exist in both lists, after applying the provided function to each list element of both.
+# Sample Output:
+# [2.1]
+
+# input :
+a = [2.1, 1.2]
+b = [2.3, 3.4]
+
+
+# Exp : rendo functon object ki function apply chesi ...ala chesina tharuvatha
+
+# list comprehension vaadi manam objects ni saparate chestamu...
+
+# function anedi manam last lo rastamu...
+
+def get_list_elements(list_obj1, list_obj2, fn):
+    new_list_obj2 = list(map(fn, list_obj2))  # applying the function to the list_obj2
+    print(new_list_obj2)  # for understanding purpose.....
+    return [x for x in list_obj1 if fn(x) in new_list_obj2]
+
+
+from math import floor
+
+print(get_list_elements(a, b, floor))
+
+"""
+"""
+# Model : finding symmetric difference after applying some function to the every element in the dictionary...
+
+
+# 227. Write a Python program to get the symmetric difference between two lists, after applying the provided function to each list element of both.
+
+a = [2.1, 1.2]
+b = [2.3, 3.4]
+
+
+# Sample Output:
+# [1.2, 3.4]
+
+# Exp : this is same as above problem.... and applying symetric difference additionally....
+
+def symmetric_diff(list_obj1, list_obj2, fn):
+    new_list_obj1 = set(map(fn, list_obj1))
+    new_list_obj2 = set(map(fn, list_obj2))
+
+    return [x for x in list_obj1 if fn(x) not in new_list_obj2]+[x for x in list_obj2 if fn(x) not in new_list_obj1]
+
+
+from math import floor
+
+print(symmetric_diff(a, b, floor))
+
+
+"""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

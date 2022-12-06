@@ -5596,19 +5596,126 @@ print(splitting_function(a, lambda d: d[0] == 'w'))
 
 """
 
+"""
 # Model : sort the list based on another list
 
 # Not understanding...
 
 # 218. Write a Python program to sort one list based on another list containing the desired indexes.
 
+a = ['eggs', 'bread', 'oranges', 'jam', 'apples', 'milk']
+b = [3, 2, 6, 4, 1, 5]
+
 
 # Sample Output:
 # ['apples', 'bread', 'eggs', 'jam', 'milk', 'oranges']
 # ['oranges', 'milk', 'jam', 'eggs', 'bread', 'apples']
 
+# Exp: Idi koncham critical problem...
+
+# 1. sorted function lo list object ga zip() lo index_list and normal list pamputhamu first index_list pamputhamu...next normal list_object pamputhamu...
+
+# 2. index ki loop lo (_, value ki val) ani ivvali...sorted function lo lamda x:x[0] adharam ga sort cheyyali....
+
+# reverse : function define chesetappudu reverse = True\False ani by default ga ivvochu...ila ichinappudu sort function lo reverse ani formal arguments name ivvali
+
+# function call chesetappudu manam default argument iena reverse ki values pass cheyyochu....True/False ani... 
+
+
+def sort_by_index_value(list_obj, index_list, reverse=True):
+    return [val for (_, val) in sorted(zip(index_list, list_obj), key=lambda x:x[0], reverse=reverse)]
+
+
+print(sort_by_index_value(a, b, True))
+
+"""
+
+# Not understanding.
+
+# 219. Write a Python program to build a list, using an iterator function and an initial seed value.
+
+
+# Sample Output:
+# [-10, -20, -30, -40]
+
+
+# Model : list nunchi dictionary create cheyyali....
+
+"""
+
+# 220. Write a Python program to map the values of a list to a dictionary using a function,
+# where the key-value pairs consist of the original value as the key and the result of the function as the value.
+
+
+# Sample Output:
+# {1: 1, 2: 4, 3: 9}
+
+# Exp: oka list nunchi dictionary create cheyyali....dict keys vachi list elements vundali...dict values vachi manam create chesina function yokka resuls vundali...
 
 
 
+def creation_of_dict(list_obj, fn):
+    return dict(zip(list_obj, map(fn, list_obj)))
 
+
+# print(creation_of_dict(eval(input("Enter the list_obj :")), lambda x: x*x))
+"""
+
+"""
+# 221. Write a Python program to randomize the order of the values of an list, returning a new list.
+# Sample Output:
+# Original list:
+a = [1, 2, 3, 4, 5, 6]
+# Shuffle the elements of the said list:
+# [3, 2, 4, 1, 6, 5]
+
+
+from random import shuffle
+
+# Note : random.shuffle() function does not return any list obj it only shuffle the original list ...
+
+
+def shuffle_list(list_obj):
+    random.shuffle(list_obj)
+    return list_obj
+
+
+print(shuffle_list(a))
+
+"""
+
+
+# 222.
+
+# not understanding.
+
+"""
+
+# 223. Write a Python program to create a list with the non-unique values filtered out.
+
+a = [1, 2, 2, 3, 4, 4, 5]
+
+# Sample Output:
+
+# [1, 3, 5]
+
+# By using count
+
+def only_unique(list_obj):
+    return [x for x in list_obj if list_obj.count(x) == 1]
+
+# print(only_unique(a))
+
+
+# By using collections and count...
+
+from collections import Counter
+
+
+def using_collections_using_counter(list_obj):
+    return [x for x, count in Counter(list_obj).items() if count == 1]
+
+print(using_collections_using_counter(a))
+
+"""
 

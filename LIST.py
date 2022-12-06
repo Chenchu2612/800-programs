@@ -5909,6 +5909,232 @@ print(indicies_of_all([1, 2, 3, 4], lambda x:x %2 == 1))
 
 """
 """
+# Model : splitting the list based on given filter list.
+
+# 231. Write a Python program to split values into two groups, based on the result of the given filter list.
+
+a = ['red', 'green', 'blue', 'pink']
+
+# Sample Output:
+# [['red', 'green', 'pink'], ['blue']]
+
+
+# Exp : ikkada 2nd list base chesukoni first list split avutundi.... if y ante True ani ardham.....if not y ante False ani ardham...
+
+# if y ni oka group , if not y ni inko group ga chesi return cheyyali...
+
+# manam zip function vaadi rendu lists daantlo pampi filter cheyyali....
+
+def splitting(list_obj, filter_list):
+    return [[x for x, y in zip(list_obj, filter_list) if y], [x for x, y in zip(list_obj, filter_list) if not y]]
+
+
+print(splitting([11,2,3,4], [False, True, True, False]))
+"""
+
+
+
+
+
+"""
+# Model : chunks the list based on our requirement size 
+
+# 232. Write a Python program to chunk a given list into smaller lists of a specified size.
+
+a =[1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# Sample Output:
+# [[1, 2, 3], [4, 5, 6], [7, 8]]
+
+
+def chunk(list_obj, size):
+    return [list_obj[i:i+size] for i in range(0, len(list_obj), size)]
+
+
+print()
+
+"""
+"""
+# Model : list into small chunks.
+
+# 233. Write a Python program to chunk a given list into n smaller lists.
+
+a = [1, 2, 3, 4, 5, 6, 7]
+
+# Sample Output:
+# [[1, 2], [3, 4], [5, 6], [7]]
+
+# Exp : manam index use chesi chunks ga marustham ... range() function use chesi, kanukko vachu..
+
+# range() lo start = 0, stop = len(list) and compulsary step = chunk size ....idi compulsary ga ivvali ledante index number okadaani tharuvtha okati vastundi...
+
+# step ivvakapothe list lo elements proper ga raadu...
+
+
+def small_chunks(list_obj, chunk_size):
+    return [list_obj[i:i+chunk_size] for i in range(0, len(list_obj), chunk_size)]
+
+
+print(small_chunks(a, int(input("Enter the chunk size : "))))
+
+"""
+
+"""
+# Model : number converted to list of digits...
+
+# 234. Write a Python program to convert a given number (integer) to a list of digits.
+
+# Digit : ante 0 to 9 single ga vunde numbers...ante 786 lo 7 oka digit 8 oka digit and 6 oka digit ... ee vidham ga oka number lo single number ni digit antaru..
+
+# Sample Output:
+# [1, 2, 3]
+# [1, 3, 4, 7, 8, 2, 3]
+
+# Exp: ikkada manam oka number ni list of digits ga cheyyali... list lo numbers string rupam lo vundakudadu adi int rupam lo vundali...endukante ---
+
+# ikkada adigindi list of strings kaadu list of digits ... so manam digit ni int  rupam lo ne vunchali.
+
+# Manaki two methods vunnai 1. normal method (by using comprehension and int() method 2. by using map() and int() function...
+def converting(number):
+    return [int(x) for x in str(number)] # normal method
+    return list(map(int, str(number)))  # by using map and int function...
+
+
+
+print(converting(int(input("Enter the values: "))))
+"""
+
+"""
+# Model : index of last element which satisfies the function.
+
+# 235. Write a Python program to find the index of the last element in the given list that satisfies the provided testing function.
+# Sample Output:
+# 2
+
+
+def index_last(list_obj, fn):
+    return list_obj.index([x for x in list_obj if fn(x)][-1])
+
+
+# print(index_last([1, 2, 3, 4], lambda x: x % 2 != 0))
+
+
+# Exp : manaki list lo vunna elements lo function satisfy iyye last element yokka index ichina list_obj lo ekkada vundi...
+
+# daniki next() method dwara kanukkovochu ....>>>formula>>> len(list_obj)-1-next(enumerate(list_obj[::1])
+
+# length lo nunchhi okati tesivesthe manamki index ki equal iepotundi next function vaadi andulo enumerate function vaadi...list_obj ni reverse cheste(slicing vaadi)
+
+def index_last_by_using_next(list_obj, fn):
+    return len(list_obj)-1-next(index for index, element in enumerate(list_obj[::-1]) if fn(element))
+
+
+print(index_last_by_using_next([1, 2, 3, 4], lambda x: x % 2 != 0))
+"""
+
+
+
+
+
+
+# 236 not understanding.
+
+"""
+# Model : list_of_dict to the list of values of the dictionaries corresponding to the specified key...by using dict.get(key)
+
+# 237. Write a Python program to convert a given list of dictionaries into a list of values corresponding to the specified key.
+
+simpsons = [
+  { 'name': 'Areeba', 'age': 8 },
+  { 'name': 'Zachariah', 'age': 36 },
+  { 'name': 'Caspar', 'age': 34 },
+  { 'name': 'Presley', 'age': 10 }
+]
+# Sample Output:
+# [8, 36, 34, 10]
+
+# Exp : list_of dict lo manaki specified key value kavali....manam dict.get(key) mathod vadathamu....
+
+# Manaki value kavalante key ni access cheyyali...
+
+
+def list_of_values(list_obj, key):
+    return [x.get(key) for x in list_obj]
+
+
+print(list_of_values(simpsons, 'name'))
+
+"""
+
+"""
+# 238. Write a Python program to calculate the average of a given list, after mapping each element to a value using the provided function.
+# Sample Output:
+# 5.0
+# 15.0
+
+
+a = [{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }]
+
+b = [{ 'n': 10 }, { 'n': 20 }, { 'n': -30 }, { 'n': 60 }]
+
+
+def avg_func(list_obj, fn):
+    return (sum(map(fn, list_obj)))/len(list_obj)
+
+
+print(avg_func(a, lambda x: x['n']))# every elemnt in x dentlo veltundi.. prathi element oka dictionay kanuka keys ni access chesi manam average kanukkovali...i.e x[key]
+"""
+
+"""
+# Model : return first element which satisfies the condition
+
+# 239. Write a Python program to find the value of the first element in the given list that satisfies the provided testing function.
+
+# Sample Output:
+# 1
+# 2
+
+# Exp: ichina function satisfy iyye first element ni return cheyyali.... 1. next() method  2. normal index.
+
+
+def first_element(list_obj, fn):
+    # return next(x for x in list_obj if fn(x))  # by using next function
+    return [x for x in list_obj if fn(x)][0]  # by using normal index
+
+
+print(first_element([1, 2, 3, 4], lambda x: x % 2 == 0))
+"""
+
+"""
+# Model : finding last value that satisfies the given function...
+
+# 240. Write a Python program to find the value of the last element in the given list that satisfies the provided testing function.
+
+# Sample Output:
+# 3
+# 4
+
+# Exp: staisfy iena function lo last value ni return cheyyali.... dantlo rendu methods vunnai   1. next with reverse slicing 2. normal method with negative index.
+
+def last_val(list_obj, fn):
+    return next(x for x in list_obj[::-1] if fn(x))
+
+
+print(last_val([1, 2, 3, 4], lambda x: x % 2 == 0))
+
+
+def list_val_normal(list_obj, fn):
+    return [x for x in list_obj if fn(x)][-1]
+
+
+print(list_val_normal([1, 2, 3, 4], lambda x: x % 2 == 0))
+
+"""
+
+
+"""
+
+
 # Model : dict frequency by using default dict
 
 

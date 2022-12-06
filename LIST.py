@@ -5684,7 +5684,6 @@ print(shuffle_list(a))
 
 """
 
-
 # 222.
 
 # not understanding.
@@ -5851,34 +5850,92 @@ print(symmetric_diff(a, b, floor))
 
 
 """
+"""
+# EE problem naku ardham kaledu.....
+
+# 228. Write a Python program to get every element that exists in any of the two given lists once, after applying the provided function to each element of both.
+
+
+a = [4.1]
+b = [2.2, 4.3]
+
+# Sample Output:
+# [2.2, 4.1]
 
 
 
+def union_by_element(list_obj1, list_obj2, fn):
+    new_list_obj1 = set(map(fn, list_obj1))
+    return list(set(list_obj1+[for x in list_obj2 if fn(list_obj2)]))
+
+
+"""
+"""
+# Model : first element index which satisfies the given function...
+
+# 229. Write a Python program to find the index of the first element in the given list that satisfies the provided testing function.
 
 
 
+# Sample Output:
+# 0
+
+# Exp : ea first element iethe function ni satisfy chestundoo aa element yokka index ni return cheyyali...
+
+# next():Python next() function returns the next item of an iterator.
+
+def first_element_index(list_obj, fn):
+    # return next(index for (index, x) in enumerate(list_obj) if fn(x))
+    return [index for (index, x) in enumerate(list_obj) if fn(x)][0]   # it returns the every element index that satisfies the condition...
 
 
+print(first_element_index([1, 2, 3, 4], lambda x: x % 2 == 1))
+
+"""
+
+"""
+# Model : index of all elements which satisfies the specific function.
+
+# 230. Write a Python program to find the indexes of all elements in the given list that satisfy the provided testing function.
+# Sample Output:
+# [0, 2]
 
 
+def indicies_of_all(list_obj, fn):
+    return [index for (index, element) in enumerate(list_obj) if fn(element)]
 
 
+print(indicies_of_all([1, 2, 3, 4], lambda x:x %2 == 1))
+
+"""
+"""
+# Model : dict frequency by using default dict
 
 
+# 241. Write a Python program to create a dictionary with the unique values of a given list as keys and their frequencies as the values.
+
+a = ['a', 'b', 'f', 'a', 'c', 'e', 'a', 'a', 'b', 'e', 'f']
+b = [3, 4, 7, 5, 9, 3, 4, 5, 0, 3, 2, 3]
+# Sample Output:
+# {'a': 4, 'b': 2, 'f': 2, 'c': 1, 'e': 2}
+# {3: 4, 4: 2, 7: 1, 5: 2, 9: 1, 0: 1, 2: 1}
+
+# Exp: first default dict ni intialize chesukovali... tharuvatha oke oka line rayali for x in list_obj : freq[x]+=1 ani (direct ga rayali...)
+
+# return chesetappudu dict(freq) ani rayali...ledante '<class dict int>, frequency rendu vastundi...
+
+from collections import defaultdict
 
 
+def freq_default_dict(list_obj):
+    freq = defaultdict(int)
+    for x in list_obj:
+        freq[x] += 1
+    return dict(freq)   # ikkada kachithamga dict(freq) ani rayali ledante result vere formate lo vastundi....
+ 
 
+print(freq_default_dict(b))
 
-
-
-
-
-
-
-
-
-
-
-
+"""
 
 

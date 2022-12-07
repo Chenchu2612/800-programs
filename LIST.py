@@ -6154,19 +6154,97 @@ print(freq_default_dict(b))
 
 """
 
-/j.kjkjkkj/j
 
 
+"""
+# Model : checking atleast one elment returns True in the given list
+
+# 246. Write a Python program to check if a given function returns True for at least one element in the list.
+# Sample Output:
+# True
+# False
+
+# Exp : atleast oka True kabatti manam any() function vadali...
 
 
+def checking_at_least_one_true(list_obj, fn):
+    return any(map(fn, list_obj))
 
 
+print(checking_at_least_one_true([0, 1, 2, 3], lambda x: x >= 2))  # ikkada rendu True lu vunnai...
+print(checking_at_least_one_true([-1, -2, 0, 1], lambda x: x >= 2))  # ikkada okati kuda True ledu...
+"""
+"""
+# Very imp:::
+
+# Model : lists yokka difference kanukkovali...
+
+# 247. Write a Python program to calculate the difference between two iterables, without filtering duplicate values.
+a = [1, 2, 3]
+b = [1, 2, 4]
+# Sample Output:
+# [3]
 
 
+# Exp : list yokka difference kanukkune tappudu list_obj1 - list_obj2 cheyyakudaadu>>> list lo duplicates vunte adi consider cheyyadu... so manam 
+
+# kinda cheppina methods ni  follow avvali....
+
+# difference lo manam ae list iethe first pedathamo aa list elements difference matrame vastundi...
+
+# Method :1 append method...
+
+def difference(list_obj1, list_obj2):
+    diff_list = []
+    for x in list_obj1:
+        if x not in list_obj2:
+            diff_list.append(x)
+    return diff_list
 
 
+print(difference(a, b))
 
 
+def diff(list_obj1, list_obj2):
+    y = set(list_obj2)  # kachithamga set loki marchali...
+    return [x for x in list_obj1 if x not in y]
+
+
+print(diff(a, b))
+"""
+"""
+# Model : Getting maximum value after applying the some funtion to every element of the list.
+
+# 248. Write a Python program to get the maximum value of a list, after mapping each element to a value using a given function.
+
+a=[{ 'n': 4 }, { 'n': 2 }, { 'n': 8 }, { 'n': 6 }]
+
+# Sample Output:
+# 8
+
+# Exp : oka function ni list lo vunnna elements annintiki apply cheina tharuvatha aa list lo maximum value ni get cheyyali...
+
+# 1. max function 2.reduce  & lambda  ee rendu methods vunnai
+
+
+def getting_max(list_obj, fn):
+    return max(map(fn, list_obj))  # list_obj lo vunna prathi element function loki veltundi....ikkada prathi element oka dictionary
+
+
+# print(getting_max(a, lambda x: x['n']))   # list lo vunde prathi element eee lambda function loki veltundi and ikkada key nni acess chesi value ni get chesi max ni find!
+
+from functools import reduce
+
+
+def getting_reduce(list_obj, fn):
+    l=list(map(fn , list_obj))  # list obj lo vunnna prathi element function loki vellali...adi map tho ne sadhyam...
+    print(l)   # for understanding purpose
+    return reduce(lambda x, y: x if x > y else y, l)
+
+
+print(getting_reduce(a, lambda x: x['n']))
+
+"""
 """
 # Model : finding the min value after applying the specified function...
 

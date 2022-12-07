@@ -6154,7 +6154,33 @@ print(freq_default_dict(b))
 
 """
 
+# Model : max length objects ni return cheyyali...
 
+# 245. Write a Python program to that takes any number of iterable objects or objects with a length property and returns the longest one.
+# Sample Output:
+# Green
+# [1, 2, 3, 4, 5]
+# [1, 2, 3, 4]
+
+
+# Vimp.Note : map. filter, reduce lo thappa migatha anni functions lo manam iterable object ni first lo enter chestamu...
+
+def max_len(*args):
+    return max(args, key=len)
+
+
+# print(max_len([1, 2], [2, 5, 0], 'chenchu'))
+
+# My model :
+
+def max_len_obj(*args):  # ikkada function define chesetappudu matrame '*' vadali...vere ekkada vadakudadu.
+    max_len = len(args[0])   # len(args[0]) ante first argument yokka length ni max_len ga initialize chesamu...
+    for x in args[1:]: # args[1:] ante first args 0th index vadilesi migathadi 1 to end...
+        if len(x) > max_len:
+            max_len = x
+    return max_len
+
+print(max_len_obj([1, 2, 3], [1, 2], 'chenchu'))
 
 """
 # Model : checking atleast one elment returns True in the given list

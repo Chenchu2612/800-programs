@@ -6153,7 +6153,70 @@ def freq_default_dict(list_obj):
 print(freq_default_dict(b))
 
 """
+"""
+# Model : symetric difference between two iterables...
 
+# 242. Write a Python program to get the symmetric difference between two iterables, without filtering out duplicate values.
+# Sample Output:
+# [30, 40]
+
+# Exp : normal ga symetric difference result oka list object matrame vastundi ikkada symetric difference between two iterables ani adigadu so manam 
+
+# kinda cheppina method ni follow avvali....
+
+
+def symetric(list_obj1, list_obj2):
+    a, b = set(list_obj1), set(list_obj2)
+    return [x for x in list_obj1 if x not in b]+[x for x in list_obj2 if x not in a]
+
+
+print(symetric([10, 20, 30], [10, 20, 40]))
+"""
+
+"""
+# Model : check weather every element in the list returns True
+
+# 243. Write a Python program to check if a given function returns True for every element in a list.
+# Sample Output:
+# True
+# False
+# False
+
+
+# Exp : list lo vunna anni element's ki function apply chesi prathi element condition satisfy avutunda ani chudali...
+
+def checking(list_obj, fn):
+    return all(map(fn, list_obj))
+
+
+print(checking([1, 2, 3], lambda x: x >= 2))
+print(checking([25, 4, 7], lambda x: x >= 2))
+
+"""
+
+
+
+"""
+# Model : creating list by using the range function
+
+# 244. Write a Python program to initialize a list containing the numbers in the specified range where start and end are inclusive and the ratio between two terms is step.
+# Returns an error if step equals 1
+# Sample Output:
+# [1, 2, 4, 8, 16, 32, 64, 128, 256]
+# [3, 6, 12, 24, 48, 96, 192]
+# [1, 4, 16, 64, 256]
+
+
+# not understanding
+
+
+
+
+
+
+
+"""
+"""
 # Model : max length objects ni return cheyyali...
 
 # 245. Write a Python program to that takes any number of iterable objects or objects with a length property and returns the longest one.
@@ -6166,7 +6229,7 @@ print(freq_default_dict(b))
 # Vimp.Note : map. filter, reduce lo thappa migatha anni functions lo manam iterable object ni first lo enter chestamu...
 
 def max_len(*args):
-    return max(args, key=len)
+    return max(args, key=len)  # only function define chese tappudu matrame manam '*' vadali migatha appudu normal args vadali...
 
 
 # print(max_len([1, 2], [2, 5, 0], 'chenchu'))
@@ -6176,12 +6239,13 @@ def max_len(*args):
 def max_len_obj(*args):  # ikkada function define chesetappudu matrame '*' vadali...vere ekkada vadakudadu.
     max_len = len(args[0])   # len(args[0]) ante first argument yokka length ni max_len ga initialize chesamu...
     for x in args[1:]: # args[1:] ante first args 0th index vadilesi migathadi 1 to end...
-        if len(x) > max_len:
+        if len(x) > max_len:  
             max_len = x
     return max_len
 
 print(max_len_obj([1, 2, 3], [1, 2], 'chenchu'))
 
+"""
 """
 # Model : checking atleast one elment returns True in the given list
 

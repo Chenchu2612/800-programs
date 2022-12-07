@@ -5932,10 +5932,6 @@ def splitting(list_obj, filter_list):
 print(splitting([11,2,3,4], [False, True, True, False]))
 """
 
-
-
-
-
 """
 # Model : chunks the list based on our requirement size 
 
@@ -6032,11 +6028,6 @@ def index_last_by_using_next(list_obj, fn):
 print(index_last_by_using_next([1, 2, 3, 4], lambda x: x % 2 != 0))
 """
 
-
-
-
-
-
 # 236 not understanding.
 
 """
@@ -6131,7 +6122,6 @@ print(list_val_normal([1, 2, 3, 4], lambda x: x % 2 == 0))
 
 """
 
-
 """
 
 
@@ -6165,3 +6155,75 @@ print(freq_default_dict(b))
 """
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+"""
+# Model : finding the min value after applying the specified function...
+
+# 249. Write a Python program to get the minimum value of a list, after mapping each element to a value using a given function.
+
+a = [{'n': 4}, {'n': 2}, {'n': 8}, {'n': 6}]
+# Sample Output:
+# 2
+
+
+# Exp: mundu manam values anni oka list loki tesvhukovali.. aa tharuvatha manam lambda and reduce function vaadi daani min kanukkovali...
+
+# logic >>> reduce(lambda x, y: x if x < y else y , a)
+
+# reduce function is very important here....
+
+from functools import reduce
+
+
+def min_value(list_obj, fn):
+    a = list(map(fn, list_obj))
+    b = reduce(lambda c, d: c if c < d else d, a)
+    return b
+
+
+print(min_value(a, lambda x: x['n']))
+
+
+# W3 method:
+
+def w3min(list_obj, fn):
+    return min(list(map(fn, list_obj)))
+
+
+# print(w3min(a, lambda x:x['n']))
+"""
+
+"""
+# Model : oka function loki every element pampinchi daani sum knukkovali...
+
+# 250. Write a Python program to calculate the sum of a list, after mapping each element to a value using the provided function.
+
+a = [{'n': 4}, {'n': 2}, {'n': 8}, {'n': 6}]
+
+# Sample Output:
+# 20
+
+# Exp: list lo vunde prathi elements annintiki manam function ni apply chesi daanitharuvatha daani sum cheyyali.... 
+
+
+def sum_all(list_obj, fn):
+    return sum(map(fn, list_obj))
+
+
+print(sum_all(a, lambda x: x['n']))  # list lo vunde prathi element lambda ki argument ga potundi... lambda lo keys ni access cheste dani yokka values return avutundi...
+
+
+# aa values ni manam sum cheyyali...
+
+"""

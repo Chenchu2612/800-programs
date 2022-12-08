@@ -76,6 +76,7 @@ def students(name, villege, Class):
 
 # print(students('chenchu', 'stvd', 12))
 
+<<<<<<< Updated upstream
 
 <<<<<<< Updated upstream
 
@@ -86,4 +87,7 @@ print("MAHESH")
 >>>>>>> Stashed changes
 =======
 print("IAM A 14 LPA packager")
+>>>>>>> Stashed changes
+=======
+print("CHENCHU")
 >>>>>>> Stashed changes

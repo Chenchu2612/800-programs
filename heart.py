@@ -74,4 +74,12 @@ def students(name, villege, Class):
     return 'name ={}\nvillege = {}\nClass = {}'.format(name, villege, Class)
 
 
+<<<<<<< Updated upstream
 # print(students('chenchu', 'stvd', 12))
+=======
+# print(students('chenchu', 'stvd', 12))
+
+
+
+print('iam us resident')
+>>>>>>> Stashed changes

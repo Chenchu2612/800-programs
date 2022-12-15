@@ -225,21 +225,195 @@ setattr(Student, 'marks', 100)
 print(f"student_name = {getattr(Student, 'student_name')}\nmarks= {getattr(Student, 'marks')}")  # getting new attribute_values
 
 """
+"""
+# Model : creating class with specified attributes...add new specified attributes and display attributes and delete some attributes and display remaining attributes...
+
+# 10. Write a Python class named Student with two attributes student_id, student_name. Add a new attribute student_class and display the entire attribute
+# and their values of the said class. Now remove the student_name attribute and display the entire attribute with values.
+
+
+# Exp : 1. rendu attributes tho class okati create cheyyali..
+
+# 2. attributes keys and associates values tho print cheyyali...
+
+# 3. kotha attributes ni add cheyali...malli motham attributes keys and values ni print cheyyali
+
+# oka attribute bi delete cheyyali .... malli vunnna motham attributes ni print cheyyali...
+
+
+class Student:
+    student_id = 1
+    student_name = 'chenchu mahesh'
+
+
+# For understanding purpose.....
+
+# print(Student.__dict__.items())
+# print(Student.__dict__.values())
+# print(Student.__dict__.keys())
+
+
+for key, val in Student.__dict__.items():
+    if not key.startswith('_'):   # key anedi ('_') tho start kakapothe daanni return chey.....
+        print(key, '>', val)
+
+
+#  adding additional attributes.....
+
+Student.student_area = 'banglore'
+
+
+for key, value in Student.__dict__.items():
+    if not key.startswith('_'):   # key anedi ('_') tho start kakapothe daanni return chey.....
+        print(key, '>', value)
+
+# deleting attributes.....
+
+del Student.student_id
+
+for key, value in Student.__dict__.items():
+    if not key.startswith('_'):     # key anedi ('_') tho start kakapothe daanni return chey.....
+        print(key, ">", value)
+
+"""
+"""
+# Model : creation of class with specified attributes...and add new attributes and createing function to display the entire attributes of the class
+
+# 11. Write a Python class named Student with two attributes student_id, student_name. Add a new attribute student_class.
+# Create a function to display the entire attribute and their values in Student class.
+
+
+# Exp : 1. mundu manam specified attributes tho class ni create cheyyali...
+# 2. function create cheyyali dantlo class attributes anni display avvali...
+
+class Student:
+    student_id = 1
+    student_name = 'chenchu'
+
+# Note :- manam class lo vunnna varibles ni access cheyyali ante kachithamga Class name ni vadali....example = {Student.student_id}
+
+    def display():
+        print(f"student_id  = {Student.student_id}\nstudent_name = {Student.student_name}")  # flower bracket lopala eami pedithe adi vastundi.....
+
+
+Student.display()
+
+"""
+"""
+# Model :
+
+# 12. Write a Python class named Student with two instances student1, student2 and assign given values to the said instances attributes.
+# Print all the attributes of student1, student2 instances with their values in the given format.
+
+
+# Input values of the instances:
+
+# student_1:
+# student_id = "V12"
+# student_name = "Ernesto Mendez"
+# student_2:
+# student_id = "V12"
+# marks_language = 85
+# marks_science = 93
+# marks_math = 95
+
+# Expected Output:
+
+# student_id -> V12
+# student_name -> Ernesto Mendez
+# student_id -> V12
+# marks_language -> 85
+# marks_science -> 93
+# marks_math -> 95
 
 
 
+# Exp : 
+# 1.class ni create cheyyali....
+
+# 2. daniki refernce(objects) ni create cheyyali.....
+
+# 3. aa reference ki kothaga attributes and values ni add cheyyali...
+
+#  4. mothoam attributes and values ni print cheyyali...
+
+class Student:
+    school = 'master school'   # if there is no school there is no student.... so student is the part of the school so we creates the school as static varible
+    area = 'sathyavedu'
 
 
+student1 = Student()
+student2 = Student()
+
+# adding attributes along with their values...
+
+student1.student_id = 'V12'
+student1.student_name = 'Ernesto Mendez'
+
+student2.student_id = 'V12'
+student2.marks_language = 85
+student2.marks_science = 93
+student2.marks_math = 95
+
+student_details = [student1, student2]  # making list of all objects...
+
+for reference in student_details:  # every object_ref in the student_details
+    for key, value in reference.__dict__.items():  # this is important line 
+        print(key, '>', value)
 
 
+# Note = __dict__ method shows key and values in the specified object.
+
+"""
 
 
+# _________________________________________________Python basic class applictaion_________________________________________________________________
+
+"""
+# One and two are pending....
+
+# 1. Write a Python class to convert an integer to a roman numeral.
 
 
+# 2. Write a Python class to convert a roman numeral to an integer.
 
 
+# Model : creating class to reverse the given string... 
+
+# 8. Write a Python class to reverse a string word by word.
+# Input string : 'hello .py'
+# Expected Output : '.py hello'
+
+# Exp : # first string_obj ni split chesi list loki marchukovali.... appudu adi list loki vastundi....danni manam reversed dwara reverse cheyyali...
+
+# join vaadi list lo vunna strings ni space tho join cheyyali...
+
+class Reverse:
+    def rev(self, string_obj):
+        return ' '.join(reversed(string_obj.split()))
 
 
+a= Reverse()   # creating object 
+print(a.rev('hello .py'))  # calling function rev 
+print(a.rev('python class'))
+
+"""
+
+# Model : create class with two methods get_string and print_string ... get_string accepts sring from console...print_string print string in uppercase
+
+# 9. Write a Python class which has two methods get_String and print_String. get_String accept a string from the user and print_String print the string in upper case.
+
+
+class IOstring:
+    def get_String(self):
+        self.str1=input("Enter the string :")
+    def print_String(self):
+         print(self.str1.upper())
+
+
+a = IOstring()
+a.get_String()
+a.print_String()
 
 
 

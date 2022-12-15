@@ -366,7 +366,6 @@ for reference in student_details:  # every object_ref in the student_details
 
 """
 
-
 # _________________________________________________Python basic class applictaion_________________________________________________________________
 
 """
@@ -398,7 +397,7 @@ print(a.rev('hello .py'))  # calling function rev
 print(a.rev('python class'))
 
 """
-
+"""
 # Model : create class with two methods get_string and print_string ... get_string accepts sring from console...print_string print string in uppercase
 
 # 9. Write a Python class which has two methods get_String and print_String. get_String accept a string from the user and print_String print the string in upper case.
@@ -414,12 +413,79 @@ class IOstring:
 a = IOstring()
 a.get_String()
 a.print_String()
+"""
+
+"""
+
+# Model : code for computation of area of a rectangle...
+
+# 10. Write a Python class named Rectangle constructed by a length and width and a method which will compute the area of a rectangle.
+
+
+# Exp : first manam length and breath initialize cheyyali... tharuvatha method ni define chesi dantlo area ni calculate cheyyali... 
+
+class Rectangle:
+    def __init__(self, l, b):   # ikkada nenu __init__ method vadali nenu __int__ method pettanu....
+        self.l = l
+        self.b = b
+
+    def area(self):
+        print(f'area :{self.l * self.b}')
+
+
+a = Rectangle(10, 20)
+a.area()
+
+"""
+"""
+# Model : class for computing the area and perimetre of a circle....
+
+# 11. Write a Python class named Circle constructed by a radius and two methods which will compute the area and the perimeter of a circle
+
+
+# Exp : oka Circle class ni create cheyyali...dantlo radius ni initialize cheyyali...
+
+# 2. area ni claculate cheyyali and perimeter ni calculate cheyyali...
+
+# formulas :- circle area = 22/7*radius*radius
+#             circle perimeter = 2*22/7*radius
 
 
 
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return self.radius*self.radius*22/7
+
+    def perimeter(self):
+        return 2*22/7*self.radius
 
 
+red = Circle(2)
+print(red.area())
 
+"""
+"""
+# Model : getting calss name of an instance ...
+
+# 12. Write a Python program to get the class name of an instance in Python.
+
+
+class Chenchu:
+    pass
+
+a= Chenchu()   #object creation
+
+print(type(a)) # for understandiing purpose ::: the output is :- <class '__main__.Chenchu'> 
+print(type(a).__name__)
+
+"""
+
+# model : python class to implemeny power of...
+
+# 7. Write a Python class to implement pow(x, n).
 
 
 

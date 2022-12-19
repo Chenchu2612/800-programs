@@ -221,3 +221,4 @@ print(list(map(lambda x: [x], ['apple', 'ball', 'cat'])))  # this is not a corre
 
 # print(list(map(lambda x: x[0]+" "+x[1], a)))
 
+print("hai prasad")

@@ -48,8 +48,7 @@ def anagram(str_obj1, str_obj2):
 # anagram(input("Enter the string_obj: "), input("Enter the string_obj2 :"))
 
 
-
-
+# anagram by using count
 
 def anagram_count(str_obj1, str_obj2):
     count = 0

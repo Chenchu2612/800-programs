@@ -614,3 +614,23 @@ def tup_to_list(item):
 print(tup_to_list([(1, 2), (2, 3), (3, 4)]))
 
 """
+
+# class Operator_ovr:
+#     def __init__(self, name, pages):
+#         self.name = name
+#         self.pages = pages
+#
+#     def __add__(self, other):
+#         return self.pages+other.pages
+#
+#
+# a = Operator_ovr("python", 123)
+# b= Operator_ovr("java", 456)
+# print(a+b)
+#
+
+
+a = [1,2]
+b= [3,4]
+for i in (a, b):
+    print(i)

@@ -68,6 +68,26 @@ def anagram_count(str_obj1, str_obj2):
 anagram_count(input("Enter the string_obj :"), input("Enter the string_obj2 :"))
 
 
+# interview
+
+s = 'A a quick brown fox jumps over a fence !!'
+
+
+def finding_length_of_last_word(string_obj):
+    a = ''
+    b = []
+    for x in string_obj:
+        if x.isalpha():
+            a += x
+        else:
+            b.append(a)
+            a = ""
+    new_list = [x for x in b if x != '']
+    return len(new_list[-1])
+
+
+print(finding_length_of_last_word(input("Enter the string_obj :")))
+
 
 
 
